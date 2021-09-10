@@ -1,0 +1,48 @@
+<div class="content">
+  <h2 data-testid="project-title">{{ project.workingTitle }}</h2>
+  <span *ngIf="project.type" data-testid="project-type">{{ project.type | translate }}</span>
+
+  <div *ngIf="project.description" data-testid="project-description">
+    {{ project.description }}
+  </div>
+
+  <img
+    *ngIf="project.imagePath"
+    src="{{ project.imagePath }}"
+    data-testid="project-image"
+  >
+
+  <div
+    *ngIf="project.goalWordcount > 0 || project.currentWordcount > 0"
+    data-testid="word-progress-container"
+  >
+    <h4>{{ 'headline_word_count' | translate }}</h4>
+    <app-project-progress-bar
+      [goalCount]="project.goalWordcount"
+      [currentCount]="project.currentWordcount"
+    ></app-project-progress-bar>
+  </div>
+</div>
+
+<div class="md-padding">
+  <div class="button-row">
+    <button
+      mat-raised-button
+      color="primary"
+      [routerLink]="['/projects/'+id+'/edit']"
+      data-testid="project-edit-button"
+    >{{ 'button_edit' | translate }}</button>
+    <button
+      mat-raised-button
+      color="primary"
+      (click)="addWords()"
+      data-testid="project-words-button"
+    >{{ 'button_add_words' | translate }}</button>
+    <button
+      mat-stroked-button
+      color="warn"
+      (click)="deleteProject()"
+      data-testid="project-delete-button"
+    >{{ 'button_delete' | translate }}</button>
+  </div>
+</div>

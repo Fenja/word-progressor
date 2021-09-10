@@ -1,0 +1,36 @@
+<mat-card class="project-item">
+  <mat-card-header class="project-item__header">
+    <mat-card-title>{{ project.workingTitle }}</mat-card-title>
+    <mat-card-subtitle>{{ project.state | translate }}</mat-card-subtitle>
+    <span class="project-type">{{ project.type | translate }}</span>
+  </mat-card-header>
+
+  <mat-card-content>
+    {{ project.description }}
+  </mat-card-content>
+  <app-project-progress-bar
+    [goalCount]="project.goalWordcount"
+    [currentCount]="project.currentWordcount"
+  ></app-project-progress-bar>
+  <img mat-card-image *ngIf="project.imagePath" [src]="project.imagePath"/>
+
+  <mat-card-actions class="button-row">
+    <button
+      mat-stroked-button
+      color="primary"
+      [routerLink]="[index]"
+      data-testid="project-detail-button"
+    >{{'button_details' | translate}}</button>
+    <button
+      mat-stroked-button
+      [routerLink]="[index+'/edit']"
+      data-testid="project-edit-button"
+    >{{'button_edit' | translate}}</button>
+    <button
+      mat-raised-button
+      color="primary"
+      (click)="addWords()"
+      data-testid="project-words-button"
+    >{{'button_add_words' | translate}}</button>
+  </mat-card-actions>
+</mat-card>

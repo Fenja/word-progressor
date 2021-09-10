@@ -1,0 +1,13 @@
+<div *ngIf="goalCount > 0">
+  <mat-progress-bar
+    mode="determinate"
+    value="{{ percentageDone }}"
+    color="primary"
+    aria-label="progress"
+  ></mat-progress-bar>
+  <span data-testid="project-word-count">{{ currentCount }} / {{ goalCount }}</span>
+</div>
+
+<div *ngIf="(goalCount === 0 && currentCount > 0)">
+  <span data-testid="project-current-count">{{ currentCount }}</span>
+</div>

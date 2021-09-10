@@ -1,0 +1,11 @@
+<div *ngIf="projects.length > 0">
+  <app-project-item
+    *ngFor="let project of projects; let i = index"
+    [project]="project"
+    [index]="i"
+    class="list-card-item"
+  ></app-project-item>
+</div>
+<p *ngIf="projects.length <= 0" class="empty-info">{{'info_no_projects' | translate}}</p>
+
+<app-project-footer></app-project-footer>

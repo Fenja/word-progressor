@@ -1,7 +1,11 @@
-import { TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 import { AppComponent } from './app.component';
+import {By} from "@angular/platform-browser";
 
 describe('AppComponent', () => {
+
+  let fixture: ComponentFixture<AppComponent>;
+
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [
@@ -10,22 +14,24 @@ describe('AppComponent', () => {
     }).compileComponents();
   });
 
+  beforeEach(() => {
+    fixture = TestBed.createComponent(AppComponent);
+  });
+
   it('should create the app', () => {
-    const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'wordProgressor'`, () => {
-    const fixture = TestBed.createComponent(AppComponent);
+  it(`has 'WordProgressor' as title`, () => {
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('wordProgressor');
+    expect(app.title).toEqual('WordProgressor');
   });
 
-  it('should render title', () => {
-    const fixture = TestBed.createComponent(AppComponent);
+  it('has an AppHeader', () => {
     fixture.detectChanges();
-    const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('.content span')?.textContent).toContain('wordProgressor app is running!');
+    const {debugElement} = fixture;
+    const header = debugElement.query(By.css('app-header'));
+    expect(header).toBeTruthy();
   });
 });
