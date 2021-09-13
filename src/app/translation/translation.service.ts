@@ -82,6 +82,7 @@ export class TranslationService {
         label_password_repeat: 'Passwort wiederholen',
         label_projects: 'Projekte',
         label_settings: 'Einstellungen',
+        label_anonymous_user: 'Anonymer Nutzer',
 
         placeholder_working_title: 'Arbeitstitel',
         placeholder_blurp: 'Inhaltsangabe',
@@ -168,6 +169,7 @@ export class TranslationService {
         label_password_repeat: 'Repeat Password',
         label_projects: 'Projects',
         label_settings: 'Settings',
+        label_anonymous_user: 'Anonymous User',
 
         placeholder_working_title: 'Working Title',
         placeholder_blurp: 'Blurp',

@@ -11,7 +11,7 @@ export class HeaderComponent implements OnInit {
   private userSub: Subscription | undefined;
 
   constructor(
-    private authService: AuthService
+    public authService: AuthService
   ) {}
 
   ngOnInit() {

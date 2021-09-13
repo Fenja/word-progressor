@@ -1,21 +1,27 @@
 import { Component, OnInit } from '@angular/core';
+import {AuthService} from "../auth.service";
+import {MatDialogRef} from "@angular/material/dialog";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-anonymous-dialog.component.ts',
   templateUrl: './anonymous-dialog.component.html'
 })
-export class AnonymousDialog implements OnInit {
+export class AnonymousDialog {
 
-  constructor() { }
+  constructor(
+    public dialogRef: MatDialogRef<AnonymousDialog>,
+    private authService: AuthService,
+    private router: Router,
+  ) { }
 
-  ngOnInit(): void {
-  }
-
-  close() {
-
+  close(): void {
+    this.dialogRef.close();
   }
 
   proceed() {
-
+    this.authService.setAnonymous(true);
+    this.close();
+    this.router.navigate(['/projects']);
   }
 }

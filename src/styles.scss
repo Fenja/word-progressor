@@ -19,8 +19,8 @@ $angular-default-theme: mat.define-light-theme(
 $angular-dark-theme: mat.define-dark-theme(
     (
       color: (
-        primary: $angular-accent,
-        accent: mat.define-palette(mat.$light-blue-palette),
+        primary: $angular-primary,
+        accent: $angular-accent,
         warn: $angular-warn,
       )
     )

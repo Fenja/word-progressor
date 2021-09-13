@@ -4,7 +4,7 @@ import { HttpClient, HttpErrorResponse } from "@angular/common/http";
 import { Router } from "@angular/router";
 import { catchError, tap } from "rxjs/operators";
 import { User} from "./user.model";
-import {environment} from "../../environments/environment";
+import { environment } from "../../environments/environment";
 
 const SIGNUP_URL = 'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=';
 const SIGNIN_URL = 'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=';
@@ -27,7 +27,11 @@ export class AuthService {
   user = new BehaviorSubject<User | null>(null);
   userId = '';
   private tokenExpirationTimer: any;
-  constructor(private http: HttpClient, private router: Router) {}
+  isAnonymous: boolean | null = null;
+  constructor(
+    private http: HttpClient,
+    private router: Router,
+  ) {}
 
   signup(email: string, password: string) {
     return this.http.post<AuthResponseData>(
@@ -37,7 +41,7 @@ export class AuthService {
         password: password,
         returnSecureToken: true,
       }
-    ).pipe(catchError(this.handleError), tap(response => {
+    ).pipe(catchError(AuthService.handleError), tap(response => {
       this.handleAuthentication(response.email, response.localId, response.idToken, +response.expiresIn);
     }));
   }
@@ -50,7 +54,7 @@ export class AuthService {
         password: password,
         returnSecureToken: true,
       }
-    ).pipe(catchError(this.handleError), tap(response => {
+    ).pipe(catchError(AuthService.handleError), tap(response => {
       this.handleAuthentication(response.email, response.localId, response.idToken, +response.expiresIn);
     }));
   }
@@ -63,6 +67,7 @@ export class AuthService {
       _tokenExpirationDate: string;
     } = JSON.parse(<string>localStorage.getItem('userData'));
     if (!userData) {
+      this.checkAnonymous();
       return;
     }
 
@@ -74,6 +79,7 @@ export class AuthService {
     );
 
     this.userId = loadedUser.id;
+    this.setAnonymous(false);
 
     if (loadedUser.token) {
       this.user.next(loadedUser);
@@ -113,19 +119,25 @@ export class AuthService {
     this.user.next(user);
     this.autoLogout(expiresIn * 1000);
     localStorage.setItem('userData', JSON.stringify(user));
+    this.setAnonymous(false);
   }
 
-  private handleError(errorResponse: HttpErrorResponse) {
+  private static handleError(errorResponse: HttpErrorResponse) {
     let errorMessage = 'error_unknown';
     if (!errorResponse.error || !errorResponse.error.error) {
       return throwError(errorMessage);
     }
-    switch (errorResponse.error.error.message) {
-      case 'EMAIL_EXISTS':
-        errorMessage = 'email_exists';
-    }
-    return throwError(errorMessage);
+    return throwError(errorResponse.error.error.message);
   }
 
+  checkAnonymous() {
+    if (!!localStorage.getItem('isAnonymous') && localStorage.getItem('isAnonymous') === 'true') {
+      this.isAnonymous = true;
+    }
+  }
 
+  setAnonymous(isAnonymous: boolean) {
+    this.isAnonymous = isAnonymous;
+    localStorage.setItem('isAnonymous', isAnonymous.toString());
+  }
 }
