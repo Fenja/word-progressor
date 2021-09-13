@@ -15,7 +15,7 @@
   <ul>
     <li><a mat-button routerLink="/projects" routerLinkActive="mat-accent">{{ 'label_projects' | translate }}</a></li>
 
-    <li *ngIf="isAuthenticated"><button mat-button (click)="onLogout()">{{ 'label_logout' | translate }}</button></li>
+    <li *ngIf="isAuthenticated"><a mat-button (click)="onLogout()">{{ 'label_logout' | translate }}</a></li>
     <li *ngIf="!isAuthenticated"><a mat-button routerLink="/auth" routerLinkActive="mat-accent">{{ 'label_login' | translate }}</a></li>
 
     <li *ngIf="isAuthenticated"><a mat-button routerLink="/settings" routerLinkActive="mat-accent"><i class="mat-icon material-icons">settings</i></a></li>

@@ -2,11 +2,9 @@ import { Project } from "./project.model";
 import { Subject, throwError } from "rxjs";
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
-import {catchError, exhaustMap, map, take} from "rxjs/operators";
+import {catchError, map, take} from "rxjs/operators";
 import {environment} from "../../environments/environment";
 import {AuthService} from "../auth/auth.service";
-
-const FIREBASE_URL = environment.dbUrl + 'projects.json';
 
 @Injectable({
   providedIn: 'root'
@@ -18,7 +16,8 @@ export class ProjectService {
 
 
   constructor(
-    private http: HttpClient
+    private http: HttpClient,
+    private authService: AuthService,
   ) {
     this.fetchProjects();
   }
@@ -36,7 +35,7 @@ export class ProjectService {
 
   addProject(project: Project) {
     this.http.post<any>(
-      FIREBASE_URL,
+      environment.FIREBASE_DB_URL+this.authService.userId+'/projects.json',
       project
     ).subscribe(responseData => {
       this.fetchProjects();
@@ -49,7 +48,7 @@ export class ProjectService {
 
   editProject(id: string, project: Project): void {
     this.http.put(
-      environment.dbUrl+'projects/'+id+'.json',
+      environment.FIREBASE_DB_URL+'projects/'+id+'.json',
       project
     ).subscribe(response => {
       this.fetchProjects();
@@ -58,7 +57,7 @@ export class ProjectService {
 
   deleteProject(id: string): void {
     this.http.delete(
-      environment.dbUrl+'projects/'+id+'.json',
+      environment.FIREBASE_DB_URL+'projects/'+id+'.json',
     ).subscribe(response => {
       this.fetchProjects();
     });
@@ -71,7 +70,7 @@ export class ProjectService {
   fetchProjects() {
     console.log('fetch projects');
     this.http.get<{ [key: string]: Project }>(
-      FIREBASE_URL
+      environment.FIREBASE_DB_URL+this.authService.userId+'/projects.json'
     )
       .pipe(
         take(1),
