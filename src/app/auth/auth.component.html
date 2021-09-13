@@ -1,0 +1,85 @@
+<div>
+  <div *ngIf="isLoading" class="center-container">
+    <mat-spinner color="primary"></mat-spinner>
+  </div>
+
+  <div *ngIf="error" class="alert alert-danger">
+    <mat-error>
+      <mat-label>{{ error }}</mat-label>
+      <mat-label>{{ error | translate }}</mat-label>
+    </mat-error>
+  </div>
+  <form
+    *ngIf="!isLoading"
+    class="form-group"
+    #authForm="ngForm"
+    (ngSubmit)="onSubmit(authForm)"
+  >
+    <div>
+      <mat-form-field>
+        <mat-label>{{ 'label_email' | translate }}</mat-label>
+        <input
+          matInput
+          type="email"
+          name="email"
+          class="form-control"
+          data-testid="email-input"
+          required
+          email
+          ngModel
+        >
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>{{ 'label_password' | translate }}</mat-label>
+        <input
+          matInput
+          type="password"
+          name="password"
+          class="form-control"
+          data-testid="password-input"
+          required
+          ngModel
+          minlength="6"
+        >
+      </mat-form-field>
+      <mat-form-field *ngIf="!isLoginMode">
+        <mat-label>{{ 'label_password_repeat' | translate }}</mat-label>
+        <input
+          matInput
+          type="password"
+          name="password_repeat"
+          class="form-control"
+          data-testid="password-repeat-input"
+          required
+          ngModel
+          minlength="6"
+        >
+      </mat-form-field>
+
+      <div class="button-row">
+        <button
+          mat-raised-button
+          color="primary"
+          type="submit"
+          data-testid="login-button"
+          [disabled]="!authForm.valid"
+        >{{ (isLoginMode ? 'button_login' : 'button_signup') | translate }}</button>
+        <button
+          mat-stroked-button
+          color="primary"
+          data-testid="signup-button"
+          type="button"
+          (click)="onSwitchMode()"
+        >{{ (isLoginMode ? 'button_switch_to_signup' : 'button_switch_to_login') | translate }}</button>
+
+      <button
+          mat-stroked-button
+          color="accent"
+          data-testid="anonymous-user-button"
+          type="button"
+          (click)="onProceed()"
+        >{{ 'button_proceed_without_login' | translate }}</button>
+      </div>
+    </div>
+  </form>
+</div>

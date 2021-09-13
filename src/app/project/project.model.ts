@@ -1,43 +1,35 @@
-export class Project {
-  public workingTitle: string;
-  public description: string;
-  public imagePath: string;
+import {WordLog} from "./add-words-dialog/word-log.model";
 
-  public type: ProjectType;
-  public state: ProjectState;
-  public deadline: Date | undefined;
-  public currentWordcount: number;
-  public goalWordcount: number;
+export interface Project {
+  workingTitle: string;
+  description: string;
+  imagePath: string;
 
+  type: ProjectType;
+  state: ProjectState;
+  deadline: Date | undefined;
+  currentWordcount: number;
+  goalWordcount: number;
+  maxGoalWordcount?: number;
 
-  constructor(workingTitle: string = '', description: string = '', imagePath: string = '', type: ProjectType = ProjectType.short_story, state: ProjectState = ProjectState.idea, deadline: Date | undefined = undefined, currentWordcount: number = 0, goalWordcount: number = 0) {
-    this.workingTitle = workingTitle;
-    this.description = description;
-    this.imagePath = imagePath;
-    this.type = type;
-    this.state = state;
-    this.deadline = deadline;
-    this.currentWordcount = currentWordcount;
-    this.goalWordcount = goalWordcount;
-  }
+  id?: string;
 
-  getProjectState() {
-    return this.state.toString();
-  }
+  wordLogs?: WordLog[];
+  notes?: Note[];
+}
 
-  getProjectType() {
-    return this.type.toString();
-  }
-
-
+export interface Note {
+  id?: string;
+  index: number;
+  content: string;
 }
 
 export enum ProjectType {
-  other= 'other',
+  other = 'other',
   novel = 'novel',
   short_story = 'short_story',
   flash_fiction = 'flash_fiction',
-  novellette = 'novelette',
+  novelette = 'novelette',
   novella = 'novella',
   poem = 'poem',
   epic = 'epic',

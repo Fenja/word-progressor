@@ -30,6 +30,12 @@ import { AddWordsDialogComponent } from './project/add-words-dialog/add-words-di
 import { MatDialogModule } from "@angular/material/dialog";
 import { TranslatePipe } from "./translation/translate.pipe";
 import { ProjectProgressBarComponent } from './components/project-progress-bar/project-progress-bar.component';
+import { AuthComponent } from './auth/auth.component';
+import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
+import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
+import { AnonymousDialog } from './auth/anonymous-dialog/anonymous-dialog.component';
+import {AuthInterceptorService} from "./auth/auth-interceptor.service";
+import { SettingsComponent } from './settings/settings.component';
 
 @NgModule({
   declarations: [
@@ -44,6 +50,9 @@ import { ProjectProgressBarComponent } from './components/project-progress-bar/p
     AddWordsDialogComponent,
     TranslatePipe,
     ProjectProgressBarComponent,
+    AuthComponent,
+    AnonymousDialog,
+    SettingsComponent,
   ],
   imports: [
     AppRoutingModule,
@@ -65,8 +74,17 @@ import { ProjectProgressBarComponent } from './components/project-progress-bar/p
     MatToolbarModule,
     MatIconModule,
     MatDialogModule,
+    HttpClientModule,
+    MatProgressSpinnerModule,
   ],
-  providers: [MatDatepickerModule],
+  providers: [
+    MatDatepickerModule,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptorService,
+      multi: true,
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

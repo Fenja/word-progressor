@@ -1,8 +1,7 @@
 <div *ngIf="projects.length > 0">
   <app-project-item
-    *ngFor="let project of projects; let i = index"
+    *ngFor="let project of projects"
     [project]="project"
-    [index]="i"
     class="list-card-item"
   ></app-project-item>
 </div>

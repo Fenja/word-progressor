@@ -1,10 +1,10 @@
-import {Component, ElementRef, Inject, OnInit, ViewChild} from '@angular/core';
-import {Project} from "../project.model";
-import {ProjectService} from "../project.service";
-import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
+import { Component, ElementRef, Inject, OnInit, ViewChild } from '@angular/core';
+import { Project } from "../project.model";
+import { ProjectService } from "../project.service";
+import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
 
 export interface AddWordsDialogData {
-  id: number;
+  id: string;
   project: Project;
 }
 
@@ -32,14 +32,15 @@ export class AddWordsDialogComponent implements OnInit {
 
   addWords(words: number) {
     this.data.project.currentWordcount += words;
-    close();
+    this.projectService.editProject(this.data.id, this.data.project);
+    this.close();
     // TODO show Snackbar
     // TODO feed statistics service
   }
 
   updateWords() {
     this.projectService.editProject(this.data.id, this.data.project);
-    close();
+    this.close();
     // TODO show Snackbar
     // TODO feed statistics service
   }

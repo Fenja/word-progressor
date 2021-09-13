@@ -18,12 +18,12 @@
     <button
       mat-stroked-button
       color="primary"
-      [routerLink]="[index]"
+      [routerLink]="[project.id]"
       data-testid="project-detail-button"
     >{{'button_details' | translate}}</button>
     <button
       mat-stroked-button
-      [routerLink]="[index+'/edit']"
+      [routerLink]="[project.id+'/edit']"
       data-testid="project-edit-button"
     >{{'button_edit' | translate}}</button>
     <button

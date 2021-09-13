@@ -11,6 +11,27 @@ button.mat-button-base{
   align-items: flex-start;
 }
 
+.spacer {
+  flex: 1 1 auto;
+}
+
+.hidden {
+  visibility: hidden;
+}
+
+ul {
+  list-style: none;
+  float: left;
+  display: flex;
+}
+
+.center-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+}
+
 .form-group {
   margin: 1em;
   padding: 1em;

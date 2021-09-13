@@ -1,53 +1,98 @@
-import {Project, ProjectState, ProjectType} from "./project.model";
-import {Subject} from "rxjs";
-import {Injectable} from "@angular/core";
+import { Project } from "./project.model";
+import { Subject, throwError } from "rxjs";
+import { Injectable } from "@angular/core";
+import { HttpClient } from "@angular/common/http";
+import {catchError, exhaustMap, map, take} from "rxjs/operators";
+import {environment} from "../../environments/environment";
+import {AuthService} from "../auth/auth.service";
+
+const FIREBASE_URL = environment.dbUrl + 'projects.json';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProjectService {
 
+  projects: Project[] = [];
   public projectList = new Subject<Project[]>();
 
-  private projects: Project[] = [
-    new Project(
-      'My great Novel', 'stuff happens', '',
-      ProjectType.novel, ProjectState.draft_1, new Date(2020, 10, 11),
-      10000, 80000
-    ),
-    new Project(
-      'Fortytwo', 'A sharp short story', '',
-      ProjectType.novel, ProjectState.draft_1, new Date(2022, 2, 2),
-      0, 10000
-    )
-  ];
 
-  constructor() {}
+  constructor(
+    private http: HttpClient
+  ) {
+    this.fetchProjects();
+  }
 
   getProjects(): Project[] {
+    this.fetchProjects();
     return this.projects.slice();
   }
 
-  getProject(id: number): Project {
-    return this.projects[id];
+  getProject(id: string): Project | undefined {
+    let result = this.projects.find(p => p.id === id);
+    console.log(result);
+    return result;
   }
 
   addProject(project: Project) {
-    this.projects.push(project);
-    this.projectList.next(this.projects.slice());
+    this.http.post<any>(
+      FIREBASE_URL,
+      project
+    ).subscribe(responseData => {
+      this.fetchProjects();
+    },
+      error => {
+       console.log(error);
+      }
+    );
   }
 
-  editProject(id: number, project: Project): void {
-    this.projects[id] = project;
-    this.projectList.next(this.projects.slice());
+  editProject(id: string, project: Project): void {
+    this.http.put(
+      environment.dbUrl+'projects/'+id+'.json',
+      project
+    ).subscribe(response => {
+      this.fetchProjects();
+    });
   }
 
-  deleteProject(id: number): void {
-    this.projects.splice(id, 1);
-    this.projectList.next(this.projects.slice());
+  deleteProject(id: string): void {
+    this.http.delete(
+      environment.dbUrl+'projects/'+id+'.json',
+    ).subscribe(response => {
+      this.fetchProjects();
+    });
   }
 
-  hasProject(id: number): boolean {
-    return !!this.projects[id];
+  hasProject(id: string): boolean {
+    return !!(this.projects.find(p => p.id === id));
+  }
+
+  fetchProjects() {
+    console.log('fetch projects');
+    this.http.get<{ [key: string]: Project }>(
+      FIREBASE_URL
+    )
+      .pipe(
+        take(1),
+        map((responseData) => {
+          const projectArray: Project[] = [];
+          for (const key in responseData) {
+            if (responseData.hasOwnProperty(key)) {
+              projectArray.push({ ...responseData[key], id:key });
+            }
+          }
+          return projectArray;
+        }),
+        catchError(errorRes => {
+          return throwError(errorRes);
+        })
+      )
+      .subscribe(
+        (projects) => {
+          console.log(projects);
+          this.projects = projects
+          this.projectList.next(this.projects.slice());
+        });
   }
 }

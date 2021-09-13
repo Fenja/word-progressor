@@ -11,7 +11,10 @@
   <mat-tab-group *ngIf="validProject">
     <mat-tab label="{{ 'headline_total_words' | translate }}">
       <form>
-        <mat-form-field class="example-full-width">
+        <mat-form-field
+          class="example-full-width"
+          color="primary"
+        >
           <input
             type="number"
             name="currentWordcount"
@@ -23,8 +26,8 @@
         </mat-form-field>
       </form>
       <div mat-dialog-actions style="height: 5em">
-        <button mat-stroked-button color="accent" (click)="close()">{{'button_cancel' | translate}}</button>
-        <button mat-raised-button color="primary" (click)="updateWords()">{{'button_update_word_count' | translate}}</button>
+        <button mat-stroked-button color="accent" (click)="close()">{{ 'button_cancel' | translate }}</button>
+        <button mat-raised-button color="primary" (click)="updateWords()">{{ 'button_update_word_count' | translate }}</button>
       </div>
     </mat-tab>
 
@@ -32,7 +35,10 @@
     <mat-tab label="{{'headline_new_words' | translate}}">
 
       <form>
-        <mat-form-field class="example-full-width">
+        <mat-form-field
+          class="example-full-width"
+          color="primary"
+        >
           <input
             matInput
             value="0"

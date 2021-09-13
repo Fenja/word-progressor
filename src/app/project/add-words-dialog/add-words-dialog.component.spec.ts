@@ -13,16 +13,22 @@ describe('AddWordsDialogComponent', () => {
   let component: AddWordsDialogComponent;
   let fixture: ComponentFixture<AddWordsDialogComponent>;
 
-  let mockProject: Project = new Project(
-      'My great Novel', 'stuff happens', '',
-      ProjectType.novel, ProjectState.draft_1, new Date(2020, 10, 11),
-      10000, 80000
-    );
+  const mockProject: Project = {
+    workingTitle: 'Mock Project',
+    description: 'description',
+    imagePath: '',
+    type: ProjectType.novel,
+    state: ProjectState.draft_1,
+    deadline: new Date(2020, 10, 11),
+    currentWordcount: 10000,
+    goalWordcount: 80000,
+    id: '42'
+  };
 
   const mockProjectService = {
-    getProject(id: number) { return of(mockProject); },
-    editProject(id: number, project: Project) {},
-    hasProject(id: number) { return id != 42; },
+    getProject(id: string) { return of(mockProject); },
+    editProject(id: string, project: Project) {},
+    hasProject(id: string) { return id === '42'; },
   }
 
   describe('add words dialog', () => {
@@ -66,7 +72,7 @@ describe('AddWordsDialogComponent', () => {
     it('has project and id from injection', () => {
       expect(component.data.project).toBeTruthy();
       expect(component.data.project).toBe(mockProject);
-      expect(component.data.id).toBe(0);
+      expect(component.data.id).toBe('42');
     });
 
     it('sets current word count as default input value', fakeAsync(() => {

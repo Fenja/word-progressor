@@ -51,26 +51,17 @@ describe('ProjectDetailComponent', () => {
   let fixture: ComponentFixture<ProjectDetailComponent>;
 
   let mockId: 0;
-  let mockProject = new Project(
-    'Mock Project',
-    'description',
-    'https://www.give-me-image.com/bild.png',
-    ProjectType.novel,
-    ProjectState.draft_1,
-    new Date(2020, 10, 11),
-    10000,
-    80000
-  );
-  let mockProjectBlank = new Project(
-    'WT',
-    '',
-    '',
-    undefined,
-    undefined,
-    undefined,
-    0,
-    0,
-  )
+  const mockProject: Project = {
+    workingTitle: 'Mock Project',
+    description: 'description',
+    imagePath: '',
+    type: ProjectType.novel,
+    state: ProjectState.draft_1,
+    deadline: new Date(2020, 10, 11),
+    currentWordcount: 10000,
+    goalWordcount: 80000,
+    id: '42'
+  };
 
   describe('Details of fully filled project', () => {
 

@@ -1,9 +1,9 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { ActivatedRoute, Params, Router } from "@angular/router";
-import { ProjectService } from "../project.service";
-import { Project, ProjectState, ProjectType } from "../project.model";
-import { NgForm } from "@angular/forms";
-import { take } from "rxjs/operators";
+import {Component, OnInit, ViewChild} from '@angular/core';
+import {ActivatedRoute, Params, Router} from "@angular/router";
+import {ProjectService} from "../project.service";
+import {Project, ProjectState, ProjectType} from "../project.model";
+import {NgForm} from "@angular/forms";
+import {take} from "rxjs/operators";
 
 @Component({
   selector: 'app-project-edit',
@@ -11,9 +11,18 @@ import { take } from "rxjs/operators";
 })
 export class ProjectEditComponent implements OnInit {
 
-  id: number | undefined;
+  id!: string;
   editMode: boolean = false;
-  project: Project = new Project();
+  project: Project = {
+    workingTitle: '',
+    description: '',
+    imagePath: '',
+    type: ProjectType.short_story,
+    state: ProjectState.idea,
+    deadline: undefined,
+    currentWordcount: 0,
+    goalWordcount: 0
+  }
 
   eProjectType = ProjectType;
   eProjectState = ProjectState;
@@ -32,27 +41,29 @@ export class ProjectEditComponent implements OnInit {
       take(1),
     ).subscribe(
       (params: Params) => {
-        this.id = +params['id'];
+        this.id = params['id'];
         this.editMode = params['id'] != null;
 
         if (this.editMode) {
-          this.project = this.projectService.getProject(this.id);
-        } else {
-          // default settings
-          this.project.type = ProjectType.short_story;
-          this.project.state = ProjectState.idea;
+          let result: Project | undefined = this.projectService.getProject(this.id);
+          if (!!result) this.project = result;
         }
       }
     )
   }
 
   onSubmit(): void {
-    if (this.editMode) {
-      this.projectService.editProject(this.id!, this.project);
-    } else {
-      this.projectService.addProject(this.project);
+    if (!!this.project) {
+      if (this.editMode) {
+        this.projectService.editProject(this.id!, this.project);
+      } else {
+        this.projectService.addProject(this.project);
+      }
     }
     this.router.navigate(['/projects']);
   }
 
+  onCancel() {
+    this.router.navigate(['/projects']);
+  }
 }

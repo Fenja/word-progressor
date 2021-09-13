@@ -4,11 +4,8 @@ import { Component, OnInit } from '@angular/core';
   selector: 'app-project-footer',
   templateUrl: './project-footer.component.html'
 })
-export class ProjectFooterComponent implements OnInit {
+export class ProjectFooterComponent {
 
   constructor() { }
-
-  ngOnInit(): void {
-  }
 
 }

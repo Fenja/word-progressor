@@ -14,7 +14,7 @@ export class ProjectDetailComponent implements OnInit {
   // @ts-ignore
   project: Project;
   // @ts-ignore
-  id: number;
+  id: string;
 
   constructor(
     private projectService: ProjectService,
@@ -26,15 +26,25 @@ export class ProjectDetailComponent implements OnInit {
   ngOnInit(): void {
     this.route.params.subscribe(
       (params: Params) => {
-        this.id = +params['id'];
-        this.project = this.projectService.getProject(this.id);
+        this.id = params['id'];
+        let result: Project | undefined = this.projectService.getProject(this.id);
+        if (!!result) {
+          this.project = result;
+        } else {
+          // TODO show error
+          console.log('project with id ' + this.id + ' not found');
+          this.router.navigate(['/projects']);
+        }
       }
     )
   }
 
   addWords() {
     this.dialog.open(AddWordsDialogComponent,{
-      data: { project: this.project }
+      data: {
+        id: this.id,
+        project: this.project
+      }
     });
   }
 

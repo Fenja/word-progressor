@@ -11,8 +11,6 @@ export class ProjectItemComponent implements OnInit {
 
   // @ts-ignore
   @Input() project: Project;
-  // @ts-ignore
-  @Input() index: number ;
 
   constructor(
     public dialog: MatDialog
@@ -22,7 +20,10 @@ export class ProjectItemComponent implements OnInit {
 
   addWords() {
     this.dialog.open(AddWordsDialogComponent,{
-      data: { project: this.project }
+      data: {
+        id: this.project.id,
+        project: this.project
+      }
     });
   }
 }

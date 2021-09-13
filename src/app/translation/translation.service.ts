@@ -22,7 +22,7 @@ export class TranslationService {
         novel: 'Roman',
         short_story: 'Kurzgeschichte',
         flash_fiction: 'Flash Fiction',
-        novellette: 'Kurz-Novelle',
+        novelette: 'Kurz-Novelle',
         novella: 'Novelle',
         poem: 'Gedicht',
         epic: 'Epic',
@@ -60,6 +60,11 @@ export class TranslationService {
         button_delete: 'Löschen',
         button_update_word_count: 'Wortzahl aktualisieren',
         button_close: 'Schließen',
+        button_login: 'Anmelden',
+        button_signup: 'Registrieren',
+        button_switch_to_signup: 'Zur Registrierung wechseln',
+        button_switch_to_login: 'Zur Anmeldung wechseln',
+        button_proceed_without_login: 'Ohne Anmeldung fortfahren',
 
         label_current_word_count: 'Aktuelle Wortzahl',
         label_goal_word_count: 'Angestrebte Wortzahl',
@@ -70,6 +75,13 @@ export class TranslationService {
         label_title: 'Titel',
         label_deadline: 'Deadline',
         label_submission_deadline: 'Einsendeschluss',
+        label_login: 'Login',
+        label_logout: 'Logout',
+        label_email: 'e-Mail',
+        label_password: 'Passwort',
+        label_password_repeat: 'Passwort wiederholen',
+        label_projects: 'Projekte',
+        label_settings: 'Einstellungen',
 
         placeholder_working_title: 'Arbeitstitel',
         placeholder_blurp: 'Inhaltsangabe',
@@ -77,6 +89,14 @@ export class TranslationService {
         headline_word_count: 'Wortzahl',
         headline_total_words: 'Gesamtwortzahl',
         headline_new_words: 'Neue Wörter',
+
+        error_unknown: 'Ein unerwarteter Fehler ist aufgetreten.',
+        error_email_exists: 'Die E-Mail-Adresse ist bereits von einem anderen Konto in Benutzung.',
+        error_too_many_attempts_try_later: 'Alle Anfragen dieses Geräts wurden vorübergehend blockiert, aufgrund ungewöhnlicher Aktivitäten. Versuche es später erneut.',
+        error_email_not_found: 'Ungültige Anmeldedaten.',
+        error_invalid_password: 'Ungültige Anmeldedaten.',
+        error_user_disabled: 'Das Benutzerkonto wurde vom Administrator gesperrt.',
+
       }
     },
     eng: {
@@ -88,7 +108,7 @@ export class TranslationService {
         novel: 'Novel',
         short_story: 'Short Story',
         flash_fiction: 'Flash Fiction',
-        novellette: 'Novelette',
+        novelette: 'Novelette',
         novella: 'Novella',
         poem: 'Poem',
         epic: 'Epic',
@@ -126,6 +146,11 @@ export class TranslationService {
         button_delete: 'Delete',
         button_update_word_count: 'Update Word Count',
         button_close: 'Close',
+        button_login: 'Sign in',
+        button_signup: 'Sign up',
+        button_switch_to_signup: 'Switch to sign up',
+        button_switch_to_login: 'Switch to sign in',
+        button_proceed_without_login: 'Proceeed without Login',
 
         label_current_word_count: 'Current Word Count',
         label_goal_word_count: 'Goal Word Count',
@@ -136,6 +161,13 @@ export class TranslationService {
         label_title: 'Title',
         label_deadline: 'Deadline',
         label_submission_deadline: 'Submission Deadline',
+        label_login: 'Login',
+        label_logout: 'Logout',
+        label_email: 'Email',
+        label_password: 'Password',
+        label_password_repeat: 'Repeat Password',
+        label_projects: 'Projects',
+        label_settings: 'Settings',
 
         placeholder_working_title: 'Working Title',
         placeholder_blurp: 'Blurp',
@@ -143,6 +175,14 @@ export class TranslationService {
         headline_word_count: 'Word Count',
         headline_total_words: 'Total Words',
         headline_new_words: 'New Words',
+
+        error_unknown: 'An unexpected error occured.',
+        error_email_exists: 'The email address is already in use by another account.',
+        error_too_many_attempts_try_later: 'All requests from this device have been blocked due to unusual activity. Try again later.',
+        error_email_not_found: 'Invalid credentials.',
+        error_invalid_password: 'Invalid credentials.',
+        error_user_disabled: 'The user account has been disabled by an administrator.',
+
       }
     }
   }

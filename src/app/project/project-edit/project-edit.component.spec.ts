@@ -54,16 +54,17 @@ describe('ProjectEditComponent', () => {
   let component: ProjectEditComponent;
   let fixture: ComponentFixture<ProjectEditComponent>;
 
-  const mockProject: Project = new Project(
-    'Mock Project',
-    'description',
-    '',
-    ProjectType.novel,
-    ProjectState.draft_1,
-    new Date(2020, 10, 11),
-    10000,
-    80000
-  );
+  const mockProject: Project = {
+    workingTitle: 'Mock Project',
+    description: 'description',
+    imagePath: '',
+    type: ProjectType.novel,
+    state: ProjectState.draft_1,
+    deadline: new Date(2020, 10, 11),
+    currentWordcount: 10000,
+    goalWordcount: 80000,
+    id: '42'
+  };
 
   const mockRouter = { navigate: () => {}}
 
