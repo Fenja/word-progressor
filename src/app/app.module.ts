@@ -36,6 +36,8 @@ import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
 import { AnonymousDialog } from './auth/anonymous-dialog/anonymous-dialog.component';
 import {AuthInterceptorService} from "./auth/auth-interceptor.service";
 import { SettingsComponent } from './settings/settings.component';
+import {MatCheckboxModule} from "@angular/material/checkbox";
+import {MatTooltipModule} from "@angular/material/tooltip";
 
 @NgModule({
   declarations: [
@@ -76,6 +78,8 @@ import { SettingsComponent } from './settings/settings.component';
     MatDialogModule,
     HttpClientModule,
     MatProgressSpinnerModule,
+    MatCheckboxModule,
+    MatTooltipModule,
   ],
   providers: [
     MatDatepickerModule,

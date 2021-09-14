@@ -83,9 +83,14 @@ export class TranslationService {
         label_projects: 'Projekte',
         label_settings: 'Einstellungen',
         label_anonymous_user: 'Anonymer Nutzer',
+        label_wip: 'In arbeit',
 
         placeholder_working_title: 'Arbeitstitel',
         placeholder_blurp: 'Inhaltsangabe',
+
+        tooltip_sort: 'sortieren',
+        tooltip_filter: 'filtern',
+        tooltip_search: 'suchen',
 
         headline_word_count: 'Wortzahl',
         headline_total_words: 'Gesamtwortzahl',
@@ -170,9 +175,14 @@ export class TranslationService {
         label_projects: 'Projects',
         label_settings: 'Settings',
         label_anonymous_user: 'Anonymous User',
+        label_wip: 'Work in Progress',
 
         placeholder_working_title: 'Working Title',
         placeholder_blurp: 'Blurp',
+
+        tooltip_sort: 'sort',
+        tooltip_filter: 'filter',
+        tooltip_search: 'search',
 
         headline_word_count: 'Word Count',
         headline_total_words: 'Total Words',

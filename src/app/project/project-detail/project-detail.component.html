@@ -22,6 +22,12 @@
       [currentCount]="project.currentWordcount"
     ></app-project-progress-bar>
   </div>
+
+  <div style="float: right">
+    <i class="mat-icon material-icons">event</i>
+    {{ project.deadline | date: 'dd.MM.yyyy' }}
+  </div>
+
 </div>
 
 <div class="md-padding">

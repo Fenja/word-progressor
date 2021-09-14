@@ -33,6 +33,7 @@ export class ProjectService {
   }
 
   editProject(id: string, project: Project): void {
+    project.lastUpdate = new Date();
     this.dataStorageService.editProject(id, project);
   }
 

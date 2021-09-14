@@ -110,6 +110,16 @@
         [(ngModel)]="project.currentWordcount"
       >
     </mat-form-field>
+
+      <mat-checkbox
+        name="workInProgress"
+        color="primary"
+        class="form-control"
+        data-testid="work-in-progress-checkbox"
+        [(ngModel)]="project.isWorkInProgress"
+      >{{ 'label_wip' | translate }}
+      </mat-checkbox>
+
   </div>
 
   <div class="button-row">

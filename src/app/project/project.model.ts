@@ -11,6 +11,10 @@ export interface Project {
   currentWordcount: number;
   goalWordcount: number;
   maxGoalWordcount?: number;
+  isWorkInProgress: boolean;
+
+  creationDate: Date;
+  lastUpdate: Date;
 
   id?: string;
 

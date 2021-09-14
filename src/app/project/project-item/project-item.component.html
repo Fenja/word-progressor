@@ -7,12 +7,18 @@
 
   <mat-card-content>
     {{ project.description }}
-  </mat-card-content>
   <app-project-progress-bar
     [goalCount]="project.goalWordcount"
     [currentCount]="project.currentWordcount"
   ></app-project-progress-bar>
   <img mat-card-image *ngIf="project.imagePath" [src]="project.imagePath"/>
+
+  <div style="float: right">
+    <i class="mat-icon material-icons">event</i>
+    {{ project.deadline | date: 'dd.MM.yyyy' }}
+  </div>
+
+  </mat-card-content>
 
   <mat-card-actions class="button-row">
     <button
@@ -33,4 +39,5 @@
       data-testid="project-words-button"
     >{{'button_add_words' | translate}}</button>
   </mat-card-actions>
+
 </mat-card>

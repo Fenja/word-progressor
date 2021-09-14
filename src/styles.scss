@@ -95,3 +95,30 @@ ul {
   }
 }
 
+.bottom-toolbar {
+  position: fixed;
+  bottom: 0;
+  z-index: 1000;
+  display: flex;
+  justify-content: space-between;
+  padding: 1.5em;
+
+  button {
+    display: flex;
+    flex-direction: column;
+
+    &:hover {
+      background-color: #FFC107; //TODO
+    }
+  }
+
+  &__icons {
+    display: flex;
+
+    button {
+      display: flex;
+      flex-direction: column;
+    }
+  }
+}
+

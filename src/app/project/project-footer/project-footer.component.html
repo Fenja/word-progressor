@@ -1,11 +1,17 @@
-<footer class="md-padding content">
-  <div  class="button-row">
+<mat-toolbar class="bottom-toolbar" color="primary">
     <button
       mat-raised-button
       color="primary"
       [routerLink]="['new']"
-    >{{'button_new_project' | translate}}</button>
-    <!-- <p>Filter</p>
-    <p>Sort</p>-->
-  </div>
-</footer>
+    ><i class="mat-icon material-icons">add</i>
+      {{'button_new_project' | translate}}</button>
+
+    <div class="bottom-toolbar__actions">
+      <!--<a mat-button matTooltip="{{ 'tooltip_sort' | translate }}">
+        <i class="mat-icon material-icons">sort</i></a>
+      <a mat-button matTooltip="{{ 'tooltip_filter' | translate }}">
+        <i class="mat-icon material-icons">filter_alt</i></a>
+      <a mat-button matTooltip="{{ 'tooltip_search' | translate }}">
+        <i class="mat-icon material-icons">search</i></a>-->
+    </div>
+</mat-toolbar>

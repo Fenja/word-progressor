@@ -21,7 +21,10 @@ export class ProjectEditComponent implements OnInit {
     state: ProjectState.idea,
     deadline: undefined,
     currentWordcount: 0,
-    goalWordcount: 0
+    goalWordcount: 0,
+    isWorkInProgress: false,
+    creationDate: new Date(),
+    lastUpdate: new Date(),
   }
 
   eProjectType = ProjectType;
