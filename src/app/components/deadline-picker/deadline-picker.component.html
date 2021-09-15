@@ -1,0 +1,14 @@
+<mat-form-field color="primary">
+  <mat-label>{{'label_deadline' | translate }}</mat-label>
+  <input
+    matInput
+    [matDatepicker]="picker"
+    name="deadline"
+    class="form-control"
+    data-testid="deadline-picker"
+    [(ngModel)]="deadline"
+    (ngModelChange)="this.deadlineChange.emit(this.deadline)"
+  >
+  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+  <mat-datepicker #picker></mat-datepicker>
+</mat-form-field>

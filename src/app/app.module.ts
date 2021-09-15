@@ -38,6 +38,7 @@ import {AuthInterceptorService} from "./auth/auth-interceptor.service";
 import { SettingsComponent } from './settings/settings.component';
 import {MatCheckboxModule} from "@angular/material/checkbox";
 import {MatTooltipModule} from "@angular/material/tooltip";
+import { DeadlinePickerComponent } from './components/deadline-picker/deadline-picker.component';
 
 @NgModule({
   declarations: [
@@ -55,6 +56,7 @@ import {MatTooltipModule} from "@angular/material/tooltip";
     AuthComponent,
     AnonymousDialog,
     SettingsComponent,
+    DeadlinePickerComponent,
   ],
   imports: [
     AppRoutingModule,

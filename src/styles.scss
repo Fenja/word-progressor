@@ -6,25 +6,20 @@ $angular-primary: mat.define-palette(mat.$deep-purple-palette);
 $angular-accent: mat.define-palette(mat.$amber-palette);
 $angular-warn: mat.define-palette(mat.$red-palette);
 
-$angular-default-theme: mat.define-light-theme(
-    (
+$angular-default-theme: mat.define-light-theme((
       color: (
         primary: $angular-primary,
         accent: $angular-accent,
         warn: $angular-warn,
-      )
-    )
-);
+      )));
 
-$angular-dark-theme: mat.define-dark-theme(
-    (
+$angular-dark-theme: mat.define-dark-theme((
       color: (
         primary: $angular-primary,
         accent: $angular-accent,
         warn: $angular-warn,
-      )
-    )
-);
+      )));
+
 @media (prefers-color-scheme: light) {
   @include mat.all-component-colors($angular-default-theme);
 }
@@ -119,6 +114,26 @@ ul {
       display: flex;
       flex-direction: column;
     }
+  }
+}
+
+.progress-bars {
+  position: relative;
+
+  &__container {
+    position: relative;
+    height: 3em;
+  }
+
+  &__label {
+    position: absolute;
+    bottom: 0;
+  }
+
+  .mat-progress-bar {
+    height: 1em;
+    position: absolute;
+    border-radius: 0.5em;
   }
 }
 

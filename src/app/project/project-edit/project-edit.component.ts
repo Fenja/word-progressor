@@ -1,13 +1,36 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
-import {ActivatedRoute, Params, Router} from "@angular/router";
-import {ProjectService} from "../project.service";
-import {Project, ProjectState, ProjectType} from "../project.model";
-import {NgForm} from "@angular/forms";
-import {take} from "rxjs/operators";
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { ActivatedRoute, Params, Router } from "@angular/router";
+import { ProjectService } from "../project.service";
+import { Project, ProjectState, ProjectType } from "../project.model";
+import { NgForm } from "@angular/forms";
+import { take } from "rxjs/operators";
+
+import {
+  MAT_MOMENT_DATE_FORMATS,
+  MomentDateAdapter,
+  MAT_MOMENT_DATE_ADAPTER_OPTIONS,
+} from '@angular/material-moment-adapter';
+import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
+import 'moment/locale/de';
+import 'moment/locale/en-gb';
+import { TranslationService } from "../../translation/translation.service";
 
 @Component({
   selector: 'app-project-edit',
-  templateUrl: './project-edit.component.html'
+  templateUrl: './project-edit.component.html',
+  providers: [
+    {
+      provide: MAT_DATE_LOCALE,
+      useValue: 'de_DE',
+    }, {
+      provide: DateAdapter,
+      useClass: MomentDateAdapter,
+      deps: [MAT_DATE_LOCALE, MAT_MOMENT_DATE_ADAPTER_OPTIONS]
+    }, {
+      provide: MAT_DATE_FORMATS,
+      useValue: MAT_MOMENT_DATE_FORMATS
+    }
+  ],
 })
 export class ProjectEditComponent implements OnInit {
 
@@ -37,6 +60,8 @@ export class ProjectEditComponent implements OnInit {
     private route: ActivatedRoute,
     private projectService: ProjectService,
     private router: Router,
+    private translationService: TranslationService,
+    private _adapter: DateAdapter<any>
   ) { }
 
   ngOnInit(): void {
@@ -52,7 +77,9 @@ export class ProjectEditComponent implements OnInit {
           if (!!result) this.project = result;
         }
       }
-    )
+    );
+
+    this._adapter.setLocale(this.translationService.getLocale());
   }
 
   onSubmit(): void {

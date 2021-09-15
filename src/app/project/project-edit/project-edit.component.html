@@ -72,22 +72,23 @@
         <mat-option *ngFor="let state of eProjectState | keyvalue" value="{{state.key}}">{{state.value | translate}}</mat-option>
       </mat-select>
     </mat-form-field>
-    <mat-form-field color="primary">
-      <mat-label>{{'label_deadline' | translate }}</mat-label>
-      <input
-        matInput
-        [matDatepicker]="picker"
-        name="deadline"
-        class="form-control"
-        data-testid="deadline-picker"
-        [(ngModel)]="project.deadline"
-      >
-      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-      <mat-datepicker #picker></mat-datepicker>
-    </mat-form-field>
+    <app-deadline-picker [(deadline)]="project.deadline"></app-deadline-picker>
   </div>
 
   <div>
+
+    <mat-form-field color="primary">
+      <mat-label>{{'label_current_word_count' | translate}}</mat-label>
+      <input
+        type="number"
+        name="currentWordcount"
+        matInput
+        class="form-control"
+        data-testid="current-wordcount-input"
+        [(ngModel)]="project.currentWordcount"
+      >
+    </mat-form-field>
+
     <mat-form-field color="primary">
       <mat-label>{{'label_goal_word_count' | translate}}</mat-label>
       <input
@@ -99,15 +100,16 @@
         [(ngModel)]="project.goalWordcount"
       >
     </mat-form-field>
-    <mat-form-field color="primary">
-      <mat-label>{{'label_current_word_count' | translate}}</mat-label>
+
+<mat-form-field color="primary">
+      <mat-label>{{'label_max_goal_word_count' | translate}}</mat-label>
       <input
         type="number"
-        name="currentWordcount"
+        name="maxGoalWordcount"
         matInput
         class="form-control"
-        data-testid="current-wordcount-input"
-        [(ngModel)]="project.currentWordcount"
+        data-testid="max-goal-wordcount-input"
+        [(ngModel)]="project.maxGoalWordcount"
       >
     </mat-form-field>
 

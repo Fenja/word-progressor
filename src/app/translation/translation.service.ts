@@ -9,12 +9,12 @@ export class TranslationSet {
   providedIn: 'root'
 })
 export class TranslationService {
-  public languages = ['ger', 'eng'];
-  public language = 'ger';
+  public languages = ['de', 'en'];
+  public language = 'de';
   private dictionary: { [key: string]:
   TranslationSet } = {
-    ger: {
-      language: 'ger',
+    de: {
+      language: 'de',
       values: {
         example: 'Beispiel', // for testing purpose
 
@@ -68,6 +68,7 @@ export class TranslationService {
 
         label_current_word_count: 'Aktuelle Wortzahl',
         label_goal_word_count: 'Angestrebte Wortzahl',
+        label_max_goal_word_count: 'Maximale Wortzahl',
         label_choose_date: 'Datum auswählen',
         label_project_state: 'Projekt-Status',
         label_project_type: 'Projekt-Art',
@@ -105,8 +106,8 @@ export class TranslationService {
 
       }
     },
-    eng: {
-      language: 'eng',
+    en: {
+      language: 'en',
       values: {
         example: 'Example', // for testing purpose
 
@@ -160,6 +161,7 @@ export class TranslationService {
 
         label_current_word_count: 'Current Word Count',
         label_goal_word_count: 'Goal Word Count',
+        label_max_goal_word_count: 'Max Word Count',
         label_choose_date: 'Choose Date',
         label_project_state: 'Project State',
         label_project_type: 'Project Type',
@@ -206,5 +208,9 @@ export class TranslationService {
       return this.dictionary[this.language].values[key] ?? '!!missing_translation!!';
     }
     return '!!invalid_language!!';
+  }
+
+  getLocale() {
+    return this.language;
   }
 }

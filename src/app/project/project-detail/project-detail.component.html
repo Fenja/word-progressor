@@ -20,10 +20,11 @@
     <app-project-progress-bar
       [goalCount]="project.goalWordcount"
       [currentCount]="project.currentWordcount"
+      [maxGoalCount]="project.maxGoalWordcount"
     ></app-project-progress-bar>
   </div>
 
-  <div style="float: right">
+  <div *ngIf="project.deadline" style="float: right">
     <i class="mat-icon material-icons">event</i>
     {{ project.deadline | date: 'dd.MM.yyyy' }}
   </div>
