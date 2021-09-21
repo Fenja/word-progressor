@@ -85,6 +85,7 @@ export class TranslationService {
         label_settings: 'Einstellungen',
         label_anonymous_user: 'Anonymer Nutzer',
         label_wip: 'In arbeit',
+        label_date: 'Datum',
 
         placeholder_working_title: 'Arbeitstitel',
         placeholder_blurp: 'Inhaltsangabe',
@@ -104,6 +105,11 @@ export class TranslationService {
         error_invalid_password: 'Ungültige Anmeldedaten.',
         error_user_disabled: 'Das Benutzerkonto wurde vom Administrator gesperrt.',
         error_invalid_value: 'Ungültiger Wert',
+
+        msg_words_added: ' Wörter hinzugefügt',
+        msg_created: ' erstellt',
+        msg_saved: ' gespeichert',
+        msg_deleted: ' gelöscht',
       }
     },
     en: {
@@ -178,6 +184,7 @@ export class TranslationService {
         label_settings: 'Settings',
         label_anonymous_user: 'Anonymous User',
         label_wip: 'Work in Progress',
+        label_date: 'Date',
 
         placeholder_working_title: 'Working Title',
         placeholder_blurp: 'Blurp',
@@ -197,6 +204,11 @@ export class TranslationService {
         error_invalid_password: 'Invalid credentials.',
         error_user_disabled: 'The user account has been disabled by an administrator.',
         error_invalid_value: 'Invalid value',
+
+        msg_words_added: ' words added',
+        msg_created: ' created',
+        msg_saved: ' saved',
+        msg_deleted: ' deleted',
       }
     }
   }

@@ -2,6 +2,8 @@ import { Component, ElementRef, Inject, OnInit, ViewChild } from '@angular/core'
 import { Project } from "../project.model";
 import { ProjectService } from "../project.service";
 import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
+import {SnackbarService} from "../../services/snackbar.service";
+import {TranslationService} from "../../translation/translation.service";
 
 export interface AddWordsDialogData {
   id: string;
@@ -16,10 +18,14 @@ export class AddWordsDialogComponent implements OnInit {
 
   @ViewChild('newWordsInput', {static: true}) newWordsInput!: ElementRef;
   validProject: boolean = true;
+  date: Date | undefined = undefined;
+  wordsBeforeUpdate!: number;
 
   constructor(
     public dialogRef: MatDialogRef<AddWordsDialogComponent>,
     private projectService: ProjectService,
+    private snackBarService: SnackbarService,
+    private translationService: TranslationService,
   @Inject(MAT_DIALOG_DATA) public data: AddWordsDialogData
 ) {
     if(!projectService.hasProject(this.data.id)) {
@@ -28,21 +34,26 @@ export class AddWordsDialogComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.wordsBeforeUpdate = this.data.project.currentWordcount;
   }
 
   addWords(words: number) {
     this.data.project.currentWordcount += words;
     this.projectService.editProject(this.data.id, this.data.project);
-    this.close();
-    // TODO show Snackbar
-    // TODO feed statistics service
+    this.updateWords(words);
   }
 
-  updateWords() {
+  updateCurrentWords() {
     this.projectService.editProject(this.data.id, this.data.project);
+    this.updateWords(this.data.project.currentWordcount - this.wordsBeforeUpdate);
+  }
+
+  updateWords(words: number) {
     this.close();
-    // TODO show Snackbar
-    // TODO feed statistics service
+    if (!!this.date) {
+      // TODO this.logWords(this.date, words);
+    }
+    this.snackBarService.showSnackBar(words + this.translationService.translate('msg_words_added'))
   }
 
   close(): void {

@@ -74,7 +74,7 @@ describe('ProjectService', () => {
   it('deletes a project with specific id', () => {
     let id = '42';
     let project = service.getProject(id);
-    service.deleteProject(id);
+    service.deleteProject(id, project!.workingTitle);
     let deletedProject = service.getProject(id);
     expect(deletedProject).toBeFalsy();
     let projects = service.getProjects();
@@ -83,7 +83,7 @@ describe('ProjectService', () => {
 
   it('does not delete any project when id does not exist', () => {
     let projectsBefore: Project[] = service.getProjects();
-    service.deleteProject('42');
+    service.deleteProject('42', 'WT');
     let projectsAfter: Project[] = service.getProjects();
     expect(projectsBefore).toEqual(projectsAfter);
   });

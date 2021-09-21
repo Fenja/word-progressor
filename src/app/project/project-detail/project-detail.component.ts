@@ -50,7 +50,7 @@ export class ProjectDetailComponent implements OnInit {
 
   deleteProject() {
     if (confirm("Are you sure to delete "+this.project.workingTitle)) {
-      this.projectService.deleteProject(this.id);
+      this.projectService.deleteProject(this.id, this.project.workingTitle);
       this.router.navigate(['/projects']);
     }
   }

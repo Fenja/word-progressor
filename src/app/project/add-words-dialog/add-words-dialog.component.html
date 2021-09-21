@@ -8,6 +8,22 @@
     </div>
   </div>
 
+  <div *ngIf="validProject">
+    <mat-form-field color="primary">
+      <mat-label>{{'label_date' | translate }}</mat-label>
+      <input
+        matInput
+        [matDatepicker]="picker"
+        name="deadline"
+        class="form-control"
+        data-testid="deadline-picker"
+        [(ngModel)]="date"
+      >
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+  </div>
+
   <mat-tab-group *ngIf="validProject">
     <mat-tab label="{{ 'headline_total_words' | translate }}">
       <form>
@@ -24,10 +40,11 @@
             [(ngModel)]="data.project.currentWordcount"
           >
         </mat-form-field>
+
       </form>
       <div mat-dialog-actions style="height: 5em">
         <button mat-stroked-button color="accent" (click)="close()">{{ 'button_cancel' | translate }}</button>
-        <button mat-raised-button color="primary" (click)="updateWords()">{{ 'button_update_word_count' | translate }}</button>
+        <button mat-raised-button color="primary" (click)="updateCurrentWords()">{{ 'button_update_word_count' | translate }}</button>
       </div>
     </mat-tab>
 
