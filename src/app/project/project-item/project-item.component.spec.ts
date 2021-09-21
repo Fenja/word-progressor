@@ -13,6 +13,9 @@ describe('ProjectItemComponent', () => {
   let fixture: ComponentFixture<ProjectItemComponent>;
 
   const mockProject: Project = {
+    creationDate: new Date(),
+    isWorkInProgress: false,
+    lastUpdate: new Date(),
     workingTitle: 'Mock Project',
     description: 'description',
     imagePath: '',

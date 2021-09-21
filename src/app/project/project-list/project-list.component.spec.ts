@@ -3,15 +3,19 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ProjectListComponent } from './project-list.component';
 import { Project, ProjectState, ProjectType } from "../project.model";
 import { By } from "@angular/platform-browser";
-import { ProjectService } from "../project.service";
 import { TranslationService } from "../../translation/translation.service";
 import { TranslatePipe } from "../../translation/translate.pipe";
+import { DataStorageService } from "../../data-storage.service";
+import { of } from "rxjs";
 
 describe('ProjectListComponent', () => {
   let component: ProjectListComponent;
   let fixture: ComponentFixture<ProjectListComponent>;
 
   const mockProject: Project = {
+    creationDate: new Date(),
+    isWorkInProgress: false,
+    lastUpdate: new Date(),
     workingTitle: 'Mock Project',
     description: 'description',
     imagePath: '',
@@ -23,16 +27,18 @@ describe('ProjectListComponent', () => {
     id: '42'
   };
 
-  const mockProjectService = new ProjectService();
-
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [ ProjectListComponent, TranslatePipe ],
       providers: [
         TranslationService,
         {
-        provide: ProjectService,
-        useValue: mockProjectService
+        provide: DataStorageService,
+        useValue: {
+          projectList: of([mockProject, mockProject]),
+          fetchProjects: () => {},
+          getProjects: () => of([mockProject, mockProject])
+        }
       }]
     })
     .compileComponents();

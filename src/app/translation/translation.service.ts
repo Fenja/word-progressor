@@ -103,7 +103,7 @@ export class TranslationService {
         error_email_not_found: 'Ungültige Anmeldedaten.',
         error_invalid_password: 'Ungültige Anmeldedaten.',
         error_user_disabled: 'Das Benutzerkonto wurde vom Administrator gesperrt.',
-
+        error_invalid_value: 'Ungültiger Wert',
       }
     },
     en: {
@@ -196,7 +196,7 @@ export class TranslationService {
         error_email_not_found: 'Invalid credentials.',
         error_invalid_password: 'Invalid credentials.',
         error_user_disabled: 'The user account has been disabled by an administrator.',
-
+        error_invalid_value: 'Invalid value',
       }
     }
   }

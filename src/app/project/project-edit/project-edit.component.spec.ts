@@ -55,6 +55,9 @@ describe('ProjectEditComponent', () => {
   let fixture: ComponentFixture<ProjectEditComponent>;
 
   const mockProject: Project = {
+    creationDate: new Date(),
+    isWorkInProgress: false,
+    lastUpdate: new Date(),
     workingTitle: 'Mock Project',
     description: 'description',
     imagePath: '',
@@ -94,7 +97,7 @@ describe('ProjectEditComponent', () => {
     beforeEach(() => {
       fixture = TestBed.createComponent(ProjectEditComponent);
       component = fixture.componentInstance;
-      component.project = new Project();
+      //component.project = new Project();
       fixture.detectChanges();
     });
 

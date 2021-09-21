@@ -1,14 +1,14 @@
 import { Project } from "./project.model";
 import { Injectable } from "@angular/core";
 import { DataStorageService } from "../data-storage.service";
-import {Subject} from "rxjs";
+import {Observable, Subject} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProjectService {
 
-  public projectList;
+  public projectList: Observable<Project[]>;
 
   constructor(
     private dataStorageService: DataStorageService
