@@ -1,7 +1,7 @@
 import { Project } from "./project.model";
 import { Injectable } from "@angular/core";
 import { DataStorageService } from "../services/data-storage.service";
-import { Observable, Subject } from "rxjs";
+import { Observable } from "rxjs";
 import { SnackbarService } from "../services/snackbar.service";
 import { TranslationService } from "../translation/translation.service";
 

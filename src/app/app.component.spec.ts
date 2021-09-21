@@ -1,6 +1,7 @@
 import {ComponentFixture, TestBed} from '@angular/core/testing';
 import { AppComponent } from './app.component';
 import {By} from "@angular/platform-browser";
+import {AuthService} from "./auth/auth.service";
 
 describe('AppComponent', () => {
 
@@ -11,6 +12,12 @@ describe('AppComponent', () => {
       declarations: [
         AppComponent
       ],
+      providers: [{
+        provide: AuthService,
+        useValue: {
+          onAutoLogin: () => {}
+        }
+      }]
     }).compileComponents();
   });
 

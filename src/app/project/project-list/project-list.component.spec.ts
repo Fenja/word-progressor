@@ -5,8 +5,9 @@ import { Project, ProjectState, ProjectType } from "../project.model";
 import { By } from "@angular/platform-browser";
 import { TranslationService } from "../../translation/translation.service";
 import { TranslatePipe } from "../../translation/translate.pipe";
-import { DataStorageService } from "../../data-storage.service";
+import { DataStorageService } from "../../services/data-storage.service";
 import { of } from "rxjs";
+import {MatSnackBar} from "@angular/material/snack-bar";
 
 describe('ProjectListComponent', () => {
   let component: ProjectListComponent;
@@ -39,6 +40,9 @@ describe('ProjectListComponent', () => {
           fetchProjects: () => {},
           getProjects: () => of([mockProject, mockProject])
         }
+      },{
+        provide: MatSnackBar,
+        useValue: {open: () => {}}
       }]
     })
     .compileComponents();

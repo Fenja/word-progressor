@@ -1,7 +1,7 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Project } from "../project.model";
 import { ProjectService } from "../project.service";
-import {Subscription} from "rxjs";
+import { Subscription } from "rxjs";
 
 @Component({
   selector: 'app-project-list',

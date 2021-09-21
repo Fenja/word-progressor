@@ -1,6 +1,5 @@
 import { ProjectService } from './project.service';
 import { Project, ProjectState, ProjectType } from "./project.model";
-import { HttpClient } from "@angular/common/http";
 
 describe('ProjectService', () => {
   let service: ProjectService;

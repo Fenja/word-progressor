@@ -12,14 +12,14 @@ describe('TranslationService', () => {
   });
 
   it('translates keys to german values', () => {
-    service.language = 'ger';
+    service.language = 'de';
     let key = 'example';
     let value = service.translate(key);
     expect(value).toBe('Beispiel');
   });
 
   it('translates keys to english values', () => {
-    service.language = 'eng';
+    service.language = 'en';
     let key = 'example';
     let value = service.translate(key);
     expect(value).toBe('Example');
@@ -27,9 +27,9 @@ describe('TranslationService', () => {
 
   it('switches translation according to language variable', () => {
     let key = 'example';
-    service.language = 'ger';
+    service.language = 'de';
     expect(service.translate(key)).toBe('Beispiel');
-    service.language = 'eng';
+    service.language = 'en';
     expect(service.translate(key)).toBe('Example');
   });
 
