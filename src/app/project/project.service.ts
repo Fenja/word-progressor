@@ -1,7 +1,8 @@
 import { Project } from "./project.model";
 import { Injectable } from "@angular/core";
-import { DataStorageService } from "../data-storage.service";
-import {Subject} from "rxjs";
+import { DataStorageService } from "../services/data-storage.service";
+import {SnackbarService} from "../services/snackbar.service";
+import {TranslationService} from "../translation/translation.service";
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +12,9 @@ export class ProjectService {
   public projectList;
 
   constructor(
-    private dataStorageService: DataStorageService
+    private dataStorageService: DataStorageService,
+    private snackBarService: SnackbarService,
+    private translationService: TranslationService,
   ) {
     this.projectList = dataStorageService.projectList;
     this.fetchProjects();
@@ -30,15 +33,18 @@ export class ProjectService {
 
   addProject(project: Project) {
     this.dataStorageService.addProject(project);
+    this.snackBarService.showSnackBar(project.workingTitle + this.translationService.translate('msg_created'));
   }
 
   editProject(id: string, project: Project): void {
     project.lastUpdate = new Date();
     this.dataStorageService.editProject(id, project);
+    this.snackBarService.showSnackBar(project.workingTitle + this.translationService.translate('msg_saved'));
   }
 
-  deleteProject(id: string): void {
+  deleteProject(id: string, workingTitle: string): void {
     this.dataStorageService.deleteProject(id);
+    this.snackBarService.showSnackBar(workingTitle + this.translationService.translate('msg_deleted'));
   }
 
   hasProject(id: string): boolean {

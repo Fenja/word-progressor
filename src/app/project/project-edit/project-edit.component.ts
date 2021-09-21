@@ -14,6 +14,7 @@ import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/materia
 import 'moment/locale/de';
 import 'moment/locale/en-gb';
 import { TranslationService } from "../../translation/translation.service";
+import {SnackbarService} from "../../services/snackbar.service";
 
 @Component({
   selector: 'app-project-edit',

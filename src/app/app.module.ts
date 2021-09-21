@@ -39,6 +39,7 @@ import { SettingsComponent } from './settings/settings.component';
 import {MatCheckboxModule} from "@angular/material/checkbox";
 import {MatTooltipModule} from "@angular/material/tooltip";
 import { DeadlinePickerComponent } from './components/deadline-picker/deadline-picker.component';
+import { MatSnackBarModule } from "@angular/material/snack-bar";
 
 @NgModule({
   declarations: [
@@ -82,6 +83,7 @@ import { DeadlinePickerComponent } from './components/deadline-picker/deadline-p
     MatProgressSpinnerModule,
     MatCheckboxModule,
     MatTooltipModule,
+    MatSnackBarModule,
   ],
   providers: [
     MatDatepickerModule,
