@@ -40,7 +40,6 @@ export class DataStorageService {
   }
 
   fetchProjects() {
-    console.log('fetch projects');
     if (this.isAnonymous) {
       this._fetchProjectsFromStorage();
     } else {
@@ -75,7 +74,6 @@ export class DataStorageService {
       )
       .subscribe(
         (projects) => {
-          console.log(projects);
           this.projects = projects;
           this.projectList.next(projects.slice());
         });
@@ -156,7 +154,6 @@ export class DataStorageService {
   }
 
   fetchUser() {
-    console.log('fetch user');
     if (this.isAnonymous) {
       this._fetchUserFromStorage();
     } else {
@@ -209,7 +206,6 @@ export class DataStorageService {
   }
 
   _editUserInStorage(id: string, user: userData) {
-    console.log('userdata: ', JSON.stringify(this.user) );
     this.user = user;
     localStorage.setItem('user', JSON.stringify(this.user));
     this.fetchUser();

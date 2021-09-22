@@ -28,7 +28,6 @@ export class UserService {
 
   updateWordLog(newWordLogs: WordLog[]) {
     this.user.wordLogs = newWordLogs;
-    console.log('updateWordLog: ', JSON.stringify(this.user));
     this.dataStorageService.editUser(this.user.id!, this.user);
   }
 

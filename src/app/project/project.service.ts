@@ -28,7 +28,6 @@ export class ProjectService {
 
   getProject(id: string): Project | undefined {
     let result = this.dataStorageService.projects.find(p => p.id === id);
-    console.log(result);
     return result;
   }
 

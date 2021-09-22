@@ -19,21 +19,13 @@ export class LogWordsService {
   ) { }
 
   logWords(id: string, project: Project, wordLog: WordLog) {
-    let projectLog = project.wordLogs;
-    if (!projectLog || projectLog.length <= 0) {
-      projectLog = [wordLog];
-    } else {
-      projectLog = this.addWordsToLog(projectLog!, wordLog);
-    }
-    project.wordLogs = projectLog;
+    if (!project.wordLogs) project.wordLogs = [];
+    project.wordLogs = this.addWordsToLog(project.wordLogs!, wordLog);
     this.projectService.editProject(id, project);
 
     let userLog = this.userService.getUser().wordLogs;
-    if (!userLog || userLog.length == 0) {
-      userLog = [wordLog];
-    } else {
-      userLog = this.addWordsToLog(userLog!, wordLog);
-    }
+    if (!userLog) userLog = [];
+    userLog = this.addWordsToLog(userLog!, wordLog);
     this.userService.updateWordLog(userLog);
   }
 
@@ -42,10 +34,8 @@ export class LogWordsService {
   }
 
   private addWordsToLog(wordLogs: WordLog[], wordLog: WordLog): WordLog[] {
-    console.log(wordLog.date.getTime());
-    wordLogs.map(log => console.log(log.date.getTime()));
-    wordLogs.map(log => console.log(log.date.getTime() + ' --- ' + (log.date.getTime() === wordLog.date.getTime()).toString()));
-    let existingLog = wordLogs.find(entry => entry.date.getTime() === wordLog.date.getTime());
+    let logDate = new Date(wordLog.date).getTime();
+    let existingLog = wordLogs.find(entry => new Date(entry.date).getTime() === logDate);
     if (!existingLog) {
       wordLogs.push(wordLog);
     } else {
