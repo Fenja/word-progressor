@@ -14,6 +14,9 @@ describe('AddWordsDialogComponent', () => {
   let fixture: ComponentFixture<AddWordsDialogComponent>;
 
   const mockProject: Project = {
+    creationDate: new Date(),
+    isWorkInProgress: false,
+    lastUpdate: new Date(),
     workingTitle: 'Mock Project',
     description: 'description',
     imagePath: '',
@@ -70,13 +73,18 @@ describe('AddWordsDialogComponent', () => {
     });
 
     it('has project and id from injection', () => {
-      expect(component.data.project).toBeTruthy();
-      expect(component.data.project).toBe(mockProject);
-      expect(component.data.id).toBe('42');
+      fixture.whenStable().then(() => {
+        fixture.detectChanges();
+        expect(component.data.project).toBeTruthy();
+        expect(component.data.project).toBe(mockProject);
+        expect(component.data.id).toBe('42');
+      });
     });
 
     it('sets current word count as default input value', fakeAsync(() => {
+      fixture.nativeElement.querySelectorAll('mat-tab')[0].click();
       fixture.detectChanges();
+
       fixture.whenStable().then(() => {
         fixture.detectChanges();
         let projectWordCount = component.data.project.currentWordcount;

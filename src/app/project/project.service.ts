@@ -3,13 +3,14 @@ import { Injectable } from "@angular/core";
 import { DataStorageService } from "../services/data-storage.service";
 import { SnackbarService } from "../services/snackbar.service";
 import { TranslationService } from "../translation/translation.service";
+import { Observable } from "rxjs";
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProjectService {
 
-  public projectList;
+  public projectList: Observable<Project[]>;
 
   constructor(
     private dataStorageService: DataStorageService,

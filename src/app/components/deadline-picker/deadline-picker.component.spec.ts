@@ -1,6 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { DeadlinePickerComponent } from './deadline-picker.component';
+import {TranslationService} from "../../translation/translation.service";
+import {TranslatePipe} from "../../translation/translate.pipe";
 
 describe('DeadlinePickerComponent', () => {
   let component: DeadlinePickerComponent;
@@ -8,7 +10,8 @@ describe('DeadlinePickerComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ DeadlinePickerComponent ]
+      declarations: [ DeadlinePickerComponent, TranslatePipe ],
+      providers: [ TranslationService ]
     })
     .compileComponents();
   });

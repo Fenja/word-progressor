@@ -79,7 +79,6 @@ export class AuthService {
     );
 
     this.userId = loadedUser.id;
-    this.setAnonymous(false);
 
     if (loadedUser.token) {
       this.user.next(loadedUser);
@@ -87,6 +86,7 @@ export class AuthService {
         new Date(userData._tokenExpirationDate).getTime() -
         new Date().getTime();
       this.autoLogout(expirationDuration);
+      this.setAnonymous(false);
     }
   }
 

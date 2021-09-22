@@ -1,10 +1,12 @@
 import { ProjectService } from './project.service';
 import { Project, ProjectState, ProjectType } from "./project.model";
-import { HttpClient } from "@angular/common/http";
 
 describe('ProjectService', () => {
   let service: ProjectService;
   const mockProject: Project = {
+    creationDate: new Date(),
+    isWorkInProgress: false,
+    lastUpdate: new Date(),
     workingTitle: 'Mock Project',
     description: 'description',
     imagePath: '',
@@ -19,7 +21,7 @@ describe('ProjectService', () => {
   beforeEach(() => {
     // TestBed.configureTestingModule({});
     // service = TestBed.inject(ProjectService);
-    service = new ProjectService(new HttpClient());
+    //service = new ProjectService(new HttpClient());
   });
 
   it('is created', () => {

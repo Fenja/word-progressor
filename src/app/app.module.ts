@@ -23,7 +23,7 @@ import { MatDatepickerModule } from "@angular/material/datepicker";
 import { MatSelectModule } from "@angular/material/select";
 import { MatInputModule } from "@angular/material/input";
 import { MatNativeDateModule } from "@angular/material/core";
-import { FormsModule } from "@angular/forms";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { MatToolbarModule } from "@angular/material/toolbar";
 import { MatIconModule } from "@angular/material/icon";
 import { AddWordsDialogComponent } from './project/add-words-dialog/add-words-dialog.component';
@@ -40,6 +40,7 @@ import {MatCheckboxModule} from "@angular/material/checkbox";
 import {MatTooltipModule} from "@angular/material/tooltip";
 import { DeadlinePickerComponent } from './components/deadline-picker/deadline-picker.component';
 import { MatSnackBarModule } from "@angular/material/snack-bar";
+import { gteValidatorDirective } from "./components/gte-validator.directive";
 
 @NgModule({
   declarations: [
@@ -58,6 +59,7 @@ import { MatSnackBarModule } from "@angular/material/snack-bar";
     AnonymousDialog,
     SettingsComponent,
     DeadlinePickerComponent,
+    gteValidatorDirective,
   ],
   imports: [
     AppRoutingModule,
@@ -83,6 +85,7 @@ import { MatSnackBarModule } from "@angular/material/snack-bar";
     MatProgressSpinnerModule,
     MatCheckboxModule,
     MatTooltipModule,
+    ReactiveFormsModule,
     MatSnackBarModule,
   ],
   providers: [

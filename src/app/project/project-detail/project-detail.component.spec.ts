@@ -52,6 +52,9 @@ describe('ProjectDetailComponent', () => {
 
   let mockId: 0;
   const mockProject: Project = {
+    creationDate: new Date(),
+    isWorkInProgress: false,
+    lastUpdate: new Date(),
     workingTitle: 'Mock Project',
     description: 'description',
     imagePath: '',

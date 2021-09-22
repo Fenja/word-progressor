@@ -84,6 +84,8 @@ export class ProjectEditComponent implements OnInit {
   }
 
   onSubmit(): void {
+    if (!this.projectForm.valid) return;
+
     if (!!this.project) {
       if (this.editMode) {
         this.projectService.editProject(this.id!, this.project);

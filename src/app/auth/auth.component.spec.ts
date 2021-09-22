@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { AuthComponent } from './auth.component';
+import {HttpClient} from "@angular/common/http";
 
 describe('AuthComponent', () => {
   let component: AuthComponent;
@@ -8,7 +9,13 @@ describe('AuthComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ AuthComponent ]
+      declarations: [ AuthComponent ],
+      providers: [{
+        provide: HttpClient,
+        useValue: {
+          post: () => {}
+        }
+      }]
     })
     .compileComponents();
   });
@@ -24,7 +31,7 @@ describe('AuthComponent', () => {
   });
 
   it('rejects submission of empty form', () => {
-
+    // TODO
   });
 
   it('rejects invalid email input', () => {
