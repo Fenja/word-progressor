@@ -1,4 +1,5 @@
-import {WordLog} from "./add-words-dialog/word-log.model";
+import {WordLog} from "../services/log-words.service";
+
 
 export interface Project {
   workingTitle: string;

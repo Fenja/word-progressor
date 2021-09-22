@@ -1,12 +1,13 @@
-import {WordLog} from "../project/add-words-dialog/word-log.model";
+import { WordLog } from "../services/log-words.service";
 
 export interface userData {
   id?: string;
   penName?: string;
   age?: number;
 
-  achievements: string[]; // list of achievements
+  achievements?: string[]; // list of achievements
   wordLogs?: WordLog[]; // collected from all projects
+  lastLogin?: Date;
 }
 
 export class User {
@@ -24,5 +25,10 @@ export class User {
     } else {
       return this._token;
     }
+  }
+
+  getExpirationDuration(): number {
+    return new Date(this._tokenExpirationDate).getTime() -
+      new Date().getTime();
   }
 }

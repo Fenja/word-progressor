@@ -1,8 +1,8 @@
 import { Project } from "./project.model";
 import { Injectable } from "@angular/core";
 import { DataStorageService } from "../services/data-storage.service";
-import {SnackbarService} from "../services/snackbar.service";
-import {TranslationService} from "../translation/translation.service";
+import { SnackbarService } from "../services/snackbar.service";
+import { TranslationService } from "../translation/translation.service";
 
 @Injectable({
   providedIn: 'root'

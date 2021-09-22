@@ -6,6 +6,7 @@ import {Project} from "../project/project.model";
 import {catchError, map, take} from "rxjs/operators";
 import {Subject, throwError} from "rxjs";
 import * as uuid from 'uuid';
+import {userData} from "../auth/user.model";
 
 /*
   this service should differ between a logged in user and an anonymous one
@@ -20,6 +21,8 @@ export class DataStorageService {
 
   projects: Project[] = [];
   public projectList = new Subject<Project[]>();
+  user: userData = {};
+  public user$ = new Subject<userData>();
 
   constructor(
     private http: HttpClient,
@@ -149,6 +152,75 @@ export class DataStorageService {
       environment.FIREBASE_DB_URL+'projects/'+id+'.json',
     ).subscribe(() => {
       this.fetchProjects();
+    });
+  }
+
+  fetchUser() {
+    console.log('fetch user');
+    if (this.isAnonymous) {
+      this._fetchUserFromStorage();
+    } else {
+      this._fetchUserFromAPI();
+    }
+  }
+
+  createNewUser() {
+    this.user = {
+      id: uuid.v4(),
+      lastLogin: new Date(),
+    };
+  }
+
+  _fetchUserFromStorage() {
+    const user: userData = JSON.parse(<string>localStorage.getItem('user'));
+    if (!user) {
+      this.createNewUser();
+    } else {
+      this.user = user;
+    }
+    this.user$.next(this.user);
+  }
+
+  _fetchUserFromAPI() {
+    this.http.get<{ [key: string]: userData }>(
+      environment.FIREBASE_DB_URL+this.authService.userId+'.json'
+    )
+      .pipe(
+        take(1),
+      )
+      .subscribe(
+        (user) => {
+          console.log(user);
+          if (!user) {
+            this.createNewUser();
+          } else {
+            this.user = user;
+          }
+          this.user$.next(this.user);
+        });
+  }
+
+  editUser(id: string, user: userData) {
+    if (this.isAnonymous) {
+      this._editUserInStorage(id, user);
+    } else {
+      this._editUserAtAPI(id, user);
+    }
+  }
+
+  _editUserInStorage(id: string, user: userData) {
+    console.log('userdata: ', JSON.stringify(this.user) );
+    this.user = user;
+    localStorage.setItem('user', JSON.stringify(this.user));
+    this.fetchUser();
+  }
+
+  _editUserAtAPI(id: string, user: userData) {
+    this.http.put(
+      environment.FIREBASE_DB_URL+id+'.json',
+      user
+    ).subscribe(() => {
+      this.fetchUser();
     });
   }
 

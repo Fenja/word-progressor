@@ -4,6 +4,7 @@ import { ProjectService } from "../project.service";
 import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
 import {SnackbarService} from "../../services/snackbar.service";
 import {TranslationService} from "../../translation/translation.service";
+import {LogWordsService} from "../../services/log-words.service";
 
 export interface AddWordsDialogData {
   id: string;
@@ -18,7 +19,7 @@ export class AddWordsDialogComponent implements OnInit {
 
   @ViewChild('newWordsInput', {static: true}) newWordsInput!: ElementRef;
   validProject: boolean = true;
-  date: Date | undefined = undefined;
+  date: Date | undefined;
   wordsBeforeUpdate!: number;
 
   constructor(
@@ -26,8 +27,9 @@ export class AddWordsDialogComponent implements OnInit {
     private projectService: ProjectService,
     private snackBarService: SnackbarService,
     private translationService: TranslationService,
-  @Inject(MAT_DIALOG_DATA) public data: AddWordsDialogData
-) {
+    private logWordsService: LogWordsService,
+    @Inject(MAT_DIALOG_DATA) public data: AddWordsDialogData
+  ) {
     if(!projectService.hasProject(this.data.id)) {
       this.validProject = false;
     }
@@ -51,7 +53,7 @@ export class AddWordsDialogComponent implements OnInit {
   updateWords(words: number) {
     this.close();
     if (!!this.date) {
-      // TODO this.logWords(this.date, words);
+      this.logWordsService.logWords(this.data.id, this.data.project, {words: words, date: this.date});
     }
     this.snackBarService.showSnackBar(words + this.translationService.translate('msg_words_added'))
   }
