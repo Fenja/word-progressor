@@ -86,6 +86,10 @@ export class TranslationService {
         label_anonymous_user: 'Anonymer Nutzer',
         label_wip: 'In arbeit',
         label_date: 'Datum',
+        label_create_account: 'Konto erstellen',
+        label_delete_account: 'Konto löschen',
+        label_account: 'Benutzerkonto',
+        label_pseudonym: 'Autorenname',
 
         placeholder_working_title: 'Arbeitstitel',
         placeholder_blurp: 'Inhaltsangabe',
@@ -110,6 +114,15 @@ export class TranslationService {
         msg_created: ' erstellt',
         msg_saved: ' gespeichert',
         msg_deleted: ' gelöscht',
+        msg_account_deleted: 'Account gelöscht',
+
+        text_anonymous_dialog: `Wenn der WordProgressor ohne Konto genutzt wird, werden die Daten lokal gespeichert.\n
+            Sie können dann weder synchronisiert, noch von einem anderen Gerät aus abgerufen werden.\n
+            Wenn das Gerät verloren oder zurückgesetzt wird, sind die Daten verloren.\n
+            Trotzdem kann der WordProgressor gerne anonym ausprobiert und - durch das Anlegen eines Kontos - die Daten später gesichert werden.\n
+            Außerdem sind einige Funktionalitäten nur für Nutzer mit Konto verfügbar.`,
+        text_create_account: 'Mit dem Erstellen eines Kontos werden die lokalen Daten synchronisiert und könne per Anmeldung von überall abgefragt werden.',
+        text_delete_account: 'Die Löschung des Kontos kann nicht rückgängig gemacht werden!\nMit dem Konto werden auch alle gespeicherten Daten gelöscht.'
       }
     },
     en: {
@@ -185,6 +198,10 @@ export class TranslationService {
         label_anonymous_user: 'Anonymous User',
         label_wip: 'Work in Progress',
         label_date: 'Date',
+        label_create_account: 'Create Account',
+        label_delete_account: 'Delete Account',
+        label_account: 'User Account',
+        label_pseudonym: 'Pen Name',
 
         placeholder_working_title: 'Working Title',
         placeholder_blurp: 'Blurp',
@@ -209,6 +226,15 @@ export class TranslationService {
         msg_created: ' created',
         msg_saved: ' saved',
         msg_deleted: ' deleted',
+        msg_account_deleted: 'Account deleted',
+
+        text_anonymous_dialog: `When using the WordProgressor without an account, your data is stored locally.\n
+            You won't be able to sync them or access them from another access point.\n
+            When loosing or resetting your device, your data is lost.\n
+            Nonetheless, please feel free to try the WordProgressor anynomously, before creating an account, to save your data later.\n
+            Also, some functionality is only available for users with an account.`,
+        text_create_account: 'When creating an account, your local data is uploaded and can be accessed via authentication.',
+        text_delete_account: 'Deleting your account can not be undone!\nWith your account, all data will be deleted too.'
       }
     }
   }

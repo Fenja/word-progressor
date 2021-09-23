@@ -8,6 +8,7 @@ import { environment } from "../../environments/environment";
 
 const SIGNUP_URL = 'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=';
 const SIGNIN_URL = 'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=';
+const DELETE_URL = 'https://identitytoolkit.googleapis.com/v1/accounts:delete?key='
 
 const API_KEY = environment.FIREBASE_API_KEY;
 
@@ -28,6 +29,7 @@ export class AuthService {
   userId = '';
   private tokenExpirationTimer: any;
   isAnonymous: boolean | null = null;
+  isAuthenticated: boolean = false;
   constructor(
     private http: HttpClient,
     private router: Router,
@@ -99,6 +101,8 @@ export class AuthService {
   logout() {
     this.user.next(null);
     this.userId = '';
+    this.isAuthenticated = false;
+    this.setAnonymous(false);
     this.router.navigate(['/auth']);
     localStorage.removeItem('userData');
     if (this.tokenExpirationTimer) {
@@ -117,9 +121,10 @@ export class AuthService {
     );
     this.userId = userId;
     this.user.next(user);
+    this.isAuthenticated = true;
+    this.setAnonymous(false);
     this.autoLogout(expiresIn * 1000);
     localStorage.setItem('userData', JSON.stringify(user));
-    this.setAnonymous(false);
   }
 
   private static handleError(errorResponse: HttpErrorResponse) {
@@ -139,5 +144,25 @@ export class AuthService {
   setAnonymous(isAnonymous: boolean) {
     this.isAnonymous = isAnonymous;
     localStorage.setItem('isAnonymous', isAnonymous.toString());
+  }
+
+  deleteAccount() {
+    const userData: {
+      email: string;
+      id: string;
+      _token: string;
+      _tokenExpirationDate: string;
+    } = JSON.parse(<string>localStorage.getItem('userData'));
+    if (!userData) { return;}
+
+    const token = userData._token;
+
+    return this.http.post(
+      DELETE_URL + API_KEY,
+      {
+        idToken: token
+      }
+    ).pipe(catchError(AuthService.handleError))
+      .subscribe(response => this.logout());
   }
 }

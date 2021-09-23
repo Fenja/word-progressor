@@ -1,10 +1,6 @@
 <div mat-dialog-content>
 
-  <p>When using the WordProgressor without an account, your data is stored locally.</p>
-  <p>You won't be able to sync them or access them from another access point.</p>
-  <p>When loosing or resetting your device, your data is lost.</p>
-  <p>Nonetheless, please feel free to try the WordProgressor anynomously, before creating an account, to save your data later.</p>
-  <p>Also, some functionality is only available for users with an account.</p>
+  <div>{{ 'text_anonymous_dialog' | translate }}</div>
 
   <div mat-dialog-actions style="height: 5em">
     <button mat-stroked-button color="accent" (click)="close()">{{ 'button_login' | translate }}</button>

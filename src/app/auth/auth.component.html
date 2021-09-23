@@ -65,6 +65,7 @@
           [disabled]="!authForm.valid"
         >{{ (isLoginMode ? 'button_login' : 'button_signup') | translate }}</button>
         <button
+          *ngIf="!isCreateFromLocalMode"
           mat-stroked-button
           color="primary"
           data-testid="signup-button"
@@ -73,12 +74,22 @@
         >{{ (isLoginMode ? 'button_switch_to_signup' : 'button_switch_to_login') | translate }}</button>
 
       <button
+          *ngIf="!isCreateFromLocalMode"
           mat-stroked-button
           color="accent"
           data-testid="anonymous-user-button"
           type="button"
           (click)="onProceed()"
         >{{ 'button_proceed_without_login' | translate }}</button>
+
+      <button
+          *ngIf="isCreateFromLocalMode"
+          mat-stroked-button
+          color="primary"
+          data-testid="cancel-create-button"
+          type="button"
+          routerLink="/settings"
+        >{{ 'button_cancel' | translate }}</button>
       </div>
     </div>
   </form>

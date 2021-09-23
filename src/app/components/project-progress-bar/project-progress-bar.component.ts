@@ -18,9 +18,11 @@ export class ProjectProgressBarComponent implements OnInit {
 
   ngOnInit(): void {
     this.percentageDone = (this.currentCount / this.goalCount) * 100;
+    if (this.percentageDone > 100) this.percentageDone = 100;
 
     if (!!this.maxGoalCount) {
       this.percentageMaxDone = (this.currentCount / this.maxGoalCount) * 100;
+      if (this.percentageMaxDone > 100) this.percentageMaxDone = 100;
       this.firstBarWidthPercent = (this.goalCount / this.maxGoalCount) * 100;
     }
   }

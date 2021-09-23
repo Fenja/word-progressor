@@ -2,15 +2,15 @@
   <div class="progress-bars">
     <mat-progress-bar *ngIf="maxGoalCount"
       mode="determinate"
-      value="{{ percentageMaxDone > 100 ? 100 : percentageMaxDone }}"
-      [color]="(percentageMaxDone > 100) ? 'warn' : 'accent'"
+      value="{{ percentageMaxDone }}"
+      [color]="(percentageMaxDone >= 100) ? 'warn' : 'accent'"
       aria-label="progress"
       class="progress-bars__max-range"
     ></mat-progress-bar>
 
     <mat-progress-bar *ngIf="goalCount"
       mode="determinate"
-      value="{{ percentageDone > 100 ? 100 : percentageDone}}"
+      value="{{ percentageDone }}"
       [color]="(percentageDone >= 100) ? 'accent' : 'primary'"
       aria-label="progress"
       [style]="'width: ' + firstBarWidthPercent +'%;'"

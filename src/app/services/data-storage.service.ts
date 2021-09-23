@@ -1,12 +1,12 @@
-import {Injectable} from "@angular/core";
-import {HttpClient} from "@angular/common/http";
-import {AuthService} from "../auth/auth.service";
-import {environment} from "../../environments/environment";
-import {Project} from "../project/project.model";
-import {catchError, map, take} from "rxjs/operators";
-import {Subject, throwError} from "rxjs";
+import { Injectable, OnInit } from "@angular/core";
+import { HttpClient } from "@angular/common/http";
+import { AuthService } from "../auth/auth.service";
+import { userData } from "../auth/user.model";
+import { environment } from "../../environments/environment";
+import { Project } from "../project/project.model";
+import { catchError, map, take } from "rxjs/operators";
+import { Subject, throwError } from "rxjs";
 import * as uuid from 'uuid';
-import {userData} from "../auth/user.model";
 
 /*
   this service should differ between a logged in user and an anonymous one
@@ -40,6 +40,7 @@ export class DataStorageService {
   }
 
   fetchProjects() {
+    this.projects = [];
     if (this.isAnonymous) {
       this._fetchProjectsFromStorage();
     } else {
@@ -220,4 +221,21 @@ export class DataStorageService {
     });
   }
 
+  deleteUser(userId: string) {
+    if (this.isAnonymous) {
+      localStorage.clear();
+    } else {
+      this._deleteUserAtAPI(userId);
+    }
+  }
+
+  private _deleteUserAtAPI(userId: string) {
+    this.http.delete(
+      environment.FIREBASE_DB_URL+userId+'.json',
+    ).subscribe(() => this.user = {});
+  }
+
+  saveUserSettings(userSettings: userData) {
+    // TODO
+  }
 }

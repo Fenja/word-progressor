@@ -1,1 +1,50 @@
-<p>settings works!</p>
+<div class="content">
+  <h2>{{ 'label_settings' | translate }}</h2>
+
+  <mat-card class="project-item">
+    <mat-card-header class="project-item__header">
+      <mat-card-title>{{ 'label_account' | translate }}</mat-card-title>
+    </mat-card-header>
+
+    <mat-card-content>
+      <!--<div>
+    <mat-form-field>
+      <mat-label>{{ 'label_pseudonym' | translate }}</mat-label>
+      <input
+        matInput
+        type="text"
+        name="pseudonym"
+        class="form-control"
+        data-testid="pseudonym-input"
+        ngModel
+      >
+    </mat-form-field>
+  </div>-->
+    </mat-card-content>
+
+    <mat-card-actions class="button-row">
+
+      <!--<button
+        mat-raised-button
+        color="accent"
+        (click)="saveUserSettings()">
+        {{ 'button_save' | translate }}</button>-->
+      <button
+        mat-raised-button
+        color="primary"
+        *ngIf="authService.isAnonymous"
+        (click)="createAccount()">
+        {{ 'label_create_account' | translate }}</button>
+      <button
+        mat-stroked-button
+        *ngIf="authService.isAuthenticated"
+        color="warn"
+        (click)="deleteAccount()">
+        {{ 'label_delete_account' | translate }}</button>
+    </mat-card-actions>
+  </mat-card>
+
+  <!-- Notifications -->
+  <!-- App-Info -->
+
+</div>

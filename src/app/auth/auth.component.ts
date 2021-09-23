@@ -1,10 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import {NgForm} from "@angular/forms";
-import {AuthResponseData, AuthService} from "./auth.service";
-import {AnonymousDialog} from "./anonymous-dialog/anonymous-dialog.component";
-import {MatDialog} from "@angular/material/dialog";
-import {Observable} from "rxjs";
-import {Router} from "@angular/router";
+import { NgForm} from "@angular/forms";
+import { AuthResponseData, AuthService } from "./auth.service";
+import { AnonymousDialog } from "./anonymous-dialog/anonymous-dialog.component";
+import { MatDialog } from "@angular/material/dialog";
+import { Observable } from "rxjs";
+import {ActivatedRoute, Router} from "@angular/router";
+import {HttpClient} from "@angular/common/http";
+import {environment} from "../../environments/environment";
+import {Project} from "../project/project.model";
+import {userData} from "./user.model";
 
 @Component({
   selector: 'app-auth',
@@ -15,12 +19,20 @@ export class AuthComponent implements OnInit {
   isLoading = false;
   isLoginMode = true;
   error: string | null = null;
+  isCreateFromLocalMode: boolean = false;
 
   constructor(
     private authService: AuthService,
     public dialog: MatDialog,
     private router: Router,
-  ) { }
+    private route: ActivatedRoute,
+    private http: HttpClient,
+  ) {
+    this.route.queryParams.subscribe(params => {
+      this.isCreateFromLocalMode = params['mode'] === 'createFromLocal';
+      if (this.isCreateFromLocalMode) this.isLoginMode = false;
+    });
+  }
 
   ngOnInit(): void {
   }
@@ -57,6 +69,10 @@ export class AuthComponent implements OnInit {
       authObs.subscribe(response => {
         console.log(response);
         this.isLoading = false;
+        if (this.isCreateFromLocalMode) {
+          this.authService.setAnonymous(false);
+          this._uploadLocalData();
+        }
         this.router.navigate(['/projects']); // TODO snackbar welcome penname
       }, errorMessage => {
         console.log(errorMessage);
@@ -70,5 +86,36 @@ export class AuthComponent implements OnInit {
 
   onProceed() {
     this.dialog.open(AnonymousDialog);
+  }
+
+  // move to seperate Service?
+  private _uploadLocalData() {
+    const id = this.authService.userId;
+    let projects: Project[] = JSON.parse(<string>localStorage.getItem('projects'));
+    projects.map(project => {
+      this.http.post<any>(
+        environment.FIREBASE_DB_URL + id + '/projects.json',
+        project
+      ).subscribe(() => {
+          localStorage.removeItem('projects');
+        },
+        error => {
+          console.log(error)
+        }
+      )
+    });
+
+    const user: userData = JSON.parse(<string>localStorage.getItem('user'));
+    this.http.post<any>(
+      environment.FIREBASE_DB_URL+id+'.json',
+      user
+    ).subscribe(() => {
+      // TODO wordlogs at api!!!
+      localStorage.removeItem('user');
+      },
+      error => {
+        console.log(error)
+      }
+    )
   }
 }
