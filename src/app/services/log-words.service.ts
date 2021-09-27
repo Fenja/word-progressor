@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Project } from "../project/project.model";
 import { ProjectService } from "../project/project.service";
-import { UserService } from "./user.service";
+import { DataStorageService } from "./data-storage.service";
 
 export interface WordLog {
   date: Date;
@@ -15,7 +15,7 @@ export class LogWordsService {
 
   constructor(
     private projectService: ProjectService,
-    private userService: UserService,
+    private dataStorageService: DataStorageService,
   ) { }
 
   logWords(id: string, project: Project, wordLog: WordLog) {
@@ -23,14 +23,14 @@ export class LogWordsService {
     project.wordLogs = this.addWordsToLog(project.wordLogs!, wordLog);
     this.projectService.editProject(id, project);
 
-    let userLog = this.userService.getUser().wordLogs;
-    if (!userLog) userLog = [];
-    userLog = this.addWordsToLog(userLog!, wordLog);
-    this.userService.updateWordLog(userLog);
+    let user = this.dataStorageService.user;
+    if (!user.wordLogs) user.wordLogs = [];
+    user.wordLogs = this.addWordsToLog(user.wordLogs!, wordLog);
+    this.dataStorageService.editUser(user.id!, user);
   }
 
   getUserLogs() {
-    return this.userService.user.wordLogs;
+    return this.dataStorageService.user.wordLogs;
   }
 
   private addWordsToLog(wordLogs: WordLog[], wordLog: WordLog): WordLog[] {

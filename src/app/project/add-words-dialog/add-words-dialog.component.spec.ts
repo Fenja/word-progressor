@@ -5,9 +5,10 @@ import {ProjectService} from "../project.service";
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 import {By} from "@angular/platform-browser";
 import {of} from "rxjs";
-import {MatTabGroup, MatTabsModule} from "@angular/material/tabs";
 import {FormsModule} from "@angular/forms";
 import {TranslatePipe} from "../../translation/translate.pipe";
+import {MatSnackBar} from "@angular/material/snack-bar";
+import {LogWordsService} from "../../services/log-words.service";
 
 describe('AddWordsDialogComponent', () => {
   let component: AddWordsDialogComponent;
@@ -31,7 +32,7 @@ describe('AddWordsDialogComponent', () => {
   const mockProjectService = {
     getProject(id: string) { return of(mockProject); },
     editProject(id: string, project: Project) {},
-    hasProject(id: string) { return id === '42'; },
+    hasProject(id: string) { return true; },
   }
 
   describe('add words dialog', () => {
@@ -50,14 +51,24 @@ describe('AddWordsDialogComponent', () => {
           {
           provide: ProjectService,
           useValue: mockProjectService
-        },
-          {
-            provide: MAT_DIALOG_DATA,
+        },{
+          provide: MAT_DIALOG_DATA,
+          useValue: {
+            project: mockProject,
+            id: 0
+          }
+        },{
+          provide: MatSnackBar,
+          useValue: {
+            open: () => {}
+          }
+        }, {
+            provide: LogWordsService,
             useValue: {
-              project: mockProject,
-              id: 0
+              logWords: () => {},
             }
-          }]
+          }
+        ]
       })
       .compileComponents();
     });
@@ -81,10 +92,14 @@ describe('AddWordsDialogComponent', () => {
       });
     });
 
-    it('sets current word count as default input value', fakeAsync(() => {
-      fixture.nativeElement.querySelectorAll('mat-tab')[0].click();
-      fixture.detectChanges();
+    it('always displays datepicker', () => {
+      const {debugElement} = fixture;
+      const dateInput = debugElement.query(By.css('[data-testid="deadline-picker"]'));
+      expect(dateInput).toBeTruthy();
+    });
 
+    it('sets current word count as default input value', fakeAsync(() => {
+      // TODO tap on tab
       fixture.whenStable().then(() => {
         fixture.detectChanges();
         let projectWordCount = component.data.project.currentWordcount;
@@ -109,18 +124,28 @@ describe('AddWordsDialogComponent', () => {
             provide: MatDialogRef,
             useValue: {}
           },{
-          provide: ProjectService,
-          useValue: mockProjectService
-        },
-          {
+            provide: ProjectService,
+            useValue: mockProjectService
+          },{
             provide: MAT_DIALOG_DATA,
             useValue: {
               project: mockProject,
               id: 42
             }
-          }]
-        })
-        .compileComponents();
+          },{
+            provide: MatSnackBar,
+            useValue: {
+              open: () => {}
+            }
+          }, {
+            provide: LogWordsService,
+            useValue: {
+              logWords: () => {},
+            }
+          }
+        ]
+      })
+      .compileComponents();
 
       fixture = TestBed.createComponent(AddWordsDialogComponent);
       component = fixture.componentInstance;

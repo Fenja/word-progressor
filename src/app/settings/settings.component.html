@@ -33,12 +33,14 @@
         mat-raised-button
         color="primary"
         *ngIf="authService.isAnonymous"
+        data-testid="upload-button"
         (click)="createAccount()">
         {{ 'label_create_account' | translate }}</button>
       <button
         mat-stroked-button
         *ngIf="authService.isAuthenticated"
         color="warn"
+        data-testid="delete-button"
         (click)="deleteAccount()">
         {{ 'label_delete_account' | translate }}</button>
     </mat-card-actions>

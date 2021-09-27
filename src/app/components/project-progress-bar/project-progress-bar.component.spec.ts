@@ -49,7 +49,17 @@ describe('ProjectProgressBarComponent', () => {
     let {debugElement} = fixture;
     let countSpan = debugElement.query(By.css('[data-testid="project-word-count"]'));
     expect(countSpan).toBeTruthy();
-    expect(countSpan.nativeElement.innerHTML).toBe('25000 / 50000');
+    expect(countSpan.nativeElement.innerHTML).toContain('25000 / 50000');
+  });
+
+  it('displays current and goal count range as text', () => {
+    component.currentCount = 25000;
+    component.maxGoalCount = 60000;
+    fixture.detectChanges();
+    let {debugElement} = fixture;
+    let countSpan = debugElement.query(By.css('[data-testid="project-word-count"]'));
+    expect(countSpan).toBeTruthy();
+    expect(countSpan.nativeElement.innerHTML).toContain('25000 / 50000<span>-60000</span>span>');
   });
 
   it('does not display a progress bar when there is no wordcount', () => {

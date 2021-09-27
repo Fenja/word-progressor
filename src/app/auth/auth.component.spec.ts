@@ -2,6 +2,8 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { AuthComponent } from './auth.component';
 import {HttpClient} from "@angular/common/http";
+import {MatDialog} from "@angular/material/dialog";
+import {ActivatedRoute, Router} from "@angular/router";
 
 describe('AuthComponent', () => {
   let component: AuthComponent;
@@ -14,6 +16,21 @@ describe('AuthComponent', () => {
         provide: HttpClient,
         useValue: {
           post: () => {}
+        }
+      }, {
+        provide: MatDialog,
+        useValue: {
+          open: () => {},
+        }
+      }, {
+        provide: Router,
+        useValue: {
+          navigate: () => {},
+        }
+      }, {
+        provide: ActivatedRoute,
+        useValue: {
+          queryParams: () => '',
         }
       }]
     })

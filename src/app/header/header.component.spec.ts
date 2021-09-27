@@ -1,9 +1,9 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { HeaderComponent } from './header.component';
 import { AuthService } from "../auth/auth.service";
-import {of} from "rxjs";
-import {User} from "../auth/user.model";
+import { of } from "rxjs";
+import { User } from "../auth/user.model";
+import { TranslatePipe } from "../translation/translate.pipe";
 
 describe('HeaderComponent', () => {
   let component: HeaderComponent;
@@ -13,12 +13,15 @@ describe('HeaderComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ HeaderComponent ],
+      declarations: [
+        HeaderComponent,
+        TranslatePipe
+      ],
       providers: [{
         provide: AuthService,
         useValue: {
           user: of(mockUser),
-          onLogout: () => {mockUser = undefined},
+          logout: () => {mockUser = undefined},
         }
       }]
     })

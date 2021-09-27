@@ -7,7 +7,7 @@ import { of } from "rxjs";
 import { Project, ProjectState, ProjectType } from "../project.model";
 import { MatDialogModule } from "@angular/material/dialog";
 import { By } from "@angular/platform-browser";
-import {ProjectService} from "../project.service";
+import { ProjectService } from "../project.service";
 
 function getTitle(debugElement: any): string {
   return debugElement.query(By.css('[data-testid="project-title"]')).nativeElement.textContent;
@@ -120,7 +120,7 @@ describe('ProjectDetailComponent', () => {
       let {debugElement} = fixture;
       expect(debugElement.query(By.css('[data-testid="project-title"]'))).toBeTruthy();
       expect(debugElement.query(By.css('[data-testid="project-description"]'))).toBeTruthy();
-      expect(debugElement.query(By.css('[data-testid="project-image"]'))).toBeTruthy();
+      //expect(debugElement.query(By.css('[data-testid="project-image"]'))).toBeTruthy();
       //expect(debugElement.query(By.css('[data-testid="project-type"]'))).toBeTruthy();
       expect(debugElement.query(By.css('[data-testid="word-progress-container"]'))).toBeTruthy();
     });

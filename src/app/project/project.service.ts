@@ -27,8 +27,7 @@ export class ProjectService {
   }
 
   getProject(id: string): Project | undefined {
-    let result = this.dataStorageService.projects.find(p => p.id === id);
-    return result;
+    return this.dataStorageService.projects.find(p => p.id === id);
   }
 
   addProject(project: Project) {

@@ -8,6 +8,7 @@ import { of} from "rxjs";
 import {ProjectService} from "../project.service";
 import {Project, ProjectState, ProjectType} from "../project.model";
 import {TranslatePipe} from "../../translation/translate.pipe";
+import {DataStorageService} from "../../services/data-storage.service";
 
 
 function getTitleInput(debugElement: any): string {
@@ -85,11 +86,17 @@ describe('ProjectEditComponent', () => {
           useValue: {
             params: of([{id: null}]),
           },
-        },
-          {
-            provide: Router,
-            useValue: mockRouter
-          }],
+        }, {
+          provide: Router,
+          useValue: mockRouter
+        }, {
+          provide: ProjectService,
+          useValue: {
+            getProject: () => mockProject,
+            editProject: () => {},
+            addProject: () => {},
+          }
+        }],
       })
         .compileComponents();
     });
@@ -143,7 +150,7 @@ describe('ProjectEditComponent', () => {
         providers: [{
           provide: ActivatedRoute,
           useValue: {
-            params: of([{id: 0}]),
+            params: of([{id: '0'}]),
           },
         },
           {

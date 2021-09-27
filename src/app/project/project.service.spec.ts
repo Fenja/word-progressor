@@ -1,5 +1,10 @@
 import { ProjectService } from './project.service';
 import { Project, ProjectState, ProjectType } from "./project.model";
+import { TestBed } from "@angular/core/testing";
+import { DataStorageService } from "../services/data-storage.service";
+import { SnackbarService } from "../services/snackbar.service";
+import { TranslationService } from "../translation/translation.service";
+import {TranslatePipe} from "../translation/translate.pipe";
 
 describe('ProjectService', () => {
   let service: ProjectService;
@@ -19,9 +24,29 @@ describe('ProjectService', () => {
   };
 
   beforeEach(() => {
-    // TestBed.configureTestingModule({});
-    // service = TestBed.inject(ProjectService);
-    //service = new ProjectService(new HttpClient());
+    TestBed.configureTestingModule({
+      declarations: [ TranslatePipe ],
+      providers: [
+        {
+          provide: DataStorageService,
+          useValue: {
+            projectList: () => [],
+            getProjects: () => [],
+            fetchProjects: () => [],
+            projects: () => [],
+            addProject: () => {},
+            editProject: () => {},
+            deleteProject: () => {},
+          }
+        }, {
+          provide: SnackbarService,
+          useValue: {
+            showSnackBar: () => {},
+          }
+        }
+      ]
+    });
+    service = TestBed.inject(ProjectService);
   });
 
   it('is created', () => {

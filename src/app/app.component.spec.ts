@@ -15,7 +15,7 @@ describe('AppComponent', () => {
       providers: [{
         provide: AuthService,
         useValue: {
-          onAutoLogin: () => {}
+          autoLogin: () => {}
         }
       }]
     }).compileComponents();

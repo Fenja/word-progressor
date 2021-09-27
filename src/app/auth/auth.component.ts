@@ -4,11 +4,11 @@ import { AuthResponseData, AuthService } from "./auth.service";
 import { AnonymousDialog } from "./anonymous-dialog/anonymous-dialog.component";
 import { MatDialog } from "@angular/material/dialog";
 import { Observable } from "rxjs";
-import {ActivatedRoute, Router} from "@angular/router";
-import {HttpClient} from "@angular/common/http";
-import {environment} from "../../environments/environment";
-import {Project} from "../project/project.model";
-import {userData} from "./user.model";
+import { ActivatedRoute, Router } from "@angular/router";
+import { HttpClient } from "@angular/common/http";
+import { environment } from "../../environments/environment";
+import { Project } from "../project/project.model";
+import { userData } from "./user.model";
 
 @Component({
   selector: 'app-auth',
@@ -73,7 +73,7 @@ export class AuthComponent implements OnInit {
           this.authService.setAnonymous(false);
           this._uploadLocalData();
         }
-        this.router.navigate(['/projects']); // TODO snackbar welcome penname
+        this.router.navigate(['/projects']);
       }, errorMessage => {
         console.log(errorMessage);
         this.error = errorMessage;
