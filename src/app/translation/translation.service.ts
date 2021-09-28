@@ -1,4 +1,4 @@
-import {Injectable} from "@angular/core";
+import { Injectable } from "@angular/core";
 
 export class TranslationSet {
   public language!: string;
@@ -10,7 +10,7 @@ export class TranslationSet {
 })
 export class TranslationService {
   public languages = ['de', 'en'];
-  public language = 'de';
+  public language = 'en';
   private dictionary: { [key: string]:
   TranslationSet } = {
     de: {
@@ -176,7 +176,7 @@ export class TranslationService {
         button_signup: 'Sign up',
         button_switch_to_signup: 'Switch to sign up',
         button_switch_to_login: 'Switch to sign in',
-        button_proceed_without_login: 'Proceeed without Login',
+        button_proceed_without_login: 'Proceed without Login',
 
         label_current_word_count: 'Current Word Count',
         label_goal_word_count: 'Goal Word Count',
