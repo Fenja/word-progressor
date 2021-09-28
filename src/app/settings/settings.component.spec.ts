@@ -1,13 +1,12 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { SettingsComponent } from './settings.component';
-import {AuthService} from "../auth/auth.service";
-import {TranslationService} from "../translation/translation.service";
-import {Router} from "@angular/router";
-import {SnackbarService} from "../services/snackbar.service";
-import {DataStorageService} from "../services/data-storage.service";
-import {By} from "@angular/platform-browser";
-import {TranslatePipe} from "../translation/translate.pipe";
+import { AuthService } from "../auth/auth.service";
+import { TranslationService } from "../translation/translation.service";
+import { Router } from "@angular/router";
+import { DataStorageService } from "../services/data-storage.service";
+import { By } from "@angular/platform-browser";
+import { TranslatePipe } from "../translation/translate.pipe";
 
 describe('SettingsComponent', () => {
   let component: SettingsComponent;

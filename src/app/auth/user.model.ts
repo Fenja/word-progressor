@@ -12,7 +12,7 @@ export interface userData {
 
 export class User {
   constructor(
-    public email: string,
+    // public email: string,
     public id: string,
     private _token: string | null,
     private _tokenExpirationDate: Date
@@ -25,10 +25,5 @@ export class User {
     } else {
       return this._token;
     }
-  }
-
-  getExpirationDuration(): number {
-    return new Date(this._tokenExpirationDate).getTime() -
-      new Date().getTime();
   }
 }

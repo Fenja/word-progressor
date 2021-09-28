@@ -1,14 +1,12 @@
-import {ComponentFixture, TestBed, tick} from '@angular/core/testing';
-
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ProjectEditComponent } from './project-edit.component';
-import {By} from "@angular/platform-browser";
-import {ActivatedRoute, Router} from "@angular/router";
-import {FormsModule} from "@angular/forms";
-import { of} from "rxjs";
-import {ProjectService} from "../project.service";
-import {Project, ProjectState, ProjectType} from "../project.model";
-import {TranslatePipe} from "../../translation/translate.pipe";
-import {DataStorageService} from "../../services/data-storage.service";
+import { By } from "@angular/platform-browser";
+import { ActivatedRoute, Router } from "@angular/router";
+import { FormsModule } from "@angular/forms";
+import { of } from "rxjs";
+import { ProjectService } from "../project.service";
+import { Project, ProjectState, ProjectType } from "../project.model";
+import { TranslatePipe } from "../../translation/translate.pipe";
 
 
 function getTitleInput(debugElement: any): string {

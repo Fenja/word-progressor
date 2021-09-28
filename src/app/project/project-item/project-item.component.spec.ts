@@ -1,12 +1,11 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { ProjectItemComponent } from './project-item.component';
-import {Project, ProjectState, ProjectType} from "../project.model";
-import {By} from "@angular/platform-browser";
-import {ProjectListComponent} from "../project-list/project-list.component";
-import {MatDialog, MatDialogModule} from "@angular/material/dialog";
-import {of} from "rxjs";
-import {TranslatePipe} from "../../translation/translate.pipe";
+import { Project, ProjectState, ProjectType } from "../project.model";
+import { By } from "@angular/platform-browser";
+import { ProjectListComponent } from "../project-list/project-list.component";
+import { MatDialog, MatDialogModule } from "@angular/material/dialog";
+import { of } from "rxjs";
+import { TranslatePipe } from "../../translation/translate.pipe";
 
 describe('ProjectItemComponent', () => {
   let component: ProjectItemComponent;

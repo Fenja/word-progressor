@@ -103,7 +103,7 @@ export class AuthService {
     this.userId = '';
     this.isAuthenticated = false;
     this.setAnonymous(false);
-    this.router.navigate(['/auth']);
+    this.router.navigate(['/auth']).then();
     localStorage.removeItem('userData');
     if (this.tokenExpirationTimer) {
       clearTimeout(this.tokenExpirationTimer);
@@ -163,6 +163,6 @@ export class AuthService {
         idToken: token
       }
     ).pipe(catchError(AuthService.handleError))
-      .subscribe(response => this.logout());
+      .subscribe(_ => this.logout());
   }
 }

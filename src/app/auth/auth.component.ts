@@ -73,7 +73,7 @@ export class AuthComponent implements OnInit {
           this.authService.setAnonymous(false);
           this._uploadLocalData();
         }
-        this.router.navigate(['/projects']);
+        this.router.navigate(['/projects']).then();
       }, errorMessage => {
         console.log(errorMessage);
         this.error = errorMessage;

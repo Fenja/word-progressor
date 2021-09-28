@@ -7,7 +7,7 @@ import { TranslationService } from "../../translation/translation.service";
 import { TranslatePipe } from "../../translation/translate.pipe";
 import { DataStorageService } from "../../services/data-storage.service";
 import { of } from "rxjs";
-import {MatSnackBar} from "@angular/material/snack-bar";
+import { MatSnackBar } from "@angular/material/snack-bar";
 
 describe('ProjectListComponent', () => {
   let component: ProjectListComponent;

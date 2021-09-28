@@ -1,14 +1,14 @@
-import {ComponentFixture, fakeAsync, TestBed, tick} from '@angular/core/testing';
+import {ComponentFixture, fakeAsync, TestBed } from '@angular/core/testing';
 import { AddWordsDialogComponent } from './add-words-dialog.component';
-import {Project, ProjectState, ProjectType} from "../project.model";
-import {ProjectService} from "../project.service";
-import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
-import {By} from "@angular/platform-browser";
-import {of} from "rxjs";
-import {FormsModule} from "@angular/forms";
-import {TranslatePipe} from "../../translation/translate.pipe";
-import {MatSnackBar} from "@angular/material/snack-bar";
-import {LogWordsService} from "../../services/log-words.service";
+import { Project, ProjectState, ProjectType } from "../project.model";
+import { ProjectService } from "../project.service";
+import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
+import { By } from "@angular/platform-browser";
+import { of } from "rxjs";
+import { FormsModule } from "@angular/forms";
+import { TranslatePipe } from "../../translation/translate.pipe";
+import { MatSnackBar } from "@angular/material/snack-bar";
+import { LogWordsService } from "../../services/log-words.service";
 
 describe('AddWordsDialogComponent', () => {
   let component: AddWordsDialogComponent;
@@ -30,9 +30,8 @@ describe('AddWordsDialogComponent', () => {
   };
 
   const mockProjectService = {
-    getProject(id: string) { return of(mockProject); },
-    editProject(id: string, project: Project) {},
-    hasProject(id: string) { return true; },
+    getProject() { return of(mockProject); },
+    editProject() {},
   }
 
   describe('add words dialog', () => {

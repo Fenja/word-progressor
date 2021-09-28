@@ -1,7 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 import { DataStorageService } from "./data-storage.service";
-import {HttpClient} from "@angular/common/http";
-import {AuthService} from "../auth/auth.service";
+import { HttpClient } from "@angular/common/http";
+import { AuthService } from "../auth/auth.service";
 
 
 describe('DataStorageService', () => {

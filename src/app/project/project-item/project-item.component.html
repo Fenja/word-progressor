@@ -12,7 +12,7 @@
     [currentCount]="project.currentWordcount"
     [maxGoalCount]="project.maxGoalWordcount"
   ></app-project-progress-bar>
-  <img mat-card-image *ngIf="project.imagePath" [src]="project.imagePath"/>
+  <img alt="{{ project.workingTitle}}" mat-card-image *ngIf="project.imagePath" [src]="project.imagePath"/>
 
   <div *ngIf="project.deadline" style="float: right">
     <i class="mat-icon material-icons">event</i>

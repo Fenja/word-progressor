@@ -9,7 +9,7 @@ describe('HeaderComponent', () => {
   let component: HeaderComponent;
   let fixture: ComponentFixture<HeaderComponent>;
 
-  let mockUser: User | undefined = new User('test@test.com','id42', null, new Date());
+  let mockUser: User | undefined = new User('id42', null, new Date());
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({

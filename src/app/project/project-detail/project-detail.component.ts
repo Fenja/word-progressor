@@ -33,7 +33,7 @@ export class ProjectDetailComponent implements OnInit {
         } else {
           // TODO show error
           console.log('project with id ' + this.id + ' not found');
-          this.router.navigate(['/projects']);
+          this.router.navigate(['/projects']).then();
         }
       }
     )
@@ -51,7 +51,7 @@ export class ProjectDetailComponent implements OnInit {
   deleteProject() {
     if (confirm("Are you sure to delete "+this.project.workingTitle)) {
       this.projectService.deleteProject(this.id, this.project.workingTitle);
-      this.router.navigate(['/projects']);
+      this.router.navigate(['/projects']).then();
     }
   }
 }

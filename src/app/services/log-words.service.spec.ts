@@ -4,7 +4,7 @@ import { ProjectService } from "../project/project.service";
 import { userData } from "../auth/user.model";
 import { Project, ProjectState, ProjectType } from "../project/project.model";
 import { DataStorageService } from "./data-storage.service";
-import {Inject} from "@angular/core";
+import { Inject } from "@angular/core";
 
 describe('LogWordsService', () => {
   let service: LogWordsService;
