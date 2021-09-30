@@ -92,7 +92,7 @@ export class TranslationService {
         label_pseudonym: 'Autorenname',
 
         placeholder_working_title: 'Arbeitstitel',
-        placeholder_blurp: 'Inhaltsangabe',
+        placeholder_blurb: 'Inhaltsangabe',
 
         tooltip_sort: 'sortieren',
         tooltip_filter: 'filtern',
@@ -204,7 +204,7 @@ export class TranslationService {
         label_pseudonym: 'Pen Name',
 
         placeholder_working_title: 'Working Title',
-        placeholder_blurp: 'Blurp',
+        placeholder_blurb: 'Blurb',
 
         tooltip_sort: 'sort',
         tooltip_filter: 'filter',
@@ -239,7 +239,9 @@ export class TranslationService {
     }
   }
 
-  constructor() {}
+  constructor() {
+    this.language = navigator.language.split('-')[0];
+  }
 
   translate(key: string): string {
     if (this.dictionary[this.language] !== null) {
