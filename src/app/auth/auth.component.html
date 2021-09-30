@@ -42,19 +42,6 @@
           minlength="6"
         >
       </mat-form-field>
-      <mat-form-field *ngIf="!isLoginMode">
-        <mat-label>{{ 'label_password_repeat' | translate }}</mat-label>
-        <input
-          matInput
-          type="password"
-          name="password_repeat"
-          class="form-control"
-          data-testid="password-repeat-input"
-          required
-          ngModel
-          minlength="6"
-        >
-      </mat-form-field>
 
       <div class="button-row">
         <button

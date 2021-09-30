@@ -47,22 +47,15 @@ export class AuthComponent implements OnInit {
     }
     this.isLoading = true;
 
-    let authObs: Observable<AuthResponseData> | undefined = undefined;
+    let authObs: Observable<AuthResponseData> | undefined;
 
     const email = form.value.email;
     const password = form.value.password;
 
     if (this.isLoginMode) {
       authObs = this.authService.login(email, password);
-
     } else {
-      const password2 = form.value.password_repeat;
-      if (password != password2) {
-        this.error = 'passwords_differ';
-        this.isLoading = false;
-      } else {
-        authObs = this.authService.signup(email, password);
-      }
+      authObs = this.authService.signup(email, password);
     }
 
     if (authObs) {

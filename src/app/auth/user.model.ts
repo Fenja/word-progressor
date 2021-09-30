@@ -1,6 +1,7 @@
 import { WordLog } from "../services/log-words.service";
 
 export interface userData {
+  email?: string;
   id?: string;
   penName?: string;
   age?: number;
@@ -12,7 +13,7 @@ export interface userData {
 
 export class User {
   constructor(
-    // public email: string,
+    public email: string,
     public id: string,
     private _token: string | null,
     private _tokenExpirationDate: Date
