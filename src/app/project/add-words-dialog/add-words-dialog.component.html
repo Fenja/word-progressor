@@ -37,14 +37,15 @@
             data-testid="current-wordcount-input"
             matInput
             class="form-control"
-            [(ngModel)]="data.project.currentWordcount"
+            value="{{ data.project.currentWordcount }}"
+            #totalWordsInput
           >
         </mat-form-field>
 
       </form>
       <div mat-dialog-actions style="height: 5em">
         <button mat-stroked-button color="accent" (click)="close()">{{ 'button_cancel' | translate }}</button>
-        <button mat-raised-button color="primary" (click)="updateCurrentWords()">{{ 'button_update_word_count' | translate }}</button>
+        <button mat-raised-button color="primary" (click)="updateCurrentWords(+totalWordsInput.value)">{{ 'button_update_word_count' | translate }}</button>
       </div>
     </mat-tab>
 

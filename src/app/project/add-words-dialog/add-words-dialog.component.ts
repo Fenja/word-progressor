@@ -40,9 +40,9 @@ export interface AddWordsDialogData {
 export class AddWordsDialogComponent implements OnInit {
 
   @ViewChild('newWordsInput', {static: true}) newWordsInput!: ElementRef;
+  @ViewChild('totalWordsInput', {static: true}) totalWordsInput!: ElementRef;
   validProject: boolean = true;
   date: Date = new Date();
-  wordsBeforeUpdate!: number;
 
   constructor(
     public dialogRef: MatDialogRef<AddWordsDialogComponent>,
@@ -60,7 +60,6 @@ export class AddWordsDialogComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.wordsBeforeUpdate = this.data.project.currentWordcount;
     this._adapter.setLocale(this.translationService.getLocale());
   }
 
@@ -68,16 +67,18 @@ export class AddWordsDialogComponent implements OnInit {
     this.updateWords(words);
   }
 
-  updateCurrentWords() {
-    this.updateWords(this.data.project.currentWordcount - this.wordsBeforeUpdate);
+  updateCurrentWords(totalWords: number) {
+    this.updateWords(totalWords - this.data.project.currentWordcount );
   }
 
   updateWords(words: number) {
     this.close();
     if (words === 0) return;
+    this.data.project.currentWordcount += words;
     if (!!this.date) {
       this.logWordsService.logWords(this.data.id, this.data.project, {words: words, date: this.date});
     }
+    this.projectService.editProject(this.data.id, this.data.project);
     this.snackBarService.showSnackBar(words + this.translationService.translate('msg_words_added'))
   }
 
