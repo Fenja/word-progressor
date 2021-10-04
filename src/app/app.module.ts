@@ -41,6 +41,7 @@ import { MatTooltipModule } from "@angular/material/tooltip";
 import { DeadlinePickerComponent } from './components/deadline-picker/deadline-picker.component';
 import { MatSnackBarModule } from "@angular/material/snack-bar";
 import { gteValidatorDirective } from "./components/gte-validator.directive";
+import { PrivacyPolicyComponent } from './settings/privacy-policy/privacy-policy.component';
 
 @NgModule({
   declarations: [
@@ -60,6 +61,7 @@ import { gteValidatorDirective } from "./components/gte-validator.directive";
     SettingsComponent,
     DeadlinePickerComponent,
     gteValidatorDirective,
+    PrivacyPolicyComponent,
   ],
   imports: [
     AppRoutingModule,

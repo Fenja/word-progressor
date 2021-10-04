@@ -6,6 +6,7 @@ import { ProjectsComponent } from "./project/projects.component";
 import { ProjectListComponent } from "./project/project-list/project-list.component";
 import { AuthComponent } from "./auth/auth.component";
 import { SettingsComponent } from "./settings/settings.component";
+import { PrivacyPolicyComponent } from "./settings/privacy-policy/privacy-policy.component";
 
 const appRoutes: Routes = [
   { path: '', redirectTo: '/auth', pathMatch: 'full' },
@@ -17,6 +18,7 @@ const appRoutes: Routes = [
     ] },
   { path: 'auth', component: AuthComponent },
   { path: 'settings', component: SettingsComponent },
+  { path: 'privacy_policy', component: PrivacyPolicyComponent },
 ]
 
 @NgModule({

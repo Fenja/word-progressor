@@ -90,6 +90,7 @@ export class TranslationService {
         label_delete_account: 'Konto löschen',
         label_account: 'Benutzerkonto',
         label_pseudonym: 'Autorenname',
+        label_privacy_policy: 'Datenschutzerklärung',
 
         placeholder_working_title: 'Arbeitstitel',
         placeholder_blurb: 'Inhaltsangabe',
@@ -202,6 +203,7 @@ export class TranslationService {
         label_delete_account: 'Delete Account',
         label_account: 'User Account',
         label_pseudonym: 'Pen Name',
+        label_privacy_policy: 'Privacy Policy',
 
         placeholder_working_title: 'Working Title',
         placeholder_blurb: 'Blurb',
