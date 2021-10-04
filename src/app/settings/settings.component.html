@@ -1,7 +1,7 @@
 <div class="content">
   <h2>{{ 'label_settings' | translate }}</h2>
 
-  <mat-card class="project-item">
+  <mat-card>
     <mat-card-header class="project-item__header">
       <mat-card-title>{{ 'label_account' | translate }}</mat-card-title>
     </mat-card-header>
@@ -48,5 +48,12 @@
 
   <!-- Notifications -->
   <!-- App-Info -->
+  <mat-card>
+    <mat-card-content>
+      <div>
+        <button mat-stroked-button><a [routerLink]="['/privacy_policy']">{{ 'label_privacy_policy' | translate }}</a></button>
+      </div>
+    </mat-card-content>
+  </mat-card>
 
 </div>
