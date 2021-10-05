@@ -90,6 +90,12 @@ ul {
   }
 }
 
+.additional-links {
+  position: absolute;
+  bottom: 0;
+  padding: 1em;
+}
+
 .bottom-toolbar {
   position: fixed;
   bottom: 0;
@@ -135,5 +141,9 @@ ul {
     position: absolute;
     border-radius: 0.5em;
   }
+}
+
+.mat-dialog-content {
+  overflow: inherit !important;
 }
 
