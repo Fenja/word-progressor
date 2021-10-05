@@ -1,8 +1,10 @@
 <div class="content">
   <h2 data-testid="project-title">{{ project.workingTitle }}</h2>
-  <span *ngIf="project.type" data-testid="project-type">{{ project.type | translate }}</span>
+  <div class="mat-card-subtitle">
+    <span>{{ project.type | translate }}</span>  -  <span>{{ project.state | translate }}</span>
+  </div>
 
-  <div *ngIf="project.description" data-testid="project-description">
+  <div *ngIf="project.description" class="project-description" data-testid="project-description">
     {{ project.description }}
   </div>
 
@@ -14,25 +16,33 @@
   >
 
   <div
-    *ngIf="project.goalWordcount > 0 || project.currentWordcount > 0"
+    *ngIf="project.goalCount > 0 || project.currentCount > 0"
     data-testid="word-progress-container"
   >
     <h4>{{ 'headline_word_count' | translate }}</h4>
     <app-project-progress-bar
-      [goalCount]="project.goalWordcount"
-      [currentCount]="project.currentWordcount"
-      [maxGoalCount]="project.maxGoalWordcount"
+      [goalCount]="project.goalCount"
+      [currentCount]="project.currentCount"
+      [maxGoalCount]="project.maxGoalCount"
     ></app-project-progress-bar>
   </div>
 
-  <div *ngIf="project.deadline" style="float: right">
+  <div *ngIf="project.deadline" class="deadline">
     <i class="mat-icon material-icons">event</i>
-    {{ project.deadline | date: 'dd.MM.yyyy' }}
+    <span>{{ project.deadline | date }}</span>
   </div>
-
 </div>
 
-<div class="md-padding">
+<div class="content" *ngIf="project.wordLogs">
+  <h3>{{ 'label_word_logs' | translate }}</h3>
+  <ol>
+    <li *ngFor="let log of project.wordLogs">
+      <span>{{ log.date | date}}</span> - <span>{{ log.words }} {{ project.countEntity | translate }}</span>
+    </li>
+  </ol>
+</div>
+
+<div class="content">
   <div class="button-row">
     <button
       mat-raised-button

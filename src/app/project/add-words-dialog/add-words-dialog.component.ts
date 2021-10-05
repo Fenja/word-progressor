@@ -68,13 +68,13 @@ export class AddWordsDialogComponent implements OnInit {
   }
 
   updateCurrentWords(totalWords: number) {
-    this.updateWords(totalWords - this.data.project.currentWordcount );
+    this.updateWords(totalWords - this.data.project.currentCount );
   }
 
   updateWords(words: number) {
     this.close();
     if (words === 0) return;
-    this.data.project.currentWordcount += words;
+    this.data.project.currentCount += words;
     if (!!this.date) {
       this.logWordsService.logWords(this.data.id, this.data.project, {words: words, date: this.date});
     }

@@ -75,6 +75,7 @@ ul {
   margin: 1em;
   padding: 1em;
 }
+
 .project-item {
   margin: 1em;
   padding: 1em;
@@ -88,6 +89,10 @@ ul {
       // TODO accent color
     }
   }
+}
+
+.project-description {
+  margin: 1em 0 2em 0;
 }
 
 .additional-links {
@@ -143,7 +148,20 @@ ul {
   }
 }
 
+.deadline {
+  float: right;
+
+  i, span {
+    vertical-align: middle;
+    padding-left: 0.3em;
+  }
+}
+
 .mat-dialog-content {
   overflow: inherit !important;
+}
+
+.mat-card-header-text {
+  margin: 0 !important;
 }
 

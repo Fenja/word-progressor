@@ -18,8 +18,8 @@ describe('ProjectService', () => {
     type: ProjectType.novel,
     state: ProjectState.draft_1,
     deadline: new Date(2020, 10, 11),
-    currentWordcount: 10000,
-    goalWordcount: 80000,
+    currentCount: 10000,
+    goalCount: 80000,
     id: '42'
   };
 
@@ -75,14 +75,14 @@ describe('ProjectService', () => {
     let project = service.getProject(id);
     expect(project).toBeTruthy();
     project!.workingTitle = "final title";
-    project!.currentWordcount = 30000;
+    project!.currentCount = 30000;
     project!.state = ProjectState.submit;
     service.editProject(id, project!);
 
     let editedProject = service.getProject(id);
     expect(editedProject).toBeTruthy();
     expect(editedProject!.workingTitle).toBe("final title");
-    expect(editedProject!.currentWordcount).toBe(30000);
+    expect(editedProject!.currentCount).toBe(30000);
     expect(editedProject!.state).toBe(ProjectState.submit);
   });
 

@@ -1,14 +1,14 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Params, Router } from "@angular/router";
 import { ProjectService } from "../project.service";
-import { Project, ProjectState, ProjectType } from "../project.model";
+import { CountEntity, Project, ProjectState, ProjectType } from "../project.model";
 import { NgForm } from "@angular/forms";
 import { take } from "rxjs/operators";
 
 import {
+  MAT_MOMENT_DATE_ADAPTER_OPTIONS,
   MAT_MOMENT_DATE_FORMATS,
   MomentDateAdapter,
-  MAT_MOMENT_DATE_ADAPTER_OPTIONS,
 } from '@angular/material-moment-adapter';
 import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
 import 'moment/locale/de';
@@ -43,8 +43,9 @@ export class ProjectEditComponent implements OnInit {
     type: ProjectType.short_story,
     state: ProjectState.idea,
     deadline: undefined,
-    currentWordcount: 0,
-    goalWordcount: 0,
+    countEntity: CountEntity.words,
+    currentCount: 0,
+    goalCount: 0,
     isWorkInProgress: false,
     creationDate: new Date(),
     lastUpdate: new Date(),
@@ -52,8 +53,8 @@ export class ProjectEditComponent implements OnInit {
 
   eProjectType = ProjectType;
   eProjectState = ProjectState;
+  eCountEntity = CountEntity;
 
-  // @ts-ignore
   @ViewChild('projectForm', {static: false}) projectForm!: NgForm;
 
   constructor(
@@ -92,10 +93,10 @@ export class ProjectEditComponent implements OnInit {
         this.projectService.addProject(this.project);
       }
     }
-    this.router.navigate(['/projects']);
+    this.router.navigate(['/projects']).then();
   }
 
   onCancel() {
-    this.router.navigate(['/projects']);
+    this.router.navigate(['/projects']).then();
   }
 }

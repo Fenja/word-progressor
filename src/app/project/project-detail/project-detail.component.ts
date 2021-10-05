@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import {Project} from "../project.model";
-import {ProjectService} from "../project.service";
-import {ActivatedRoute, Params, Router} from "@angular/router";
-import {AddWordsDialogComponent} from "../add-words-dialog/add-words-dialog.component";
-import {MatDialog} from "@angular/material/dialog";
+import { Project } from "../project.model";
+import { ProjectService } from "../project.service";
+import { ActivatedRoute, Params, Router } from "@angular/router";
+import { AddWordsDialogComponent } from "../add-words-dialog/add-words-dialog.component";
+import { MatDialog } from "@angular/material/dialog";
 
 @Component({
   selector: 'app-project-detail',
@@ -11,10 +11,8 @@ import {MatDialog} from "@angular/material/dialog";
 })
 export class ProjectDetailComponent implements OnInit {
 
-  // @ts-ignore
-  project: Project;
-  // @ts-ignore
-  id: string;
+  project!: Project;
+  id!: string;
 
   constructor(
     private projectService: ProjectService,

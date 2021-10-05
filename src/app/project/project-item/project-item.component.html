@@ -6,17 +6,19 @@
   </mat-card-header>
 
   <mat-card-content>
-    {{ project.description }}
+    <div class="mat-card-content">
+      {{ project.description }}
+    </div>
   <app-project-progress-bar
-    [goalCount]="project.goalWordcount"
-    [currentCount]="project.currentWordcount"
-    [maxGoalCount]="project.maxGoalWordcount"
+    [goalCount]="project.goalCount"
+    [currentCount]="project.currentCount"
+    [maxGoalCount]="project.maxGoalCount"
   ></app-project-progress-bar>
   <img alt="{{ project.workingTitle}}" mat-card-image *ngIf="project.imagePath" [src]="project.imagePath"/>
 
-  <div *ngIf="project.deadline" style="float: right">
+  <div *ngIf="project.deadline" class="deadline">
     <i class="mat-icon material-icons">event</i>
-    {{ project.deadline | date: 'dd.MM.yyyy' }}
+    <span>{{ project.deadline | date }}</span>
   </div>
 
   </mat-card-content>

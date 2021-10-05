@@ -26,10 +26,10 @@ describe('LogWordsService', () => {
     mockUser = {}
     mockProject = {
       creationDate: mockDate1,
-      currentWordcount: 1000,
+      currentCount: 1000,
       deadline: undefined,
       description: "",
-      goalWordcount: 50000,
+      goalCount: 50000,
       imagePath: "",
       isWorkInProgress: false,
       lastUpdate: mockDate1,
@@ -40,10 +40,10 @@ describe('LogWordsService', () => {
 
     mockProject2 = {
       creationDate: mockDate1,
-      currentWordcount: 1000,
+      currentCount: 1000,
       deadline: undefined,
       description: "",
-      goalWordcount: 50000,
+      goalCount: 50000,
       imagePath: "",
       isWorkInProgress: false,
       lastUpdate: mockDate1,

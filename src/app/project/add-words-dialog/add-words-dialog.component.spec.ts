@@ -24,8 +24,8 @@ describe('AddWordsDialogComponent', () => {
     type: ProjectType.novel,
     state: ProjectState.draft_1,
     deadline: new Date(2020, 10, 11),
-    currentWordcount: 10000,
-    goalWordcount: 80000,
+    currentCount: 10000,
+    goalCount: 80000,
     id: '42'
   };
 
@@ -101,7 +101,7 @@ describe('AddWordsDialogComponent', () => {
       // TODO tap on tab
       fixture.whenStable().then(() => {
         fixture.detectChanges();
-        let projectWordCount = component.data.project.currentWordcount;
+        let projectWordCount = component.data.project.currentCount;
         const {debugElement} = fixture;
         const wordCountInput = debugElement.query(By.css('[data-testid="current-wordcount-input"]'));
         expect(wordCountInput).toBeTruthy();

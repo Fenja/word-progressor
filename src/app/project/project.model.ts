@@ -1,4 +1,4 @@
-import {WordLog} from "../services/log-words.service";
+import { WordLog } from "../services/log-words.service";
 
 
 export interface Project {
@@ -9,9 +9,10 @@ export interface Project {
   type: ProjectType;
   state: ProjectState;
   deadline: Date | undefined;
-  currentWordcount: number;
-  goalWordcount: number;
-  maxGoalWordcount?: number;
+  countEntity: CountEntity;
+  currentCount: number;
+  goalCount: number;
+  maxGoalCount?: number;
   isWorkInProgress: boolean;
 
   creationDate: Date;
@@ -61,4 +62,10 @@ export enum ProjectState {
   wait = 'wait',
   publish = 'publish',
   abandon = 'abandon'
+}
+
+export enum CountEntity {
+  words = 'words',
+  characters = 'characters',
+  pages = 'pages'
 }

@@ -23,8 +23,8 @@ describe('ProjectListComponent', () => {
     type: ProjectType.novel,
     state: ProjectState.draft_1,
     deadline: new Date(2020, 10, 11),
-    currentWordcount: 10000,
-    goalWordcount: 80000,
+    currentCount: 10000,
+    goalCount: 80000,
     id: '42'
   };
 

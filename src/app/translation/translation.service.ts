@@ -48,6 +48,10 @@ export class TranslationService {
         publish: 'Veröffentlicht!',
         abandon: 'Schublade',
 
+        words: 'Wörter',
+        characters: 'Zeichen',
+        pages: 'Seiten',
+
         info_no_projects: 'Keine Projekte gefunden',
 
         button_new_project: 'Neues Projekt',
@@ -91,6 +95,8 @@ export class TranslationService {
         label_account: 'Benutzerkonto',
         label_pseudonym: 'Autorenname',
         label_privacy_policy: 'Datenschutzerklärung',
+        label_word_logs: 'Wörter Statistik',
+        label_count_entity: 'Einheiten',
 
         placeholder_working_title: 'Arbeitstitel',
         placeholder_blurb: 'Inhaltsangabe',
@@ -161,6 +167,10 @@ export class TranslationService {
         publish: 'published!',
         abandon: 'abandoned',
 
+        words: 'Words',
+        characters: 'Characters',
+        pages: 'Pages',
+
         info_no_projects: 'No Projects found',
 
         button_new_project: 'New Project',
@@ -204,6 +214,8 @@ export class TranslationService {
         label_account: 'User Account',
         label_pseudonym: 'Pen Name',
         label_privacy_policy: 'Privacy Policy',
+        label_word_logs: 'Word Logs',
+        label_count_entity: 'Entity',
 
         placeholder_working_title: 'Working Title',
         placeholder_blurb: 'Blurb',

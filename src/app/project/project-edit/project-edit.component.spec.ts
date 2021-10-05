@@ -63,8 +63,8 @@ describe('ProjectEditComponent', () => {
     type: ProjectType.novel,
     state: ProjectState.draft_1,
     deadline: new Date(2020, 10, 11),
-    currentWordcount: 10000,
-    goalWordcount: 80000,
+    currentCount: 10000,
+    goalCount: 80000,
     id: '42'
   };
 
@@ -126,11 +126,11 @@ describe('ProjectEditComponent', () => {
 
     it('creates new project on submit', () => {
       component.project.workingTitle = 'NYT Bestseller';
-      component.project.goalWordcount = 50000;
+      component.project.goalCount = 50000;
       const {debugElement} = fixture;
       clickSaveButton(debugElement);
       expect(component.project.workingTitle).toBe('NYT Bestseller');
-      expect(component.project.goalWordcount).toBe(50000);
+      expect(component.project.goalCount).toBe(50000);
     });
   });
 
@@ -193,11 +193,11 @@ describe('ProjectEditComponent', () => {
 
     it('saves edits at project', () => {
       component.project.workingTitle = 'NYT Bestseller';
-      component.project.goalWordcount = 50000;
+      component.project.goalCount = 50000;
       const {debugElement} = fixture;
       clickSaveButton(debugElement);
       expect(component.project.workingTitle).toBe('NYT Bestseller');
-      expect(component.project.goalWordcount).toBe(50000);
+      expect(component.project.goalCount).toBe(50000);
     })
   });
 

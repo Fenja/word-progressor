@@ -91,9 +91,21 @@
         gteValidator
         class="form-control"
         data-testid="current-wordcount-input"
-        [(ngModel)]="project.currentWordcount"
+        [(ngModel)]="project.currentCount"
       >
       <mat-error *ngIf="!currentCountId.valid">{{ 'error_invalid_value' | translate }}</mat-error>
+    </mat-form-field>
+
+    <mat-form-field color="primary">
+      <mat-label>{{'label_count_entity' | translate}}</mat-label>
+      <mat-select
+        name="count-entity"
+        class="form-control"
+        data-testid="count-entity-select"
+        [(ngModel)]="project.countEntity"
+      >
+        <mat-option *ngFor="let state of eCountEntity | keyvalue" value="{{state.key}}">{{state.value | translate}}</mat-option>
+      </mat-select>
     </mat-form-field>
 
     <mat-form-field color="primary">
@@ -106,7 +118,7 @@
         gteValidator
         class="form-control"
         data-testid="goal-wordcount-input"
-        [(ngModel)]="project.goalWordcount"
+        [(ngModel)]="project.goalCount"
       >
       <mat-error *ngIf="!goalCountId.valid">{{ 'error_invalid_value' | translate }}</mat-error>
     </mat-form-field>
@@ -116,14 +128,14 @@
       <input
         type="number"
         name="maxGoalWordcount"
-        #maxGoalCoundId="ngModel"
+        #maxGoalCountId="ngModel"
         matInput
-        gteValidator [gteNum]=project.goalWordcount
+        gteValidator [gteNum]=project.goalCount
         class="form-control"
         data-testid="max-goal-wordcount-input"
-        [(ngModel)]="project.maxGoalWordcount"
+        [(ngModel)]="project.maxGoalCount"
       >
-  <mat-error *ngIf="!maxGoalCoundId.valid">{{ 'error_invalid_value' | translate }}</mat-error>
+  <mat-error *ngIf="!maxGoalCountId.valid">{{ 'error_invalid_value' | translate }}</mat-error>
     </mat-form-field>
 
       <mat-checkbox
