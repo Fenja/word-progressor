@@ -61,6 +61,14 @@
         >{{ (isLoginMode ? 'button_switch_to_signup' : 'button_switch_to_login') | translate }}</button>
 
       <button
+        mat-stroked-button
+        color="warn"
+        data-testid="google-login-button"
+        type="button"
+        (click)="onGoogleLogin()"
+      >{{ (isLoginMode ? 'button_google_login' : 'button_google_register') | translate }}</button>
+
+      <button
           *ngIf="!isCreateFromLocalMode"
           mat-stroked-button
           color="accent"
@@ -80,6 +88,7 @@
       </div>
     </div>
   </form>
+
   <div class="additional-links">
     <a [routerLink]="['/privacy_policy']" class="mat-tab-link">{{ 'label_privacy_policy' | translate }}</a>
   </div>

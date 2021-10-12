@@ -1,0 +1,51 @@
+<div class="content">
+
+  <ng-container *ngIf="this.translationService.language==='de'">
+    <h3>Danke fürs Registrieren</h3>
+    <p>Ich habe eine Bestätigunts-Mail an <strong>{{authService.userData.email}}</strong> verschickt.</p>
+    <p>Bitte Emails überprüfen und dem Link folgen, um die Email-Adresse zu bestätigen.</p>
+
+    <div class="button-row">
+      <button
+        mat-raised-button
+        color="primary"
+        data-testid="resend-button"
+        type="button"
+        (click)="authService.SendVerificationMail()"
+      >Email erneut senden</button>
+
+      <button
+        mat-stroked-button
+        color="primary"
+        data-testid="back-button"
+        type="button"
+        [routerLink]="['/auth']"
+      >Zurück zum Login</button>
+    </div>
+  </ng-container>
+
+  <ng-container *ngIf="this.translationService.language==='en'">
+    <h3>Thank you for registering</h3>
+    <p>I have sent a confirmation email to <strong>{{authService.userData.email}}</strong>.</p>
+    <p>Please check your email and click on the link to verfiy your email address.</p>
+
+    <div class="button-row">
+      <button
+        mat-raised-button
+        color="primary"
+        data-testid="resend-button"
+        type="button"
+        (click)="authService.SendVerificationMail()"
+      >Resend Verification Email</button>
+
+      <button
+        mat-stroked-button
+        color="primary"
+        data-testid="back-button"
+        type="button"
+        [routerLink]="['/auth']"
+      >Back to Sign In</button>
+    </div>
+  </ng-container>
+
+</div>

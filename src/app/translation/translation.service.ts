@@ -30,6 +30,7 @@ export class TranslationService {
         thesis: 'Hausarbeit',
         blog_post: 'Blogartikel',
         screenplay: 'Drehbuch',
+        lyrics: 'Songtext',
 
         idea: 'Ideen-Phase',
         bunny: '\'Plot Bunny\'',
@@ -69,6 +70,8 @@ export class TranslationService {
         button_switch_to_signup: 'Zur Registrierung wechseln',
         button_switch_to_login: 'Zur Anmeldung wechseln',
         button_proceed_without_login: 'Ohne Anmeldung fortfahren',
+        button_google_login: 'Mit Google anmelden',
+        button_google_register: 'Mit Google registrieren',
 
         label_current_word_count: 'Aktuelle Wortzahl',
         label_goal_word_count: 'Angestrebte Wortzahl',
@@ -122,6 +125,7 @@ export class TranslationService {
         msg_saved: ' gespeichert',
         msg_deleted: ' gelöscht',
         msg_account_deleted: 'Account gelöscht',
+        msg_email_verified: 'Email bestätigt',
 
         text_anonymous_dialog: `Wenn der WordProgressor ohne Konto genutzt wird, werden die Daten lokal gespeichert.\n
             Sie können dann weder synchronisiert, noch von einem anderen Gerät aus abgerufen werden.\n
@@ -149,6 +153,7 @@ export class TranslationService {
         thesis: 'Thesis',
         blog_post: 'Blog Post',
         screenplay: 'Screenplay',
+        lyrics: 'Lyrics',
 
         idea: 'idea phase',
         bunny: 'plot bunny',
@@ -188,6 +193,8 @@ export class TranslationService {
         button_switch_to_signup: 'Switch to sign up',
         button_switch_to_login: 'Switch to sign in',
         button_proceed_without_login: 'Proceed without Login',
+        button_google_login: 'Sign in with Google',
+        button_google_register: 'Sign up with Google',
 
         label_current_word_count: 'Current Word Count',
         label_goal_word_count: 'Goal Word Count',
@@ -241,6 +248,7 @@ export class TranslationService {
         msg_saved: ' saved',
         msg_deleted: ' deleted',
         msg_account_deleted: 'Account deleted',
+        msg_email_verified: 'Email verified',
 
         text_anonymous_dialog: `When using the WordProgressor without an account, your data is stored locally.\n
             You won't be able to sync them or access them from another access point.\n

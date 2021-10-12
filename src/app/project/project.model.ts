@@ -43,6 +43,7 @@ export enum ProjectType {
   thesis = 'thesis',
   blog_post = 'blog_post',
   screenplay = 'screenplay',
+  lyrics = 'lyrics',
 }
 
 export enum ProjectState {

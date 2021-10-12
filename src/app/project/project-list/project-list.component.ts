@@ -9,8 +9,7 @@ import { Subscription } from "rxjs";
 })
 export class ProjectListComponent implements OnInit, OnDestroy {
 
-  projects: Project[];
-  // @ts-ignore
+  projects: Project[] = [];
   private subscriptions: Subscription[] = [];
 
   constructor(private projectService: ProjectService) {
