@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { NgForm} from "@angular/forms";
 import { AuthService } from "./auth.service";
 import { AnonymousDialog } from "./anonymous-dialog/anonymous-dialog.component";
@@ -12,11 +12,10 @@ import { DataStorageService } from "../services/data-storage.service";
   selector: 'app-auth',
   templateUrl: './auth.component.html',
 })
-export class AuthComponent implements OnInit {
+export class AuthComponent {
 
   isLoading = false;
   isLoginMode = true;
-  error: string | null = null;
   isCreateFromLocalMode: boolean = false;
 
   constructor(
@@ -32,11 +31,12 @@ export class AuthComponent implements OnInit {
     });
 
     if (!this.isCreateFromLocalMode && this.authService.isLoggedIn) {
-      router.navigate(['dashboard']);
+      router.navigate(['/dashboard']);
     }
   }
 
-  ngOnInit(): void {
+  get error(): string | undefined {
+    return this.authService.errorMsgKey;
   }
 
   onSwitchMode() {
@@ -54,18 +54,14 @@ export class AuthComponent implements OnInit {
 
     if (this.isLoginMode) {
       this.authService.SignIn(email, password).then(() => {
-        this.authService.isAnonymous = false;
         this.isLoading = false;
-        this.router.navigate(['dashboard']);
       });
     } else {
       this.authService.SignUp(email, password).then(() => {
-        this.authService.isAnonymous = false;
         if (this.isCreateFromLocalMode) {
           this._uploadLocalData();
         }
         this.isLoading = false;
-        this.router.navigate(['dashboard']);
       });
     }
 
@@ -75,13 +71,10 @@ export class AuthComponent implements OnInit {
   onGoogleLogin() {
     this.isLoading = true;
     this.authService.GoogleAuth().then(() => {
-      console.log('google auth');
-      this.isLoading = false;
-      this.authService.isAnonymous = false;
       if (this.isCreateFromLocalMode) {
         this._uploadLocalData();
       }
-      this.router.navigate(['dashboard']).then();
+      this.isLoading = false;
     });
   }
 

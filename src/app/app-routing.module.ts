@@ -8,7 +8,7 @@ import { AuthComponent } from "./auth/auth.component";
 import { SettingsComponent } from "./settings/settings.component";
 import { PrivacyPolicyComponent } from "./settings/privacy-policy/privacy-policy.component";
 import { VerifyEmailComponent } from "./auth/verify-email/verify-email.component";
-import { AuthGuard } from "./auth/auth.guard";
+import { DashboardComponent } from "./dashboard/dashboard.component";
 
 const appRoutes: Routes = [
   { path: '', redirectTo: '/auth', pathMatch: 'full' },
@@ -16,7 +16,7 @@ const appRoutes: Routes = [
   { path: 'verify-email-address', component: VerifyEmailComponent },
   { path: 'settings', component: SettingsComponent },
   { path: 'privacy_policy', component: PrivacyPolicyComponent },
-  { path: 'dashboard', redirectTo: '/projects' },
+  { path: 'dashboard', component: DashboardComponent },
   { path: 'projects', component: ProjectsComponent, children: [
       { path: '', component: ProjectListComponent },
       { path: 'new', component: ProjectEditComponent },

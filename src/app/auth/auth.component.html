@@ -3,9 +3,8 @@
     <mat-spinner color="primary"></mat-spinner>
   </div>
 
-  <div *ngIf="error" class="alert alert-danger">
+  <div *ngIf="error" class="alert">
     <mat-error>
-      <mat-label>{{ error }}</mat-label>
       <mat-label>{{ error | translate }}</mat-label>
     </mat-error>
   </div>

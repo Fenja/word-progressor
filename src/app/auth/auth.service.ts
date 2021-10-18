@@ -7,8 +7,8 @@ import auth = firebase.auth;
 import { AngularFirestore, AngularFirestoreDocument } from "@angular/fire/compat/firestore";
 import { AngularFireAuth } from "@angular/fire/compat/auth";
 import { BehaviorSubject, Subscription } from "rxjs";
-import {SnackbarService} from "../services/snackbar.service";
-import {TranslationService} from "../translation/translation.service";
+import { SnackbarService } from "../services/snackbar.service";
+import { TranslationService } from "../translation/translation.service";
 
 export interface AuthResponseData {
   kind: string;
@@ -25,9 +25,10 @@ export class AuthService implements OnDestroy {
 
   userData: any;
   isAnonymous: boolean | null = null;
-  subscription: Subscription;
+  private subscription: Subscription;
   $userToken = new BehaviorSubject<string>('');
   private checkForVerifiedInterval = 1000;
+  public errorMsgKey: string | undefined;
 
   constructor(
     private http: HttpClient,
@@ -61,10 +62,15 @@ export class AuthService implements OnDestroy {
   SignIn(email: string, password: string) {
     return this.afAuth.signInWithEmailAndPassword(email, password)
       .then((result: UserCredential) => {
-        if (result.user) this.SetUserData(result.user);
-      }).catch((error: { message: any; }) => {
-        window.alert(error.message)
-        // TODO display error
+        this.isAnonymous = false;
+        if (result.user) {
+          this.ngZone.run(() => {
+            this.router.navigate(['/dashboard'])
+          })
+          this.SetUserData(result.user);
+        }
+      }).catch((error) => {
+        this.errorMsgKey = 'error_sign_in_failed';
       })
   }
 
@@ -75,31 +81,38 @@ export class AuthService implements OnDestroy {
         /* Call the SendVerificaitonMail() function when new user sign
         up and returns promise */
         this.SendVerificationMail();
-        if (result.user) this.SetUserData(result.user);
-      }).catch((error: { message: any; }) => {
-        window.alert(error.message);
+        this.isAnonymous = false;
+        if (result.user) {
+          this.ngZone.run(() => {
+            this.router.navigate(['/dashboard'])
+          })
+          this.SetUserData(result.user);
+        }
+      }).catch((error) => {
+        this.errorMsgKey = 'error_sign_up_failed';
       })
   }
 
-  // Send email verfificaiton when new user sign up
+  // Send email verification when new user signs up
   SendVerificationMail() {
     return this.afAuth.currentUser.then(u => u?.sendEmailVerification())
       .then(() => {
-        this.router.navigate(['verify-email-address']);
-        this.checkForVerifiedInterval = setInterval(() => {
-          this.afAuth
-            .currentUser.then(u => {
-            u?.reload()
-              .then(ok => {
-                if (u?.emailVerified) {
-                  this.SignOut();
-                  // TODO auto login
-                  this.snackbarService.showSnackBar(this.translationService.translate('msg_email_verified'))
-                  clearInterval(this.checkForVerifiedInterval)
-                }
-              })
-          })
-        }, 1000)
+        this.router.navigate(['verify-email-address']).then( () =>
+          this.checkForVerifiedInterval = setInterval(() => {
+            this.afAuth
+              .currentUser.then(u => {
+              u?.reload()
+                .then(() => {
+                  if (u?.emailVerified) {
+                    this.SignOut().then();
+                    // TODO auto login
+                    this.snackbarService.showSnackBar(this.translationService.translate('msg_email_verified'))
+                    clearInterval(this.checkForVerifiedInterval)
+                  }
+                })
+            })
+          }, 1000)
+        );
       })
   }
 
@@ -107,9 +120,9 @@ export class AuthService implements OnDestroy {
   ForgotPassword(passwordResetEmail: string) {
     return this.afAuth.sendPasswordResetEmail(passwordResetEmail)
       .then(() => {
-        window.alert('Password reset email sent, check your inbox.');
-      }).catch((error: any) => {
-        window.alert(error)
+        this.snackbarService.showSnackBar('msg_pw_reset_mail_sent');
+      }).catch((error) => {
+        this.errorMsgKey = 'error_forgot_pw_failed';
       })
   }
 
@@ -119,7 +132,7 @@ export class AuthService implements OnDestroy {
     if (userItem === undefined) return false;
     if (typeof userItem === "string" && userItem.length > 0) {
       const user = JSON.parse(userItem);
-      return (user !== null && user.emailVerified !== false) ? true : false;
+      return (user !== null && user.emailVerified !== false);
     }
     return false;
   }
@@ -133,10 +146,15 @@ export class AuthService implements OnDestroy {
   AuthLogin(provider: auth.GoogleAuthProvider) {
     return this.afAuth.signInWithPopup(provider)
       .then((result: UserCredential) => {
-        if (result.user) this.SetUserData(result.user);
-      }).catch((error: any) => {
-        window.alert(error)
-        // TODO display error
+        if (result.user) {
+          this.isAnonymous = false;
+          this.ngZone.run(() => {
+            this.router.navigate(['/dashboard'])
+          })
+          this.SetUserData(result.user);
+        }
+      }).catch((error) => {
+        this.errorMsgKey = 'error_google_auth_failed';
       })
   }
 

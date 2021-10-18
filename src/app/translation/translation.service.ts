@@ -88,6 +88,7 @@ export class TranslationService {
         label_email: 'e-Mail',
         label_password: 'Passwort',
         label_password_repeat: 'Passwort wiederholen',
+        label_dashboard: 'Dashboard',
         label_projects: 'Projekte',
         label_settings: 'Einstellungen',
         label_anonymous_user: 'Anonymer Nutzer',
@@ -119,6 +120,10 @@ export class TranslationService {
         error_invalid_password: 'Ungültige Anmeldedaten.',
         error_user_disabled: 'Das Benutzerkonto wurde vom Administrator gesperrt.',
         error_invalid_value: 'Ungültiger Wert',
+        error_sign_in_failed: 'Anmeldung fehlgeschlagen - bitte Anmeldedaten überprüfen',
+        error_sign_up_failed: 'Registrierung fehlgeschlagen',
+        error_forgot_pw_failed: 'Neues Passwort konnte nicht angefordert werden',
+        error_google_auth_failed: 'Authentifizierung über Google fehlgeschlagen.',
 
         msg_words_added: ' Wörter hinzugefügt',
         msg_created: ' erstellt',
@@ -211,6 +216,7 @@ export class TranslationService {
         label_email: 'Email',
         label_password: 'Password',
         label_password_repeat: 'Repeat Password',
+        label_dashboard: 'Dashboard',
         label_projects: 'Projects',
         label_settings: 'Settings',
         label_anonymous_user: 'Anonymous User',
@@ -242,6 +248,11 @@ export class TranslationService {
         error_invalid_password: 'Invalid credentials.',
         error_user_disabled: 'The user account has been disabled by an administrator.',
         error_invalid_value: 'Invalid value',
+        error_sign_in_failed: 'Sign In failed - please check credentials',
+        error_sign_up_failed: 'Sign Up failed',
+        error_forgot_pw_failed: 'Could not request new password',
+        error_google_auth_failed: 'Authentication via google failed',
+
 
         msg_words_added: ' words added',
         msg_created: ' created',

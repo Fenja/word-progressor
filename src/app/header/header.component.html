@@ -13,7 +13,8 @@
     <mat-icon>share</mat-icon>
   </button>-->
   <ul>
-    <li><a mat-button routerLink="/projects" routerLinkActive="mat-accent">{{ 'label_projects' | translate }}</a></li>
+    <li><a *ngIf="authService.isAnonymous || authService.isLoggedIn" mat-button routerLink="/dashboard" routerLinkActive="mat-accent">{{ 'label_dashboard' | translate }}</a></li>
+    <li><a *ngIf="authService.isAnonymous || authService.isLoggedIn" mat-button routerLink="/projects" routerLinkActive="mat-accent">{{ 'label_projects' | translate }}</a></li>
 
     <li><a *ngIf="authService.isAnonymous" mat-button>{{ 'label_anonymous_user' | translate }}</a></li>
   <!-- create account / login -->

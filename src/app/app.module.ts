@@ -47,6 +47,7 @@ import {AngularFirestoreModule} from "@angular/fire/compat/firestore";
 import {AngularFireAuthModule} from "@angular/fire/compat/auth";
 import { VerifyEmailComponent } from './auth/verify-email/verify-email.component';
 import {AuthInterceptorService} from "./auth/auth-interceptor.service";
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 @NgModule({
   declarations: [
@@ -68,6 +69,7 @@ import {AuthInterceptorService} from "./auth/auth-interceptor.service";
     gteValidatorDirective,
     PrivacyPolicyComponent,
     VerifyEmailComponent,
+    DashboardComponent,
   ],
   imports: [
     AngularFireModule.initializeApp(environment.FIREBASE_CONFIG),
