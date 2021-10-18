@@ -2,7 +2,6 @@ import {Injectable, NgZone, OnDestroy} from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { Router } from "@angular/router";
 import firebase from "firebase/compat/app";
-import UserCredential = firebase.auth.UserCredential;
 import auth = firebase.auth;
 import { AngularFirestore, AngularFirestoreDocument } from "@angular/fire/compat/firestore";
 import { AngularFireAuth } from "@angular/fire/compat/auth";
@@ -42,11 +41,17 @@ export class AuthService implements OnDestroy {
     this.subscription = this.afAuth.authState.subscribe(user => {
       if (user) {
         this.userData = user;
-        user.getIdTokenResult(true).then(t =>
-          this.$userToken.next(t.token)
+        user.getIdTokenResult(true).then(t => {
+            this.$userToken.next(t.token);
+            this.isAnonymous = false;
+            this.SetUserData(user);
+            localStorage.setItem('user', JSON.stringify(this.userData));
+            this.ngZone.run(() => {
+              this.router.navigate(['/dashboard']).then();
+            })
+          }
         );
-        this.SetUserData(user);
-        localStorage.setItem('user', JSON.stringify(this.userData));
+
       } else {
         this.$userToken.next('');
         localStorage.setItem('user', '');
@@ -61,15 +66,8 @@ export class AuthService implements OnDestroy {
 // Sign in with email/password
   SignIn(email: string, password: string) {
     return this.afAuth.signInWithEmailAndPassword(email, password)
-      .then((result: UserCredential) => {
-        this.isAnonymous = false;
-        if (result.user) {
-          this.ngZone.run(() => {
-            this.router.navigate(['/dashboard'])
-          })
-          this.SetUserData(result.user);
-        }
-      }).catch((error) => {
+      .then()
+      .catch(() => {
         this.errorMsgKey = 'error_sign_in_failed';
       })
   }
@@ -77,18 +75,11 @@ export class AuthService implements OnDestroy {
   // Sign up with email/password
   SignUp(email: string, password: string) {
     return this.afAuth.createUserWithEmailAndPassword(email, password)
-      .then((result: UserCredential) => {
+      .then(() => {
         /* Call the SendVerificaitonMail() function when new user sign
         up and returns promise */
-        this.SendVerificationMail();
-        this.isAnonymous = false;
-        if (result.user) {
-          this.ngZone.run(() => {
-            this.router.navigate(['/dashboard'])
-          })
-          this.SetUserData(result.user);
-        }
-      }).catch((error) => {
+        this.SendVerificationMail().then();
+      }).catch(() => {
         this.errorMsgKey = 'error_sign_up_failed';
       })
   }
@@ -116,7 +107,7 @@ export class AuthService implements OnDestroy {
       })
   }
 
-  // Reset Forggot password
+  // Reset Forgot password
   ForgotPassword(passwordResetEmail: string) {
     return this.afAuth.sendPasswordResetEmail(passwordResetEmail)
       .then(() => {
@@ -145,15 +136,8 @@ export class AuthService implements OnDestroy {
   // Auth logic to run auth providers
   AuthLogin(provider: auth.GoogleAuthProvider) {
     return this.afAuth.signInWithPopup(provider)
-      .then((result: UserCredential) => {
-        if (result.user) {
-          this.isAnonymous = false;
-          this.ngZone.run(() => {
-            this.router.navigate(['/dashboard'])
-          })
-          this.SetUserData(result.user);
-        }
-      }).catch((error) => {
+      .then()
+      .catch(() => {
         this.errorMsgKey = 'error_google_auth_failed';
       })
   }
@@ -180,14 +164,14 @@ export class AuthService implements OnDestroy {
     return this.afAuth.signOut().then(() => {
       localStorage.removeItem('user');
       this.userData = undefined;
-      this.router.navigate(['auth']);
+      this.router.navigate(['auth']).then();
     })
   }
 
   deleteAccount() {
     return this.afAuth.currentUser.then(u => {
       u?.delete();
-      this.router.navigate(['auth']);
+      this.router.navigate(['auth']).then();
     });
     // TODO delete projects
   }

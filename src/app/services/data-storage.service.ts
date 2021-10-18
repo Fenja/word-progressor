@@ -29,6 +29,10 @@ export class DataStorageService {
     private authService: AuthService,
   ) {}
 
+  private _getUserId() {
+    return this.authService.userData?.uid;
+  }
+
   getProjects() {
     return this.projects.slice();
   }
@@ -49,9 +53,8 @@ export class DataStorageService {
   }
 
   _fetchProjectsFromAPI() {
-    const id = this.authService.userData?.uid;
     this.http.get<{ [key: string]: Project }>(
-      environment.FIREBASE_DB_URL+id+'/projects.json'
+      environment.FIREBASE_DB_URL+this._getUserId()+'/projects.json'
     )
       .pipe(
         take(1),
@@ -92,7 +95,7 @@ export class DataStorageService {
 
   _addProjectToAPI(project: Project) {
     this.http.post<any>(
-      environment.FIREBASE_DB_URL+this.authService.userData?.uid+'/projects.json',
+      environment.FIREBASE_DB_URL+this._getUserId()+'/projects.json',
       project
     ).subscribe(() => {
         this.fetchProjects();
@@ -119,7 +122,7 @@ export class DataStorageService {
 
   _editProjectAtAPI(id: string, project: Project) {
     this.http.put(
-      environment.FIREBASE_DB_URL+this.authService.userData?.uid+'/projects/'+id+'.json',
+      environment.FIREBASE_DB_URL+this._getUserId()+'/projects/'+id+'.json',
       project
     ).subscribe(() => {
       this.fetchProjects();
@@ -143,7 +146,7 @@ export class DataStorageService {
 
   _deleteProjectAtAPI(id: string) {
     this.http.delete(
-      environment.FIREBASE_DB_URL+this.authService.userData?.uid+'/projects/'+id+'.json',
+      environment.FIREBASE_DB_URL+this._getUserId()+'/projects/'+id+'.json',
     ).subscribe(() => {
       this.fetchProjects();
     });
@@ -176,7 +179,7 @@ export class DataStorageService {
 
   _fetchUserFromAPI() {
     this.http.get<{ [key: string]: userData }>(
-      environment.FIREBASE_DB_URL+this.authService.userData?.uid+'.json'
+      environment.FIREBASE_DB_URL+this._getUserId()+'.json'
     )
       .pipe(
         take(1),
@@ -226,7 +229,7 @@ export class DataStorageService {
 
   private _deleteUserAtAPI() {
     this.http.delete(
-      environment.FIREBASE_DB_URL+this.authService.userData?.uid+'.json',
+      environment.FIREBASE_DB_URL+this._getUserId()+'.json',
     ).subscribe(() => this.user = {});
   }
 
