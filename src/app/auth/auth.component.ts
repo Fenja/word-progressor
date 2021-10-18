@@ -7,6 +7,7 @@ import { ActivatedRoute, Router } from "@angular/router";
 import { Project } from "../project/project.model";
 import { userData } from "./user.model";
 import { DataStorageService } from "../services/data-storage.service";
+import { filter } from "rxjs/operators";
 
 @Component({
   selector: 'app-auth',
@@ -31,7 +32,7 @@ export class AuthComponent {
     });
 
     if (!this.isCreateFromLocalMode && this.authService.isLoggedIn) {
-      router.navigate(['/dashboard']);
+      router.navigate(['/dashboard']).then();
     }
   }
 
@@ -72,7 +73,7 @@ export class AuthComponent {
     this.isLoading = true;
     this.authService.GoogleAuth().then(() => {
       if (this.isCreateFromLocalMode) {
-        this._uploadLocalData();
+        this._uploadLocalData()
       }
       this.isLoading = false;
     });
@@ -83,15 +84,20 @@ export class AuthComponent {
   }
 
   private _uploadLocalData() {
-    this.authService.isAnonymous = false;
-    const projects: Project[] = JSON.parse(<string>localStorage.getItem('projects'));
-    projects.forEach(project => this.dataStorageService.addProject(project));
-    localStorage.removeItem('projects');
+    this.authService.$userToken.pipe(
+      filter(t => t?.length > 0),
+    ).subscribe(_ => {
 
-    const user: userData = JSON.parse(<string>localStorage.getItem('local_user'));
-    // TODO wordlogs at api!!!
-    localStorage.removeItem('local_user');
+      // await login
+      const projects: Project[] = JSON.parse(<string>localStorage.getItem('projects'));
+      projects.forEach(project => this.dataStorageService.addProject(project));
+      localStorage.removeItem('projects');
 
-    console.log('uploaded user projects');
+      const user: userData = JSON.parse(<string>localStorage.getItem('local_user'));
+      // TODO wordlogs at api!!!
+      localStorage.removeItem('local_user');
+
+      console.log('uploaded user projects');
+    })
   }
 }

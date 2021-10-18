@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { AuthService } from "../auth/auth.service";
 import { TranslationService } from "../translation/translation.service";
 import { Router } from "@angular/router";
@@ -21,16 +21,18 @@ export class SettingsComponent {
   ) { }
 
   createAccount() {
-    this.router.navigate(['/auth'],{queryParams: { mode: 'createFromLocal'}});
+    this.router.navigate(['/auth'],{queryParams: { mode: 'createFromLocal'}}).then();
   }
 
   deleteAccount() {
     if (confirm(this.translationService.translate('text_delete_account'))) {
-        this.authService.deleteAccount();
-        this.dataStorageService.deleteUser();
-        this.router.navigate(['/auth']).then(() => {
-          this.snackBarService.showSnackBar(this.translationService.translate('msg_account_deleted'));
-        });
+        this.authService.deleteAccount().then(() => {
+            this.dataStorageService.deleteUser();
+            this.router.navigate(['/auth']).then(() => {
+              this.snackBarService.showSnackBar(this.translationService.translate('msg_account_deleted'));
+            });
+          }
+        );
     }
     // todo ask for password to confirm
   }

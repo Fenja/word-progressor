@@ -42,8 +42,8 @@ export class AuthService implements OnDestroy {
       if (user) {
         this.userData = user;
         user.getIdTokenResult(true).then(t => {
-            this.$userToken.next(t.token);
             this.isAnonymous = false;
+            this.$userToken.next(t.token);
             this.SetUserData(user);
             localStorage.setItem('user', JSON.stringify(this.userData));
             this.ngZone.run(() => {
@@ -66,7 +66,6 @@ export class AuthService implements OnDestroy {
 // Sign in with email/password
   SignIn(email: string, password: string) {
     return this.afAuth.signInWithEmailAndPassword(email, password)
-      .then()
       .catch(() => {
         this.errorMsgKey = 'error_sign_in_failed';
       })
@@ -136,7 +135,6 @@ export class AuthService implements OnDestroy {
   // Auth logic to run auth providers
   AuthLogin(provider: auth.GoogleAuthProvider) {
     return this.afAuth.signInWithPopup(provider)
-      .then()
       .catch(() => {
         this.errorMsgKey = 'error_google_auth_failed';
       })
