@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Project } from "../project.model";
 import { MatDialog } from "@angular/material/dialog";
 import { AddWordsDialogComponent } from "../add-words-dialog/add-words-dialog.component";
@@ -7,23 +7,22 @@ import { AddWordsDialogComponent } from "../add-words-dialog/add-words-dialog.co
   selector: 'app-project-item',
   templateUrl: './project-item.component.html'
 })
-export class ProjectItemComponent implements OnInit {
+export class ProjectItemComponent {
 
-  // @ts-ignore
-  @Input() project: Project;
+  @Input() project!: Project;
 
   constructor(
-    public dialog: MatDialog
-    ) { }
-
-  ngOnInit(): void {}
+    private dialog: MatDialog
+  ) { }
 
   addWords() {
-    this.dialog.open(AddWordsDialogComponent,{
-      data: {
-        id: this.project.id,
-        project: this.project
-      }
-    });
+    if (this.project) {
+      this.dialog.open(AddWordsDialogComponent, {
+        data: {
+          id: this.project.id,
+          project: this.project
+        }
+      });
+    }
   }
 }

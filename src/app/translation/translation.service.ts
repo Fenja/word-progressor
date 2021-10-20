@@ -108,6 +108,8 @@ export class TranslationService {
         tooltip_sort: 'sortieren',
         tooltip_filter: 'filtern',
         tooltip_search: 'suchen',
+        tooltip_wip: 'in arbeit',
+        tooltip_sort_deadline: 'nach Einsendeschluss sortieren',
 
         headline_word_count: 'Wortzahl',
         headline_total_words: 'Gesamtwortzahl',
@@ -236,6 +238,8 @@ export class TranslationService {
         tooltip_sort: 'sort',
         tooltip_filter: 'filter',
         tooltip_search: 'search',
+        tooltip_wip: 'work in progress',
+        tooltip_sort_deadline: 'sort by deadline',
 
         headline_word_count: 'Word Count',
         headline_total_words: 'Total Words',
