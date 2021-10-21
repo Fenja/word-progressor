@@ -27,12 +27,10 @@ export class DataStorageService {
   constructor(
     private http: HttpClient,
     private authService: AuthService,
-  ) {
-    this.authService.checkAnonymous();
-  }
+  ) {}
 
-  get isAnonymous(): boolean | null {
-    return this.authService.isAnonymous;
+  private _getUserId() {
+    return this.authService.userData?.uid;
   }
 
   getProjects() {
@@ -41,7 +39,7 @@ export class DataStorageService {
 
   fetchProjects() {
     this.projects = [];
-    if (this.isAnonymous) {
+    if (this.authService.isAnonymous) {
       this._fetchProjectsFromStorage();
     } else {
       this._fetchProjectsFromAPI();
@@ -50,13 +48,13 @@ export class DataStorageService {
 
   _fetchProjectsFromStorage() {
     const projects: Project[] = JSON.parse(<string>localStorage.getItem('projects'));
-    if (!!projects) this.projects = projects;
+    if (projects) this.projects = projects;
     this.projectList.next(this.projects.slice());
   }
 
   _fetchProjectsFromAPI() {
     this.http.get<{ [key: string]: Project }>(
-      environment.FIREBASE_DB_URL+this.authService.userId+'/projects.json'
+      environment.FIREBASE_DB_URL+this._getUserId()+'/projects.json'
     )
       .pipe(
         take(1),
@@ -81,7 +79,7 @@ export class DataStorageService {
   }
 
   addProject(project: Project) {
-    if (this.isAnonymous) {
+    if (this.authService.isAnonymous) {
       this._addProjectToStorage(project);
     } else {
       this._addProjectToAPI(project);
@@ -97,7 +95,7 @@ export class DataStorageService {
 
   _addProjectToAPI(project: Project) {
     this.http.post<any>(
-      environment.FIREBASE_DB_URL+this.authService.userId+'/projects.json',
+      environment.FIREBASE_DB_URL+this._getUserId()+'/projects.json',
       project
     ).subscribe(() => {
         this.fetchProjects();
@@ -109,7 +107,7 @@ export class DataStorageService {
   }
 
   editProject(id: string, project: Project) {
-    if (this.isAnonymous) {
+    if (this.authService.isAnonymous) {
       this._editProjectInStorage(id, project);
     } else {
       this._editProjectAtAPI(id, project);
@@ -124,7 +122,7 @@ export class DataStorageService {
 
   _editProjectAtAPI(id: string, project: Project) {
     this.http.put(
-      environment.FIREBASE_DB_URL+'projects/'+id+'.json',
+      environment.FIREBASE_DB_URL+this._getUserId()+'/projects/'+id+'.json',
       project
     ).subscribe(() => {
       this.fetchProjects();
@@ -132,7 +130,7 @@ export class DataStorageService {
   }
 
   deleteProject(id: string) {
-    if (this.isAnonymous) {
+    if (this.authService.isAnonymous) {
       this._deleteProjectFromStorage(id);
     } else {
       this._deleteProjectAtAPI(id);
@@ -148,14 +146,14 @@ export class DataStorageService {
 
   _deleteProjectAtAPI(id: string) {
     this.http.delete(
-      environment.FIREBASE_DB_URL+'projects/'+id+'.json',
+      environment.FIREBASE_DB_URL+this._getUserId()+'/projects/'+id+'.json',
     ).subscribe(() => {
       this.fetchProjects();
     });
   }
 
   fetchUser() {
-    if (this.isAnonymous) {
+    if (this.authService.isAnonymous) {
       this._fetchUserFromStorage();
     } else {
       this._fetchUserFromAPI();
@@ -170,7 +168,7 @@ export class DataStorageService {
   }
 
   _fetchUserFromStorage() {
-    const user: userData = JSON.parse(<string>localStorage.getItem('user'));
+    const user: userData = JSON.parse(<string>localStorage.getItem('local_user'));
     if (!user) {
       this.createNewUser();
     } else {
@@ -181,7 +179,7 @@ export class DataStorageService {
 
   _fetchUserFromAPI() {
     this.http.get<{ [key: string]: userData }>(
-      environment.FIREBASE_DB_URL+this.authService.userId+'.json'
+      environment.FIREBASE_DB_URL+this._getUserId()+'.json'
     )
       .pipe(
         take(1),
@@ -199,7 +197,7 @@ export class DataStorageService {
   }
 
   editUser(id: string, user: userData) {
-    if (this.isAnonymous) {
+    if (this.authService.isAnonymous) {
       this._editUserInStorage(id, user);
     } else {
       this._editUserAtAPI(id, user);
@@ -208,7 +206,7 @@ export class DataStorageService {
 
   _editUserInStorage(id: string, user: userData) {
     this.user = user;
-    localStorage.setItem('user', JSON.stringify(this.user));
+    localStorage.setItem('local_user', JSON.stringify(this.user));
     this.fetchUser();
   }
 
@@ -221,17 +219,17 @@ export class DataStorageService {
     });
   }
 
-  deleteUser(userId: string) {
-    if (this.isAnonymous) {
+  deleteUser() {
+    if (this.authService.isAnonymous) {
       localStorage.clear();
     } else {
-      this._deleteUserAtAPI(userId);
+      this._deleteUserAtAPI();
     }
   }
 
-  private _deleteUserAtAPI(userId: string) {
+  private _deleteUserAtAPI() {
     this.http.delete(
-      environment.FIREBASE_DB_URL+userId+'.json',
+      environment.FIREBASE_DB_URL+this._getUserId()+'.json',
     ).subscribe(() => this.user = {});
   }
 

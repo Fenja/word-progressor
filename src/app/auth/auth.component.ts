@@ -1,24 +1,22 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { NgForm} from "@angular/forms";
-import { AuthResponseData, AuthService } from "./auth.service";
+import { AuthService } from "./auth.service";
 import { AnonymousDialog } from "./anonymous-dialog/anonymous-dialog.component";
 import { MatDialog } from "@angular/material/dialog";
-import { Observable } from "rxjs";
 import { ActivatedRoute, Router } from "@angular/router";
-import { HttpClient } from "@angular/common/http";
-import { environment } from "../../environments/environment";
 import { Project } from "../project/project.model";
 import { userData } from "./user.model";
+import { DataStorageService } from "../services/data-storage.service";
+import { filter } from "rxjs/operators";
 
 @Component({
   selector: 'app-auth',
   templateUrl: './auth.component.html',
 })
-export class AuthComponent implements OnInit {
+export class AuthComponent {
 
   isLoading = false;
   isLoginMode = true;
-  error: string | null = null;
   isCreateFromLocalMode: boolean = false;
 
   constructor(
@@ -26,15 +24,20 @@ export class AuthComponent implements OnInit {
     public dialog: MatDialog,
     private router: Router,
     private route: ActivatedRoute,
-    private http: HttpClient,
+    private dataStorageService: DataStorageService,
   ) {
     this.route.queryParams.subscribe(params => {
       this.isCreateFromLocalMode = params['mode'] === 'createFromLocal';
       if (this.isCreateFromLocalMode) this.isLoginMode = false;
     });
+
+    if (!this.isCreateFromLocalMode && this.authService.isLoggedIn) {
+      router.navigate(['/dashboard']).then();
+    }
   }
 
-  ngOnInit(): void {
+  get error(): string | undefined {
+    return this.authService.errorMsgKey;
   }
 
   onSwitchMode() {
@@ -47,29 +50,18 @@ export class AuthComponent implements OnInit {
     }
     this.isLoading = true;
 
-    let authObs: Observable<AuthResponseData> | undefined;
-
     const email = form.value.email;
     const password = form.value.password;
 
     if (this.isLoginMode) {
-      authObs = this.authService.login(email, password);
-    } else {
-      authObs = this.authService.signup(email, password);
-    }
-
-    if (authObs) {
-      authObs.subscribe(response => {
-        console.log(response);
+      this.authService.SignIn(email, password).then(() => {
         this.isLoading = false;
+      });
+    } else {
+      this.authService.SignUp(email, password).then(() => {
         if (this.isCreateFromLocalMode) {
-          this.authService.setAnonymous(false);
           this._uploadLocalData();
         }
-        this.router.navigate(['/projects']).then();
-      }, errorMessage => {
-        console.log(errorMessage);
-        this.error = errorMessage;
         this.isLoading = false;
       });
     }
@@ -77,38 +69,35 @@ export class AuthComponent implements OnInit {
     form.reset();
   }
 
+  onGoogleLogin() {
+    this.isLoading = true;
+    this.authService.GoogleAuth().then(() => {
+      if (this.isCreateFromLocalMode) {
+        this._uploadLocalData()
+      }
+      this.isLoading = false;
+    });
+  }
+
   onProceed() {
     this.dialog.open(AnonymousDialog);
   }
 
-  // move to seperate Service?
   private _uploadLocalData() {
-    const id = this.authService.userId;
-    let projects: Project[] = JSON.parse(<string>localStorage.getItem('projects'));
-    projects.map(project => {
-      this.http.post<any>(
-        environment.FIREBASE_DB_URL + id + '/projects.json',
-        project
-      ).subscribe(() => {
-          localStorage.removeItem('projects');
-        },
-        error => {
-          console.log(error)
-        }
-      )
-    });
+    this.authService.$userToken.pipe(
+      filter(t => t?.length > 0),
+    ).subscribe(_ => {
 
-    const user: userData = JSON.parse(<string>localStorage.getItem('user'));
-    this.http.post<any>(
-      environment.FIREBASE_DB_URL+id+'.json',
-      user
-    ).subscribe(() => {
+      // await login
+      const projects: Project[] = JSON.parse(<string>localStorage.getItem('projects'));
+      projects.forEach(project => this.dataStorageService.addProject(project));
+      localStorage.removeItem('projects');
+
+      const user: userData = JSON.parse(<string>localStorage.getItem('local_user'));
       // TODO wordlogs at api!!!
-      localStorage.removeItem('user');
-      },
-      error => {
-        console.log(error)
-      }
-    )
+      localStorage.removeItem('local_user');
+
+      console.log('uploaded user projects');
+    })
   }
 }

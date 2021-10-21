@@ -1,16 +1,13 @@
-import { Injectable } from "@angular/core";
-import { BehaviorSubject, throwError } from "rxjs";
-import { HttpClient, HttpErrorResponse } from "@angular/common/http";
+import {Injectable, NgZone, OnDestroy} from "@angular/core";
+import { HttpClient } from "@angular/common/http";
 import { Router } from "@angular/router";
-import { catchError, tap } from "rxjs/operators";
-import { User} from "./user.model";
-import { environment } from "../../environments/environment";
-
-const SIGNUP_URL = 'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=';
-const SIGNIN_URL = 'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=';
-const DELETE_URL = 'https://identitytoolkit.googleapis.com/v1/accounts:delete?key='
-
-const API_KEY = environment.FIREBASE_API_KEY;
+import firebase from "firebase/compat/app";
+import auth = firebase.auth;
+import { AngularFirestore, AngularFirestoreDocument } from "@angular/fire/compat/firestore";
+import { AngularFireAuth } from "@angular/fire/compat/auth";
+import { BehaviorSubject, Subscription } from "rxjs";
+import { SnackbarService } from "../services/snackbar.service";
+import { TranslationService } from "../translation/translation.service";
 
 export interface AuthResponseData {
   kind: string;
@@ -23,146 +20,164 @@ export interface AuthResponseData {
 }
 
 @Injectable({ providedIn: 'root' })
-export class AuthService {
+export class AuthService implements OnDestroy {
 
-  user = new BehaviorSubject<User | null>(null);
-  userId = '';
-  private tokenExpirationTimer: any;
+  userData: any;
   isAnonymous: boolean | null = null;
-  isAuthenticated: boolean = false;
+  private subscription: Subscription;
+  $userToken = new BehaviorSubject<string>('');
+  private checkForVerifiedInterval = 1000;
+  public errorMsgKey: string | undefined;
+
   constructor(
     private http: HttpClient,
     private router: Router,
-  ) {}
+    private afs: AngularFirestore,
+    private afAuth: AngularFireAuth,
+    private ngZone: NgZone,
+    private snackbarService: SnackbarService,
+    private translationService: TranslationService,
+  ) {
+    this.subscription = this.afAuth.authState.subscribe(user => {
+      if (user) {
+        this.userData = user;
+        user.getIdTokenResult(true).then(t => {
+            this.isAnonymous = false;
+            this.$userToken.next(t.token);
+            this.SetUserData(user);
+            localStorage.setItem('user', JSON.stringify(this.userData));
+            this.ngZone.run(() => {
+              this.router.navigate(['/dashboard']).then();
+            })
+          }
+        );
 
-  signup(email: string, password: string) {
-    return this.http.post<AuthResponseData>(
-      SIGNUP_URL + API_KEY,
-      {
-        email: email,
-        password: password,
-        returnSecureToken: true,
+      } else {
+        this.$userToken.next('');
+        localStorage.setItem('user', '');
       }
-    ).pipe(catchError(AuthService.handleError), tap(response => {
-      this.handleAuthentication(response.email, response.localId, response.idToken, +response.expiresIn);
-    }));
+    });
   }
 
-  login(email: string, password: string) {
-    return this.http.post<AuthResponseData>(
-      SIGNIN_URL + API_KEY,
-      {
-        email: email,
-        password: password,
-        returnSecureToken: true,
-      }
-    ).pipe(catchError(AuthService.handleError), tap(response => {
-      this.handleAuthentication(response.email, response.localId, response.idToken, +response.expiresIn);
-    }));
+  ngOnDestroy(): void {
+      this.subscription.unsubscribe();
   }
 
-  autoLogin() {
-    const userData: {
-      email: string;
-      id: string;
-      _token: string;
-      _tokenExpirationDate: string;
-    } = JSON.parse(<string>localStorage.getItem('userData'));
-    if (!userData) {
-      this.checkAnonymous();
-      return;
+// Sign in with email/password
+  SignIn(email: string, password: string) {
+    return this.afAuth.signInWithEmailAndPassword(email, password)
+      .catch(() => {
+        this.errorMsgKey = 'error_sign_in_failed';
+      })
+  }
+
+  // Sign up with email/password
+  SignUp(email: string, password: string) {
+    return this.afAuth.createUserWithEmailAndPassword(email, password)
+      .then(() => {
+        /* Call the SendVerificaitonMail() function when new user sign
+        up and returns promise */
+        this.SendVerificationMail().then();
+      }).catch(() => {
+        this.errorMsgKey = 'error_sign_up_failed';
+      })
+  }
+
+  // Send email verification when new user signs up
+  SendVerificationMail() {
+    return this.afAuth.currentUser.then(u => u?.sendEmailVerification())
+      .then(() => {
+        this.router.navigate(['verify-email-address']).then( () =>
+          this.checkForVerifiedInterval = setInterval(() => {
+            this.afAuth
+              .currentUser.then(u => {
+              u?.reload()
+                .then(() => {
+                  if (u?.emailVerified) {
+                    this.SignOut().then();
+                    // TODO auto login
+                    this.snackbarService.showSnackBar(this.translationService.translate('msg_email_verified'))
+                    clearInterval(this.checkForVerifiedInterval)
+                  }
+                })
+            })
+          }, 1000)
+        );
+      })
+  }
+
+  // Reset Forgot password
+  ForgotPassword(passwordResetEmail: string) {
+    return this.afAuth.sendPasswordResetEmail(passwordResetEmail)
+      .then(() => {
+        this.snackbarService.showSnackBar('msg_pw_reset_mail_sent');
+      }).catch((error) => {
+        this.errorMsgKey = 'error_forgot_pw_failed';
+      })
+  }
+
+  // Returns true when user is logged in and email is verified
+  get isLoggedIn(): boolean {
+    const userItem = localStorage.getItem('user');
+    if (userItem === undefined) return false;
+    if (typeof userItem === "string" && userItem.length > 0) {
+      const user = JSON.parse(userItem);
+      return (user !== null && user.emailVerified !== false);
     }
+    return false;
+  }
 
-    const loadedUser = new User(
-      userData.email,
-      userData.id,
-      userData._token,
-      new Date(userData._tokenExpirationDate)
-    );
+  // Sign in with Google
+  GoogleAuth() {
+    return this.AuthLogin(new auth.GoogleAuthProvider());
+  }
 
-    this.userId = loadedUser.id;
+  // Auth logic to run auth providers
+  AuthLogin(provider: auth.GoogleAuthProvider) {
+    return this.afAuth.signInWithPopup(provider)
+      .catch(() => {
+        this.errorMsgKey = 'error_google_auth_failed';
+      })
+  }
 
-    if (loadedUser.token) {
-      this.user.next(loadedUser);
-      const expirationDuration =
-        new Date(userData._tokenExpirationDate).getTime() -
-        new Date().getTime();
-      this.autoLogout(expirationDuration);
-      this.setAnonymous(false);
+  /* Setting up user data when sign in with username/password,
+  sign up with username/password and sign in with social auth
+  provider in Firestore database using AngularFirestore + AngularFirestoreDocument service */
+  SetUserData(user: firebase.User) {
+    const userRef: AngularFirestoreDocument<any> = this.afs.doc(`users/${user.uid}`);
+    this.userData = {
+      uid: user.uid,
+      email: user.email,
+      displayName: user.displayName,
+      photoURL: user.photoURL,
+      emailVerified: user.emailVerified
     }
+    return userRef.set(this.userData, {
+      merge: true
+    });
   }
 
-  autoLogout(expirationDuration: number) {
-    this.tokenExpirationTimer = setTimeout(() => {
-      this.logout();
-    }, expirationDuration);
-  }
-
-  logout() {
-    this.user.next(null);
-    this.userId = '';
-    this.isAuthenticated = false;
-    this.setAnonymous(false);
-    this.router.navigate(['/auth']).then();
-    localStorage.removeItem('userData');
-    if (this.tokenExpirationTimer) {
-      clearTimeout(this.tokenExpirationTimer);
-    }
-    this.tokenExpirationTimer = null;
-  }
-
-  private handleAuthentication(email: string, userId: string, token: string, expiresIn: number) {
-    const expirationDate = new Date(new Date().getTime() + expiresIn * 1000);
-    const user = new User(
-      email,
-      userId,
-      token,
-      expirationDate
-    );
-    this.userId = userId;
-    this.user.next(user);
-    this.isAuthenticated = true;
-    this.setAnonymous(false);
-    this.autoLogout(expiresIn * 1000);
-    localStorage.setItem('userData', JSON.stringify(user));
-  }
-
-  private static handleError(errorResponse: HttpErrorResponse) {
-    let errorMessage = 'error_unknown';
-    if (!errorResponse.error || !errorResponse.error.error) {
-      return throwError(errorMessage);
-    }
-    return throwError(errorResponse.error.error.message);
-  }
-
-  checkAnonymous() {
-    if (!!localStorage.getItem('isAnonymous') && localStorage.getItem('isAnonymous') === 'true') {
-      this.isAnonymous = true;
-    }
-  }
-
-  setAnonymous(isAnonymous: boolean) {
-    this.isAnonymous = isAnonymous;
-    localStorage.setItem('isAnonymous', isAnonymous.toString());
+  // Sign out
+  SignOut() {
+    return this.afAuth.signOut().then(() => {
+      localStorage.removeItem('user');
+      this.userData = undefined;
+      this.router.navigate(['auth']).then();
+    })
   }
 
   deleteAccount() {
-    const userData: {
-      email: string;
-      id: string;
-      _token: string;
-      _tokenExpirationDate: string;
-    } = JSON.parse(<string>localStorage.getItem('userData'));
-    if (!userData) { return;}
+    return this.afAuth.currentUser.then(u => {
+      u?.delete();
+      this.router.navigate(['auth']).then();
+    });
+    // TODO delete projects
+  }
 
-    const token = userData._token;
-
-    return this.http.post(
-      DELETE_URL + API_KEY,
-      {
-        idToken: token
-      }
-    ).pipe(catchError(AuthService.handleError))
-      .subscribe(_ => this.logout());
+  getUserToken(): Promise<string | undefined> {
+    return this.afAuth.currentUser
+      .then((u: firebase.User | null) => u?.getIdToken(true)
+        .then(t => t)
+      );
   }
 }

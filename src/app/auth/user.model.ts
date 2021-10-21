@@ -11,7 +11,7 @@ export interface userData {
   lastLogin?: Date;
 }
 
-export class User {
+/*export class User {
   constructor(
     public email: string,
     public id: string,
@@ -27,4 +27,12 @@ export class User {
       return this._token;
     }
   }
+}*/
+
+export interface User {
+  uid: string;
+  email: string | null;
+  displayName: string | null;
+  photoURL: string | null;
+  emailVerified: boolean;
 }

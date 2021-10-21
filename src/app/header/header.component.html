@@ -13,14 +13,15 @@
     <mat-icon>share</mat-icon>
   </button>-->
   <ul>
-    <li><a mat-button routerLink="/projects" routerLinkActive="mat-accent">{{ 'label_projects' | translate }}</a></li>
+    <!-- <li><a *ngIf="authService.isAnonymous || authService.isLoggedIn" mat-button routerLink="/dashboard" routerLinkActive="mat-accent">{{ 'label_dashboard' | translate }}</a></li>-->
+    <li><a *ngIf="authService.isAnonymous || authService.isLoggedIn" mat-button routerLink="/projects" routerLinkActive="mat-accent">{{ 'label_projects' | translate }}</a></li>
 
     <li><a *ngIf="authService.isAnonymous" mat-button>{{ 'label_anonymous_user' | translate }}</a></li>
   <!-- create account / login -->
 
-    <li *ngIf="isAuthenticated"><a mat-button (click)="onLogout()">{{ 'label_logout' | translate }}</a></li>
-    <li *ngIf="!isAuthenticated && !authService.isAnonymous"><a mat-button routerLink="/auth" routerLinkActive="mat-accent">{{ 'label_login' | translate }}</a></li>
+    <li *ngIf="authService.isLoggedIn"><a mat-button (click)="onLogout()">{{ 'label_logout' | translate }}</a></li>
+    <li *ngIf="!authService.isLoggedIn && !authService.isAnonymous"><a mat-button routerLink="/auth" routerLinkActive="mat-accent">{{ 'label_login' | translate }}</a></li>
 
-    <li><a mat-button routerLink="/settings" routerLinkActive="mat-accent"><i class="mat-icon material-icons">settings</i></a></li>
+    <li><a *ngIf="authService.isAnonymous || authService.isLoggedIn" mat-button routerLink="/settings" routerLinkActive="mat-accent"><i class="mat-icon material-icons">settings</i></a></li>
   </ul>
 </mat-toolbar>

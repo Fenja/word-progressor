@@ -7,18 +7,22 @@ import { ProjectListComponent } from "./project/project-list/project-list.compon
 import { AuthComponent } from "./auth/auth.component";
 import { SettingsComponent } from "./settings/settings.component";
 import { PrivacyPolicyComponent } from "./settings/privacy-policy/privacy-policy.component";
+import { VerifyEmailComponent } from "./auth/verify-email/verify-email.component";
+import { DashboardComponent } from "./dashboard/dashboard.component";
 
 const appRoutes: Routes = [
   { path: '', redirectTo: '/auth', pathMatch: 'full' },
+  { path: 'auth', component: AuthComponent },
+  { path: 'verify-email-address', component: VerifyEmailComponent },
+  { path: 'settings', component: SettingsComponent },
+  { path: 'privacy_policy', component: PrivacyPolicyComponent },
+  { path: 'dashboard', component: DashboardComponent },
   { path: 'projects', component: ProjectsComponent, children: [
       { path: '', component: ProjectListComponent },
       { path: 'new', component: ProjectEditComponent },
       { path: ':id', component: ProjectDetailComponent },
       { path: ':id/edit', component: ProjectEditComponent },
     ] },
-  { path: 'auth', component: AuthComponent },
-  { path: 'settings', component: SettingsComponent },
-  { path: 'privacy_policy', component: PrivacyPolicyComponent },
 ]
 
 @NgModule({

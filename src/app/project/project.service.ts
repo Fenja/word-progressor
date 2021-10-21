@@ -17,8 +17,8 @@ export class ProjectService {
     private snackBarService: SnackbarService,
     private translationService: TranslationService,
   ) {
-    this.projectList = dataStorageService.projectList;
     this.fetchProjects();
+    this.projectList = dataStorageService.projectList;
   }
 
   getProjects(): Project[] {

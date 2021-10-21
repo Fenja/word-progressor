@@ -34,7 +34,6 @@ import { AuthComponent } from './auth/auth.component';
 import { HTTP_INTERCEPTORS, HttpClientModule } from "@angular/common/http";
 import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
 import { AnonymousDialog } from './auth/anonymous-dialog/anonymous-dialog.component';
-import { AuthInterceptorService } from "./auth/auth-interceptor.service";
 import { SettingsComponent } from './settings/settings.component';
 import { MatCheckboxModule } from "@angular/material/checkbox";
 import { MatTooltipModule } from "@angular/material/tooltip";
@@ -42,6 +41,13 @@ import { DeadlinePickerComponent } from './components/deadline-picker/deadline-p
 import { MatSnackBarModule } from "@angular/material/snack-bar";
 import { gteValidatorDirective } from "./components/gte-validator.directive";
 import { PrivacyPolicyComponent } from './settings/privacy-policy/privacy-policy.component';
+import { environment } from "../environments/environment";
+import {AngularFireModule} from "@angular/fire/compat";
+import {AngularFirestoreModule} from "@angular/fire/compat/firestore";
+import {AngularFireAuthModule} from "@angular/fire/compat/auth";
+import { VerifyEmailComponent } from './auth/verify-email/verify-email.component';
+import {AuthInterceptorService} from "./auth/auth-interceptor.service";
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 @NgModule({
   declarations: [
@@ -62,8 +68,14 @@ import { PrivacyPolicyComponent } from './settings/privacy-policy/privacy-policy
     DeadlinePickerComponent,
     gteValidatorDirective,
     PrivacyPolicyComponent,
+    VerifyEmailComponent,
+    DashboardComponent,
   ],
   imports: [
+    AngularFireModule.initializeApp(environment.FIREBASE_CONFIG),
+    AngularFirestoreModule,
+    AngularFireAuthModule,
+
     AppRoutingModule,
     BrowserModule,
     BrowserAnimationsModule,

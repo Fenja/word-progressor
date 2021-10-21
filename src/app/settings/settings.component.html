@@ -38,7 +38,7 @@
         {{ 'label_create_account' | translate }}</button>
       <button
         mat-stroked-button
-        *ngIf="authService.isAuthenticated"
+        *ngIf="authService.isLoggedIn"
         color="warn"
         data-testid="delete-button"
         (click)="deleteAccount()">

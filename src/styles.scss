@@ -71,6 +71,12 @@ ul {
     padding: 0.5em;
   }
 }
+
+.alert {
+  margin: 1em;
+  padding: 1em;
+}
+
 .content{
   margin: 1em;
   padding: 1em;
@@ -89,6 +95,10 @@ ul {
       // TODO accent color
     }
   }
+}
+
+.project-list {
+  padding-bottom: 3em;
 }
 
 .project-description {
@@ -163,5 +173,17 @@ ul {
 
 .mat-card-header-text {
   margin: 0 !important;
+}
+
+svg g {
+  .wp_background {
+    fill: rebeccapurple !important;
+  }
+  .wp_p {
+    fill: #FFC107 !important;
+  }
+  .wp_w {
+    fill: white;
+  }
 }
 
