@@ -1,6 +1,5 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { AuthService } from "../auth/auth.service";
-import {of, Subscription} from "rxjs";
 
 @Component({
   selector: 'app-header',
@@ -13,7 +12,7 @@ export class HeaderComponent {
   ) {}
 
   onLogout() {
-    this.authService.SignOut();
+    this.authService.SignOut().then();
   }
 
 }

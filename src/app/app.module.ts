@@ -22,7 +22,7 @@ import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatDatepickerModule } from "@angular/material/datepicker";
 import { MatSelectModule } from "@angular/material/select";
 import { MatInputModule } from "@angular/material/input";
-import { MatNativeDateModule } from "@angular/material/core";
+import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE, MatNativeDateModule } from "@angular/material/core";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { MatToolbarModule } from "@angular/material/toolbar";
 import { MatIconModule } from "@angular/material/icon";
@@ -42,12 +42,17 @@ import { MatSnackBarModule } from "@angular/material/snack-bar";
 import { gteValidatorDirective } from "./components/gte-validator.directive";
 import { PrivacyPolicyComponent } from './settings/privacy-policy/privacy-policy.component';
 import { environment } from "../environments/environment";
-import {AngularFireModule} from "@angular/fire/compat";
-import {AngularFirestoreModule} from "@angular/fire/compat/firestore";
-import {AngularFireAuthModule} from "@angular/fire/compat/auth";
+import { AngularFireModule } from "@angular/fire/compat";
+import { AngularFirestoreModule } from "@angular/fire/compat/firestore";
+import { AngularFireAuthModule } from "@angular/fire/compat/auth";
 import { VerifyEmailComponent } from './auth/verify-email/verify-email.component';
-import {AuthInterceptorService} from "./auth/auth-interceptor.service";
+import { AuthInterceptorService } from "./auth/auth-interceptor.service";
 import { DashboardComponent } from './dashboard/dashboard.component';
+import {
+  MAT_MOMENT_DATE_ADAPTER_OPTIONS,
+  MAT_MOMENT_DATE_FORMATS,
+  MomentDateAdapter
+} from "@angular/material-moment-adapter";
 
 @NgModule({
   declarations: [
@@ -108,7 +113,13 @@ import { DashboardComponent } from './dashboard/dashboard.component';
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptorService,
       multi: true,
-    }
+    },
+    {
+      provide: DateAdapter,
+      useClass: MomentDateAdapter,
+      deps: [MAT_DATE_LOCALE, MAT_MOMENT_DATE_ADAPTER_OPTIONS]
+    },
+    {provide: MAT_DATE_FORMATS, useValue: MAT_MOMENT_DATE_FORMATS},
   ],
   bootstrap: [AppComponent]
 })

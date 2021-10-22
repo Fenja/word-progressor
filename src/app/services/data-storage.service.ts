@@ -37,7 +37,7 @@ export class DataStorageService {
     return this.projects.slice();
   }
 
-  fetchProjects() {
+  private _fetchProjects() {
     this.projects = [];
     if (this.authService.isAnonymous) {
       this._fetchProjectsFromStorage();
@@ -90,7 +90,7 @@ export class DataStorageService {
     project.id = uuid.v4();
     this.projects.push(project);
     localStorage.setItem('projects', JSON.stringify(this.projects));
-    this.fetchProjects();
+    this._fetchProjects();
   }
 
   _addProjectToAPI(project: Project) {
@@ -98,7 +98,7 @@ export class DataStorageService {
       environment.FIREBASE_DB_URL+this._getUserId()+'/projects.json',
       project
     ).subscribe(() => {
-        this.fetchProjects();
+        this._fetchProjects();
       },
       error => {
         console.log(error);
@@ -117,7 +117,7 @@ export class DataStorageService {
   _editProjectInStorage(id: string, project: Project) {
     this.projects.map(p => p.id === id || project);
     localStorage.setItem('projects', JSON.stringify(this.projects));
-    this.fetchProjects();
+    this._fetchProjects();
   }
 
   _editProjectAtAPI(id: string, project: Project) {
@@ -125,7 +125,7 @@ export class DataStorageService {
       environment.FIREBASE_DB_URL+this._getUserId()+'/projects/'+id+'.json',
       project
     ).subscribe(() => {
-      this.fetchProjects();
+      this._fetchProjects();
     });
   }
 
@@ -141,14 +141,14 @@ export class DataStorageService {
     let index: number = this.projects.findIndex(p => p.id === id);
     this.projects.splice(index, 1);
     localStorage.setItem('projects', JSON.stringify(this.projects));
-    this.fetchProjects();
+    this._fetchProjects();
   }
 
   _deleteProjectAtAPI(id: string) {
     this.http.delete(
       environment.FIREBASE_DB_URL+this._getUserId()+'/projects/'+id+'.json',
     ).subscribe(() => {
-      this.fetchProjects();
+      this._fetchProjects();
     });
   }
 

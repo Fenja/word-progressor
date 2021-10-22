@@ -5,7 +5,7 @@ import { ActivatedRoute, Router } from "@angular/router";
 import { FormsModule } from "@angular/forms";
 import { of } from "rxjs";
 import { ProjectService } from "../project.service";
-import { Project, ProjectState, ProjectType } from "../project.model";
+import { CountEntity, Project, ProjectState, ProjectType } from "../project.model";
 import { TranslatePipe } from "../../translation/translate.pipe";
 
 
@@ -54,6 +54,7 @@ describe('ProjectEditComponent', () => {
   let fixture: ComponentFixture<ProjectEditComponent>;
 
   const mockProject: Project = {
+    countEntity: CountEntity.words,
     creationDate: new Date(),
     isWorkInProgress: false,
     lastUpdate: new Date(),

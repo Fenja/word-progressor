@@ -17,12 +17,10 @@ export class ProjectService {
     private snackBarService: SnackbarService,
     private translationService: TranslationService,
   ) {
-    this.fetchProjects();
     this.projectList = dataStorageService.projectList;
   }
 
   getProjects(): Project[] {
-    this.fetchProjects();
     return this.dataStorageService.getProjects();
   }
 
@@ -48,9 +46,5 @@ export class ProjectService {
 
   hasProject(id: string): boolean {
     return !!(this.dataStorageService.projects.find(p => p.id === id));
-  }
-
-  fetchProjects() {
-    this.dataStorageService.fetchProjects();
   }
 }

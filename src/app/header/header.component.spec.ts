@@ -1,17 +1,17 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { HeaderComponent } from './header.component';
 import { AuthService } from "../auth/auth.service";
-import { of } from "rxjs";
-import { User } from "../auth/user.model";
 import { TranslatePipe } from "../translation/translate.pipe";
 
 describe('HeaderComponent', () => {
   let component: HeaderComponent;
   let fixture: ComponentFixture<HeaderComponent>;
-
-  let mockUser: User | undefined = new User('id42', null, new Date());
+  let isAnonymous: boolean;
+  let isLoggedIn: boolean;
 
   beforeEach(async () => {
+    isAnonymous = false;
+    isLoggedIn = false;
     await TestBed.configureTestingModule({
       declarations: [
         HeaderComponent,
@@ -20,8 +20,9 @@ describe('HeaderComponent', () => {
       providers: [{
         provide: AuthService,
         useValue: {
-          user: of(mockUser),
-          logout: () => {mockUser = undefined},
+          isAnonymous: () => isAnonymous,
+          isLoggedIn: () => isLoggedIn,
+          SignOut: () => isLoggedIn = false,
         }
       }]
     })
@@ -38,13 +39,25 @@ describe('HeaderComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('shows authentication when user is found', () => {
-    expect(component.isAuthenticated).toBe(true);
+  it('shows \'Login\' when user is neither anonymous nor logged in', () => {
+
   });
 
-  it('shows unauthenticated after logout', () => {
+  it('shows header elements when user is authenticated', () => {
+    isLoggedIn = true;
+  });
+
+  it('shows header elements and \'Anonymous User\' for anonymous user', () => {
+    isAnonymous = true;
+  });
+
+  it('shows no Login for anonymous user', () => {
+    isAnonymous = true;
+  });
+
+  it('logs out on \'Logout\'', () => {
+    isLoggedIn = true;
     component.onLogout();
-    fixture.detectChanges();
-    expect(component.isAuthenticated).toBe(false);
+    expect(isLoggedIn).toEqual(false);
   });
 });

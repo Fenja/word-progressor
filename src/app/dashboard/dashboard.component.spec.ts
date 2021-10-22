@@ -22,4 +22,16 @@ describe('DashboardComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('displays wip projects', () => {
+
+  });
+
+  it('displays words written today', () => {
+
+  });
+
+  it('displays upcoming deadlines', () => {
+
+  });
 });

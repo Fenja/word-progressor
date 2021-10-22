@@ -1,6 +1,6 @@
-import {ComponentFixture, fakeAsync, TestBed } from '@angular/core/testing';
+import { ComponentFixture, fakeAsync, TestBed } from '@angular/core/testing';
 import { AddWordsDialogComponent } from './add-words-dialog.component';
-import { Project, ProjectState, ProjectType } from "../project.model";
+import { CountEntity, Project, ProjectState, ProjectType } from "../project.model";
 import { ProjectService } from "../project.service";
 import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
 import { By } from "@angular/platform-browser";
@@ -15,6 +15,7 @@ describe('AddWordsDialogComponent', () => {
   let fixture: ComponentFixture<AddWordsDialogComponent>;
 
   const mockProject: Project = {
+    countEntity: CountEntity.words,
     creationDate: new Date(),
     isWorkInProgress: false,
     lastUpdate: new Date(),
