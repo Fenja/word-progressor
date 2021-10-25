@@ -105,6 +105,14 @@ ul {
   margin: 1em 0 2em 0;
 }
 
+.project-wip::after {
+  font-family: 'Material Icons', serif;
+  content: "work";
+  -webkit-font-feature-settings: 'liga';
+  vertical-align: middle;
+  padding-left: 0.3em;
+}
+
 .additional-links {
   position: absolute;
   bottom: 0;

@@ -1,9 +1,9 @@
 <mat-card class="project-item">
   <mat-card-header class="project-item__header">
     <mat-card-title>{{ project.workingTitle }}</mat-card-title>
-    <mat-card-subtitle>{{ project.state | translate }}</mat-card-subtitle>
+    <mat-card-subtitle [ngClass]="project.isWorkInProgress ? 'project-wip' : ''">{{ project.state | translate }}</mat-card-subtitle>
     <span class="project-type">{{ project.type | translate }}</span>
-  </mat-card-header>
+    </mat-card-header>
 
   <mat-card-content>
     <div class="mat-card-content">

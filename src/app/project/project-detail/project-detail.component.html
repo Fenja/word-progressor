@@ -1,7 +1,8 @@
 <div class="content">
   <h2 data-testid="project-title">{{ project.workingTitle }}</h2>
   <div class="mat-card-subtitle">
-    <span>{{ project.type | translate }}</span>  -  <span>{{ project.state | translate }}</span>
+    <span>{{ project.type | translate }}</span>  -  <span>{{ project.state | translate }}</span><span *ngIf="project.isWorkInProgress" class="project-wip"> - {{ 'label_wip' | translate }}</span>
+
   </div>
 
   <div *ngIf="project.description" class="project-description" data-testid="project-description">
