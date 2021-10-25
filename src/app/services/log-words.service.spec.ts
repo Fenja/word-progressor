@@ -2,7 +2,7 @@ import { TestBed } from '@angular/core/testing';
 import { LogWordsService, WordLog } from './log-words.service';
 import { ProjectService } from "../project/project.service";
 import { userData } from "../auth/user.model";
-import { Project, ProjectState, ProjectType } from "../project/project.model";
+import {CountEntity, Project, ProjectState, ProjectType} from "../project/project.model";
 import { DataStorageService } from "./data-storage.service";
 import { Inject } from "@angular/core";
 
@@ -25,6 +25,7 @@ describe('LogWordsService', () => {
   beforeEach(() => {
     mockUser = {}
     mockProject = {
+      countEntity: CountEntity.words,
       creationDate: mockDate1,
       currentCount: 1000,
       deadline: undefined,
@@ -39,6 +40,7 @@ describe('LogWordsService', () => {
     }
 
     mockProject2 = {
+      countEntity: CountEntity.words,
       creationDate: mockDate1,
       currentCount: 1000,
       deadline: undefined,

@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ProjectItemComponent } from './project-item.component';
-import { Project, ProjectState, ProjectType } from "../project.model";
+import {CountEntity, Project, ProjectState, ProjectType} from "../project.model";
 import { By } from "@angular/platform-browser";
 import { ProjectListComponent } from "../project-list/project-list.component";
 import { MatDialog, MatDialogModule } from "@angular/material/dialog";
@@ -12,6 +12,7 @@ describe('ProjectItemComponent', () => {
   let fixture: ComponentFixture<ProjectItemComponent>;
 
   const mockProject: Project = {
+    countEntity: CountEntity.words,
     creationDate: new Date(),
     isWorkInProgress: false,
     lastUpdate: new Date(),

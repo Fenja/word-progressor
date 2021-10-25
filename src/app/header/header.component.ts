@@ -12,7 +12,7 @@ export class HeaderComponent {
   ) {}
 
   onLogout() {
-    this.authService.SignOut().then();
+    this.authService.SignOut();
   }
 
 }

@@ -6,6 +6,8 @@ export interface userData {
   penName?: string;
   age?: number;
 
+  settings?: {[key: string]: boolean }
+
   achievements?: string[]; // list of achievements
   wordLogs?: WordLog[]; // collected from all projects
   lastLogin?: Date;

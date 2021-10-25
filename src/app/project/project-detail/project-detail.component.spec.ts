@@ -4,7 +4,7 @@ import { ProjectDetailComponent } from './project-detail.component';
 import { TranslatePipe } from "../../translation/translate.pipe";
 import { ActivatedRoute, Router } from "@angular/router";
 import { of } from "rxjs";
-import { Project, ProjectState, ProjectType } from "../project.model";
+import {CountEntity, Project, ProjectState, ProjectType} from "../project.model";
 import { MatDialogModule } from "@angular/material/dialog";
 import { By } from "@angular/platform-browser";
 import { ProjectService } from "../project.service";
@@ -52,6 +52,7 @@ describe('ProjectDetailComponent', () => {
 
   let mockId: 0;
   const mockProject: Project = {
+    countEntity: CountEntity.words,
     creationDate: new Date(),
     isWorkInProgress: false,
     lastUpdate: new Date(),

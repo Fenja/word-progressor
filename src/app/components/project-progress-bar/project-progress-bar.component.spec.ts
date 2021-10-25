@@ -59,7 +59,7 @@ describe('ProjectProgressBarComponent', () => {
     let {debugElement} = fixture;
     let countSpan = debugElement.query(By.css('[data-testid="project-word-count"]'));
     expect(countSpan).toBeTruthy();
-    expect(countSpan.nativeElement.innerHTML).toContain('25000 / 50000<span>-60000</span>span>');
+    expect(countSpan.nativeElement.innerHTML).toContain('25000 / 50000<span>-60000</span>');
   });
 
   it('does not display a progress bar when there is no wordcount', () => {

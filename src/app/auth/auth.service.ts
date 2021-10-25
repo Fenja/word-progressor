@@ -22,6 +22,8 @@ export interface AuthResponseData {
 @Injectable({ providedIn: 'root' })
 export class AuthService implements OnDestroy {
 
+  // TODO auto-Login, after page reload
+
   userData: any;
   isAnonymous: boolean | null = null;
   private subscription: Subscription;
@@ -44,7 +46,7 @@ export class AuthService implements OnDestroy {
         user.getIdTokenResult(true).then(t => {
             this.isAnonymous = false;
             this.$userToken.next(t.token);
-            this.SetUserData(user);
+            this.SetUserData(user).then();
             localStorage.setItem('user', JSON.stringify(this.userData));
             this.ngZone.run(() => {
               this.router.navigate(['/dashboard']).then();

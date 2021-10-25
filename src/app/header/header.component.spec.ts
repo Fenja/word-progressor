@@ -22,7 +22,10 @@ describe('HeaderComponent', () => {
         useValue: {
           isAnonymous: () => isAnonymous,
           isLoggedIn: () => isLoggedIn,
-          SignOut: () => isLoggedIn = false,
+          SignOut: () => {
+            isLoggedIn = false;
+            return true;
+          },
         }
       }]
     })

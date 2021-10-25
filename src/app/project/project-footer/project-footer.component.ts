@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { UserService } from "../../services/user.service";
-import { Subject } from "rxjs";
 
 @Component({
   selector: 'app-project-footer',
@@ -8,19 +7,16 @@ import { Subject } from "rxjs";
 })
 export class ProjectFooterComponent {
 
-  $updateProjects= new Subject<void>();
-
   constructor(
     public userService: UserService
   ) { }
 
-  toggleWip() {
-    this.userService.toggleShowOnlyWip();
-    this.$updateProjects.next();
+
+  getSetting(settingName: string): any {
+    return this.userService.settings[settingName];
   }
 
-  toggleSortByDeadline() {
-    this.userService.toggleSortByDeadline();
-    this.$updateProjects.next();
+  toggleSetting(settingName: string) {
+    this.userService.toggleSetting(settingName);
   }
 }

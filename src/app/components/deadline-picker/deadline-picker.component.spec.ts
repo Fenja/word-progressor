@@ -4,16 +4,24 @@ import { DeadlinePickerComponent } from './deadline-picker.component';
 import {TranslationService} from "../../translation/translation.service";
 import {TranslatePipe} from "../../translation/translate.pipe";
 import { By } from "@angular/platform-browser";
-import { MatDatepicker, MatDatepickerInput, MatDatepickerInputEvent } from "@angular/material/datepicker";
+import {
+  MatDatepicker,
+  MatDatepickerInput,
+  MatDatepickerInputEvent,
+  MatDatepickerModule
+} from "@angular/material/datepicker";
+import {MatMomentDateModule} from "@angular/material-moment-adapter";
 
 describe('DeadlinePickerComponent', () => {
   let component: DeadlinePickerComponent;
   let fixture: ComponentFixture<DeadlinePickerComponent>;
+  let translationService: TranslationService;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [ DeadlinePickerComponent, TranslatePipe ],
-      providers: [ TranslationService ]
+      providers: [ TranslationService ],
+      imports: [ MatDatepickerModule, MatMomentDateModule ]
     })
     .compileComponents();
   });
@@ -30,8 +38,9 @@ describe('DeadlinePickerComponent', () => {
 
   it('has date input', () => {
     const {debugElement} = fixture;
-    const dateInput: MatDatepicker<any> = debugElement.query(By.css('[data-testid="deadline-picker"]')).nativeElement;
+    const dateInput = debugElement.query(By.css('[data-testid="deadline-picker"]')).nativeElement;
     expect(dateInput).toBeTruthy();
+    console.log('dateInput',dateInput);
     expect(dateInput.datepickerInput).toBeTruthy();
   });
 
@@ -55,6 +64,7 @@ describe('DeadlinePickerComponent', () => {
   });
 
   it('displays date according to locale', () => {
+    translationService.language = 'en';
     // TODO implement test
   });
 });

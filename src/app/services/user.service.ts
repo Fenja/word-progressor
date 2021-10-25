@@ -1,23 +1,24 @@
 import { Injectable } from '@angular/core';
 import { Subject } from "rxjs";
+import { DataStorageService } from "./data-storage.service";
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
-  showOnlyWip: boolean = false;
-  isSortByDeadline: boolean = false;
+
+  settings!: {[key: string]: any};
   $filterChange = new Subject<void>();
 
-  // TODO save user settings
-
-  toggleShowOnlyWip() {
-    this.showOnlyWip = !this.showOnlyWip;
-    this.$filterChange.next();
+  constructor(private dataStorageService: DataStorageService) {
+    this.dataStorageService.fetchUser();
+    this.settings = this.dataStorageService.getSettings();
+    console.log('settings', JSON.stringify(this.settings));
   }
 
-  toggleSortByDeadline() {
-    this.isSortByDeadline = !this.isSortByDeadline;
+  toggleSetting(settingName: string) {
+    this.settings[settingName] = !this.settings[settingName];
+    this.dataStorageService.editSettings(this.settings);
     this.$filterChange.next();
   }
 }

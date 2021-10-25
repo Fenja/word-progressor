@@ -27,7 +27,10 @@ export class DataStorageService {
   constructor(
     private http: HttpClient,
     private authService: AuthService,
-  ) {}
+  ) {
+    this.authService.isAnonymous = !localStorage.getItem('user');
+    this.fetchUser();
+  }
 
   private _getUserId() {
     return this.authService.userData?.uid;
@@ -179,41 +182,42 @@ export class DataStorageService {
 
   _fetchUserFromAPI() {
     this.http.get<{ [key: string]: userData }>(
-      environment.FIREBASE_DB_URL+this._getUserId()+'.json'
+      environment.FIREBASE_DB_URL+this._getUserId()+'/user.json'
     )
-      .pipe(
-        take(1),
-      )
-      .subscribe(
-        (user) => {
-          console.log(user);
-          if (!user) {
-            this.createNewUser();
-          } else {
-            this.user = user;
-          }
-          this.user$.next(this.user);
-        });
+    .pipe(
+      take(1),
+    )
+    .subscribe(
+      (user) => {
+        console.log(user);
+        if (!user) {
+          this.createNewUser();
+        } else {
+          this.user = user;
+        }
+        console.log('fetch from api', JSON.stringify(this.user));
+        this.user$.next(this.user);
+      });
   }
 
   editUser(id: string, user: userData) {
+    this.user = user;
     if (this.authService.isAnonymous) {
-      this._editUserInStorage(id, user);
+      this._editUserInStorage();
     } else {
-      this._editUserAtAPI(id, user);
+      this._editUserAtAPI();
     }
   }
 
-  _editUserInStorage(id: string, user: userData) {
-    this.user = user;
+  _editUserInStorage() {
     localStorage.setItem('local_user', JSON.stringify(this.user));
     this.fetchUser();
   }
 
-  _editUserAtAPI(id: string, user: userData) {
+  _editUserAtAPI() {
     this.http.put(
-      environment.FIREBASE_DB_URL+id+'.json',
-      user
+      environment.FIREBASE_DB_URL+this._getUserId()+'/user.json',
+      this.user
     ).subscribe(() => {
       this.fetchUser();
     });
@@ -228,12 +232,42 @@ export class DataStorageService {
   }
 
   private _deleteUserAtAPI() {
+    const id = this._getUserId();
     this.http.delete(
-      environment.FIREBASE_DB_URL+this._getUserId()+'.json',
+      environment.FIREBASE_DB_URL+id+'.json',
     ).subscribe(() => this.user = {});
+    this.http.delete(
+      environment.FIREBASE_DB_URL+id+'/user.json',
+    );
   }
 
-  saveUserSettings(userSettings: userData) {
-    // TODO
+  editSettings(settings: { [key: string]: any }) {
+    this.user.settings = settings;
+    if (this.authService.isAnonymous) {
+      this._editSettingsInStorage();
+    } else {
+      this._editSettingsAtAPI();
+    }
+  }
+
+  _editSettingsInStorage() {
+    localStorage.setItem('local_user', JSON.stringify(this.user));
+  }
+
+  _editSettingsAtAPI() {
+    this.http.put(
+      environment.FIREBASE_DB_URL+this._getUserId()+'/user.json',
+      this.user
+    );
+  }
+
+  getSettings(): {[key: string]: any} {
+    console.log('isAnonymous', this.authService.isAnonymous);
+
+    console.log('fetched user', JSON.stringify(this.user.settings));
+    return this.user.settings ? this.user.settings : {
+      'showOnlyWip': false,
+      'isSortByDeadline': false,
+    };
   }
 }

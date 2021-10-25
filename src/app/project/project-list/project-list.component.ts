@@ -19,7 +19,7 @@ export class ProjectListComponent implements OnDestroy {
     private userService: UserService,
   ) {
     this.allProjects = this.projectService.getProjects();
-    this.projects = this.allProjects;
+    this._filterProjects();
 
     this.subscriptions.push( this.userService.$filterChange.subscribe(() => this._filterProjects()));
 
@@ -36,10 +36,22 @@ export class ProjectListComponent implements OnDestroy {
 
   private _filterProjects() {
     this.projects = this.allProjects.filter(project => {
-        if (this.userService.showOnlyWip) return project.isWorkInProgress;
+        if (this.userService.settings['showOnlyWip']) return project.isWorkInProgress;
         return true;
       }
     );
+    if (this.userService.settings['isSortByDeadline']) {
+      this.projects.sort((a: Project, b: Project) => {
+        if (!a.deadline) return 1;
+        else if (!b.deadline) return -1;
+        else return new Date(a.deadline).valueOf() - new Date(b.deadline).valueOf();
+      });
+    } else {
+      // filter by last edit
+      this.projects.sort((a: Project, b: Project) => {
+        return new Date(b.lastUpdate).valueOf() - new Date(a.lastUpdate).valueOf();
+      });
+    }
   }
 
 }

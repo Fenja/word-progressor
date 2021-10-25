@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ProjectListComponent } from './project-list.component';
-import { Project, ProjectState, ProjectType } from "../project.model";
+import {CountEntity, Project, ProjectState, ProjectType} from "../project.model";
 import { By } from "@angular/platform-browser";
 import { TranslationService } from "../../translation/translation.service";
 import { TranslatePipe } from "../../translation/translate.pipe";
@@ -14,6 +14,7 @@ describe('ProjectListComponent', () => {
   let fixture: ComponentFixture<ProjectListComponent>;
 
   const mockProject: Project = {
+    countEntity: CountEntity.words,
     creationDate: new Date(),
     isWorkInProgress: false,
     lastUpdate: new Date(),

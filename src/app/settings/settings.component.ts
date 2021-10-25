@@ -37,9 +37,4 @@ export class SettingsComponent {
     // todo ask for password to confirm
   }
 
-  saveUserSettings() {
-    let userSettings: userData = {};
-    // TODO get userData from form
-    this.dataStorageService.saveUserSettings(userSettings);
-  }
 }
