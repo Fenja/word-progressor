@@ -37,6 +37,7 @@ export class DataStorageService {
   }
 
   getProjects() {
+    this._fetchProjects();
     return this.projects.slice();
   }
 
@@ -56,8 +57,9 @@ export class DataStorageService {
   }
 
   _fetchProjectsFromAPI() {
+    console.log('fetch projects from api');
     this.http.get<{ [key: string]: Project }>(
-      environment.FIREBASE_DB_URL+this._getUserId()+'/projects.json'
+      environment.FIREBASE_CONFIG.databaseURL+this._getUserId()+'/projects.json'
     )
       .pipe(
         take(1),
@@ -98,7 +100,7 @@ export class DataStorageService {
 
   _addProjectToAPI(project: Project) {
     this.http.post<any>(
-      environment.FIREBASE_DB_URL+this._getUserId()+'/projects.json',
+      environment.FIREBASE_CONFIG.databaseURL+this._getUserId()+'/projects.json',
       project
     ).subscribe(() => {
         this._fetchProjects();
@@ -125,7 +127,7 @@ export class DataStorageService {
 
   _editProjectAtAPI(id: string, project: Project) {
     this.http.put(
-      environment.FIREBASE_DB_URL+this._getUserId()+'/projects/'+id+'.json',
+      environment.FIREBASE_CONFIG.databaseURL+this._getUserId()+'/projects/'+id+'.json',
       project
     ).subscribe(() => {
       this._fetchProjects();
@@ -149,7 +151,7 @@ export class DataStorageService {
 
   _deleteProjectAtAPI(id: string) {
     this.http.delete(
-      environment.FIREBASE_DB_URL+this._getUserId()+'/projects/'+id+'.json',
+      environment.FIREBASE_CONFIG.databaseURL+this._getUserId()+'/projects/'+id+'.json',
     ).subscribe(() => {
       this._fetchProjects();
     });
@@ -182,7 +184,7 @@ export class DataStorageService {
 
   _fetchUserFromAPI() {
     this.http.get<{ [key: string]: userData }>(
-      environment.FIREBASE_DB_URL+this._getUserId()+'/user.json'
+      environment.FIREBASE_CONFIG.databaseURL+this._getUserId()+'/user.json'
     )
     .pipe(
       take(1),
@@ -216,7 +218,7 @@ export class DataStorageService {
 
   _editUserAtAPI() {
     this.http.put(
-      environment.FIREBASE_DB_URL+this._getUserId()+'/user.json',
+      environment.FIREBASE_CONFIG.databaseURL+this._getUserId()+'/user.json',
       this.user
     ).subscribe(() => {
       this.fetchUser();
@@ -234,10 +236,10 @@ export class DataStorageService {
   private _deleteUserAtAPI() {
     const id = this._getUserId();
     this.http.delete(
-      environment.FIREBASE_DB_URL+id+'.json',
+      environment.FIREBASE_CONFIG.databaseURL+id+'.json',
     ).subscribe(() => this.user = {});
     this.http.delete(
-      environment.FIREBASE_DB_URL+id+'/user.json',
+      environment.FIREBASE_CONFIG.databaseURL+id+'/user.json',
     );
   }
 
@@ -256,7 +258,7 @@ export class DataStorageService {
 
   _editSettingsAtAPI() {
     this.http.put(
-      environment.FIREBASE_DB_URL+this._getUserId()+'/user.json',
+      environment.FIREBASE_CONFIG.databaseURL+this._getUserId()+'/user.json',
       this.user
     );
   }

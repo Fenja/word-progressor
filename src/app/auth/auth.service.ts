@@ -113,7 +113,7 @@ export class AuthService implements OnDestroy {
     return this.afAuth.sendPasswordResetEmail(passwordResetEmail)
       .then(() => {
         this.snackbarService.showSnackBar('msg_pw_reset_mail_sent');
-      }).catch((error) => {
+      }).catch(_ => {
         this.errorMsgKey = 'error_forgot_pw_failed';
       })
   }
@@ -176,10 +176,4 @@ export class AuthService implements OnDestroy {
     // TODO delete projects
   }
 
-  getUserToken(): Promise<string | undefined> {
-    return this.afAuth.currentUser
-      .then((u: firebase.User | null) => u?.getIdToken(true)
-        .then(t => t)
-      );
-  }
 }
