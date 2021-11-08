@@ -12,11 +12,11 @@
     *ngIf="!isLoading"
     class="form-group"
     #authForm="ngForm"
-    (ngSubmit)="onSubmit(authForm)"
+    (ngSubmit)="onSubmit()"
   >
     <div>
       <mat-form-field>
-        <mat-label>{{ 'label_email' | translate }}</mat-label>
+        <mat-label data-testid="email-input-label">{{ 'label_email' | translate }}</mat-label>
         <input
           matInput
           type="email"
@@ -29,7 +29,7 @@
         >
       </mat-form-field>
       <mat-form-field>
-        <mat-label>{{ 'label_password' | translate }}</mat-label>
+        <mat-label data-testid="password-input-label">{{ 'label_password' | translate }}</mat-label>
         <input
           matInput
           type="password"
@@ -54,7 +54,7 @@
           *ngIf="!isCreateFromLocalMode"
           mat-stroked-button
           color="primary"
-          data-testid="signup-button"
+          data-testid="switch-button"
           type="button"
           (click)="onSwitchMode()"
         >{{ (isLoginMode ? 'button_switch_to_signup' : 'button_switch_to_login') | translate }}</button>

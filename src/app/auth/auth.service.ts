@@ -22,8 +22,6 @@ export interface AuthResponseData {
 @Injectable({ providedIn: 'root' })
 export class AuthService implements OnDestroy {
 
-  // TODO auto-Login, after page reload
-
   userData: any;
   isAnonymous: boolean | null = null;
   private subscription: Subscription;
@@ -40,6 +38,8 @@ export class AuthService implements OnDestroy {
     private snackbarService: SnackbarService,
     private translationService: TranslationService,
   ) {
+    this.afAuth.setPersistence(firebase.auth.Auth.Persistence.SESSION).then();
+
     this.subscription = this.afAuth.authState.subscribe(user => {
       if (user) {
         this.userData = user;
@@ -113,7 +113,7 @@ export class AuthService implements OnDestroy {
     return this.afAuth.sendPasswordResetEmail(passwordResetEmail)
       .then(() => {
         this.snackbarService.showSnackBar('msg_pw_reset_mail_sent');
-      }).catch(_ => {
+      }).catch(err => {
         this.errorMsgKey = 'error_forgot_pw_failed';
       })
   }
@@ -163,6 +163,7 @@ export class AuthService implements OnDestroy {
   SignOut() {
     return this.afAuth.signOut().then(() => {
       localStorage.removeItem('user');
+      localStorage.removeItem('user_token');
       this.userData = undefined;
       this.router.navigate(['auth']).then();
     })
