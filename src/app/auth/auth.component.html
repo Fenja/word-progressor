@@ -12,7 +12,7 @@
     *ngIf="!isLoading"
     class="form-group"
     #authForm="ngForm"
-    (ngSubmit)="onSubmit()"
+    (ngSubmit)="onSubmit(authForm)"
   >
     <div>
       <mat-form-field>
@@ -85,6 +85,16 @@
           routerLink="/settings"
         >{{ 'button_cancel' | translate }}</button>
       </div>
+
+
+        <button
+          *ngIf="error"
+          mat-stroked-button
+          color="warn"
+          data-testid="forgot-password-button"
+          type="button"
+          (click)="forgotPassword()"
+        >{{ 'label_forgot_password' | translate }}</button>
     </div>
   </form>
 

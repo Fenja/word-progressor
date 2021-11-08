@@ -53,6 +53,7 @@ import {
   MAT_MOMENT_DATE_FORMATS,
   MomentDateAdapter
 } from "@angular/material-moment-adapter";
+import { ForgotPasswordDialog } from './auth/forgot-password/forgot-password.component';
 
 @NgModule({
   declarations: [
@@ -75,6 +76,7 @@ import {
     PrivacyPolicyComponent,
     VerifyEmailComponent,
     DashboardComponent,
+    ForgotPasswordDialog,
   ],
   imports: [
     AngularFireModule.initializeApp(environment.FIREBASE_CONFIG),

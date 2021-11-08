@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component } from '@angular/core';
 import { NgForm } from "@angular/forms";
 import { AuthService } from "./auth.service";
 import { AnonymousDialog } from "./anonymous-dialog/anonymous-dialog.component";
@@ -8,6 +8,7 @@ import { Project } from "../project/project.model";
 import { userData } from "./user.model";
 import { DataStorageService } from "../services/data-storage.service";
 import { filter } from "rxjs/operators";
+import { ForgotPasswordDialog } from "./forgot-password/forgot-password.component";
 
 @Component({
   selector: 'app-auth',
@@ -15,12 +16,9 @@ import { filter } from "rxjs/operators";
 })
 export class AuthComponent {
 
-  @ViewChild('authForm', {static: true}) form!: NgForm;
-
   isLoading = false;
   isLoginMode = true;
   isCreateFromLocalMode: boolean = false;
-  isSubmitted: boolean = false;
 
   constructor(
     private authService: AuthService,
@@ -47,15 +45,14 @@ export class AuthComponent {
     this.isLoginMode = !this.isLoginMode;
   }
 
-  onSubmit() {
-    if (!this.form.valid) {
+  onSubmit(form: NgForm) {
+    if (!form.valid) {
       return;
     }
-    this.isSubmitted = true;
     this.isLoading = true;
 
-    const email = this.form.value.email;
-    const password = this.form.value.password;
+    const email = form.value.email;
+    const password = form.value.password;
 
     if (this.isLoginMode) {
       this.authService.SignIn(email, password).then(() => {
@@ -70,7 +67,7 @@ export class AuthComponent {
       });
     }
 
-    this.form.reset();
+    form.reset();
   }
 
   onGoogleLogin() {
@@ -103,5 +100,9 @@ export class AuthComponent {
 
       console.log('uploaded user projects');
     })
+  }
+
+  forgotPassword() {
+    this.dialog.open(ForgotPasswordDialog, {});
   }
 }

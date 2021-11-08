@@ -67,6 +67,7 @@ export class AuthService implements OnDestroy {
 
 // Sign in with email/password
   SignIn(email: string, password: string) {
+    this._clearErrors();
     return this.afAuth.signInWithEmailAndPassword(email, password)
       .catch(() => {
         this.errorMsgKey = 'error_sign_in_failed';
@@ -75,6 +76,7 @@ export class AuthService implements OnDestroy {
 
   // Sign up with email/password
   SignUp(email: string, password: string) {
+    this._clearErrors();
     return this.afAuth.createUserWithEmailAndPassword(email, password)
       .then(() => {
         /* Call the SendVerificaitonMail() function when new user sign
@@ -110,9 +112,10 @@ export class AuthService implements OnDestroy {
 
   // Reset Forgot password
   ForgotPassword(passwordResetEmail: string) {
+    this._clearErrors();
     return this.afAuth.sendPasswordResetEmail(passwordResetEmail)
       .then(() => {
-        this.snackbarService.showSnackBar('msg_pw_reset_mail_sent');
+        this.snackbarService.showSnackBar('msg_reset_pw_email');
       }).catch(err => {
         this.errorMsgKey = 'error_forgot_pw_failed';
       })
@@ -131,6 +134,7 @@ export class AuthService implements OnDestroy {
 
   // Sign in with Google
   GoogleAuth() {
+    this._clearErrors();
     return this.AuthLogin(new auth.GoogleAuthProvider());
   }
 
@@ -175,6 +179,10 @@ export class AuthService implements OnDestroy {
       this.router.navigate(['auth']).then();
     });
     // TODO delete projects
+  }
+
+  private _clearErrors() {
+    this.errorMsgKey = undefined;
   }
 
 }

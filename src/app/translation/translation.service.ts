@@ -72,6 +72,7 @@ export class TranslationService {
         button_proceed_without_login: 'Ohne Anmeldung fortfahren',
         button_google_login: 'Mit Google anmelden',
         button_google_register: 'Mit Google registrieren',
+        button_send_reset_mail: 'Email zum Zurücksetzen versenden',
 
         label_current_word_count: 'Aktuelle Wortzahl',
         label_goal_word_count: 'Angestrebte Wortzahl',
@@ -101,6 +102,7 @@ export class TranslationService {
         label_privacy_policy: 'Datenschutzerklärung',
         label_word_logs: 'Wörter Statistik',
         label_count_entity: 'Einheiten',
+        label_forgot_password: 'Passwort vergessen',
 
         placeholder_working_title: 'Arbeitstitel',
         placeholder_blurb: 'Inhaltsangabe',
@@ -133,6 +135,7 @@ export class TranslationService {
         msg_deleted: ' gelöscht',
         msg_account_deleted: 'Account gelöscht',
         msg_email_verified: 'Email bestätigt',
+        msg_reset_pw_email: 'Email zum Zurücksetzen des Passworts wurde versandt',
 
         text_anonymous_dialog: `Wenn der WordProgressor ohne Konto genutzt wird, werden die Daten lokal gespeichert.\n
             Sie können dann weder synchronisiert, noch von einem anderen Gerät aus abgerufen werden.\n
@@ -202,6 +205,7 @@ export class TranslationService {
         button_proceed_without_login: 'Proceed without Login',
         button_google_login: 'Sign in with Google',
         button_google_register: 'Sign up with Google',
+        button_send_reset_mail: 'Send email to reset password',
 
         label_current_word_count: 'Current Word Count',
         label_goal_word_count: 'Goal Word Count',
@@ -231,6 +235,7 @@ export class TranslationService {
         label_privacy_policy: 'Privacy Policy',
         label_word_logs: 'Word Logs',
         label_count_entity: 'Entity',
+        label_forgot_password: 'Forgot password',
 
         placeholder_working_title: 'Working Title',
         placeholder_blurb: 'Blurb',
@@ -257,13 +262,13 @@ export class TranslationService {
         error_forgot_pw_failed: 'Could not request new password',
         error_google_auth_failed: 'Authentication via google failed',
 
-
         msg_words_added: ' words added',
         msg_created: ' created',
         msg_saved: ' saved',
         msg_deleted: ' deleted',
         msg_account_deleted: 'Account deleted',
         msg_email_verified: 'Email verified',
+        msg_reset_pw_email: 'Email to reset password has been send',
 
         text_anonymous_dialog: `When using the WordProgressor without an account, your data is stored locally.\n
             You won't be able to sync them or access them from another access point.\n
