@@ -19,12 +19,23 @@
       >
       <mat-error *ngIf="!titleId.valid">{{ 'error_required' | translate }}</mat-error>
     </mat-form-field>
-    <mat-form-field color="primary">
-      <!--<label for="description">Blurp</label>-->
+
+    <mat-checkbox
+      name="workInProgress"
+      color="primary"
+      class="form-control"
+      data-testid="work-in-progress-checkbox"
+      [(ngModel)]="project.isWorkInProgress"
+    >{{ 'label_wip' | translate }}
+    </mat-checkbox>
+
+    <mat-form-field color="primary" class="full-width">
+      <!--<label for="description">Blurb</label>-->
       <textarea
         matInput
         id="description"
         name="description"
+        rows="3"
         placeholder="{{'placeholder_blurb' | translate}}"
         class="form-control"
         data-testid="description-input"
@@ -137,15 +148,6 @@
       >
   <mat-error *ngIf="!maxGoalCountId.valid">{{ 'error_invalid_value' | translate }}</mat-error>
     </mat-form-field>
-
-      <mat-checkbox
-        name="workInProgress"
-        color="primary"
-        class="form-control"
-        data-testid="work-in-progress-checkbox"
-        [(ngModel)]="project.isWorkInProgress"
-      >{{ 'label_wip' | translate }}
-      </mat-checkbox>
 
   </div>
 
