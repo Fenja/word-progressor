@@ -56,13 +56,17 @@ export class TranslationService {
         info_no_projects: 'Keine Projekte gefunden',
 
         button_new_project: 'Neues Projekt',
+        button_add: 'Hinzufügen',
         button_add_words: 'Wörter hinzufügen',
+        button_add_characters: 'Zeichen hinzufügen',
+        button_add_pages: 'Seiten hinzufügen',
         button_edit: 'Bearbeiten',
         button_details: 'Details',
         button_cancel: 'Abbrechen',
         button_create: 'Erstellen',
         button_save: 'Speichern',
         button_delete: 'Löschen',
+        button_update: 'Aktualisieren',
         button_update_word_count: 'Wortzahl aktualisieren',
         button_close: 'Schließen',
         button_login: 'Anmelden',
@@ -100,7 +104,7 @@ export class TranslationService {
         label_account: 'Benutzerkonto',
         label_pseudonym: 'Autorenname',
         label_privacy_policy: 'Datenschutzerklärung',
-        label_word_logs: 'Wörter Statistik',
+        label_logs: 'Statistik',
         label_count_entity: 'Einheiten',
         label_forgot_password: 'Passwort vergessen',
 
@@ -114,8 +118,8 @@ export class TranslationService {
         tooltip_sort_deadline: 'nach Einsendeschluss sortieren',
 
         headline_word_count: 'Wortzahl',
-        headline_total_words: 'Gesamtwortzahl',
-        headline_new_words: 'Neue Wörter',
+        headline_total: 'Gesamt',
+        headline_new: 'Neu',
 
         error_unknown: 'Ein unerwarteter Fehler ist aufgetreten.',
         error_email_exists: 'Die E-Mail-Adresse ist bereits von einem anderen Konto in Benutzung.',
@@ -136,6 +140,7 @@ export class TranslationService {
         msg_account_deleted: 'Account gelöscht',
         msg_email_verified: 'Email bestätigt',
         msg_reset_pw_email: 'Email zum Zurücksetzen des Passworts wurde versandt',
+        msg_word_count_words_only: 'Zeichen und Seiten werden nicht zur Wort-Statistik hinzugefügt',
 
         text_anonymous_dialog: `Wenn der WordProgressor ohne Konto genutzt wird, werden die Daten lokal gespeichert.\n
             Sie können dann weder synchronisiert, noch von einem anderen Gerät aus abgerufen werden.\n
@@ -189,13 +194,17 @@ export class TranslationService {
         info_no_projects: 'No Projects found',
 
         button_new_project: 'New Project',
+        button_add: 'Add',
         button_add_words: 'Add Words',
+        button_add_characters: 'Add Characters',
+        button_add_pages: 'Add Pages',
         button_edit: 'Edit',
         button_details: 'Details',
         button_cancel: 'Cancel',
         button_create: 'Create',
         button_save: 'Save',
         button_delete: 'Delete',
+        button_update: 'Update',
         button_update_word_count: 'Update Word Count',
         button_close: 'Close',
         button_login: 'Sign in',
@@ -233,7 +242,7 @@ export class TranslationService {
         label_account: 'User Account',
         label_pseudonym: 'Pen Name',
         label_privacy_policy: 'Privacy Policy',
-        label_word_logs: 'Word Logs',
+        label_logs: 'Logs',
         label_count_entity: 'Entity',
         label_forgot_password: 'Forgot password',
 
@@ -247,8 +256,8 @@ export class TranslationService {
         tooltip_sort_deadline: 'sort by deadline',
 
         headline_word_count: 'Word Count',
-        headline_total_words: 'Total Words',
-        headline_new_words: 'New Words',
+        headline_total: 'Total',
+        headline_new: 'New',
 
         error_unknown: 'An unexpected error occured.',
         error_email_exists: 'The email address is already in use by another account.',
@@ -269,6 +278,7 @@ export class TranslationService {
         msg_account_deleted: 'Account deleted',
         msg_email_verified: 'Email verified',
         msg_reset_pw_email: 'Email to reset password has been send',
+        msg_word_count_words_only: 'Characters and pages will not be added to word statistics',
 
         text_anonymous_dialog: `When using the WordProgressor without an account, your data is stored locally.\n
             You won't be able to sync them or access them from another access point.\n

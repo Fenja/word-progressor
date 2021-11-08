@@ -25,7 +25,7 @@
   </ng-template>
 
   <mat-tab-group mat-align-tabs="center" *ngIf="validProject">
-    <mat-tab label="{{ 'headline_total_words' | translate }}">
+    <mat-tab label="{{ 'headline_total' | translate }}">
       <div class="content">
         <form>
           <div>
@@ -51,13 +51,15 @@
         </form>
         <div mat-dialog-actions>
           <button mat-stroked-button color="accent" (click)="close()">{{ 'button_cancel' | translate }}</button>
-          <button mat-raised-button color="primary" (click)="updateCurrentWords(+totalWordsInput.value)">{{ 'button_update_word_count' | translate }}</button>
+          <button mat-raised-button color="primary" (click)="updateCurrentWords(+totalWordsInput.value)">
+            {{ 'button_update' | translate }}
+          </button>
         </div>
       </div>
     </mat-tab>
 
 
-    <mat-tab label="{{'headline_new_words' | translate}}">
+    <mat-tab label="{{'headline_new' | translate}}">
 
       <div class="content">
         <form>
@@ -83,9 +85,17 @@
 
         <div mat-dialog-actions>
           <button mat-stroked-button color="accent" (click)="close()">{{'button_cancel' | translate}}</button>
-          <button mat-raised-button color="primary" (click)="addWords(+newWordsInput.value)">{{'button_add_words' | translate}}</button>
+          <button mat-raised-button color="primary" (click)="addWords(+newWordsInput.value)">
+            {{ 'button_add' | translate}}
+          </button>
         </div>
       </div>
     </mat-tab>
   </mat-tab-group>
+
+
+  <div *ngIf="entity !== eCountEntity.words">
+    <span>{{ 'msg_word_count_words_only' | translate }}</span>
+  </div>
+
 </div>

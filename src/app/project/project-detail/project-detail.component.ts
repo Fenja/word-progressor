@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Project } from "../project.model";
+import { CountEntity, Project } from "../project.model";
 import { ProjectService } from "../project.service";
 import { ActivatedRoute, Params, Router } from "@angular/router";
 import { AddWordsDialogComponent } from "../add-words-dialog/add-words-dialog.component";
@@ -13,6 +13,8 @@ export class ProjectDetailComponent implements OnInit {
 
   project!: Project;
   id!: string;
+
+  eCountEntity = CountEntity;
 
   constructor(
     private projectService: ProjectService,
@@ -37,7 +39,7 @@ export class ProjectDetailComponent implements OnInit {
     )
   }
 
-  addWords() {
+  addToProject() {
     this.dialog.open(AddWordsDialogComponent,{
       data: {
         id: this.id,

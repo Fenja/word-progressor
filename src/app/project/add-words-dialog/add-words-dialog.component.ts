@@ -1,5 +1,5 @@
 import { Component, ElementRef, Inject, OnInit, ViewChild } from '@angular/core';
-import { Project } from "../project.model";
+import { CountEntity, Project } from "../project.model";
 import { ProjectService } from "../project.service";
 import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
 import { SnackbarService } from "../../services/snackbar.service";
@@ -43,6 +43,8 @@ export class AddWordsDialogComponent implements OnInit {
   @ViewChild('totalWordsInput', {static: true}) totalWordsInput!: ElementRef;
   validProject: boolean = true;
   date: Date = new Date();
+  entity!: CountEntity;
+  eCountEntity = CountEntity;
 
   constructor(
     public dialogRef: MatDialogRef<AddWordsDialogComponent>,
@@ -57,6 +59,7 @@ export class AddWordsDialogComponent implements OnInit {
     if(!projectService.hasProject(this.data.id)) {
       this.validProject = false;
     }
+    this.entity = data.project.countEntity;
   }
 
   ngOnInit(): void {

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Project } from "../project/project.model";
+import { CountEntity, Project } from "../project/project.model";
 import { ProjectService } from "../project/project.service";
 import { DataStorageService } from "./data-storage.service";
 
@@ -23,10 +23,13 @@ export class LogWordsService {
     project.wordLogs = this.addWordsToLog(project.wordLogs!, wordLog);
     this.projectService.editProject(id, project);
 
-    let user = this.dataStorageService.user;
-    if (!user.wordLogs) user.wordLogs = [];
-    user.wordLogs = this.addWordsToLog(user.wordLogs!, wordLog);
-    this.dataStorageService.editUser(user.id!, user);
+    // do not log characters or pages to user stats
+    if (project.countEntity === CountEntity.words) {
+      let user = this.dataStorageService.user;
+      if (!user.wordLogs) user.wordLogs = [];
+      user.wordLogs = this.addWordsToLog(user.wordLogs!, wordLog);
+      this.dataStorageService.editUser(user.id!, user);
+    }
   }
 
   getUserLogs() {

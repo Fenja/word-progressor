@@ -35,12 +35,28 @@
       [routerLink]="[project.id+'/edit']"
       data-testid="project-edit-button"
     >{{'button_edit' | translate}}</button>
-    <button
+
+    <button *ngIf="project.countEntity === eCountEntity.words"
       mat-raised-button
       color="primary"
-      (click)="addWords()"
+      (click)="addToProject()"
       data-testid="project-words-button"
-    >{{'button_add_words' | translate}}</button>
+    >{{ 'button_add_words' | translate}}</button>
+
+    <button *ngIf="project.countEntity === eCountEntity.characters"
+      mat-raised-button
+      color="primary"
+      (click)="addToProject()"
+      data-testid="project-characters-button"
+    >{{ 'button_add_characters' | translate}}</button>
+
+    <button *ngIf="project.countEntity === eCountEntity.pages"
+      mat-raised-button
+      color="primary"
+      (click)="addToProject()"
+      data-testid="project-pages-button"
+    >{{ 'button_add_pages' | translate}}</button>
+
   </mat-card-actions>
 
 </mat-card>

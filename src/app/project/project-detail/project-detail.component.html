@@ -35,7 +35,7 @@
 </div>
 
 <div class="content" *ngIf="project.wordLogs">
-  <h3>{{ 'label_word_logs' | translate }}</h3>
+  <h3>{{ 'label_logs' | translate }}</h3>
   <ol>
     <li *ngFor="let log of project.wordLogs">
       <span>{{ log.date | date}}</span> - <span>{{ log.words }} {{ project.countEntity | translate }}</span>
@@ -51,17 +51,40 @@
       [routerLink]="['/projects/'+id+'/edit']"
       data-testid="project-edit-button"
     >{{ 'button_edit' | translate }}</button>
-    <button
-      mat-raised-button
-      color="primary"
-      (click)="addWords()"
-      data-testid="project-words-button"
-    >{{ 'button_add_words' | translate }}</button>
+
+    <button *ngIf="project.countEntity === eCountEntity.words"
+            mat-raised-button
+            color="primary"
+            (click)="addToProject()"
+            data-testid="project-words-button"
+    >{{ 'button_add_words' | translate}}</button>
+
+    <button *ngIf="project.countEntity === eCountEntity.characters"
+            mat-raised-button
+            color="primary"
+            (click)="addToProject()"
+            data-testid="project-characters-button"
+    >{{ 'button_add_characters' | translate}}</button>
+
+    <button *ngIf="project.countEntity === eCountEntity.pages"
+            mat-raised-button
+            color="primary"
+            (click)="addToProject()"
+            data-testid="project-pages-button"
+    >{{ 'button_add_pages' | translate}}</button>
+
     <button
       mat-stroked-button
       color="warn"
       (click)="deleteProject()"
       data-testid="project-delete-button"
     >{{ 'button_delete' | translate }}</button>
+
+    <button
+      mat-stroked-button
+      color="primary"
+      [routerLink]="['/projects']"
+      data-testid="project-cancel-button"
+    >{{ 'button_cancel' | translate }}</button>
   </div>
 </div>
