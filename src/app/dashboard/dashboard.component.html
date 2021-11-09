@@ -1,1 +1,43 @@
-<p>dashboard works!</p>
+<div class="content">
+
+  <mat-card id="info" class="dashboard-item">
+    <div *ngIf="isNewUser">
+      Welcome to the WordProgressor
+    </div>
+  </mat-card>
+
+  <mat-card *ngIf="wips.length > 0" id="wips" class="dashboard-item">
+    <mat-card-header class="dashboard-item__header">
+      {{ 'label_works_in_project' | translate }}
+    </mat-card-header>
+    <mat-card-content>
+      <div *ngFor="let project of wips">
+        <hr>
+        <app-project-overview
+          [project]="project"
+        ></app-project-overview>
+      </div>
+    </mat-card-content>
+  </mat-card>
+
+  <!-- <mat-card id="wordsToday" class="dashboard-item">
+    <mat-card-header class="dashboard-item__header">
+      {{ 'label_words_today' | translate }}
+    </mat-card-header>
+    <mat-card-content>
+      <div class="mat-card-title">{{ wordsToday }}</div>
+    </mat-card-content>
+  </mat-card> -->
+
+  <mat-card *ngIf="wordStatistics" id="wordsStatistic" class="dashboard-item">
+    <mat-card-header class="dashboard-item__header">
+      {{ 'label_words_statistic' | translate }}
+    </mat-card-header>
+    <mat-card-content>
+
+    </mat-card-content>
+  </mat-card>
+
+</div>
+
+<!-- <app-dashboard-footer></app-dashboard-footer> -->

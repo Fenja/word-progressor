@@ -28,6 +28,26 @@ $angular-dark-theme: mat.define-dark-theme((
   @include mat.all-component-colors($angular-dark-theme);
 }
 
+@media screen and (max-width: 600px) {
+  .xs-only {
+    display: block;
+  }
+
+  .larger-xs {
+    display: none;
+  }
+}
+
+@media screen and (min-width: 601px) {
+  .xs-only {
+    display: none;
+  }
+
+  .larger-xs {
+    display: flex;
+  }
+}
+
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
@@ -52,6 +72,25 @@ button.mat-button-base{
 
 .hidden {
   visibility: hidden;
+}
+
+app-side-nav {
+  display: flex;
+  flex-flow: column;
+
+  a {
+    padding: 1em;
+  }
+}
+
+.drawer {
+  height: 100%;
+  padding: 0 1em;
+}
+
+mat-drawer-container.drawer-container {
+  height: 14em;
+  position: absolute;
 }
 
 ul {
@@ -86,7 +125,13 @@ ul {
   padding: 1em;
 }
 
-.project-item {
+.mat-card-title {
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.project-item,
+.dashboard-item {
   margin: 1em;
   padding: 1em;
 

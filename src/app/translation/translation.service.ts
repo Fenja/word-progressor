@@ -107,6 +107,10 @@ export class TranslationService {
         label_logs: 'Statistik',
         label_count_entity: 'Einheiten',
         label_forgot_password: 'Passwort vergessen',
+        label_last_updated_project: 'Zuletzt aktualisiertes Projekt',
+        label_works_in_project: 'In Arbeit',
+        label_words_today: 'Wörter heute',
+        label_words_statistic: 'Wörter-Statistik',
 
         placeholder_working_title: 'Arbeitstitel',
         placeholder_blurb: 'Inhaltsangabe',
@@ -245,6 +249,10 @@ export class TranslationService {
         label_logs: 'Logs',
         label_count_entity: 'Entity',
         label_forgot_password: 'Forgot password',
+        label_last_updated_project: 'Last updated project',
+        label_works_in_project: 'Works in progress',
+        label_words_today: 'Words today',
+        label_words_statistic: 'Words statistic',
 
         placeholder_working_title: 'Working Title',
         placeholder_blurb: 'Blurb',

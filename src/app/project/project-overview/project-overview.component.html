@@ -1,0 +1,10 @@
+ <div class="project-item__header" >
+    <a class="mat-card-title" [routerLink]="['/projects/' + project.id]">{{ project.workingTitle }}</a>
+   <app-project-progress-bar
+     [goalCount]="project.goalCount"
+     [currentCount]="project.currentCount"
+     [maxGoalCount]="project.maxGoalCount"
+     [barOnly]="true"
+   ></app-project-progress-bar>
+</div>
+

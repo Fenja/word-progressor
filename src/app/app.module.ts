@@ -54,6 +54,10 @@ import {
   MomentDateAdapter
 } from "@angular/material-moment-adapter";
 import { ForgotPasswordDialog } from './auth/forgot-password/forgot-password.component';
+import { ProjectOverviewComponent } from './project/project-overview/project-overview.component';
+import { MatListModule } from "@angular/material/list";
+import { SideNavComponent } from './header/side-nav/side-nav.component';
+import { MatSidenavModule } from "@angular/material/sidenav";
 
 @NgModule({
   declarations: [
@@ -77,38 +81,42 @@ import { ForgotPasswordDialog } from './auth/forgot-password/forgot-password.com
     VerifyEmailComponent,
     DashboardComponent,
     ForgotPasswordDialog,
+    ProjectOverviewComponent,
+    SideNavComponent,
   ],
-  imports: [
-    AngularFireModule.initializeApp(environment.FIREBASE_CONFIG),
-    AngularFirestoreModule,
-    AngularFireAuthModule,
+    imports: [
+        AngularFireModule.initializeApp(environment.FIREBASE_CONFIG),
+        AngularFirestoreModule,
+        AngularFireAuthModule,
 
-    AppRoutingModule,
-    BrowserModule,
-    BrowserAnimationsModule,
-    MatCardModule,
-    MatProgressBarModule,
-    MatMenuModule,
-    MatButtonModule,
-    MatTabsModule,
-    RouterModule,
-    MatTableModule,
-    MatFormFieldModule,
-    MatDatepickerModule,
-    MatNativeDateModule,
-    MatSelectModule,
-    MatInputModule,
-    FormsModule,
-    MatToolbarModule,
-    MatIconModule,
-    MatDialogModule,
-    HttpClientModule,
-    MatProgressSpinnerModule,
-    MatCheckboxModule,
-    MatTooltipModule,
-    ReactiveFormsModule,
-    MatSnackBarModule,
-  ],
+        AppRoutingModule,
+        BrowserModule,
+        BrowserAnimationsModule,
+        MatCardModule,
+        MatProgressBarModule,
+        MatMenuModule,
+        MatButtonModule,
+        MatTabsModule,
+        RouterModule,
+        MatTableModule,
+        MatFormFieldModule,
+        MatDatepickerModule,
+        MatNativeDateModule,
+        MatSelectModule,
+        MatInputModule,
+        FormsModule,
+        MatToolbarModule,
+        MatIconModule,
+        MatDialogModule,
+        HttpClientModule,
+        MatProgressSpinnerModule,
+        MatCheckboxModule,
+        MatTooltipModule,
+        ReactiveFormsModule,
+        MatSnackBarModule,
+        MatListModule,
+        MatSidenavModule,
+    ],
   providers: [
     MatDatepickerModule,
     {

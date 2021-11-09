@@ -1,19 +1,26 @@
 <mat-toolbar color="primary">
-  <!--<button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
-    <mat-icon>menu</mat-icon>
-  </button>-->
+  <div class="xs-only">
+    <button
+      mat-icon-button
+      (click)="onToggleSidenav()"
+      >
+      <mat-icon>menu</mat-icon>
+    </button>
+  </div>
+
   <button mat-button [routerLink]="['/']">WordProgressor</button>
 
   <span class="spacer"></span>
 
-  <!--<button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
-    <mat-icon>favorite</mat-icon>
-  </button>
-  <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
-    <mat-icon>share</mat-icon>
-  </button>-->
-  <ul>
-    <!-- <li><a *ngIf="authService.isAnonymous || authService.isLoggedIn" mat-button routerLink="/dashboard" routerLinkActive="mat-accent">{{ 'label_dashboard' | translate }}</a></li>-->
+  <ul class="larger-xs">
+    <li><a
+      *ngIf="authService.isAnonymous || authService.isLoggedIn"
+      mat-button routerLink="/dashboard"
+      routerLinkActive="mat-accent"
+      data-testid="dashboard-label"
+    >
+      {{ 'label_dashboard' | translate }}
+    </a></li>
     <li><a
       *ngIf="authService.isAnonymous || authService.isLoggedIn"
       mat-button routerLink="/projects"
@@ -57,4 +64,5 @@
       </a>
     </li>
   </ul>
+
 </mat-toolbar>

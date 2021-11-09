@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { AuthService } from "../auth/auth.service";
 
 @Component({
@@ -6,6 +6,8 @@ import { AuthService } from "../auth/auth.service";
   templateUrl: './header.component.html'
 })
 export class HeaderComponent {
+
+  @Output() public sidenavToggle = new EventEmitter();
 
   constructor(
     public authService: AuthService
@@ -15,4 +17,7 @@ export class HeaderComponent {
     this.authService.SignOut();
   }
 
+  onToggleSidenav() {
+    this.sidenavToggle.emit();
+  }
 }

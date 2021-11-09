@@ -18,6 +18,7 @@
 
   </div>
   <span
+    *ngIf="!barOnly"
     data-testid="project-word-count"
     class="progress-bars__label"
   >{{ currentCount }} / {{ goalCount }}<span *ngIf="maxGoalCount">-{{ maxGoalCount }}</span></span>

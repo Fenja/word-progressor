@@ -21,4 +21,14 @@ export class UserService {
     this.dataStorageService.editSettings(this.settings);
     this.$filterChange.next();
   }
+
+  getWordsToday(): number {
+    const wordsToday =  this.dataStorageService.user.wordLogs?.find(wl => wl.date == new Date())?.words;
+    return wordsToday ?? 0;
+  }
+
+  isNewUser() {
+    // created today
+    return true;//settings[''];
+  }
 }

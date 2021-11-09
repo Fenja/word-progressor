@@ -1,0 +1,52 @@
+
+  <a
+     *ngIf="authService.isAnonymous || authService.isLoggedIn"
+     routerLink="/dashboard"
+     routerLinkActive="mat-accent"
+     data-testid="projects-label"
+     (click)="onSidenavClose()"
+  >
+    {{ 'label_dashboard' | translate }}
+  </a>
+  <a
+     *ngIf="authService.isAnonymous || authService.isLoggedIn"
+     routerLink="/projects"
+     routerLinkActive="mat-accent"
+     data-testid="projects-label"
+     (click)="onSidenavClose()"
+  >
+    {{ 'label_projects' | translate }}
+  </a>
+
+  <a
+     *ngIf="authService.isAnonymous"
+     data-testid="user-label">
+    {{ 'label_anonymous_user' | translate }}
+  </a>
+
+  <a
+     *ngIf="authService.isLoggedIn"
+     data-testid="logout-button"
+     (click)="onLogout()"
+  >
+    {{ 'label_logout' | translate }}
+  </a>
+
+  <a
+     *ngIf="!authService.isLoggedIn && !authService.isAnonymous"
+     data-testid="login-button"
+     routerLink="/auth"
+     routerLinkActive="mat-accent"
+     (click)="onSidenavClose()"
+  >
+    {{ 'label_login' | translate }}
+  </a>
+
+  <a
+     *ngIf="authService.isAnonymous || authService.isLoggedIn"
+     routerLink="/settings"
+     routerLinkActive="mat-accent"
+     data-testid="settings-button"
+     >
+    {{ 'label_settings' | translate }}
+  </a>
