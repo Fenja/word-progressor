@@ -1,5 +1,5 @@
 import { Component, OnDestroy } from '@angular/core';
-import { Project } from "../project/project.model";
+import { Project, WordLog } from "../project/project.model";
 import { ProjectService } from "../project/project.service";
 import { UserService } from "../services/user.service";
 import { Subscription } from "rxjs";
@@ -12,6 +12,7 @@ import Utils from "../helpers/utils";
 export class DashboardComponent implements OnDestroy {
 
   wordsToday = 0;
+  userWordLogs: WordLog[] | undefined;
   isNewUser = true;
   wips: Project[] = [];
   wordStatistics: any;
@@ -28,7 +29,9 @@ export class DashboardComponent implements OnDestroy {
     ));
 
     this.subscriptions.push(this.userService.getUser().subscribe(u => {
-      this.wordsToday = u.wordLogs?.find(log => log.date === Utils.normalizedToday().toString())?.words ?? 0;
+      this.userWordLogs = u.wordLogs;
+      const logToday = u.wordLogs?.find(log => log.date === Utils.normalizedToday().toString());
+      this.wordsToday = logToday?.words ?? 0;
     }));
     this.isNewUser = this.userService.isNewUser();
   }

@@ -24,7 +24,9 @@ export class UserService {
   }
 
   getUser(): Subject<userData> {
-    return this.dataStorageService.user$;
+    let userSubject = this.dataStorageService.user$;
+    this.dataStorageService.fetchUser();
+    return userSubject;
   }
 
   isNewUser() {

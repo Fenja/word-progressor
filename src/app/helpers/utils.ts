@@ -1,7 +1,9 @@
 export default class Utils {
 
   static normalizedToday(): number {
-    return Utils.normalizeDate(new Date);
+    let today = new Date();
+    today.setHours(0,0,0,0);
+    return Utils.normalizeDate(today);
   }
 
   static normalizeDate(date: Date): number {
