@@ -1,12 +1,8 @@
 import { Injectable } from '@angular/core';
-import { CountEntity, Project } from "../project/project.model";
+import { CountEntity, Project, WordLog } from "../project/project.model";
 import { ProjectService } from "../project/project.service";
 import { DataStorageService } from "./data-storage.service";
-
-export interface WordLog {
-  date: Date;
-  words: number; // can be negative
-}
+import Utils from "../helpers/utils";
 
 @Injectable({
   providedIn: 'root'
@@ -18,34 +14,34 @@ export class LogWordsService {
     private dataStorageService: DataStorageService,
   ) { }
 
-  logWords(id: string, project: Project, wordLog: WordLog) {
-    if (!project.wordLogs) project.wordLogs = [];
-    project.wordLogs = this.addWordsToLog(project.wordLogs!, wordLog);
+  logWords(id: string, project: Project, date: Date, words: number) {
+    if (!project.wordLogs && !!project.wordLogsString) project.wordLogs = JSON.parse(project.wordLogsString);
+    project.wordLogs = this.addWordsToLog(project.wordLogs, date, words);
+    project.wordLogsString = JSON.stringify(project.wordLogs);
     this.projectService.editProject(id, project);
 
     // do not log characters or pages to user stats
     if (project.countEntity === CountEntity.words) {
       let user = this.dataStorageService.user;
-      if (!user.wordLogs) user.wordLogs = [];
-      user.wordLogs = this.addWordsToLog(user.wordLogs!, wordLog);
+      if (!user.wordLogs && !! user.wordLogsString) user.wordLogs = JSON.parse(user.wordLogsString);
+      user.wordLogs = this.addWordsToLog(user.wordLogs, date, words);
+      user.wordLogsString = JSON.stringify(user.wordLogs);
       this.dataStorageService.editUser(user.id!, user);
     }
   }
 
-  getUserLogs() {
-    return this.dataStorageService.user.wordLogs;
-  }
-
-  private addWordsToLog(wordLogs: WordLog[], wordLog: WordLog): WordLog[] {
-    let logDate = new Date(wordLog.date).getTime();
-    let existingLog = wordLogs.find(entry => new Date(entry.date).getTime() === logDate);
-    if (!existingLog) {
-      wordLogs.push(wordLog);
+  public addWordsToLog(wordLogs: WordLog[] | undefined, date: Date, words: number): WordLog[] {
+    if (!wordLogs || wordLogs.length <= 0) wordLogs = [];
+    let logDate = Utils.normalizeDate(date).toString();
+    let existingEntry = wordLogs.find(log => log.date === logDate);
+    if (existingEntry) {
+      words += existingEntry.words;
+      const index = wordLogs.indexOf(existingEntry);
+      wordLogs[index] = {date: logDate, words: words};
     } else {
-      let newLog: WordLog = {words: existingLog.words + wordLog.words, date: existingLog.date};
-      let index = wordLogs.findIndex(l => l === existingLog);
-      wordLogs[index] = newLog;
+      wordLogs.push({date: logDate, words: words});
     }
     return wordLogs;
   }
+
 }

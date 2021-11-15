@@ -1,6 +1,3 @@
-import { WordLog } from "../services/log-words.service";
-
-
 export interface Project {
   workingTitle: string;
   description: string;
@@ -21,7 +18,13 @@ export interface Project {
   id?: string;
 
   wordLogs?: WordLog[];
+  wordLogsString?: string; // https://stackoverflow.com/questions/49301861/firebase-saving-objects-with-maps
   notes?: Note[];
+}
+
+export interface WordLog {
+  date: string;
+  words: number,
 }
 
 export interface Note {

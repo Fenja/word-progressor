@@ -79,9 +79,8 @@ export class AddWordsDialogComponent implements OnInit {
     if (words === 0) return;
     this.data.project.currentCount += words;
     if (!!this.date) {
-      this.logWordsService.logWords(this.data.id, this.data.project, {words: words, date: this.date});
+      this.logWordsService.logWords(this.data.id, this.data.project, this.date, words);
     }
-    this.projectService.editProject(this.data.id, this.data.project);
     this.snackBarService.showSnackBar(words + this.translationService.translate('msg_words_added'))
   }
 

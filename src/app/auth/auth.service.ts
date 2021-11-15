@@ -8,6 +8,7 @@ import { AngularFireAuth } from "@angular/fire/compat/auth";
 import { BehaviorSubject, Subscription } from "rxjs";
 import { SnackbarService } from "../services/snackbar.service";
 import { TranslationService } from "../translation/translation.service";
+import { userData } from "./user.model";
 
 export interface AuthResponseData {
   kind: string;
@@ -57,6 +58,9 @@ export class AuthService implements OnDestroy {
       } else {
         this.$userToken.next('');
         localStorage.setItem('user', '');
+        this.ngZone.run(() => {
+          this.router.navigate(['/auth']).then();
+        })
       }
     });
   }

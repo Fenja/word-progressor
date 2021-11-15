@@ -1,4 +1,4 @@
-import { WordLog } from "../services/log-words.service";
+import { WordLog } from "../project/project.model";
 
 export interface userData {
   email?: string;
@@ -10,26 +10,9 @@ export interface userData {
 
   achievements?: string[]; // list of achievements
   wordLogs?: WordLog[]; // collected from all projects
+  wordLogsString?: string;
   lastLogin?: Date;
 }
-
-/*export class User {
-  constructor(
-    public email: string,
-    public id: string,
-    private _token: string | null,
-    private _tokenExpirationDate: Date
-  ) {
-  }
-
-  get token() {
-    if (!this._tokenExpirationDate || new Date() > this._tokenExpirationDate) {
-      return null;
-    } else {
-      return this._token;
-    }
-  }
-}*/
 
 export interface User {
   uid: string;

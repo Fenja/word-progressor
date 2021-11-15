@@ -112,6 +112,7 @@ export class DataStorageService {
   }
 
   editProject(id: string, project: Project) {
+    console.log('edit project');
     if (this.authService.isAnonymous) {
       this._editProjectInStorage(id, project);
     } else {
@@ -126,12 +127,14 @@ export class DataStorageService {
   }
 
   _editProjectAtAPI(id: string, project: Project) {
+    console.log('project before', project);
     this.http.put(
       environment.FIREBASE_CONFIG.databaseURL+this._getUserId()+'/projects/'+id+'.json',
       project
     ).subscribe(() => {
       this._fetchProjects();
     });
+    this.http.get(environment.FIREBASE_CONFIG.databaseURL+this._getUserId()+'/projects/'+id+'.json').subscribe(p => console.log('project after', p));
   }
 
   deleteProject(id: string) {
@@ -183,15 +186,16 @@ export class DataStorageService {
   }
 
   _fetchUserFromAPI() {
+    const id = this._getUserId();
+    if (!id) return;
     this.http.get<{ [key: string]: userData }>(
-      environment.FIREBASE_CONFIG.databaseURL+this._getUserId()+'/user.json'
+      environment.FIREBASE_CONFIG.databaseURL+id+'/user.json'
     )
     .pipe(
       take(1),
     )
     .subscribe(
       (user) => {
-        console.log(user);
         if (!user) {
           this.createNewUser();
         } else {
@@ -203,6 +207,7 @@ export class DataStorageService {
   }
 
   editUser(id: string, user: userData) {
+    console.log('edit user');
     this.user = user;
     if (this.authService.isAnonymous) {
       this._editUserInStorage();

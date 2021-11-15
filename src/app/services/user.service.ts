@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Subject } from "rxjs";
 import { DataStorageService } from "./data-storage.service";
+import { userData } from "../auth/user.model";
 
 @Injectable({
   providedIn: 'root'
@@ -22,9 +23,8 @@ export class UserService {
     this.$filterChange.next();
   }
 
-  getWordsToday(): number {
-    const wordsToday =  this.dataStorageService.user.wordLogs?.find(wl => wl.date == new Date())?.words;
-    return wordsToday ?? 0;
+  getUser(): Subject<userData> {
+    return this.dataStorageService.user$;
   }
 
   isNewUser() {
