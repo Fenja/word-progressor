@@ -4,7 +4,6 @@ import { TranslationService } from "../translation/translation.service";
 import { Router } from "@angular/router";
 import { SnackbarService } from "../services/snackbar.service";
 import { DataStorageService } from "../services/data-storage.service";
-import { userData } from "../auth/user.model";
 
 @Component({
   selector: 'app-settings',
