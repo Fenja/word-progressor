@@ -15,17 +15,13 @@ export class LogWordsService {
   ) { }
 
   logWords(id: string, project: Project, date: Date, words: number) {
-    if (!project.wordLogs && !!project.wordLogsString) project.wordLogs = JSON.parse(project.wordLogsString);
     project.wordLogs = this.addWordsToLog(project.wordLogs, date, words);
-    project.wordLogsString = JSON.stringify(project.wordLogs);
     this.projectService.editProject(id, project);
 
     // do not log characters or pages to user stats
     if (project.countEntity === CountEntity.words) {
       let user = this.dataStorageService.user;
-      if (!user.wordLogs && !! user.wordLogsString) user.wordLogs = JSON.parse(user.wordLogsString);
       user.wordLogs = this.addWordsToLog(user.wordLogs, date, words);
-      user.wordLogsString = JSON.stringify(user.wordLogs);
       this.dataStorageService.editUser(user.id!, user);
     }
   }

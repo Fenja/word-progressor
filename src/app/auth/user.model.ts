@@ -10,7 +10,6 @@ export interface userData {
 
   achievements?: string[]; // list of achievements
   wordLogs?: WordLog[]; // collected from all projects
-  wordLogsString?: string;
   lastLogin?: Date;
 }
 

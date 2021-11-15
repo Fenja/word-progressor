@@ -28,8 +28,6 @@ export class DashboardComponent implements OnDestroy {
     ));
 
     this.subscriptions.push(this.userService.getUser().subscribe(u => {
-      console.log('user at dashboard', u);
-      if (!u.wordLogs && !!u.wordLogsString) u.wordLogs = JSON.parse(u.wordLogsString);
       this.wordsToday = u.wordLogs?.find(log => log.date === Utils.normalizedToday().toString())?.words ?? 0;
     }));
     this.isNewUser = this.userService.isNewUser();

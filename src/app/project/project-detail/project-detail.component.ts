@@ -30,9 +30,6 @@ export class ProjectDetailComponent implements OnInit {
         let result: Project | undefined = this.projectService.getProject(this.id);
         if (!!result) {
           this.project = result;
-          if (!!this.project.wordLogsString) {
-            this.project.wordLogs = JSON.parse(this.project.wordLogsString);
-          }
         } else {
           // TODO show error
           console.log('project with id ' + this.id + ' not found');

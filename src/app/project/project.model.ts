@@ -18,7 +18,6 @@ export interface Project {
   id?: string;
 
   wordLogs?: WordLog[];
-  wordLogsString?: string; // https://stackoverflow.com/questions/49301861/firebase-saving-objects-with-maps
   notes?: Note[];
 }
 
