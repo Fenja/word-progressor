@@ -59,6 +59,7 @@ import { MatListModule } from "@angular/material/list";
 import { SideNavComponent } from './header/side-nav/side-nav.component';
 import { MatSidenavModule } from "@angular/material/sidenav";
 import { AddNoteDialogComponent } from './project/add-note-dialog/add-note-dialog.component';
+import { TakeActionComponent } from './project/take-action/take-action.component';
 
 @NgModule({
   declarations: [
@@ -85,6 +86,7 @@ import { AddNoteDialogComponent } from './project/add-note-dialog/add-note-dialo
     ProjectOverviewComponent,
     SideNavComponent,
     AddNoteDialogComponent,
+    TakeActionComponent,
   ],
     imports: [
         AngularFireModule.initializeApp(environment.FIREBASE_CONFIG),

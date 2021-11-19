@@ -72,17 +72,23 @@ export enum ProjectState {
   alpha = 'alpha',
   beta = 'beta',
   editor = 'editor',
-  submited = 'submited',
+  finished = 'finished',
+  submitted = 'submitted',
   wait = 'wait',
   published = 'published',
   abandon = 'abandon'
 }
 
-export enum ProjectEvents {
-  started = 'started',
+export enum ProjectEvent {
+  start = 'start',
   finish_first_draft = 'finish_first_draft',
+  finish_revision = 'finish_revision',
+  start_revision = 'start_revision',
+  send_alpha = 'send_alpha',
   send_beta = 'send_beta',
+  send_editor = 'send_editor',
   submit = 'submit',
+  rejected = 'rejected',
   publish = 'publish',
   lay_aside = 'lay_aside'
 }

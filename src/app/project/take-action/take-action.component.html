@@ -1,0 +1,11 @@
+<button
+  mat-icon-button
+  color="primary"
+  matTooltip="{{ 'tooltip_take_action' | translate }}"
+  [matMenuTriggerFor]="menu"
+>
+  <mat-icon>pending</mat-icon>
+</button>
+<mat-menu #menu="matMenu">
+    <button *ngFor="let action of projectActions" mat-menu-item (click)="takeAction(action)">{{ action | translate }}</button>
+</mat-menu>
