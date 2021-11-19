@@ -19,6 +19,10 @@ export interface Project {
 
   wordLogs?: WordLog[];
   notes?: Note[];
+  genre?: string;
+  reward?: string;
+  eventLink?: string; // event or submission ids
+  publication?: Publication;
 }
 
 export interface WordLog {
@@ -30,6 +34,13 @@ export interface Note {
   id?: string;
   index: number;
   content: string;
+}
+
+export interface Publication {
+  date?: Date;
+  title?: string; // collection or anthology title
+  publisher?: string; // or selfpub
+  link?: string;
 }
 
 export enum ProjectType {
@@ -61,10 +72,19 @@ export enum ProjectState {
   alpha = 'alpha',
   beta = 'beta',
   editor = 'editor',
-  submit = 'submit',
+  submited = 'submited',
   wait = 'wait',
-  publish = 'publish',
+  published = 'published',
   abandon = 'abandon'
+}
+
+export enum ProjectEvents {
+  started = 'started',
+  finish_first_draft = 'finish_first_draft',
+  send_beta = 'send_beta',
+  submit = 'submit',
+  publish = 'publish',
+  lay_aside = 'lay_aside'
 }
 
 export enum CountEntity {

@@ -1,4 +1,4 @@
-<form
+<form *ngIf="project"
   class="form-group"
   (ngSubmit)="onSubmit()"
   #projectForm="ngForm"
@@ -20,6 +20,18 @@
       <mat-error *ngIf="!titleId.valid">{{ 'error_required' | translate }}</mat-error>
     </mat-form-field>
 
+    <mat-form-field color="primary">
+      <mat-label>{{ 'label_genre' | translate }}</mat-label>
+      <input
+        matInput
+        type="text"
+        name="genre"
+        class="form-control"
+        data-testid="genre-input"
+        [(ngModel)]="project.genre"
+      >
+    </mat-form-field>
+
     <mat-checkbox
       name="workInProgress"
       color="primary"
@@ -30,21 +42,20 @@
     </mat-checkbox>
 
     <mat-form-field color="primary" class="full-width">
-      <!--<label for="description">Blurb</label>-->
       <textarea
         matInput
         id="description"
         name="description"
         rows="3"
-        placeholder="{{'placeholder_blurb' | translate}}"
+        placeholder="{{ 'placeholder_blurb' | translate }}"
         class="form-control"
         data-testid="description-input"
         [(ngModel)]="project.description"
 
       ></textarea>
     </mat-form-field>
-    <!--<mat-form-field color="primary">
-      <mat-label>{{'label_image' | translate}}</mat-label>
+    <mat-form-field color="primary">
+      <mat-label>{{ 'label_image' | translate }}</mat-label>
       <input
         matInput
         name="imgPath"
@@ -56,12 +67,12 @@
         [(ngModel)]="project.imagePath"
       >
       <mat-error *ngIf="!pathId.valid">{{ 'error_invalid_path' | translate }}</mat-error>
-    </mat-form-field>-->
+    </mat-form-field>
   </div>
 
   <div>
     <mat-form-field color="primary">
-      <mat-label>{{'label_project_type' | translate}}</mat-label>
+      <mat-label>{{ 'label_project_type' | translate }}</mat-label>
       <mat-select
         name="type"
         class="form-control"
@@ -91,9 +102,8 @@
   </div>
 
   <div>
-
     <mat-form-field color="primary">
-      <mat-label>{{'label_current_word_count' | translate}}</mat-label>
+      <mat-label>{{ 'label_current_word_count' | translate }}</mat-label>
       <input
         type="number"
         name="currentWordcount"
@@ -108,7 +118,7 @@
     </mat-form-field>
 
     <mat-form-field color="primary">
-      <mat-label>{{'label_count_entity' | translate}}</mat-label>
+      <mat-label>{{ 'label_count_entity' | translate }}</mat-label>
       <mat-select
         name="count-entity"
         class="form-control"
@@ -120,7 +130,7 @@
     </mat-form-field>
 
     <mat-form-field color="primary">
-      <mat-label>{{'label_goal_word_count' | translate}}</mat-label>
+      <mat-label>{{ 'label_goal_word_count' | translate }}</mat-label>
       <input
         type="number"
         name="goalWordcount"
@@ -134,21 +144,56 @@
       <mat-error *ngIf="!goalCountId.valid">{{ 'error_invalid_value' | translate }}</mat-error>
     </mat-form-field>
 
-<mat-form-field color="primary">
-      <mat-label>{{'label_max_goal_word_count' | translate}}</mat-label>
-      <input
-        type="number"
-        name="maxGoalWordcount"
-        #maxGoalCountId="ngModel"
-        matInput
-        gteValidator [gteNum]=project.goalCount
-        class="form-control"
-        data-testid="max-goal-wordcount-input"
-        [(ngModel)]="project.maxGoalCount"
-      >
-  <mat-error *ngIf="!maxGoalCountId.valid">{{ 'error_invalid_value' | translate }}</mat-error>
+    <mat-form-field color="primary">
+        <mat-label>{{ 'label_max_goal_word_count' | translate }}</mat-label>
+        <input
+          type="number"
+          name="maxGoalWordcount"
+          #maxGoalCountId="ngModel"
+          matInput
+          gteValidator [gteNum]=project.goalCount
+          class="form-control"
+          data-testid="max-goal-wordcount-input"
+          [(ngModel)]="project.maxGoalCount"
+        />
+      <mat-error *ngIf="!maxGoalCountId.valid">{{ 'error_invalid_value' | translate }}</mat-error>
     </mat-form-field>
 
+  </div>
+
+  <div>
+    <a class="show-more-link" (click)="showMore = !showMore">
+      <span *ngIf="showMore">{{ 'label_show_less' | translate }}</span>
+      <span *ngIf="!showMore">{{ 'label_show_more' | translate }}</span>
+    </a>
+  </div>
+  <div *ngIf="showMore">
+    <mat-form-field color="primary">
+      <mat-label>{{ 'label_reward' | translate }}</mat-label>
+      <textarea
+        matInput
+        id="reward"
+        name="reward"
+        rows="2"
+        placeholder="{{ 'placeholder_reward' | translate }}"
+        class="form-control"
+        data-testid="reward-input"
+        [(ngModel)]="project.reward"
+      ></textarea>
+    </mat-form-field>
+
+
+    <mat-form-field color="primary">
+      <mat-label>{{ 'label_event' | translate }}</mat-label>
+      <input
+        matInput
+        type="text"
+        name="eventLink"
+        class="form-control"
+        data-testid="event-input"
+        [(ngModel)]="project.eventLink"
+      >
+    </mat-form-field>
   </div>
 
   <div class="button-row">

@@ -7,6 +7,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 export class DeadlinePickerComponent {
 
   @Input() deadline: Date | undefined;
+  @Input() label: string = 'label_deadline';
   @Output() deadlineChange = new EventEmitter<Date | undefined>();
 
   constructor() { }

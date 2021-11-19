@@ -1,7 +1,7 @@
 <div class="content">
   <h2 data-testid="project-title">{{ project.workingTitle }}</h2>
   <div class="mat-card-subtitle">
-    <span>{{ project.type | translate }}</span>  -  <span>{{ project.state | translate }}</span><span *ngIf="project.isWorkInProgress" class="project-wip"> - {{ 'label_wip' | translate }}</span>
+    <span>{{ project.type | translate }}</span><span *ngIf="project.genre" > - {{ project.genre }}</span>  -  <span>{{ project.state | translate }}</span><span *ngIf="project.isWorkInProgress" class="project-wip"> - {{ 'label_wip' | translate }}</span>
 
   </div>
 
@@ -32,6 +32,17 @@
     <i class="mat-icon material-icons">event</i>
     <span>{{ project.deadline | date }}</span>
   </div>
+</div>
+
+
+<div class="content" *ngIf="project.reward">
+  <h3>{{ 'label_reward' | translate }}</h3>
+  <div>{{ project.reward }}</div>
+</div>
+
+<div class="content" *ngIf="project.eventLink">
+  <h3>{{ 'label_event' | translate }}</h3>
+  <div>{{ project.eventLink }}</div>
 </div>
 
 <div class="content" *ngIf="project.wordLogs">

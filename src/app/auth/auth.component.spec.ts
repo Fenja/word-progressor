@@ -95,10 +95,6 @@ describe('AuthComponent', () => {
 
   });
 
-  it('rejects submission of empty form', () => {
-    component.onSubmit();
-    expect(component.isSubmitted).toBeFalsy();
-  });
 
   it('rejects invalid email input', fakeAsync(() => {
     expect(component.form.value.email).toBeTruthy();

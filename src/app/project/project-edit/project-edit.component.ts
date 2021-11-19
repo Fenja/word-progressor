@@ -50,6 +50,7 @@ export class ProjectEditComponent implements OnInit {
     creationDate: new Date(),
     lastUpdate: new Date(),
   }
+  showMore: boolean = false;
 
   eProjectType = ProjectType;
   eProjectState = ProjectState;
