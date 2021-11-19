@@ -4,6 +4,7 @@ import { ProjectService } from "../project.service";
 import { ActivatedRoute, Params, Router } from "@angular/router";
 import { AddWordsDialogComponent } from "../add-words-dialog/add-words-dialog.component";
 import { MatDialog } from "@angular/material/dialog";
+import { AddNoteDialogComponent } from "../add-note-dialog/add-note-dialog.component";
 
 @Component({
   selector: 'app-project-detail',
@@ -52,6 +53,17 @@ export class ProjectDetailComponent implements OnInit {
     if (confirm("Are you sure to delete "+this.project.workingTitle)) {
       this.projectService.deleteProject(this.id, this.project.workingTitle);
       this.router.navigate(['/projects']).then();
+    }
+  }
+
+  addNote() {
+    if (this.project) {
+      this.dialog.open(AddNoteDialogComponent, {
+        data: {
+          id: this.project.id,
+          project: this.project
+        }
+      });
     }
   }
 }

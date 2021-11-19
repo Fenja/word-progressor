@@ -1,6 +1,6 @@
 <mat-card class="project-item">
   <mat-card-header class="project-item__header">
-    <mat-card-title>{{ project.workingTitle }}</mat-card-title>
+    <mat-card-title [routerLink]="[project.id]">{{ project.workingTitle }}</mat-card-title>
     <mat-card-subtitle [ngClass]="project.isWorkInProgress ? 'project-wip' : ''">{{ project.state | translate }}</mat-card-subtitle>
     <span class="project-type">{{ project.type | translate }}</span>
     </mat-card-header>
@@ -30,11 +30,11 @@
       [routerLink]="[project.id]"
       data-testid="project-detail-button"
     >{{'button_details' | translate}}</button>
-    <button
+    <!--<button
       mat-stroked-button
       [routerLink]="[project.id+'/edit']"
       data-testid="project-edit-button"
-    >{{'button_edit' | translate}}</button>
+    >{{'button_edit' | translate}}</button>-->
 
     <button *ngIf="project.countEntity === eCountEntity.words"
       mat-raised-button
@@ -56,6 +56,23 @@
       (click)="addToProject()"
       data-testid="project-pages-button"
     >{{ 'button_add_pages' | translate}}</button>
+
+    <button
+      mat-icon-button
+      color="primary"
+      matTooltip="{{ 'button_edit' | translate }}"
+      [routerLink]="[project.id+'/edit']"
+      data-testid="project-edit-button"
+    ><mat-icon>edit</mat-icon>
+    </button>
+
+    <button
+      mat-icon-button
+      color="accent"
+      matTooltip="{{ 'button_add_note' | translate }}"
+      (click)="addNote()"
+    ><mat-icon>note_add</mat-icon>
+    </button>
 
   </mat-card-actions>
 

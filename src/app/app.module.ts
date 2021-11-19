@@ -58,6 +58,7 @@ import { ProjectOverviewComponent } from './project/project-overview/project-ove
 import { MatListModule } from "@angular/material/list";
 import { SideNavComponent } from './header/side-nav/side-nav.component';
 import { MatSidenavModule } from "@angular/material/sidenav";
+import { AddNoteDialogComponent } from './project/add-note-dialog/add-note-dialog.component';
 
 @NgModule({
   declarations: [
@@ -83,6 +84,7 @@ import { MatSidenavModule } from "@angular/material/sidenav";
     ForgotPasswordDialog,
     ProjectOverviewComponent,
     SideNavComponent,
+    AddNoteDialogComponent,
   ],
     imports: [
         AngularFireModule.initializeApp(environment.FIREBASE_CONFIG),

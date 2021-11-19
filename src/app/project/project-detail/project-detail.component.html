@@ -54,15 +54,17 @@
   </ol>
 </div>
 
+<div class="content" *ngIf="project.notes">
+  <h3>{{ 'label_notes' | translate }}</h3>
+  <ol>
+    <li *ngFor="let note of project.notes">
+      <span>{{ note.content }}</span>
+    </li>
+  </ol>
+</div>
+
 <div class="content">
   <div class="button-row">
-    <button
-      mat-raised-button
-      color="primary"
-      [routerLink]="['/projects/'+id+'/edit']"
-      data-testid="project-edit-button"
-    >{{ 'button_edit' | translate }}</button>
-
     <button *ngIf="project.countEntity === eCountEntity.words"
             mat-raised-button
             color="primary"
@@ -83,6 +85,20 @@
             (click)="addToProject()"
             data-testid="project-pages-button"
     >{{ 'button_add_pages' | translate}}</button>
+
+    <button
+      mat-raised-button
+      color="primary"
+      [routerLink]="['/projects/'+id+'/edit']"
+      data-testid="project-edit-button"
+    >{{ 'button_edit' | translate }}</button>
+
+    <button
+            mat-raised-button
+            color="accent"
+            (click)="addNote()"
+            data-testid="project-notes-button"
+    >{{ 'button_add_note' | translate}}</button>
 
     <button
       mat-stroked-button
