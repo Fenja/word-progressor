@@ -22,10 +22,16 @@ $angular-dark-theme: mat.define-dark-theme((
 
 @media (prefers-color-scheme: light) {
   @include mat.all-component-colors($angular-default-theme);
+  .mat-link {
+    color: $light-primary-text;
+  }
 }
 
 @media (prefers-color-scheme: dark) {
   @include mat.all-component-colors($angular-dark-theme);
+  .mat-link {
+    color: $dark-primary-text;
+  }
 }
 
 @media screen and (max-width: 600px) {
@@ -149,6 +155,10 @@ ul {
       // TODO accent color
     }
   }
+}
+
+.mat-link {
+  color: $light-primary-text;
 }
 
 .project-list {
