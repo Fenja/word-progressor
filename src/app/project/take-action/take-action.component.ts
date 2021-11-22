@@ -4,6 +4,9 @@ import Utils from "../../helpers/utils";
 import { SnackbarService } from "../../services/snackbar.service";
 import { TranslationService } from "../../translation/translation.service";
 import { ProjectService } from "../project.service";
+import { MatDialog } from "@angular/material/dialog";
+import { PublicationDialogComponent } from "../../publication/publication-dialog/publication-dialog.component";
+import { RewardDialogComponent } from "../reward-dialog/reward-dialog.component";
 
 @Component({
   selector: 'app-take-action',
@@ -18,6 +21,7 @@ export class TakeActionComponent implements OnInit {
     private snackBarService: SnackbarService,
     private translateService: TranslationService,
     private projectService: ProjectService,
+    private dialog: MatDialog,
   ) {}
 
   ngOnInit(): void {
@@ -33,9 +37,11 @@ export class TakeActionComponent implements OnInit {
         break;
       case ProjectEvent.finish_first_draft:
         this.project.state = ProjectState.wait;
+        this.rewardYourself(ProjectEvent.finish_first_draft);
         break;
       case ProjectEvent.finish_revision:
         this.project.state = ProjectState.finished;
+        this.rewardYourself(ProjectEvent.finish_revision);
         break;
       case ProjectEvent.send_alpha:
         this.project.state = ProjectState.revise;
@@ -49,6 +55,7 @@ export class TakeActionComponent implements OnInit {
       case ProjectEvent.submit:
         this.project.state = ProjectState.submitted;
         this.project.isWorkInProgress = false;
+        this.rewardYourself(ProjectEvent.submit);
         break;
       case ProjectEvent.rejected:
         this.project.state = ProjectState.finished;
@@ -56,6 +63,7 @@ export class TakeActionComponent implements OnInit {
       case ProjectEvent.publish:
         this.project.state = ProjectState.published;
         this.project.isWorkInProgress = false;
+        this.rewardYourself(ProjectEvent.publish);
         this.createPublication();
         break;
       case ProjectEvent.lay_aside:
@@ -68,6 +76,19 @@ export class TakeActionComponent implements OnInit {
   }
 
   private createPublication() {
-    // TODO show dialog with publication edit
+    this.dialog.open(PublicationDialogComponent, {
+      data: {
+        project: this.project
+      }
+    });
+  }
+
+  private rewardYourself(event: ProjectEvent) {
+    this.dialog.open(RewardDialogComponent, {
+      data: {
+        project: this.project,
+        event
+      }
+    });
   }
 }

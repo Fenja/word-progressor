@@ -63,6 +63,14 @@
   </ol>
 </div>
 
+<div class="content" *ngIf="project.publication">
+  <h3>{{ 'label_publication' | translate }}</h3>
+  <app-publication
+  [project]="project"
+  [publication]="project.publication"
+  ></app-publication>
+</div>
+
 <div class="content">
   <div class="button-row">
     <button *ngIf="project.countEntity === eCountEntity.words"

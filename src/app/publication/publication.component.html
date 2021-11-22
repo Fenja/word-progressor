@@ -1,0 +1,16 @@
+<mat-card>
+  <h3>{{ publication.title }}</h3>
+  <h2>{{ project.workingTitle }}</h2>
+
+  <img *ngIf="publication.cover"
+       alt="{{ publication.title }}"
+       src="{{ publication.cover }}"
+       data-testid="project-image"
+  >
+
+  <div class="publication-info">
+    <h4 *ngIf="publication.publisher">{{ publication.publisher }}</h4>
+    <span *ngIf="publication.date">{{ publication.date }}</span>
+    <span *ngIf="publication.link">{{ publication.link }}</span>
+  </div>
+</mat-card>

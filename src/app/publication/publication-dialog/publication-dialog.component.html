@@ -1,0 +1,15 @@
+<h3 mat-dialog-title>{{ 'headline_publication' | translate }}</h3>
+<mat-dialog-content>
+  <app-publication-edit
+    [publication]="publication"
+  ></app-publication-edit>
+
+  <mat-dialog-actions>
+    <button mat-stroked-button color="accent" (click)="close()">
+      {{'button_later' | translate}}
+    </button>
+    <button mat-raised-button color="primary" (click)="addPublication()">
+      {{ 'button_add' | translate}}
+    </button>
+  </mat-dialog-actions>
+</mat-dialog-content>

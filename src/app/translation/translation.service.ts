@@ -90,6 +90,9 @@ export class TranslationService {
         button_google_register: 'Mit Google registrieren',
         button_send_reset_mail: 'Email zum Zurücksetzen versenden',
         button_add_note: 'Notiz hinzufügen',
+        button_later: 'Später',
+        button_reward_now: 'Jetzt belohnen',
+        button_delete_publication: 'Veröffentlichung löschen',
 
         label_current_word_count: 'Aktuelle Wortzahl',
         label_goal_word_count: 'Angestrebte Wortzahl',
@@ -128,12 +131,15 @@ export class TranslationService {
         label_reward: 'Belohnung',
         label_show_more: 'Mehr anzeigen',
         label_show_less: 'Weniger anzeigen',
+        label_publication: 'Veröffentlichung',
         label_publication_date: 'Veröffentlichungsdatum',
         label_publisher: 'Verlag',
         label_collection_title: 'Titel des Bandes',
         label_shoplink: 'Link zur Veröffentlichung',
         label_event: 'Schreib-Event',
         label_notes: 'Notizen',
+        label_cover: 'Cover',
+        label_publication_link: 'Link zur Veröffentlichung',
 
         placeholder_working_title: 'Arbeitstitel',
         placeholder_blurb: 'Inhaltsangabe',
@@ -174,6 +180,7 @@ export class TranslationService {
         msg_reset_pw_email: 'Email zum Zurücksetzen des Passworts wurde versandt',
         msg_word_count_words_only: 'Zeichen und Seiten werden nicht zur Wort-Statistik hinzugefügt',
         msg_note_added: 'Notiz wurde zum Projekt hinzugefügt',
+        msg_publication_added: 'Veröffentlichung wurde zum Projekt hinzugefügt',
         msg_start: ' wurde begonnen',
         msg_finish_first_draft: ' wurde im ersten Entwurf beendet',
         msg_finish_revision: ': Überarbeitung beenden',
@@ -185,6 +192,12 @@ export class TranslationService {
         msg_rejected: ' wurde abgelehnt',
         msg_publish: ' wurde veröffentlicht!',
         msg_lay_aside: ' wird erstmal beiseite gelegt',
+        msg_reward_default: 'Gut gemacht!',
+        msg_reward_first_draft: 'Du hast deinen ersten Entwurf fertig. Der erste Schritt zu einem großartigen Werk. Weiter so!',
+        msg_reward_submit: 'Du hast deine Geschichte eingesandt. Die Daumen sind gedrückt, aber das hier ist schon für sich ein Erfolg!',
+        msg_reward_publish: 'Du hast es geschafft, deine Geschichte zu veröffentlichen. Der finale Schritt allen zu beweisen, dass du SchriftstellerIn bist. Du kannst stolz auf dich sein.',
+        msg_reward_specified: 'Du hast dir für dieses Projekt eine Belohnung gesetzt. Ist es jetzt an der Zeit, deine Errungenschaft zu feiern?',
+        msg_reward_unspecified: 'Feiere deinen Erfolg! Ein Prost auf dich.',
 
         text_anonymous_dialog: `Wenn der WordProgressor ohne Konto genutzt wird, werden die Daten lokal gespeichert.\n
             Sie können dann weder synchronisiert, noch von einem anderen Gerät aus abgerufen werden.\n
@@ -272,6 +285,9 @@ export class TranslationService {
         button_google_register: 'Sign up with Google',
         button_send_reset_mail: 'Send email to reset password',
         button_add_note: 'Add note',
+        button_later: 'Later',
+        button_reward_now: 'Reward now',
+        button_delete_publication: 'Delete publication',
 
         label_current_word_count: 'Current Word Count',
         label_goal_word_count: 'Goal Word Count',
@@ -310,12 +326,15 @@ export class TranslationService {
         label_reward: 'Reward',
         label_show_more: 'Show more',
         label_show_less: 'Show less',
+        label_publication: 'Publication',
         label_publication_date: 'Publication date',
         label_publisher: 'Publisher',
         label_collection_title: 'Collection title',
         label_shoplink: 'Link to shop',
         label_event: 'Writing event',
         label_notes: 'Notes',
+        label_cover: 'Cover',
+        label_publication_link: 'Link to publication',
 
         placeholder_working_title: 'Working Title',
         placeholder_blurb: 'Blurb',
@@ -334,6 +353,7 @@ export class TranslationService {
         headline_publication: 'Publication',
         headline_submission: 'Submission',
         headline_event: 'Event',
+        headline_congrats: 'Congrats',
 
         error_unknown: 'An unexpected error occured.',
         error_email_exists: 'The email address is already in use by another account.',
@@ -356,6 +376,7 @@ export class TranslationService {
         msg_reset_pw_email: 'Email to reset password has been send',
         msg_word_count_words_only: 'Characters and pages will not be added to word statistics',
         msg_note_added: 'Note was added to project',
+        msg_publication_added: 'Publication was added to project',
         msg_start: ' started',
         msg_finish_first_draft: ' has now a finished first draft',
         msg_finish_revision: ': revision finished',
@@ -367,6 +388,12 @@ export class TranslationService {
         msg_rejected: ' was rejected',
         msg_publish: ' was published!',
         msg_lay_aside: ' has been laid aside',
+        msg_reward_default: 'You have done well!',
+        msg_reward_first_draft: 'You finished your first draft. This is the foundation for a great creation. Keep going!',
+        msg_reward_submit: 'You submitted your story. Fingers crossed, but this is success in itself!',
+        msg_reward_publish: 'You managed to publish your story. The final step to prove you\'re a writer. Be proud of yourself',
+        msg_reward_specified: 'You specified a reward for your project. Is this the time to celebrate your achievement?',
+        msg_reward_unspecified: 'Celebrate your achievement! Cheers to you.',
 
         text_anonymous_dialog: `When using the WordProgressor without an account, your data is stored locally.\n
             You won't be able to sync them or access them from another access point.\n

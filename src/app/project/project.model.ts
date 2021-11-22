@@ -1,3 +1,5 @@
+import { Publication } from "../publication/publication.model";
+
 export interface Project {
   workingTitle: string;
   description: string;
@@ -34,13 +36,6 @@ export interface Note {
   id?: string;
   index: number;
   content: string;
-}
-
-export interface Publication {
-  date?: Date;
-  title?: string; // collection or anthology title
-  publisher?: string; // or selfpub
-  link?: string;
 }
 
 export enum ProjectType {

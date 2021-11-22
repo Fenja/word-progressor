@@ -1,0 +1,20 @@
+<h3 mat-dialog-title>{{ 'headline_congrats' |translate }}</h3>
+<span mat-card-subtitle>{{ project.workingTitle }}</span>
+<mat-dialog-content>
+
+  <div>{{ msgReward | translate }}</div>
+  <div>{{ msgSpecified | translate }}</div>
+  <div
+    *ngIf="project.reward"
+    class="content primary-color"
+  >{{ project.reward }}</div>
+
+  <mat-dialog-actions>
+    <button mat-raised-button color="primary" (click)="rewardNow()">
+      {{ 'button_reward_now' | translate}}
+    </button>
+    <button mat-raised-button color="accent" (click)="rewardLater()">
+      {{ 'button_later' | translate}}
+    </button>
+  </mat-dialog-actions>
+</mat-dialog-content>

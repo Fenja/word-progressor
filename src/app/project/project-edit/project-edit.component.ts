@@ -77,6 +77,11 @@ export class ProjectEditComponent implements OnInit {
         if (this.editMode) {
           let result: Project | undefined = this.projectService.getProject(this.id);
           if (!!result) this.project = result;
+          if (this.project.state === ProjectState.published && !this.project.publication) {
+            this.project.publication = {
+              title: '',
+            }
+          }
         }
       }
     );

@@ -196,6 +196,11 @@
     </mat-form-field>
   </div>
 
+  <div *ngIf="showMore && this.project.publication">
+    <h3>{{ 'label_publication' | translate }}</h3>
+    <app-publication-edit [publication]="project.publication"></app-publication-edit>
+  </div>
+
   <div class="button-row">
     <button
       mat-raised-button

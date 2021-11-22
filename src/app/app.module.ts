@@ -60,6 +60,10 @@ import { SideNavComponent } from './header/side-nav/side-nav.component';
 import { MatSidenavModule } from "@angular/material/sidenav";
 import { AddNoteDialogComponent } from './project/add-note-dialog/add-note-dialog.component';
 import { TakeActionComponent } from './project/take-action/take-action.component';
+import { PublicationComponent } from './publication/publication.component';
+import { PublicationEditComponent } from './publication/publication-edit/publication-edit.component';
+import { PublicationDialogComponent } from './publication/publication-dialog/publication-dialog.component';
+import { RewardDialogComponent } from './project/reward-dialog/reward-dialog.component';
 
 @NgModule({
   declarations: [
@@ -87,6 +91,10 @@ import { TakeActionComponent } from './project/take-action/take-action.component
     SideNavComponent,
     AddNoteDialogComponent,
     TakeActionComponent,
+    PublicationComponent,
+    PublicationEditComponent,
+    PublicationDialogComponent,
+    RewardDialogComponent,
   ],
     imports: [
         AngularFireModule.initializeApp(environment.FIREBASE_CONFIG),

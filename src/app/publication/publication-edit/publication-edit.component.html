@@ -1,0 +1,70 @@
+<form *ngIf="publication"
+  class="form-group"
+>
+  <div>
+    <mat-form-field color="primary">
+      <mat-label>{{ 'label_title' | translate }}</mat-label>
+      <input
+        matInput
+        type="text"
+        name="title"
+        #titleId="ngModel"
+        class="form-control"
+        required
+        [(ngModel)]="publication.title"
+      >
+      <mat-error *ngIf="!titleId.valid">{{ 'error_required' | translate }}</mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>{{ 'label_publisher' | translate }}</mat-label>
+      <input
+        matInput
+        type="text"
+        name="publisher"
+        class="form-control"
+        [(ngModel)]="publication.publisher"
+      >
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>{{ 'label_publication_link' | translate }}</mat-label>
+      <input
+        matInput
+        type="text"
+        name="link"
+        class="form-control"
+        [(ngModel)]="publication.link"
+      >
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>{{ 'label_cover' | translate }}</mat-label>
+      <input
+        matInput
+        type="text"
+        name="cover"
+        class="form-control"
+        [(ngModel)]="publication.cover"
+      >
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>{{ 'label_publication_date' | translate }}</mat-label>
+      <input
+        matInput
+        type="text"
+        name="date"
+        class="form-control"
+        [(ngModel)]="publication.date"
+      >
+    </mat-form-field>
+  </div>
+
+  <button
+    mat-stroked-button
+    color="warn"
+    (click)="deletePublication()">
+    {{ 'button_delete_publication' | translate }}
+  </button>
+</form>

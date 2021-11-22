@@ -23,7 +23,7 @@ $angular-dark-theme: mat.define-dark-theme((
 @media (prefers-color-scheme: light) {
   @include mat.all-component-colors($angular-default-theme);
   .mat-link {
-    color: $light-primary-text;
+    color: $dark-primary-text;
   }
 }
 
@@ -78,6 +78,10 @@ button.mat-button-base{
 
 .hidden {
   visibility: hidden;
+}
+
+.primary-color {
+  color: #673ab7; // TODO
 }
 
 app-side-nav {
@@ -155,10 +159,6 @@ ul {
       // TODO accent color
     }
   }
-}
-
-.mat-link {
-  color: $light-primary-text;
 }
 
 .project-list {
