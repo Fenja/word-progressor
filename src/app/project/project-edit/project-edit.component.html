@@ -199,6 +199,13 @@
   <div *ngIf="showMore && this.project.publication">
     <h3>{{ 'label_publication' | translate }}</h3>
     <app-publication-edit [publication]="project.publication"></app-publication-edit>
+
+    <button
+      mat-stroked-button
+      color="warn"
+      (click)="deletePublication()">
+      {{ 'button_delete_publication' | translate }}
+    </button>
   </div>
 
   <div class="button-row">

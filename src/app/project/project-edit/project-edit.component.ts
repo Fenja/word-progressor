@@ -105,4 +105,8 @@ export class ProjectEditComponent implements OnInit {
   onCancel() {
     this.router.navigate(['/projects']).then();
   }
+
+  deletePublication() {
+    this.project.publication = undefined;
+  }
 }
