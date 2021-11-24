@@ -9,7 +9,4 @@ export class PublicationEditComponent {
 
   @Input() publication: Publication | undefined;
 
-  deletePublication() {
-    this.publication = undefined;
-  }
 }

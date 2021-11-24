@@ -5,6 +5,7 @@ import { ProjectService } from "../project.service";
 import { SnackbarService } from "../../services/snackbar.service";
 import { TranslationService } from "../../translation/translation.service";
 import * as uuid from "uuid";
+import Utils from "../../helpers/utils";
 
 export interface AddNoteDialogData {
   id: string;

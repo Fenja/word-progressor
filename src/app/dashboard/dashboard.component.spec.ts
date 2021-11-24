@@ -23,7 +23,7 @@ describe('DashboardComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('displays wip projects', () => {
+  /*it('displays wip projects', () => {
 
   });
 
@@ -33,5 +33,5 @@ describe('DashboardComponent', () => {
 
   it('displays upcoming deadlines', () => {
 
-  });
+  });*/
 });

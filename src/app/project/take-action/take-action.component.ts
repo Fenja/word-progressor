@@ -26,7 +26,6 @@ export class TakeActionComponent implements OnInit {
 
   ngOnInit(): void {
     this.projectActions = Utils.getAvailableEventsForProjectState(this.project.state);
-    console.log('actions', this.projectActions);
   }
 
   takeAction(event: ProjectEvent) {
@@ -37,11 +36,11 @@ export class TakeActionComponent implements OnInit {
         break;
       case ProjectEvent.finish_first_draft:
         this.project.state = ProjectState.wait;
-        this.rewardYourself(ProjectEvent.finish_first_draft);
+        this._rewardYourself(ProjectEvent.finish_first_draft);
         break;
       case ProjectEvent.finish_revision:
         this.project.state = ProjectState.finished;
-        this.rewardYourself(ProjectEvent.finish_revision);
+        this._rewardYourself(ProjectEvent.finish_revision);
         break;
       case ProjectEvent.send_alpha:
         this.project.state = ProjectState.revise;
@@ -55,7 +54,7 @@ export class TakeActionComponent implements OnInit {
       case ProjectEvent.submit:
         this.project.state = ProjectState.submitted;
         this.project.isWorkInProgress = false;
-        this.rewardYourself(ProjectEvent.submit);
+        this._rewardYourself(ProjectEvent.submit);
         break;
       case ProjectEvent.rejected:
         this.project.state = ProjectState.finished;
@@ -63,8 +62,8 @@ export class TakeActionComponent implements OnInit {
       case ProjectEvent.publish:
         this.project.state = ProjectState.published;
         this.project.isWorkInProgress = false;
-        this.rewardYourself(ProjectEvent.publish);
-        this.createPublication();
+        this._rewardYourself(ProjectEvent.publish);
+        this._createPublication();
         break;
       case ProjectEvent.lay_aside:
         this.project.state = ProjectState.abandon;
@@ -75,7 +74,7 @@ export class TakeActionComponent implements OnInit {
     this.projectService.editProject(this.project.id!, this.project);
   }
 
-  private createPublication() {
+  private _createPublication() {
     this.dialog.open(PublicationDialogComponent, {
       data: {
         project: this.project
@@ -83,7 +82,7 @@ export class TakeActionComponent implements OnInit {
     });
   }
 
-  private rewardYourself(event: ProjectEvent) {
+  private _rewardYourself(event: ProjectEvent) {
     this.dialog.open(RewardDialogComponent, {
       data: {
         project: this.project,

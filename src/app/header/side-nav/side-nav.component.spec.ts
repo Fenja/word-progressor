@@ -22,4 +22,16 @@ describe('SideNavComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('closes sidenav on logout', () => {
+    const closeNavSpy = spyOn(component, 'onSidenavClose');
+    component.onLogout();
+    expect(closeNavSpy).toHaveBeenCalled();
+  });
+
+  it('emits closing event', () => {
+    const emitSpy = spyOn(component.sidenavClose, 'emit');
+    component.onSidenavClose();
+    expect(emitSpy).toHaveBeenCalled();
+  })
 });

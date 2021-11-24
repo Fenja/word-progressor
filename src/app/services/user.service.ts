@@ -14,7 +14,6 @@ export class UserService {
   constructor(private dataStorageService: DataStorageService) {
     this.dataStorageService.fetchUser();
     this.settings = this.dataStorageService.getSettings();
-    console.log('settings', JSON.stringify(this.settings));
   }
 
   toggleSetting(settingName: string) {

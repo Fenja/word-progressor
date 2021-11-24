@@ -76,14 +76,14 @@ describe('ProjectService', () => {
     expect(project).toBeTruthy();
     project!.workingTitle = "final title";
     project!.currentCount = 30000;
-    project!.state = ProjectState.submit;
+    project!.state = ProjectState.submitted;
     service.editProject(id, project!);
 
     let editedProject = service.getProject(id);
     expect(editedProject).toBeTruthy();
     expect(editedProject!.workingTitle).toBe("final title");
     expect(editedProject!.currentCount).toBe(30000);
-    expect(editedProject!.state).toBe(ProjectState.submit);
+    expect(editedProject!.state).toBe(ProjectState.submitted);
   });
 
   it('does not change a project, when edited with the same project', () => {
