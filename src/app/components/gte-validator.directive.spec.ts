@@ -27,7 +27,6 @@ describe('gteValidatorDirective', () => {
       el = input.nativeElement;
       expect(el).toBeTruthy();
       console.log(JSON.stringify(el).toString());
-      //expect(el.value).toBe(undefined);
 
       let result = new gteValidatorDirective().validate(input);
       expect(result).toBe(null);
