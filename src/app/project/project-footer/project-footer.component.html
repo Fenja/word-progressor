@@ -7,10 +7,10 @@
       {{'button_new_project' | translate}}</button>
 
     <div class="bottom-toolbar__actions">
-      <a mat-button matTooltip="{{ 'tooltip_wip' | translate }}" (click)="toggleSetting('showOnlyWip')">
-        <i class="mat-icon material-icons">{{ getSetting('showOnlyWip') ? 'work' : 'work_outline' }}</i></a>
-      <a mat-button matTooltip="{{ 'tooltip_sort_deadline' | translate }}" (click)="toggleSetting('isSortByDeadline')">
-        <i class="mat-icon material-icons">{{ getSetting('isSortByDeadline') ? 'event' : 'calendar_today' }}</i></a>
+      <a mat-button matTooltip="{{ 'tooltip_wip' | translate }}" (click)="toggleWip()">
+        <i class="mat-icon material-icons">{{ showOnlyWip ? 'work' : 'work_outline' }}</i></a>
+      <a mat-button matTooltip="{{ 'tooltip_sort_deadline' | translate }}" (click)="toggleDeadline()">
+        <i class="mat-icon material-icons">{{ isSortByDeadline ? 'event' : 'calendar_today' }}</i></a>
 
       <!--<a mat-button matTooltip="{{ 'tooltip_sort' | translate }}">
         <i class="mat-icon material-icons">sort</i></a>

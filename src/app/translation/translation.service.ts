@@ -65,6 +65,14 @@ export class TranslationService {
         characters: 'Zeichen',
         pages: 'Seiten',
 
+        monday: 'Montag',
+        tuesday: 'Dienstag',
+        wednesday: 'Mittwoch',
+        thursday: 'Donnerstag',
+        friday: 'Freitag',
+        saturday: 'Samstag',
+        sunday: 'Sonntag',
+
         info_no_projects: 'Keine Projekte gefunden',
 
         button_new_project: 'Neues Projekt',
@@ -140,6 +148,8 @@ export class TranslationService {
         label_notes: 'Notizen',
         label_cover: 'Cover',
         label_publication_link: 'Link zur Veröffentlichung',
+        label_daily_goal: 'Tägliches Ziel',
+        label_days_a_week: ' Tag(e) pro Woche',
 
         placeholder_working_title: 'Arbeitstitel',
         placeholder_blurb: 'Inhaltsangabe',
@@ -158,6 +168,10 @@ export class TranslationService {
         headline_publication: 'Veröffentlichung',
         headline_submission: 'Ausschreibung',
         headline_event: 'Event',
+        headline_writing_goal: 'Schreibziel',
+        headline_daily_writing_goal: 'Tägliches Schreibziel',
+        headline_weekdays: 'Wochentage',
+        headline_days_a_week: 'Tage pro Woche',
 
         error_unknown: 'Ein unerwarteter Fehler ist aufgetreten.',
         error_email_exists: 'Die E-Mail-Adresse ist bereits von einem anderen Konto in Benutzung.',
@@ -198,6 +212,7 @@ export class TranslationService {
         msg_reward_publish: 'Du hast es geschafft, deine Geschichte zu veröffentlichen. Der finale Schritt allen zu beweisen, dass du SchriftstellerIn bist. Du kannst stolz auf dich sein.',
         msg_reward_specified: 'Du hast dir für dieses Projekt eine Belohnung gesetzt. Ist es jetzt an der Zeit, deine Errungenschaft zu feiern?',
         msg_reward_unspecified: 'Feiere deinen Erfolg! Ein Prost auf dich.',
+        msg_saved_settings: 'Einstellungen wurden gespeichert',
 
         text_anonymous_dialog: `Wenn der WordProgressor ohne Konto genutzt wird, werden die Daten lokal gespeichert.\n
             Sie können dann weder synchronisiert, noch von einem anderen Gerät aus abgerufen werden.\n
@@ -259,6 +274,14 @@ export class TranslationService {
         words: 'Words',
         characters: 'Characters',
         pages: 'Pages',
+
+        monday: 'Monday',
+        tuesday: 'Tuesday',
+        wednesday: 'Wednesday',
+        thursday: 'Thursday',
+        friday: 'Friday',
+        saturday: 'Saturday',
+        sunday: 'Sunday',
 
         info_no_projects: 'No Projects found',
 
@@ -335,6 +358,8 @@ export class TranslationService {
         label_notes: 'Notes',
         label_cover: 'Cover',
         label_publication_link: 'Link to publication',
+        label_daily_goal: 'Daily goal',
+        label_days_a_week: ' day(s) a week',
 
         placeholder_working_title: 'Working Title',
         placeholder_blurb: 'Blurb',
@@ -354,6 +379,10 @@ export class TranslationService {
         headline_submission: 'Submission',
         headline_event: 'Event',
         headline_congrats: 'Congrats',
+        headline_writing_goal: 'Writing goals',
+        headline_daily_writing_goal: 'Daily writing goal',
+        headline_weekdays: 'Weekdays',
+        headline_days_a_week: 'Days a week',
 
         error_unknown: 'An unexpected error occured.',
         error_email_exists: 'The email address is already in use by another account.',
@@ -394,6 +423,7 @@ export class TranslationService {
         msg_reward_publish: 'You managed to publish your story. The final step to prove you\'re a writer. Be proud of yourself',
         msg_reward_specified: 'You specified a reward for your project. Is this the time to celebrate your achievement?',
         msg_reward_unspecified: 'Celebrate your achievement! Cheers to you.',
+        msg_saved_settings: 'Your settings have been saved',
 
         text_anonymous_dialog: `When using the WordProgressor without an account, your data is stored locally.\n
             You won't be able to sync them or access them from another access point.\n

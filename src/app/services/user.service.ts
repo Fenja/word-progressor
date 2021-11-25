@@ -1,35 +1,40 @@
 import { Injectable } from '@angular/core';
 import { Subject } from "rxjs";
 import { DataStorageService } from "./data-storage.service";
-import { userData } from "../auth/user.model";
+import { Settings, userData } from "../auth/user.model";
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
 
-  settings!: {[key: string]: any};
+  settings!: Settings;
   $filterChange = new Subject<void>();
 
   constructor(private dataStorageService: DataStorageService) {
     this.dataStorageService.fetchUser();
-    this.settings = this.dataStorageService.getSettings();
+    this.dataStorageService.fetchSettings();
+    this.settings = this.dataStorageService.settings;
   }
 
-  toggleSetting(settingName: string) {
-    this.settings[settingName] = !this.settings[settingName];
-    this.dataStorageService.editSettings(this.settings);
+  changedFilter() {
+    this.saveSettings();
     this.$filterChange.next();
+  }
+
+  saveSettings() {
+    this.dataStorageService.saveSettings(this.settings);
   }
 
   getUser(): Subject<userData> {
     let userSubject = this.dataStorageService.user$;
     this.dataStorageService.fetchUser();
+    this.dataStorageService.fetchSettings();
     return userSubject;
   }
 
   isNewUser() {
     // created today
-    return true;//settings[''];
+    return true;
   }
 }

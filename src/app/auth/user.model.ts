@@ -6,7 +6,7 @@ export interface userData {
   penName?: string;
   age?: number;
 
-  settings?: {[key: string]: boolean }
+  settings?: Settings;
 
   achievements?: string[]; // list of achievements
   wordLogs?: WordLog[]; // collected from all projects
@@ -19,4 +19,13 @@ export interface User {
   displayName: string | null;
   photoURL: string | null;
   emailVerified: boolean;
+}
+
+export interface Settings {
+  // word goal
+  dailyWordGoal: number;
+
+  // filter
+  showOnlyWip: boolean;
+  isSortByDeadline: boolean;
 }

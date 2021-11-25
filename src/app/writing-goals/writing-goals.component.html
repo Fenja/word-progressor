@@ -1,0 +1,84 @@
+<mat-card class="dashboard-item">
+  <mat-card-header class="project-item__header">
+    <mat-card-title>{{ 'headline_writing_goal' | translate }}</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+
+<div>
+  <h3>{{ 'headline_daily_writing_goal' | translate }}</h3>
+  <mat-form-field>
+    <mat-label>{{ 'label_daily_goal' | translate }}</mat-label>
+    <input
+      matInput
+      type="number"
+      name="daily-goal"
+      class="form-control"
+      data-testid="goal-input"
+      [(ngModel)]="dailyWordGoal"
+    >
+  </mat-form-field>
+</div>
+
+<div>
+    <mat-tab-group mat-align-tabs="center">
+      <mat-tab label="{{ 'headline_weekdays' | translate }}">
+        <ul class="weekday-list">
+          <li>
+            <mat-checkbox>{{ 'monday' | translate }}</mat-checkbox>
+          </li>
+          <li>
+            <mat-checkbox>{{ 'tuesday' | translate }}</mat-checkbox>
+          </li>
+          <li>
+            <mat-checkbox>{{ 'wednesday' | translate }}</mat-checkbox>
+          </li>
+          <li>
+            <mat-checkbox>{{ 'thursday' | translate }}</mat-checkbox>
+          </li>
+          <li>
+            <mat-checkbox>{{ 'friday' | translate }}</mat-checkbox>
+          </li>
+          <li>
+            <mat-checkbox>{{ 'saturday' | translate }}</mat-checkbox>
+          </li>
+          <li>
+            <mat-checkbox>{{ 'sunday' | translate }}</mat-checkbox>
+          </li>
+        </ul>
+      </mat-tab>
+
+      <mat-tab label="{{ 'headline_days_a_week' | translate }}">
+        <div>
+          <mat-form-field>
+            <input
+              matInput
+              type="number"
+              name="num-days"
+              value="0"
+              max="7"
+              min="0"
+              class="form-control"
+              data-testid="days-input"
+              #daysPerWeekInput
+            >
+          </mat-form-field>
+          <span>{{ 'label_days_a_week' | translate }}</span>
+        </div>
+      </mat-tab>
+    </mat-tab-group>
+
+</div>
+
+<!-- <div>
+  <span>toggle active/inactive</span>
+</div> -->
+
+  </mat-card-content>
+  <mat-card-actions class="button-row">
+    <button
+      mat-raised-button
+      color="primary"
+      (click)="save()">
+      {{ 'button_save' | translate }}</button>
+  </mat-card-actions>
+</mat-card>

@@ -247,6 +247,10 @@ ul {
   margin: 0 !important;
 }
 
+.weekday-list {
+  flex-flow: column;
+}
+
 svg g {
   .wp_background {
     fill: rebeccapurple !important;

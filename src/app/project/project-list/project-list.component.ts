@@ -36,11 +36,11 @@ export class ProjectListComponent implements OnDestroy {
 
   private _filterProjects() {
     this.projects = this.allProjects.filter(project => {
-        if (this.userService.settings['showOnlyWip']) return project.isWorkInProgress;
+        if (this.userService.settings.showOnlyWip) return project.isWorkInProgress;
         return true;
       }
     );
-    if (this.userService.settings['isSortByDeadline']) {
+    if (this.userService.settings.isSortByDeadline) {
       this.projects.sort((a: Project, b: Project) => {
         if (!a.deadline) return 1;
         else if (!b.deadline) return -1;

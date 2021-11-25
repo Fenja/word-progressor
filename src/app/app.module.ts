@@ -65,6 +65,7 @@ import { PublicationEditComponent } from './publication/publication-edit/publica
 import { PublicationDialogComponent } from './publication/publication-dialog/publication-dialog.component';
 import { RewardDialogComponent } from './project/reward-dialog/reward-dialog.component';
 import { AchievementComponent } from './achievement/achievement.component';
+import { WritingGoalsComponent } from './writing-goals/writing-goals.component';
 
 @NgModule({
   declarations: [
@@ -97,6 +98,7 @@ import { AchievementComponent } from './achievement/achievement.component';
     PublicationDialogComponent,
     RewardDialogComponent,
     AchievementComponent,
+    WritingGoalsComponent,
   ],
     imports: [
         AngularFireModule.initializeApp(environment.FIREBASE_CONFIG),

@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { AuthService } from "../auth/auth.service";
-import { userData } from "../auth/user.model";
+import { Settings, userData } from "../auth/user.model";
 import { environment } from "../../environments/environment";
 import { Project } from "../project/project.model";
 import { catchError, map, take } from "rxjs/operators";
@@ -23,6 +23,12 @@ export class DataStorageService {
   public projectList = new Subject<Project[]>();
   user: userData = {};
   public user$ = new Subject<userData>();
+  settings: Settings = {
+    dailyWordGoal: 0,
+    showOnlyWip: false,
+    isSortByDeadline: false,
+  };
+  public settings$ = new Subject<Settings>();
 
   constructor(
     private http: HttpClient,
@@ -30,6 +36,7 @@ export class DataStorageService {
   ) {
     this.authService.isAnonymous = !localStorage.getItem('user');
     this.fetchUser();
+    this.fetchSettings();
   }
 
   private _getUserId() {
@@ -244,8 +251,35 @@ export class DataStorageService {
     );
   }
 
-  editSettings(settings: { [key: string]: any }) {
-    this.user.settings = settings;
+  fetchSettings() {
+    if (this.authService.isAnonymous) {
+      this._fetchSettingsFromStorage();
+    } else {
+      this._fetchSettingsfromAPI();
+    }
+  }
+
+  private _fetchSettingsFromStorage() {
+    this.settings = JSON.parse(<string>localStorage.getItem('settings'));
+  }
+
+  private _fetchSettingsfromAPI() {
+    const id = this._getUserId();
+    this.http.get<Settings>(
+      environment.FIREBASE_CONFIG.databaseURL+id+'/user/settings.json'
+    )
+      .pipe(
+        take(1),
+      )
+      .subscribe(
+        (settings) => {
+          this.settings = settings;
+          this.settings$.next(this.settings);
+        });
+  }
+
+  saveSettings(settings: Settings) {
+    this.settings = settings;
     if (this.authService.isAnonymous) {
       this._editSettingsInStorage();
     } else {
@@ -254,23 +288,14 @@ export class DataStorageService {
   }
 
   _editSettingsInStorage() {
-    localStorage.setItem('local_user', JSON.stringify(this.user));
+    localStorage.setItem('settings', JSON.stringify(this.settings));
   }
 
   _editSettingsAtAPI() {
     this.http.put(
-      environment.FIREBASE_CONFIG.databaseURL+this._getUserId()+'/user.json',
-      this.user
-    );
+      environment.FIREBASE_CONFIG.databaseURL+this._getUserId()+'/user/settings.json',
+      this.settings
+    ).subscribe(() => { });
   }
 
-  getSettings(): {[key: string]: any} {
-    console.log('isAnonymous', this.authService.isAnonymous);
-
-    console.log('fetched user', JSON.stringify(this.user.settings));
-    return this.user.settings ? this.user.settings : {
-      'showOnlyWip': false,
-      'isSortByDeadline': false,
-    };
-  }
 }

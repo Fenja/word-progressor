@@ -7,16 +7,26 @@ import { UserService } from "../../services/user.service";
 })
 export class ProjectFooterComponent {
 
+  showOnlyWip!: boolean;
+  isSortByDeadline!: boolean;
+
   constructor(
     public userService: UserService
-  ) { }
-
-
-  getSetting(settingName: string): any {
-    return this.userService.settings[settingName];
+  ) {
+    this.showOnlyWip = this.userService.settings.showOnlyWip;
+    this.isSortByDeadline = this.userService.settings.isSortByDeadline;
   }
 
-  toggleSetting(settingName: string) {
-    this.userService.toggleSetting(settingName);
+  toggleWip() {
+    this.showOnlyWip = !this.showOnlyWip;
+    this.userService.settings.showOnlyWip = this.showOnlyWip;
+    this.userService.changedFilter();
+    // maybe show snackbar?
+  }
+
+  toggleDeadline() {
+    this.isSortByDeadline = !this.isSortByDeadline;
+    this.userService.settings.isSortByDeadline = this.isSortByDeadline;
+    this.userService.changedFilter();
   }
 }
