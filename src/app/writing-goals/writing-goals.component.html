@@ -14,35 +14,35 @@
       name="daily-goal"
       class="form-control"
       data-testid="goal-input"
-      [(ngModel)]="dailyWordGoal"
+      [(ngModel)]="settings.dailyWordGoal"
     >
   </mat-form-field>
 </div>
 
 <div>
-    <mat-tab-group mat-align-tabs="center">
+    <mat-tab-group mat-align-tabs="center" (selectedTabChange)="tabChanged($event)" [selectedIndex]="settings.isWeekDayGoal ? 0 : 1">
       <mat-tab label="{{ 'headline_weekdays' | translate }}">
         <ul class="weekday-list">
           <li>
-            <mat-checkbox>{{ 'monday' | translate }}</mat-checkbox>
+            <mat-checkbox [checked]="isSelected[0]" (change)="changeSelection(0)">{{ 'monday' | translate }}</mat-checkbox>
           </li>
           <li>
-            <mat-checkbox>{{ 'tuesday' | translate }}</mat-checkbox>
+            <mat-checkbox [checked]="isSelected[1]" (change)="changeSelection(1)">{{ 'tuesday' | translate }}</mat-checkbox>
           </li>
           <li>
-            <mat-checkbox>{{ 'wednesday' | translate }}</mat-checkbox>
+            <mat-checkbox [checked]="isSelected[2]" (change)="changeSelection(2)">{{ 'wednesday' | translate }}</mat-checkbox>
           </li>
           <li>
-            <mat-checkbox>{{ 'thursday' | translate }}</mat-checkbox>
+            <mat-checkbox [checked]="isSelected[3]" (change)="changeSelection(3)">{{ 'thursday' | translate }}</mat-checkbox>
           </li>
           <li>
-            <mat-checkbox>{{ 'friday' | translate }}</mat-checkbox>
+            <mat-checkbox [checked]="isSelected[4]" (change)="changeSelection(4)">{{ 'friday' | translate }}</mat-checkbox>
           </li>
           <li>
-            <mat-checkbox>{{ 'saturday' | translate }}</mat-checkbox>
+            <mat-checkbox [checked]="isSelected[5]" (change)="changeSelection(5)">{{ 'saturday' | translate }}</mat-checkbox>
           </li>
           <li>
-            <mat-checkbox>{{ 'sunday' | translate }}</mat-checkbox>
+            <mat-checkbox [checked]="isSelected[6]" (change)="changeSelection(6)">{{ 'sunday' | translate }}</mat-checkbox>
           </li>
         </ul>
       </mat-tab>
@@ -54,12 +54,11 @@
               matInput
               type="number"
               name="num-days"
-              value="0"
               max="7"
               min="0"
               class="form-control"
               data-testid="days-input"
-              #daysPerWeekInput
+              [(ngModel)]="settings.daysPerWeek"
             >
           </mat-form-field>
           <span>{{ 'label_days_a_week' | translate }}</span>

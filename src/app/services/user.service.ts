@@ -10,26 +10,28 @@ export class UserService {
 
   settings!: Settings;
   $filterChange = new Subject<void>();
+  private user!: userData;
 
   constructor(private dataStorageService: DataStorageService) {
     this.dataStorageService.fetchUser();
-    this.dataStorageService.fetchSettings();
-    this.settings = this.dataStorageService.settings;
+    this.user = dataStorageService.user;
+    this.settings = this.user.settings!;
   }
 
   changedFilter() {
-    this.saveSettings();
     this.$filterChange.next();
+    this.dataStorageService.editUser(this.user.id!, this.user);
   }
 
-  saveSettings() {
-    this.dataStorageService.saveSettings(this.settings);
+  saveSettings(settings: Settings) {
+    this.settings = settings;
+    this.user.settings = settings;
+    this.dataStorageService.editUser(this.user.id!, this.user)
   }
 
   getUser(): Subject<userData> {
     let userSubject = this.dataStorageService.user$;
     this.dataStorageService.fetchUser();
-    this.dataStorageService.fetchSettings();
     return userSubject;
   }
 

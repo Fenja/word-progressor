@@ -24,6 +24,9 @@ export interface User {
 export interface Settings {
   // word goal
   dailyWordGoal: number;
+  isWeekDayGoal: boolean;
+  selectedDays: number[]; // 0=monday
+  daysPerWeek: number;
 
   // filter
   showOnlyWip: boolean;
