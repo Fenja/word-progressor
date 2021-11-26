@@ -12,6 +12,8 @@ import Utils from "../helpers/utils";
 export class DashboardComponent implements OnDestroy {
 
   wordsToday = 0;
+  wordGoalDaily: number | undefined;
+  metGoal = false;
   userWordLogs: WordLog[] | undefined;
   isNewUser = true;
   wips: Project[] = [];
@@ -32,6 +34,10 @@ export class DashboardComponent implements OnDestroy {
       this.userWordLogs = u.wordLogs;
       const logToday = u.wordLogs?.find(log => log.date === Utils.normalizedToday().toString());
       this.wordsToday = logToday?.words ?? 0;
+      this.wordGoalDaily = u.settings?.dailyWordGoal;
+      if (this.wordGoalDaily) {
+        this.metGoal = this.wordsToday >= this.wordGoalDaily;
+      }
     }));
     this.isNewUser = this.userService.isNewUser();
   }

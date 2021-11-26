@@ -5,6 +5,7 @@ import { UserService } from "../services/user.service";
 import { Settings } from "../auth/user.model";
 import { DataStorageService } from "../services/data-storage.service";
 import { MatTabChangeEvent } from "@angular/material/tabs";
+import { first, take } from "rxjs/operators";
 
 @Component({
   selector: 'app-writing-goals',
@@ -22,7 +23,11 @@ export class WritingGoalsComponent {
     private translationService: TranslationService,
   ) {
     this.settings = this.userService.settings;
-    this.userService.getUser().subscribe(u => {
+    this.userService.getUser()
+      .pipe(
+        take(1)
+      )
+      .subscribe(u => {
       if (u.settings) {
         this.settings = u.settings;
         if (!this.settings.selectedDays) this.settings.selectedDays = [];
