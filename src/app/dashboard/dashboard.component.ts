@@ -1,4 +1,4 @@
-import { Component, OnDestroy } from '@angular/core';
+import { Component, HostListener, OnDestroy } from '@angular/core';
 import { Project, WordLog } from "../project/project.model";
 import { ProjectService } from "../project/project.service";
 import { UserService } from "../services/user.service";
@@ -19,6 +19,17 @@ export class DashboardComponent implements OnDestroy {
   wips: Project[] = [];
   wordStatistics: any;
   private subscriptions: Subscription[] = [];
+
+  showInstallPWA = false;
+  deferredPrompt: any;
+
+  @HostListener('window:beforeinstallprompt', ['$event'])
+  onbeforeinstallprompt(e: any) {
+    console.log(e);
+    e.preventDefault();
+    this.deferredPrompt = e;
+    this.showInstallPWA = true;
+  }
 
   constructor(
     private projectService: ProjectService,
@@ -46,4 +57,15 @@ export class DashboardComponent implements OnDestroy {
     this.subscriptions.forEach((sub) => sub.unsubscribe());
   }
 
+  installPWA() {
+    this.showInstallPWA = false;
+      this.deferredPrompt.prompt();
+      this.deferredPrompt.userChoice
+        .then((choiceResult: any) => {
+          if (choiceResult.outcome === 'accepted') {
+            console.log('user accepted the A2HS prompt');
+          }
+          this.deferredPrompt = null;
+        })
+  }
 }

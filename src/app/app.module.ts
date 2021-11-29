@@ -68,6 +68,7 @@ import { AchievementComponent } from './achievement/achievement.component';
 import { WritingGoalsComponent } from './writing-goals/writing-goals.component';
 import { NotificationSettingsComponent } from './settings/notification-settings/notification-settings.component';
 import { MatSlideToggleModule } from "@angular/material/slide-toggle";
+import { ServiceWorkerModule } from '@angular/service-worker';
 
 @NgModule({
   declarations: [
@@ -136,6 +137,12 @@ import { MatSlideToggleModule } from "@angular/material/slide-toggle";
       MatListModule,
       MatSidenavModule,
       MatSlideToggleModule,
+      ServiceWorkerModule.register('ngsw-worker.js', {
+        enabled: environment.production,
+        // Register the ServiceWorker as soon as the app is stable
+        // or after 30 seconds (whichever comes first).
+        registrationStrategy: 'registerWhenStable:30000'
+      }),
   ],
   providers: [
     MatDatepickerModule,

@@ -50,4 +50,11 @@
     </mat-card-content>
   </mat-card>
 
+  <mat-card *ngIf="showInstallPWA" class="dashboard-item">
+    <button mat-raised-button
+            color="accent"
+      (click)="installPWA()"
+    >{{ 'label_install_pwa' | translate }}</button>
+  </mat-card>
+
 <!-- <app-dashboard-footer></app-dashboard-footer> -->

@@ -153,6 +153,7 @@ export class TranslationService {
         label_daily_writing: 'Tägliches Schreibziel',
         label_datetime: 'Uhrzeit',
         label_remind_at: 'Erinnere mich um',
+        label_install_pwa: "Auf dem Startbildschirm installieren",
 
         placeholder_working_title: 'Arbeitstitel',
         placeholder_blurb: 'Inhaltsangabe',
@@ -217,6 +218,7 @@ export class TranslationService {
         msg_reward_specified: 'Du hast dir für dieses Projekt eine Belohnung gesetzt. Ist es jetzt an der Zeit, deine Errungenschaft zu feiern?',
         msg_reward_unspecified: 'Feiere deinen Erfolg! Ein Prost auf dich.',
         msg_saved_settings: 'Einstellungen wurden gespeichert',
+        msg_update_available: 'Eine neue Version des WordProgressor ist verfügbar. Willst du jetzt aktualisieren?',
 
         text_anonymous_dialog: `Wenn der WordProgressor ohne Konto genutzt wird, werden die Daten lokal gespeichert.\n
             Sie können dann weder synchronisiert, noch von einem anderen Gerät aus abgerufen werden.\n
@@ -367,6 +369,7 @@ export class TranslationService {
         label_daily_writing: 'Daily writing',
         label_datetime: 'date time',
         label_remind_at: 'Remind me at',
+        label_install_pwa: 'Install at home screen',
 
         placeholder_working_title: 'Working Title',
         placeholder_blurb: 'Blurb',
@@ -432,6 +435,7 @@ export class TranslationService {
         msg_reward_specified: 'You specified a reward for your project. Is this the time to celebrate your achievement?',
         msg_reward_unspecified: 'Celebrate your achievement! Cheers to you.',
         msg_saved_settings: 'Your settings have been saved',
+        msg_update_available: 'A new version of WordProgressor is available. Do you want to update now?',
 
         text_anonymous_dialog: `When using the WordProgressor without an account, your data is stored locally.\n
             You won't be able to sync them or access them from another access point.\n
