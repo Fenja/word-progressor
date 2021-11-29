@@ -30,7 +30,7 @@ $angular-dark-theme: mat.define-dark-theme((
 @media (prefers-color-scheme: dark) {
   @include mat.all-component-colors($angular-dark-theme);
   .mat-link {
-    color: $dark-primary-text;
+    color: $light-primary-text;
   }
 }
 
