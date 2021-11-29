@@ -1,0 +1,28 @@
+<mat-card class="dashboard-item">
+  <mat-card-header class="project-item__header">
+    <mat-card-title>{{ 'headline_notifications' | translate }}</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+
+    <div>
+      <div>
+        <h3>{{ 'headline_daily_writing_goal' | translate }}</h3>
+        <mat-slide-toggle [(ngModel)]="settings.notifyDailyWriting">{{ 'label_daily_writing' | translate }}</mat-slide-toggle>
+      </div>
+      <div *ngIf="settings.notifyDailyWriting">
+        <mat-form-field>
+          <mat-label>{{ 'label_remind_at' | translate }}</mat-label>
+          <input matInput type="time" [(ngModel)]="settings.timeDailyWriting">
+        </mat-form-field>
+      </div>
+    </div>
+
+  </mat-card-content>
+  <mat-card-actions class="button-row">
+    <button
+      mat-raised-button
+      color="primary"
+      (click)="save()">
+      {{ 'button_save' | translate }}</button>
+  </mat-card-actions>
+</mat-card>

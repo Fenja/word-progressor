@@ -5,7 +5,7 @@ import { UserService } from "../services/user.service";
 import { Settings } from "../auth/user.model";
 import { DataStorageService } from "../services/data-storage.service";
 import { MatTabChangeEvent } from "@angular/material/tabs";
-import { first, take } from "rxjs/operators";
+import { take } from "rxjs/operators";
 
 @Component({
   selector: 'app-writing-goals',
@@ -33,7 +33,7 @@ export class WritingGoalsComponent {
         if (!this.settings.selectedDays) this.settings.selectedDays = [];
         this.settings.selectedDays.forEach(d => this.isSelected[d] = true);
       }
-    })
+    });
   }
 
   save() {

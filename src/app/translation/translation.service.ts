@@ -150,6 +150,9 @@ export class TranslationService {
         label_publication_link: 'Link zur Veröffentlichung',
         label_daily_goal: 'Tägliches Ziel',
         label_days_a_week: ' Tag(e) pro Woche',
+        label_daily_writing: 'Tägliches Schreibziel',
+        label_datetime: 'Uhrzeit',
+        label_remind_at: 'Erinnere mich um',
 
         placeholder_working_title: 'Arbeitstitel',
         placeholder_blurb: 'Inhaltsangabe',
@@ -172,6 +175,7 @@ export class TranslationService {
         headline_daily_writing_goal: 'Tägliches Schreibziel',
         headline_weekdays: 'Wochentage',
         headline_days_a_week: 'Tage pro Woche',
+        headline_notifications: 'Benachrichtigungen',
 
         error_unknown: 'Ein unerwarteter Fehler ist aufgetreten.',
         error_email_exists: 'Die E-Mail-Adresse ist bereits von einem anderen Konto in Benutzung.',
@@ -360,6 +364,9 @@ export class TranslationService {
         label_publication_link: 'Link to publication',
         label_daily_goal: 'Daily goal',
         label_days_a_week: ' day(s) a week',
+        label_daily_writing: 'Daily writing',
+        label_datetime: 'date time',
+        label_remind_at: 'Remind me at',
 
         placeholder_working_title: 'Working Title',
         placeholder_blurb: 'Blurb',
@@ -383,6 +390,7 @@ export class TranslationService {
         headline_daily_writing_goal: 'Daily writing goal',
         headline_weekdays: 'Weekdays',
         headline_days_a_week: 'Days a week',
+        headline_notifications: 'Notifications',
 
         error_unknown: 'An unexpected error occured.',
         error_email_exists: 'The email address is already in use by another account.',

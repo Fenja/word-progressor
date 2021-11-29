@@ -1,4 +1,5 @@
 import { WordLog } from "../project/project.model";
+import { Time } from "@angular/common";
 
 export interface userData {
   email?: string;
@@ -31,4 +32,10 @@ export interface Settings {
   // filter
   showOnlyWip: boolean;
   isSortByDeadline: boolean;
+
+  // notifications
+  notifyDailyWriting: boolean;
+  timeDailyWriting: Time;
+  notifyDeadline: boolean;
+  daysBeforeDeadlineReminder: number[];
 }

@@ -29,6 +29,10 @@ export class DataStorageService {
       daysPerWeek: 0,
       showOnlyWip: false,
       isSortByDeadline: false,
+      notifyDailyWriting: false,
+      timeDailyWriting: {hours: 7, minutes: 0},
+      notifyDeadline: false,
+      daysBeforeDeadlineReminder: [],
     }
   };
   public user$ = new Subject<userData>();
