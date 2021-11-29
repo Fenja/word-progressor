@@ -13,6 +13,7 @@ import { TranslationService } from "../../translation/translation.service";
 export class NotificationSettingsComponent {
 
   settings!: Settings;
+  notificationsEnabled = true;
 
   constructor(
     private userService: UserService,

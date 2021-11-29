@@ -154,6 +154,8 @@ export class TranslationService {
         label_datetime: 'Uhrzeit',
         label_remind_at: 'Erinnere mich um',
         label_install_pwa: "Auf dem Startbildschirm installieren",
+        label_submission_reminder: 'Erinnerungen für Ausschreibungen',
+        label_remind_days_ahead: 'x Tage vorher erinnern (mit Komma getrennt)',
 
         placeholder_working_title: 'Arbeitstitel',
         placeholder_blurb: 'Inhaltsangabe',
@@ -177,6 +179,7 @@ export class TranslationService {
         headline_weekdays: 'Wochentage',
         headline_days_a_week: 'Tage pro Woche',
         headline_notifications: 'Benachrichtigungen',
+        headline_submission_reminder: 'Erinnerungen an Ausschreibungen',
 
         error_unknown: 'Ein unerwarteter Fehler ist aufgetreten.',
         error_email_exists: 'Die E-Mail-Adresse ist bereits von einem anderen Konto in Benutzung.',
@@ -370,6 +373,8 @@ export class TranslationService {
         label_datetime: 'date time',
         label_remind_at: 'Remind me at',
         label_install_pwa: 'Install at home screen',
+        label_submission_reminder: 'Submission reminders',
+        label_remind_days_ahead: 'Remind me x days ahead (comma separated)',
 
         placeholder_working_title: 'Working Title',
         placeholder_blurb: 'Blurb',
@@ -394,6 +399,7 @@ export class TranslationService {
         headline_weekdays: 'Weekdays',
         headline_days_a_week: 'Days a week',
         headline_notifications: 'Notifications',
+        headline_submission_reminder: 'Reminder for submissions',
 
         error_unknown: 'An unexpected error occured.',
         error_email_exists: 'The email address is already in use by another account.',
