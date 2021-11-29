@@ -70,9 +70,10 @@ export class DataStorageService {
   }
 
   _fetchProjectsFromAPI() {
-    console.log('fetch projects from api');
+    const id = this._getUserId();
+    if (!id ) return;
     this.http.get<{ [key: string]: Project }>(
-      environment.FIREBASE_CONFIG.databaseURL+this._getUserId()+'/projects.json'
+      environment.FIREBASE_CONFIG.databaseURL+id+'/projects.json'
     )
       .pipe(
         take(1),
@@ -211,8 +212,6 @@ export class DataStorageService {
         } else {
           this.user = user;
         }
-        console.log('fetch user from api', JSON.stringify(this.user));
-        console.log('user settings', JSON.stringify(this.user.settings));
         this.user$.next(this.user);
       });
   }
