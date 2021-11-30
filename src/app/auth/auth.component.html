@@ -1,4 +1,4 @@
-<div>
+<div class="small-center">
   <div *ngIf="isLoading" class="center-container">
     <mat-spinner color="primary"></mat-spinner>
   </div>
@@ -14,7 +14,8 @@
     #authForm="ngForm"
     (ngSubmit)="onSubmit()"
   >
-    <div>
+  <div>
+    <div class="column-block">
       <mat-form-field>
         <mat-label data-testid="email-input-label">{{ 'label_email' | translate }}</mat-label>
         <input
@@ -41,8 +42,9 @@
           minlength="6"
         >
       </mat-form-field>
+    </div>
 
-      <div class="button-row">
+      <div class="button-row column-block">
         <button
           mat-raised-button
           color="primary"

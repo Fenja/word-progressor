@@ -21,7 +21,7 @@
     *ngIf="!barOnly"
     data-testid="project-word-count"
     class="progress-bars__label"
-  >{{ currentCount }} / {{ goalCount }}<span *ngIf="maxGoalCount">-{{ maxGoalCount }}</span></span>
+  >{{ currentCount }} / {{ goalCount }}<span *ngIf="maxGoalCount">-{{ maxGoalCount }}</span> {{ entityKey | translate }}</span>
 </div>
 
 <div *ngIf="(goalCount === 0 && currentCount > 0)">

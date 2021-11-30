@@ -10,6 +10,7 @@ export class ProjectProgressBarComponent implements OnInit {
   @Input() currentCount: number = 0;
   @Input() maxGoalCount: number | undefined;
   @Input() barOnly?: boolean = false;
+  @Input() entityKey: string = 'words';
 
   percentageDone: number = 0;
   percentageMaxDone: number = 0;

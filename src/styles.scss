@@ -84,6 +84,11 @@ button.mat-button-base{
   color: #673ab7; // TODO
 }
 
+.column-block {
+  display: flex;
+  flex-flow: column;
+}
+
 app-side-nav {
   display: flex;
   flex-flow: column;
@@ -114,6 +119,11 @@ ul {
   height: 100%;
   display: flex;
   justify-content: center;
+}
+
+.small-center {
+  max-width: 40em;
+  margin: 0 auto;
 }
 
 .form-group {

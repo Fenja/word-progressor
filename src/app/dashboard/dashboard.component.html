@@ -32,7 +32,6 @@
       {{ 'label_logs' | translate }}
     </mat-card-header>
     <mat-card-content>
-
       <ol>
         <li *ngFor="let log of userWordLogs">
           <span>{{ log.date | date}}</span> - <span>{{ log.words }}</span>
