@@ -27,7 +27,7 @@
     </mat-card-content>
   </mat-card>
 
-  <mat-card id="wordLogs" class="dashboard-item" *ngIf="userWordLogs">
+  <!-- <mat-card id="wordLogs" class="dashboard-item" *ngIf="userWordLogs">
     <mat-card-header>
       {{ 'label_logs' | translate }}
     </mat-card-header>
@@ -38,14 +38,14 @@
         </li>
       </ol>
     </mat-card-content>
-  </mat-card>
+  </mat-card> -->
 
-  <mat-card *ngIf="wordStatistics" id="wordsStatistic" class="dashboard-item">
+  <mat-card *ngIf="userWordLogs && userWordLogs.length > 0" id="wordsStatistic" class="dashboard-item">
     <mat-card-header class="dashboard-item__header">
       {{ 'label_words_statistic' | translate }}
     </mat-card-header>
     <mat-card-content>
-
+      <app-barchart [wordLogs]="lastWeeksLogs" [dailyGoal]="wordGoalDaily"></app-barchart>
     </mat-card-content>
   </mat-card>
 

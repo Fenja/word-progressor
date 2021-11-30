@@ -69,6 +69,7 @@ import { WritingGoalsComponent } from './writing-goals/writing-goals.component';
 import { NotificationSettingsComponent } from './settings/notification-settings/notification-settings.component';
 import { MatSlideToggleModule } from "@angular/material/slide-toggle";
 import { ServiceWorkerModule } from '@angular/service-worker';
+import { BarchartComponent } from './components/barchart/barchart.component';
 
 @NgModule({
   declarations: [
@@ -103,6 +104,7 @@ import { ServiceWorkerModule } from '@angular/service-worker';
     AchievementComponent,
     WritingGoalsComponent,
     NotificationSettingsComponent,
+    BarchartComponent,
   ],
   imports: [
       AngularFireModule.initializeApp(environment.FIREBASE_CONFIG),

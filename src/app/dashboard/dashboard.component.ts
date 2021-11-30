@@ -17,11 +17,12 @@ export class DashboardComponent implements OnDestroy {
   userWordLogs: WordLog[] | undefined;
   isNewUser = true;
   wips: Project[] = [];
-  wordStatistics: any;
   private subscriptions: Subscription[] = [];
 
   showInstallPWA = false;
   deferredPrompt: any;
+  lastWeeksLogs: WordLog[] = [];
+  lastMonthLogs: WordLog[] = [];
 
   @HostListener('window:beforeinstallprompt', ['$event'])
   onbeforeinstallprompt(e: any) {
@@ -43,6 +44,7 @@ export class DashboardComponent implements OnDestroy {
 
     this.subscriptions.push(this.userService.getUser().subscribe(u => {
       this.userWordLogs = u.wordLogs;
+      if (this.userWordLogs) this._initWeekLog();
       const logToday = u.wordLogs?.find(log => log.date === Utils.normalizedToday().toString());
       this.wordsToday = logToday?.words ?? 0;
       this.wordGoalDaily = u.settings?.dailyWordGoal;
@@ -67,5 +69,33 @@ export class DashboardComponent implements OnDestroy {
           }
           this.deferredPrompt = null;
         })
+  }
+
+  private _initWeekLog() {
+    let lastWeek: string[] = [];
+    let day = Utils.normalizedToday();
+    for (let i = 0; i < 7; i += 1) {
+      lastWeek.push(day.toString());
+      day -= 86400000;
+    }
+    lastWeek.forEach((day: string) => {
+      const wordLog = this.userWordLogs!.find(log => log.date === day);
+      this.lastWeeksLogs!.push(wordLog ?? {date: day, words: 0})
+    });
+    this.lastWeeksLogs.reverse();
+  }
+
+  private _initMonthLog() {
+    let lastMonth: string[] = [];
+    let day = Utils.normalizedToday();
+    for (let i = 0; i < 30; i += 1) {
+      lastMonth.push(day.toString());
+      day -= 86400000;
+    }
+    lastMonth.forEach((day: string) => {
+      const wordLog = this.userWordLogs!.find(log => log.date === day);
+      this.lastMonthLogs!.push(wordLog ?? {date: day, words: 0})
+    });
+    this.lastMonthLogs.reverse();
   }
 }

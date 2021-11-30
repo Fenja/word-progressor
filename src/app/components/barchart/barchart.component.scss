@@ -1,0 +1,58 @@
+
+.grafico {
+
+  .content {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 20em;
+    margin: 0;
+    padding: 0;
+
+    span {
+      font-size: 1.1em;
+      color: #707070;
+    }
+  }
+
+  .line{
+    background-color: #CCCCCC;
+    width: 100%;
+    height: .2em;
+    margin-top: .2em;
+    margin-bottom: .5em;
+  }
+
+  .legends{
+    display: flex;
+    flex-direction: row;
+    color: #707070;
+    font-size: 1em;
+    text-align: center;
+
+    span {
+      width: 100%;
+      padding: 0 0.3em;
+    }
+  }
+
+  .bars {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 0 0.7em;
+  }
+
+  .bar {
+    width: 100%;
+    min-height: .1em;
+    border-top-left-radius: 1em;
+    border-top-right-radius: 1em;
+
+    :hover {
+      transform: translateY(-1px);
+      box-shadow: 0 4px 17px rgba(0, 0, 0, 0.20);
+    }
+  }
+}
