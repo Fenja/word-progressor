@@ -45,6 +45,9 @@ testem.log
 Thumbs.db
 
 # Angular environment variables
+/src/environments
 environment.prod.ts
 environment.ts
 .env
+
+.firebase
