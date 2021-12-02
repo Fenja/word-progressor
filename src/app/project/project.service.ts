@@ -1,4 +1,4 @@
-import { Project } from "./project.model";
+import {Project, WordLog} from "./project.model";
 import { Injectable } from "@angular/core";
 import { DataStorageService } from "../services/data-storage.service";
 import { SnackbarService } from "../services/snackbar.service";
@@ -46,5 +46,12 @@ export class ProjectService {
 
   hasProject(id: string): boolean {
     return !!(this.dataStorageService.projects.find(p => p.id === id));
+  }
+
+  fixWordLogs(project: Project) {
+    if (!project.wordLogs) return;
+    let newLogs: WordLog[] = [];
+    project.wordLogs.forEach(log => newLogs.push(log));
+    project.wordLogs = newLogs;
   }
 }

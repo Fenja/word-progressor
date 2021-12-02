@@ -1,0 +1,14 @@
+<a class="show-more-link" (click)="showMore = !showMore">
+  <span *ngIf="showMore">{{ 'label_show_less' | translate }}</span>
+  <span *ngIf="!showMore">{{ 'label_show_more' | translate }}</span>
+</a>
+
+<div *ngIf="showMore" class="small-center">
+  <ng-container *ngFor="let log of displayWordLogs">
+    <app-wordlog-item [project]="project" [log]="log" [entity]="countEntity"></app-wordlog-item>
+  </ng-container>
+</div>
+
+<a class="show-more-link" (click)="showMore = !showMore">
+  <span *ngIf="showMore">{{ 'label_show_less' | translate }}</span>
+</a>

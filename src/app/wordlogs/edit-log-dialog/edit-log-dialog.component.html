@@ -1,0 +1,25 @@
+<h3 mat-dialog-title>{{ 'tooltip_edit_log' | translate }}</h3>
+<mat-dialog-content>
+  <div class="content">
+    <form>
+      <mat-form-field color="primary">
+        <input
+          matInput
+          name="note"
+          type="number"
+          value="{{ log.words }}"
+          class="form-control"
+          #wordsInput
+        >
+      </mat-form-field>
+    </form>
+  </div>
+
+  <div mat-dialog-actions>
+    <button mat-stroked-button color="accent" (click)="close()">{{'button_cancel' | translate}}</button>
+    <button mat-raised-button color="primary" (click)="save(+wordsInput.value)">
+      {{ 'button_save' | translate}}
+    </button>
+  </div>
+
+</mat-dialog-content>

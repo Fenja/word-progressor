@@ -2,9 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { CountEntity, Project } from "../project.model";
 import { ProjectService } from "../project.service";
 import { ActivatedRoute, Params, Router } from "@angular/router";
-import { AddWordsDialogComponent } from "../add-words-dialog/add-words-dialog.component";
+import { AddWordsDialogComponent } from "../../wordlogs/add-words-dialog/add-words-dialog.component";
 import { MatDialog } from "@angular/material/dialog";
 import { AddNoteDialogComponent } from "../add-note-dialog/add-note-dialog.component";
+import Utils from "../../helpers/utils";
 
 @Component({
   selector: 'app-project-detail',
@@ -31,6 +32,7 @@ export class ProjectDetailComponent implements OnInit {
         let result: Project | undefined = this.projectService.getProject(this.id);
         if (!!result) {
           this.project = result;
+          if (this.project.wordLogs) this.project.wordLogs = Utils.repairWordLogs(this.project.wordLogs);
         } else {
           // TODO show error
           console.log('project with id ' + this.id + ' not found');

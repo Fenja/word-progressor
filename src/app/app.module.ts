@@ -26,7 +26,7 @@ import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE, MatNativeDateModule } f
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { MatToolbarModule } from "@angular/material/toolbar";
 import { MatIconModule } from "@angular/material/icon";
-import { AddWordsDialogComponent } from './project/add-words-dialog/add-words-dialog.component';
+import { AddWordsDialogComponent } from './wordlogs/add-words-dialog/add-words-dialog.component';
 import { MatDialogModule } from "@angular/material/dialog";
 import { TranslatePipe } from "./translation/translate.pipe";
 import { ProjectProgressBarComponent } from './components/project-progress-bar/project-progress-bar.component';
@@ -70,6 +70,9 @@ import { NotificationSettingsComponent } from './settings/notification-settings/
 import { MatSlideToggleModule } from "@angular/material/slide-toggle";
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { BarchartComponent } from './components/barchart/barchart.component';
+import { WordlogListComponent } from './wordlogs/wordlog-list/wordlog-list.component';
+import { WordlogItemComponent } from './wordlogs/wordlog-item/wordlog-item.component';
+import { EditLogDialogComponent } from './wordlogs/edit-log-dialog/edit-log-dialog.component';
 
 @NgModule({
   declarations: [
@@ -105,6 +108,9 @@ import { BarchartComponent } from './components/barchart/barchart.component';
     WritingGoalsComponent,
     NotificationSettingsComponent,
     BarchartComponent,
+    WordlogListComponent,
+    WordlogItemComponent,
+    EditLogDialogComponent,
   ],
   imports: [
       AngularFireModule.initializeApp(environment.FIREBASE_CONFIG),

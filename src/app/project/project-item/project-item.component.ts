@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { CountEntity, Project } from "../project.model";
 import { MatDialog } from "@angular/material/dialog";
-import { AddWordsDialogComponent } from "../add-words-dialog/add-words-dialog.component";
+import { AddWordsDialogComponent } from "../../wordlogs/add-words-dialog/add-words-dialog.component";
 import { AddNoteDialogComponent } from "../add-note-dialog/add-note-dialog.component";
 
 @Component({

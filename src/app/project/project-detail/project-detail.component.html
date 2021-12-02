@@ -46,13 +46,13 @@
 </div>
 
 <div class="content" *ngIf="project.wordLogs">
-  <h3>{{ 'label_logs' | translate }}</h3>
-  <!-- <ol>
-    <li *ngFor="let log of project.wordLogs">
-      <span>{{ log.date | date}}</span> - <span>{{ log.words }} {{ project.countEntity | translate }}</span>
-    </li>
-  </ol>-->
+  <h3>{{ 'label_statistics' | translate }}</h3>
   <app-barchart [wordLogs]="project.wordLogs"></app-barchart>
+</div>
+
+<div class="content" *ngIf="project.wordLogs">
+  <h3>{{ 'label_logs' | translate }}</h3>
+  <app-wordlog-list [project]="project" [wordLogs]="project.wordLogs" [countEntity]="project.countEntity"></app-wordlog-list>
 </div>
 
 <div class="content" *ngIf="project.notes">

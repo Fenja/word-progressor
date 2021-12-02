@@ -23,29 +23,34 @@
       {{ 'label_words_today' | translate }}
     </mat-card-header>
     <mat-card-content>
-      <div class="mat-card-title" [ngClass]="metGoal ? 'primary-color' : ''">{{ wordsToday }} <span class="goal" *ngIf="wordGoalDaily">/ {{ wordGoalDaily }}</span></div>
+      <div class="mat-card-title" [ngClass]="metGoal ? 'accent-color' : 'primary-color'">{{ wordsToday }} <span class="goal" *ngIf="wordGoalDaily">/ {{ wordGoalDaily }}</span></div>
     </mat-card-content>
   </mat-card>
 
-  <!-- <mat-card id="wordLogs" class="dashboard-item" *ngIf="userWordLogs">
-    <mat-card-header>
-      {{ 'label_logs' | translate }}
-    </mat-card-header>
-    <mat-card-content>
-      <ol>
-        <li *ngFor="let log of userWordLogs">
-          <span>{{ log.date | date}}</span> - <span>{{ log.words }}</span>
-        </li>
-      </ol>
-    </mat-card-content>
-  </mat-card> -->
-
-  <mat-card *ngIf="userWordLogs && userWordLogs.length > 0" id="wordsStatistic" class="dashboard-item">
+  <mat-card *ngIf="userWordLogs && userWordLogs.length > 0" id="weekWordsStatistic" class="dashboard-item">
     <mat-card-header class="dashboard-item__header">
       {{ 'label_words_statistic' | translate }}
     </mat-card-header>
     <mat-card-content>
       <app-barchart [wordLogs]="lastWeeksLogs" [dailyGoal]="wordGoalDaily"></app-barchart>
+    </mat-card-content>
+  </mat-card>
+
+  <!-- <mat-card *ngIf="userWordLogs && userWordLogs.length > 0" id="monthWordsStatistic" class="dashboard-item">
+    <mat-card-header class="dashboard-item__header">
+      {{ 'label_words_statistic' | translate }}
+    </mat-card-header>
+    <mat-card-content>
+      <app-barchart [wordLogs]="lastMonthLogs" [dailyGoal]="wordGoalDaily"></app-barchart>
+    </mat-card-content>
+  </mat-card> -->
+
+  <mat-card id="wordLogs" class="dashboard-item" *ngIf="userWordLogs">
+    <mat-card-header>
+      {{ 'label_logs' | translate }}
+    </mat-card-header>
+    <mat-card-content class="small-center">
+      <app-wordlog-list [wordLogs]="userWordLogs" [numEntries]="10"></app-wordlog-list>
     </mat-card-content>
   </mat-card>
 

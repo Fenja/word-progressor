@@ -1,0 +1,25 @@
+<div class="wordlog-item">
+  <span>{{ log.date | date }} - {{ log.words }}</span>
+  <span>
+    <button
+      *ngIf="project"
+      mat-icon-button
+      name="edit"
+      matTooltip="{{ 'tooltip_edit_log' | translate }}"
+      class="wordlog-item__button"
+      (click)="editLog()"
+    >
+      <mat-icon>edit</mat-icon>
+    </button>
+    <button
+      *ngIf="project"
+      mat-icon-button
+      name="delete"
+      matTooltip="{{ 'tooltip_delete_log' | translate }}"
+      class="wordlog-item__button"
+      (click)="deleteLog()"
+    >
+      <mat-icon>deletee</mat-icon>
+    </button>
+  </span>
+</div>

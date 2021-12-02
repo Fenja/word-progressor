@@ -1,12 +1,16 @@
 <div class="grafico">
   <div class="content">
-    <div class="bars" *ngFor="let item of data" [style.width]="barWidth">
-      <span>{{ item.value }}</span>
+    <div class="bars"
+         *ngFor="let item of data"
+         [style.width]="barWidth + '%'"
+         [style.padding]="(barWidth < 10) ? '0 0.1em' : '0 0.7em'"
+    >
+      <span [style.writing-mode]="(barWidth < 10) ? 'tb-rl' : ''">{{ item.value }}</span>
       <div class="bar" [style.background-color]="item.color" [style.height]="item.size"></div>
     </div>
   </div>
   <div class="line"></div>
   <div class="legends">
-    <span *ngFor="let item of data">{{ item.legend | date }}</span>
+    <span *ngFor="let item of data" [style.writing-mode]="(barWidth < 10) ? 'tb-rl' : ''">{{ item.legend | date }}</span>
   </div>
 </div>

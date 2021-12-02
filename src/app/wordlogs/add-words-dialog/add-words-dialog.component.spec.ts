@@ -1,7 +1,7 @@
 import { ComponentFixture, fakeAsync, TestBed } from '@angular/core/testing';
 import { AddWordsDialogComponent } from './add-words-dialog.component';
-import { CountEntity, Project, ProjectState, ProjectType } from "../project.model";
-import { ProjectService } from "../project.service";
+import { CountEntity, Project, ProjectState, ProjectType } from "../../project/project.model";
+import { ProjectService } from "../../project/project.service";
 import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
 import { By } from "@angular/platform-browser";
 import { of } from "rxjs";

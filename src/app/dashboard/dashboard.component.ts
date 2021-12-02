@@ -44,7 +44,11 @@ export class DashboardComponent implements OnDestroy {
 
     this.subscriptions.push(this.userService.getUser().subscribe(u => {
       this.userWordLogs = u.wordLogs;
-      if (this.userWordLogs) this._initWeekLog();
+      if (this.userWordLogs){
+        this.userWordLogs = Utils.repairWordLogs(this.userWordLogs);
+        this._initWeekLog();
+        this._initMonthLog();
+      }
       const logToday = u.wordLogs?.find(log => log.date === Utils.normalizedToday().toString());
       this.wordsToday = logToday?.words ?? 0;
       this.wordGoalDaily = u.settings?.dailyWordGoal;

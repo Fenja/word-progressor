@@ -1,4 +1,4 @@
-import { ProjectEvent, ProjectState } from "../project/project.model";
+import {ProjectEvent, ProjectState, WordLog} from "../project/project.model";
 
 export default class Utils {
 
@@ -48,5 +48,15 @@ export default class Utils {
         result.push(ProjectEvent.start_revision);
     }
     return result;
+  }
+
+  static repairWordLogs(logs: WordLog[]): WordLog[] {
+    return logs.filter(Utils.notEmpty);
+  }
+
+  static notEmpty<TValue>(value: TValue | null | undefined): value is TValue {
+    if (value === null || value === undefined) return false;
+    const testDummy: TValue = value;
+    return true;
   }
 }

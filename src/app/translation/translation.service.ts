@@ -128,7 +128,8 @@ export class TranslationService {
         label_account: 'Benutzerkonto',
         label_pseudonym: 'Autorenname',
         label_privacy_policy: 'Datenschutzerklärung',
-        label_logs: 'Statistik',
+        label_logs: 'Log',
+        label_statistics: 'Statistik',
         label_count_entity: 'Einheiten',
         label_forgot_password: 'Passwort vergessen',
         label_last_updated_project: 'Zuletzt aktualisiertes Projekt',
@@ -167,6 +168,8 @@ export class TranslationService {
         tooltip_wip: 'in arbeit',
         tooltip_sort_deadline: 'nach Einsendeschluss sortieren',
         tooltip_take_action: 'mach was',
+        tooltip_edit_log: 'Log bearbeiten',
+        tooltip_delete_log: 'Log löschen',
 
         headline_word_count: 'Wortzahl',
         headline_total: 'Gesamt',
@@ -222,6 +225,7 @@ export class TranslationService {
         msg_reward_unspecified: 'Feiere deinen Erfolg! Ein Prost auf dich.',
         msg_saved_settings: 'Einstellungen wurden gespeichert',
         msg_update_available: 'Eine neue Version des WordProgressor ist verfügbar. Willst du jetzt aktualisieren?',
+        msg_delete_log: 'Diesen Eintrag wirklich löschen?',
 
         text_anonymous_dialog: `Wenn der WordProgressor ohne Konto genutzt wird, werden die Daten lokal gespeichert.\n
             Sie können dann weder synchronisiert, noch von einem anderen Gerät aus abgerufen werden.\n
@@ -348,6 +352,7 @@ export class TranslationService {
         label_pseudonym: 'Pen Name',
         label_privacy_policy: 'Privacy Policy',
         label_logs: 'Logs',
+        label_statistics: 'Statistics',
         label_count_entity: 'Entity',
         label_forgot_password: 'Forgot password',
         label_last_updated_project: 'Last updated project',
@@ -386,6 +391,8 @@ export class TranslationService {
         tooltip_wip: 'work in progress',
         tooltip_sort_deadline: 'sort by deadline',
         tooltip_take_action: 'take action',
+        tooltip_edit_log: 'edit log',
+        tooltip_delete_log: 'delete log',
 
         headline_word_count: 'Word Count',
         headline_total: 'Total',
@@ -442,6 +449,7 @@ export class TranslationService {
         msg_reward_unspecified: 'Celebrate your achievement! Cheers to you.',
         msg_saved_settings: 'Your settings have been saved',
         msg_update_available: 'A new version of WordProgressor is available. Do you want to update now?',
+        msg_delete_log: 'Do you want to delete this log?',
 
         text_anonymous_dialog: `When using the WordProgressor without an account, your data is stored locally.\n
             You won't be able to sync them or access them from another access point.\n

@@ -1,6 +1,6 @@
 import { Component, ElementRef, Inject, OnInit, ViewChild } from '@angular/core';
-import { CountEntity, Project } from "../project.model";
-import { ProjectService } from "../project.service";
+import { CountEntity, Project } from "../../project/project.model";
+import { ProjectService } from "../../project/project.service";
 import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
 import { SnackbarService } from "../../services/snackbar.service";
 import { TranslationService } from "../../translation/translation.service";
@@ -14,6 +14,7 @@ import {
 import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
 import 'moment/locale/de';
 import 'moment/locale/en-gb';
+import Utils from "../../helpers/utils";
 
 export interface AddWordsDialogData {
   id: string;
@@ -79,7 +80,7 @@ export class AddWordsDialogComponent implements OnInit {
     if (words === 0) return;
     this.data.project.currentCount += words;
     if (!!this.date) {
-      this.logWordsService.logWords(this.data.id, this.data.project, this.date, words);
+      this.logWordsService.logWords(this.data.id, this.data.project, Utils.normalizeDate(this.date).toString(), words);
     }
     this.snackBarService.showSnackBar(words + this.translationService.translate('msg_words_added'))
   }

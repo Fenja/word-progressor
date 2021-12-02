@@ -1,11 +1,10 @@
-import { Component, ElementRef, Inject, OnInit, ViewChild } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import { Project } from "../project.model";
 import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
 import { ProjectService } from "../project.service";
 import { SnackbarService } from "../../services/snackbar.service";
 import { TranslationService } from "../../translation/translation.service";
 import * as uuid from "uuid";
-import Utils from "../../helpers/utils";
 
 export interface AddNoteDialogData {
   id: string;

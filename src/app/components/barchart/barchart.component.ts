@@ -22,11 +22,11 @@ export class BarchartComponent implements OnInit {
 
   data: BarModel[] = [];
   public total = 0;
-  barWidth!: string;
+  barWidth!: number;
 
   ngOnInit(): void {
     if (!this.wordLogs) return;
-    this.barWidth = (100 / this.wordLogs.length) + '%';
+    this.barWidth = 100 / this.wordLogs.length;
     this.total = this.wordLogs.reduce((prev, current) => (prev.words > current.words) ? prev : current).words;
     this.wordLogs.forEach(log => {
       const size = Math.round(log.words*100/this.total) + '%';
