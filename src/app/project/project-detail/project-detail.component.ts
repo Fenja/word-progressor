@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { CountEntity, Project } from "../project.model";
 import { ProjectService } from "../project.service";
 import { ActivatedRoute, Params, Router } from "@angular/router";
-import { AddWordsDialogComponent } from "../../wordlogs/add-words-dialog/add-words-dialog.component";
+import { WordlogAddDialogComponent } from "../../wordlogs/wordlag-add-dialog/wordlog-add-dialog.component";
 import { MatDialog } from "@angular/material/dialog";
-import { AddNoteDialogComponent } from "../add-note-dialog/add-note-dialog.component";
+import { NoteAddDialogComponent } from "../../notes/note-add-dialog/note-add-dialog.component";
 import Utils from "../../helpers/utils";
 
 @Component({
@@ -43,7 +43,7 @@ export class ProjectDetailComponent implements OnInit {
   }
 
   addToProject() {
-    this.dialog.open(AddWordsDialogComponent,{
+    this.dialog.open(WordlogAddDialogComponent,{
       data: {
         id: this.id,
         project: this.project
@@ -60,7 +60,7 @@ export class ProjectDetailComponent implements OnInit {
 
   addNote() {
     if (this.project) {
-      this.dialog.open(AddNoteDialogComponent, {
+      this.dialog.open(NoteAddDialogComponent, {
         data: {
           id: this.project.id,
           project: this.project

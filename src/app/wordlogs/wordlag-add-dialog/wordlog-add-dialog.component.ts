@@ -16,14 +16,14 @@ import 'moment/locale/de';
 import 'moment/locale/en-gb';
 import Utils from "../../helpers/utils";
 
-export interface AddWordsDialogData {
+export interface WordlogAddDialogData {
   id: string;
   project: Project;
 }
 
 @Component({
   selector: 'app-add-words-dialog',
-  templateUrl: './add-words-dialog.component.html',
+  templateUrl: './wordlog-add-dialog.component.html',
   providers: [
     {
       provide: MAT_DATE_LOCALE,
@@ -38,7 +38,7 @@ export interface AddWordsDialogData {
     }
   ],
 })
-export class AddWordsDialogComponent implements OnInit {
+export class WordlogAddDialogComponent implements OnInit {
 
   @ViewChild('newWordsInput', {static: true}) newWordsInput!: ElementRef;
   @ViewChild('totalWordsInput', {static: true}) totalWordsInput!: ElementRef;
@@ -48,13 +48,13 @@ export class AddWordsDialogComponent implements OnInit {
   eCountEntity = CountEntity;
 
   constructor(
-    public dialogRef: MatDialogRef<AddWordsDialogComponent>,
+    public dialogRef: MatDialogRef<WordlogAddDialogComponent>,
     private projectService: ProjectService,
     private snackBarService: SnackbarService,
     private translationService: TranslationService,
     private logWordsService: LogWordsService,
     private _adapter: DateAdapter<any>,
-    @Inject(MAT_DIALOG_DATA) public data: AddWordsDialogData
+    @Inject(MAT_DIALOG_DATA) public data: WordlogAddDialogData
   ) {
     this.date.setHours(0,0,0,0);
     if(!projectService.hasProject(this.data.id)) {

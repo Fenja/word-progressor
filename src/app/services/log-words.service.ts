@@ -15,13 +15,11 @@ export class LogWordsService {
   ) { }
 
   logWords(id: string, project: Project, date: string, words: number) {
-    console.log('log words', words);
     project.wordLogs = this.addWordsToLog(project.wordLogs, date, words);
     this.projectService.editProject(id, project);
 
     // do not log characters or pages to user stats
     if (project.countEntity === CountEntity.words) {
-      console.log('log user words', date, words);
       let user = this.dataStorageService.user;
       user.wordLogs = this.addWordsToLog(user.wordLogs, date, words);
       this.dataStorageService.editUser(user.id!, user);
@@ -37,18 +35,6 @@ export class LogWordsService {
       wordLogs[index] = {date, words: words};
     } else {
       wordLogs.push({date, words: words});
-      //wordLogs = this.sortWordLogs(wordLogs);
-    }
-    return wordLogs;
-  }
-
-  public sortWordLogs(wordLogs: WordLog[]) {
-    let index = wordLogs.length -1;
-    let tempLog = wordLogs[index];
-    while (wordLogs[index-1].date < tempLog.date && index > 0) {
-      wordLogs[index] = wordLogs[index-1];
-      index -= 1;
-      if (index === 0) wordLogs[0] = tempLog;
     }
     return wordLogs;
   }
@@ -57,6 +43,7 @@ export class LogWordsService {
     const index = project.wordLogs?.indexOf(log);
     delete project.wordLogs![index!];
     project.wordLogs = Utils.repairWordLogs(project.wordLogs!);
+    project.currentCount -= log.words;
     this.projectService.editProject(project.id!, project);
 
     let user = this.dataStorageService.user;

@@ -26,7 +26,7 @@ import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE, MatNativeDateModule } f
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { MatToolbarModule } from "@angular/material/toolbar";
 import { MatIconModule } from "@angular/material/icon";
-import { AddWordsDialogComponent } from './wordlogs/add-words-dialog/add-words-dialog.component';
+import { WordlogAddDialogComponent } from './wordlogs/wordlag-add-dialog/wordlog-add-dialog.component';
 import { MatDialogModule } from "@angular/material/dialog";
 import { TranslatePipe } from "./translation/translate.pipe";
 import { ProjectProgressBarComponent } from './components/project-progress-bar/project-progress-bar.component';
@@ -58,21 +58,24 @@ import { ProjectOverviewComponent } from './project/project-overview/project-ove
 import { MatListModule } from "@angular/material/list";
 import { SideNavComponent } from './header/side-nav/side-nav.component';
 import { MatSidenavModule } from "@angular/material/sidenav";
-import { AddNoteDialogComponent } from './project/add-note-dialog/add-note-dialog.component';
+import { NoteAddDialogComponent } from './notes/note-add-dialog/note-add-dialog.component';
 import { TakeActionComponent } from './project/take-action/take-action.component';
 import { PublicationComponent } from './publication/publication.component';
 import { PublicationEditComponent } from './publication/publication-edit/publication-edit.component';
 import { PublicationDialogComponent } from './publication/publication-dialog/publication-dialog.component';
 import { RewardDialogComponent } from './project/reward-dialog/reward-dialog.component';
 import { AchievementComponent } from './achievement/achievement.component';
-import { WritingGoalsComponent } from './writing-goals/writing-goals.component';
+import { WritingGoalsComponent } from './settings/writing-goals/writing-goals.component';
 import { NotificationSettingsComponent } from './settings/notification-settings/notification-settings.component';
 import { MatSlideToggleModule } from "@angular/material/slide-toggle";
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { BarchartComponent } from './components/barchart/barchart.component';
 import { WordlogListComponent } from './wordlogs/wordlog-list/wordlog-list.component';
 import { WordlogItemComponent } from './wordlogs/wordlog-item/wordlog-item.component';
-import { EditLogDialogComponent } from './wordlogs/edit-log-dialog/edit-log-dialog.component';
+import { WordlogEditDialog } from './wordlogs/wordlog-edit-dialog/wordlog-edit-dialog.component';
+import { NoteListComponent } from './notes/note-list/note-list.component';
+import { NoteItemComponent } from './notes/note-item/note-item.component';
+import { NoteEditDialogComponent } from './notes/note-edit-dialog/note-edit-dialog.component';
 
 @NgModule({
   declarations: [
@@ -84,7 +87,7 @@ import { EditLogDialogComponent } from './wordlogs/edit-log-dialog/edit-log-dial
     ProjectDetailComponent,
     ProjectFooterComponent,
     ProjectsComponent,
-    AddWordsDialogComponent,
+    WordlogAddDialogComponent,
     TranslatePipe,
     ProjectProgressBarComponent,
     AuthComponent,
@@ -98,7 +101,7 @@ import { EditLogDialogComponent } from './wordlogs/edit-log-dialog/edit-log-dial
     ForgotPasswordDialog,
     ProjectOverviewComponent,
     SideNavComponent,
-    AddNoteDialogComponent,
+    NoteAddDialogComponent,
     TakeActionComponent,
     PublicationComponent,
     PublicationEditComponent,
@@ -110,7 +113,10 @@ import { EditLogDialogComponent } from './wordlogs/edit-log-dialog/edit-log-dial
     BarchartComponent,
     WordlogListComponent,
     WordlogItemComponent,
-    EditLogDialogComponent,
+    WordlogEditDialog,
+    NoteListComponent,
+    NoteItemComponent,
+    NoteEditDialogComponent,
   ],
   imports: [
       AngularFireModule.initializeApp(environment.FIREBASE_CONFIG),

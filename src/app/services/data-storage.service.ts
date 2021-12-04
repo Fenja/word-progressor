@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { AuthService } from "../auth/auth.service";
-import { Settings, userData } from "../auth/user.model";
+import { userData } from "../auth/user.model";
 import { environment } from "../../environments/environment";
 import { Project } from "../project/project.model";
 import { catchError, map, take } from "rxjs/operators";

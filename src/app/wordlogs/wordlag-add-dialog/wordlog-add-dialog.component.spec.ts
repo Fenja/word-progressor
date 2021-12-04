@@ -1,5 +1,5 @@
 import { ComponentFixture, fakeAsync, TestBed } from '@angular/core/testing';
-import { AddWordsDialogComponent } from './add-words-dialog.component';
+import { WordlogAddDialogComponent } from './wordlog-add-dialog.component';
 import { CountEntity, Project, ProjectState, ProjectType } from "../../project/project.model";
 import { ProjectService } from "../../project/project.service";
 import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
@@ -11,8 +11,8 @@ import { MatSnackBar } from "@angular/material/snack-bar";
 import { LogWordsService } from "../../services/log-words.service";
 
 describe('AddWordsDialogComponent', () => {
-  let component: AddWordsDialogComponent;
-  let fixture: ComponentFixture<AddWordsDialogComponent>;
+  let component: WordlogAddDialogComponent;
+  let fixture: ComponentFixture<WordlogAddDialogComponent>;
 
   const mockProject: Project = {
     countEntity: CountEntity.words,
@@ -39,7 +39,7 @@ describe('AddWordsDialogComponent', () => {
     beforeEach(async () => {
       await TestBed.configureTestingModule({
         declarations: [
-          AddWordsDialogComponent,
+          WordlogAddDialogComponent,
           TranslatePipe,
         ],
         imports: [ FormsModule ],
@@ -74,7 +74,7 @@ describe('AddWordsDialogComponent', () => {
     });
 
     beforeEach(() => {
-      fixture = TestBed.createComponent(AddWordsDialogComponent);
+      fixture = TestBed.createComponent(WordlogAddDialogComponent);
       component = fixture.componentInstance;
       fixture.detectChanges();
     });
@@ -116,7 +116,7 @@ describe('AddWordsDialogComponent', () => {
     it('handles undefined id', async () => {
       await TestBed.configureTestingModule({
         declarations: [
-          AddWordsDialogComponent,
+          WordlogAddDialogComponent,
           TranslatePipe,
         ],
         providers: [
@@ -147,7 +147,7 @@ describe('AddWordsDialogComponent', () => {
       })
       .compileComponents();
 
-      fixture = TestBed.createComponent(AddWordsDialogComponent);
+      fixture = TestBed.createComponent(WordlogAddDialogComponent);
       component = fixture.componentInstance;
       fixture.detectChanges();
 

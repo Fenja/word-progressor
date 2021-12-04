@@ -1,0 +1,26 @@
+<h3 mat-dialog-title>{{ 'button_edit_note' | translate }}</h3>
+<mat-dialog-content>
+  <div class="content">
+    <form>
+      <mat-form-field color="primary">
+        <textarea
+          matInput
+          id="note"
+          name="note"
+          rows="3"
+          class="form-control"
+          value="{{ content }}"
+          #textInput
+        ></textarea>
+      </mat-form-field>
+    </form>
+  </div>
+
+  <div mat-dialog-actions>
+    <button mat-stroked-button color="accent" (click)="close()">{{'button_cancel' | translate}}</button>
+    <button mat-raised-button color="primary" (click)="save(textInput.value)">
+      {{ 'button_save' | translate}}
+    </button>
+  </div>
+
+</mat-dialog-content>

@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import {CountEntity, Project, WordLog} from "../../project/project.model";
 import { LogWordsService } from "../../services/log-words.service";
-import {EditLogDialogComponent} from "../edit-log-dialog/edit-log-dialog.component";
+import {WordlogEditDialog} from "../wordlog-edit-dialog/wordlog-edit-dialog.component";
 import {MatDialog} from "@angular/material/dialog";
 import {TranslationService} from "../../translation/translation.service";
 
@@ -21,13 +21,12 @@ export class WordlogItemComponent {
     private dialog: MatDialog,
     private logWordsService: LogWordsService,
     private translationService: TranslationService,
-  ) {
-  }
+  ) { }
 
   editLog() {
     if (this.log) {
       const wordsBefore = this.log.words;
-      this.dialog.open(EditLogDialogComponent,{data: {log: this.log}})
+      this.dialog.open(WordlogEditDialog,{data: {log: this.log}})
         .afterClosed().subscribe(newWords => {
           if (!newWords) return;
           if (this.project) {

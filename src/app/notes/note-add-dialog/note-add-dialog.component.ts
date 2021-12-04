@@ -1,28 +1,28 @@
 import { Component, Inject } from '@angular/core';
-import { Project } from "../project.model";
+import { Project } from "../../project/project.model";
 import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
-import { ProjectService } from "../project.service";
+import { ProjectService } from "../../project/project.service";
 import { SnackbarService } from "../../services/snackbar.service";
 import { TranslationService } from "../../translation/translation.service";
 import * as uuid from "uuid";
 
-export interface AddNoteDialogData {
+export interface NoteAddDialogData {
   id: string;
   project: Project;
 }
 
 @Component({
   selector: 'app-add-note-dialog',
-  templateUrl: './add-note-dialog.component.html'
+  templateUrl: './note-add-dialog.component.html'
 })
-export class AddNoteDialogComponent {
+export class NoteAddDialogComponent {
 
   constructor(
-    public dialogRef: MatDialogRef<AddNoteDialogComponent>,
+    public dialogRef: MatDialogRef<NoteAddDialogComponent>,
     private projectService: ProjectService,
     private snackBarService: SnackbarService,
     private translationService: TranslationService,
-    @Inject(MAT_DIALOG_DATA) public data: AddNoteDialogData
+    @Inject(MAT_DIALOG_DATA) public data: NoteAddDialogData
   ) { }
 
   addNote(text: string) {

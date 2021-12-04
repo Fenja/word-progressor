@@ -19,6 +19,7 @@ export class WordlogListComponent implements OnInit {
     if (this.numEntries) {
       this.displayWordLogs = this.wordLogs.slice(this.wordLogs.length - this.numEntries);
     }
+    if (this.displayWordLogs.length <= 5) this.showMore = true;
   }
 
 

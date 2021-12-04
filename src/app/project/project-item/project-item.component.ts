@@ -1,8 +1,8 @@
 import { Component, Input } from '@angular/core';
 import { CountEntity, Project } from "../project.model";
 import { MatDialog } from "@angular/material/dialog";
-import { AddWordsDialogComponent } from "../../wordlogs/add-words-dialog/add-words-dialog.component";
-import { AddNoteDialogComponent } from "../add-note-dialog/add-note-dialog.component";
+import { WordlogAddDialogComponent } from "../../wordlogs/wordlag-add-dialog/wordlog-add-dialog.component";
+import { NoteAddDialogComponent } from "../../notes/note-add-dialog/note-add-dialog.component";
 
 @Component({
   selector: 'app-project-item',
@@ -20,7 +20,7 @@ export class ProjectItemComponent {
 
   addToProject() {
     if (this.project) {
-      this.dialog.open(AddWordsDialogComponent, {
+      this.dialog.open(WordlogAddDialogComponent, {
         data: {
           id: this.project.id,
           project: this.project
@@ -31,7 +31,7 @@ export class ProjectItemComponent {
 
   addNote() {
     if (this.project) {
-      this.dialog.open(AddNoteDialogComponent, {
+      this.dialog.open(NoteAddDialogComponent, {
         data: {
           id: this.project.id,
           project: this.project

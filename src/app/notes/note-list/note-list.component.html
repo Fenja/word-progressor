@@ -1,0 +1,6 @@
+
+<div>
+  <ng-container *ngFor="let note of project.notes">
+    <app-note-item [project]="project" [note]="note"></app-note-item>
+  </ng-container>
+</div>

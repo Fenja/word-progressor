@@ -1,10 +1,10 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AddNoteDialogComponent } from './add-note-dialog.component';
+import { NoteAddDialogComponent } from './note-add-dialog.component';
 
 describe('AddNoteDialogComponent', () => {
-  let component: AddNoteDialogComponent;
-  let fixture: ComponentFixture<AddNoteDialogComponent>;
+  let component: NoteAddDialogComponent;
+  let fixture: ComponentFixture<NoteAddDialogComponent>;
 
   let text1: 'This is a note';
   let text2: 'Thiß is á \'special\" _note42';
@@ -13,13 +13,13 @@ describe('AddNoteDialogComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ AddNoteDialogComponent ]
+      declarations: [ NoteAddDialogComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(AddNoteDialogComponent);
+    fixture = TestBed.createComponent(NoteAddDialogComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

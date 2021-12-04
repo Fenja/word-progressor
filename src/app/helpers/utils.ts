@@ -51,7 +51,9 @@ export default class Utils {
   }
 
   static repairWordLogs(logs: WordLog[]): WordLog[] {
-    return logs.filter(Utils.notEmpty);
+    logs = logs.filter(Utils.notEmpty);
+    logs = logs.sort((a, b) => (+(a.date) < +(b.date) ? -1 : 1))
+    return logs;
   }
 
   static notEmpty<TValue>(value: TValue | null | undefined): value is TValue {

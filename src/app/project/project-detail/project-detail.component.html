@@ -45,7 +45,7 @@
   <div>{{ project.eventLink }}</div>
 </div>
 
-<div class="content" *ngIf="project.wordLogs">
+<div class="content" *ngIf="project.wordLogs && project.wordLogs.length > 1">
   <h3>{{ 'label_statistics' | translate }}</h3>
   <app-barchart [wordLogs]="project.wordLogs"></app-barchart>
 </div>
@@ -57,11 +57,7 @@
 
 <div class="content" *ngIf="project.notes">
   <h3>{{ 'label_notes' | translate }}</h3>
-  <ol>
-    <li *ngFor="let note of project.notes">
-      <span>{{ note.content }}</span>
-    </li>
-  </ol>
+  <app-note-list [project]="project"></app-note-list>
 </div>
 
 <div class="content" *ngIf="project.publication">

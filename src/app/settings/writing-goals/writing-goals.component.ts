@@ -1,11 +1,10 @@
 import { Component } from '@angular/core';
-import { SnackbarService } from "../services/snackbar.service";
-import { TranslationService } from "../translation/translation.service";
-import { UserService } from "../services/user.service";
-import { Settings } from "../auth/user.model";
-import { DataStorageService } from "../services/data-storage.service";
+import { SnackbarService } from "../../services/snackbar.service";
+import { TranslationService } from "../../translation/translation.service";
+import { UserService } from "../../services/user.service";
+import { Settings } from "../../auth/user.model";
+import { DataStorageService } from "../../services/data-storage.service";
 import { MatTabChangeEvent } from "@angular/material/tabs";
-import { take } from "rxjs/operators";
 
 @Component({
   selector: 'app-writing-goals',
@@ -24,9 +23,6 @@ export class WritingGoalsComponent {
   ) {
     this.settings = this.userService.settings;
     this.userService.getUser()
-      .pipe(
-        take(1)
-      )
       .subscribe(u => {
       if (u.settings) {
         this.settings = u.settings;
@@ -37,6 +33,7 @@ export class WritingGoalsComponent {
   }
 
   save() {
+    console.log('writing-goals save settings', this.settings);
     this.userService.saveSettings(this.settings);
     this.snackBarService.showSnackBar(this.translationService.translate('msg_saved_settings'));
   }

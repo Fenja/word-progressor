@@ -98,6 +98,7 @@ export class TranslationService {
         button_google_register: 'Mit Google registrieren',
         button_send_reset_mail: 'Email zum Zurücksetzen versenden',
         button_add_note: 'Notiz hinzufügen',
+        button_edit_note: 'Notiz ändern',
         button_later: 'Später',
         button_reward_now: 'Jetzt belohnen',
         button_delete_publication: 'Veröffentlichung löschen',
@@ -170,6 +171,8 @@ export class TranslationService {
         tooltip_take_action: 'mach was',
         tooltip_edit_log: 'Log bearbeiten',
         tooltip_delete_log: 'Log löschen',
+        tooltip_edit_note: 'Notiz bearbeiten',
+        tooltip_delete_note: 'Notiz löschen',
 
         headline_word_count: 'Wortzahl',
         headline_total: 'Gesamt',
@@ -177,6 +180,7 @@ export class TranslationService {
         headline_publication: 'Veröffentlichung',
         headline_submission: 'Ausschreibung',
         headline_event: 'Event',
+        headline_congrats: 'Glückwunsch',
         headline_writing_goal: 'Schreibziel',
         headline_daily_writing_goal: 'Tägliches Schreibziel',
         headline_weekdays: 'Wochentage',
@@ -187,7 +191,7 @@ export class TranslationService {
         error_unknown: 'Ein unerwarteter Fehler ist aufgetreten.',
         error_email_exists: 'Die E-Mail-Adresse ist bereits von einem anderen Konto in Benutzung.',
         error_too_many_attempts_try_later: 'Alle Anfragen dieses Geräts wurden vorübergehend blockiert, aufgrund ungewöhnlicher Aktivitäten. Versuche es später erneut.',
-        error_email_not_found: 'Ungültige Anmeldedaten.',
+        error_email_not_found: 'Ungültige Anmeldedatenn.',
         error_invalid_password: 'Ungültige Anmeldedaten.',
         error_user_disabled: 'Das Benutzerkonto wurde vom Administrator gesperrt.',
         error_invalid_value: 'Ungültiger Wert',
@@ -226,6 +230,7 @@ export class TranslationService {
         msg_saved_settings: 'Einstellungen wurden gespeichert',
         msg_update_available: 'Eine neue Version des WordProgressor ist verfügbar. Willst du jetzt aktualisieren?',
         msg_delete_log: 'Diesen Eintrag wirklich löschen?',
+        msg_delete_note: 'Diese Notiz wirklich löschen?',
 
         text_anonymous_dialog: `Wenn der WordProgressor ohne Konto genutzt wird, werden die Daten lokal gespeichert.\n
             Sie können dann weder synchronisiert, noch von einem anderen Gerät aus abgerufen werden.\n
@@ -321,6 +326,7 @@ export class TranslationService {
         button_google_register: 'Sign up with Google',
         button_send_reset_mail: 'Send email to reset password',
         button_add_note: 'Add note',
+        button_edit_note: 'Edit note',
         button_later: 'Later',
         button_reward_now: 'Reward now',
         button_delete_publication: 'Delete publication',
@@ -393,6 +399,8 @@ export class TranslationService {
         tooltip_take_action: 'take action',
         tooltip_edit_log: 'edit log',
         tooltip_delete_log: 'delete log',
+        tooltip_edit_note: 'edit note',
+        tooltip_delete_note: 'delete note',
 
         headline_word_count: 'Word Count',
         headline_total: 'Total',
@@ -450,6 +458,7 @@ export class TranslationService {
         msg_saved_settings: 'Your settings have been saved',
         msg_update_available: 'A new version of WordProgressor is available. Do you want to update now?',
         msg_delete_log: 'Do you want to delete this log?',
+        msg_delete_note: 'Do you want to delete this note?',
 
         text_anonymous_dialog: `When using the WordProgressor without an account, your data is stored locally.\n
             You won't be able to sync them or access them from another access point.\n

@@ -1,0 +1,25 @@
+<div class="note-item">
+  <span>{{ note.content }}</span>
+  <span>
+    <button
+      *ngIf="project"
+      mat-icon-button
+      name="edit"
+      matTooltip="{{ 'tooltip_edit_note' | translate }}"
+      class="wordlog-item__button"
+      (click)="editNote()"
+    >
+      <mat-icon>edit</mat-icon>
+    </button>
+    <button
+      *ngIf="project"
+      mat-icon-button
+      name="delete"
+      matTooltip="{{ 'tooltip_delete_note' | translate }}"
+      class="wordlog-item__button"
+      (click)="deleteNote()"
+    >
+      <mat-icon>deletee</mat-icon>
+    </button>
+  </span>
+</div>
