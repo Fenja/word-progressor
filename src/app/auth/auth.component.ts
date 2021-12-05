@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import {Component, ElementRef, ViewChild} from '@angular/core';
 import { NgForm } from "@angular/forms";
 import { AuthService } from "./auth.service";
 import { AnonymousDialog } from "./anonymous-dialog/anonymous-dialog.component";
@@ -15,8 +15,6 @@ import { ForgotPasswordDialog } from "./forgot-password/forgot-password.componen
   templateUrl: './auth.component.html',
 })
 export class AuthComponent {
-  @ViewChild('authForm', {static: true}) form!: NgForm;
-
   isLoading = false;
   isLoginMode = true;
   isCreateFromLocalMode: boolean = false;
@@ -46,14 +44,14 @@ export class AuthComponent {
     this.isLoginMode = !this.isLoginMode;
   }
 
-  onSubmit() {
-    if (!this.form.valid) {
+  onSubmit(form: NgForm) {
+    if (!form.valid) {
       return;
     }
     this.isLoading = true;
 
-    const email = this.form.value.email;
-    const password = this.form.value.password;
+    const email = form.value.email;
+    const password = form.value.password;
 
     if (this.isLoginMode) {
       this.authService.SignIn(email, password).then(() => {
@@ -68,7 +66,7 @@ export class AuthComponent {
       });
     }
 
-    this.form.reset();
+    form.reset();
   }
 
   onGoogleLogin() {
