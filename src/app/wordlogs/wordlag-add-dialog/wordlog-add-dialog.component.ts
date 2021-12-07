@@ -78,7 +78,6 @@ export class WordlogAddDialogComponent implements OnInit {
   updateWords(words: number) {
     this.close();
     if (words === 0) return;
-    this.data.project.currentCount += words;
     if (!!this.date) {
       this.logWordsService.logWords(this.data.id, this.data.project, Utils.normalizeDate(this.date).toString(), words);
     }

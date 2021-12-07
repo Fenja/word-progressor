@@ -183,6 +183,18 @@ export class DataStorageService {
     this.user = {
       id: uuid.v4(),
       lastLogin: new Date(),
+      settings: {
+        dailyWordGoal: 0,
+        isWeekDayGoal: true,
+        selectedDays: [],
+        daysPerWeek: 0,
+        showOnlyWip: false,
+        isSortByDeadline: false,
+        notifyDailyWriting: false,
+        timeDailyWriting: {hours: 7, minutes: 0},
+        notifyDeadline: false,
+        daysBeforeDeadlineReminder: [],
+      }
     };
   }
 

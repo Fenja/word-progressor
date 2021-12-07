@@ -3,6 +3,7 @@ import { Project } from "../project.model";
 import { ProjectService } from "../project.service";
 import { Subscription } from "rxjs";
 import { UserService } from "../../services/user.service";
+import { Settings } from "../../auth/user.model";
 
 @Component({
   selector: 'app-project-list',
@@ -13,6 +14,7 @@ export class ProjectListComponent implements OnDestroy {
   projects: Project[] = [];
   private allProjects: Project[];
   private subscriptions: Subscription[] = [];
+  settings: Settings | undefined;
 
   constructor(
     private projectService: ProjectService,
@@ -28,6 +30,8 @@ export class ProjectListComponent implements OnDestroy {
         this._filterProjects();
       }
     ));
+
+    this.subscriptions.push(this.userService.getUser().subscribe(user => this.settings = user.settings));
   }
 
   ngOnDestroy(): void {
@@ -36,11 +40,11 @@ export class ProjectListComponent implements OnDestroy {
 
   private _filterProjects() {
     this.projects = this.allProjects.filter(project => {
-        if (this.userService.settings.showOnlyWip) return project.isWorkInProgress;
+        if (this.settings?.showOnlyWip) return project.isWorkInProgress;
         return true;
       }
     );
-    if (this.userService.settings.isSortByDeadline) {
+    if (this.settings?.isSortByDeadline) {
       this.projects.sort((a: Project, b: Project) => {
         if (!a.deadline) return 1;
         else if (!b.deadline) return -1;

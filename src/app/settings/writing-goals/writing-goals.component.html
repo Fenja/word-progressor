@@ -4,7 +4,7 @@
   </mat-card-header>
   <mat-card-content>
 
-<div>
+<div *ngIf="settings">
   <h3>{{ 'headline_daily_writing_goal' | translate }}</h3>
   <mat-form-field>
     <mat-label>{{ 'label_daily_goal' | translate }}</mat-label>
@@ -19,7 +19,7 @@
   </mat-form-field>
 </div>
 
-<div>
+<div *ngIf="settings">
     <mat-tab-group mat-align-tabs="center" (selectedTabChange)="tabChanged($event)" [selectedIndex]="settings.isWeekDayGoal ? 0 : 1">
       <mat-tab label="{{ 'headline_weekdays' | translate }}">
         <ul class="weekday-list">

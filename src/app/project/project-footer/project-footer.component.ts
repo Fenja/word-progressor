@@ -10,17 +10,22 @@ export class ProjectFooterComponent {
 
   showOnlyWip!: boolean;
   isSortByDeadline!: boolean;
-  private settings!: Settings;
+  private settings: Settings | undefined;
 
   constructor(
     public userService: UserService
   ) {
-    this.settings = this.userService.settings;
-    this.showOnlyWip = this.settings.showOnlyWip;
-    this.isSortByDeadline = this.settings.isSortByDeadline;
+    this.userService.getUser().subscribe(user => {
+      this.settings = user.settings;
+      if (this.settings) {
+        this.showOnlyWip = this.settings.showOnlyWip;
+        this.isSortByDeadline = this.settings.isSortByDeadline;
+      }
+    });
   }
 
   toggleWip() {
+    if (!this.settings) return;
     this.showOnlyWip = !this.showOnlyWip;
     this.settings.showOnlyWip = this.showOnlyWip;
     this.userService.changedFilter(this.settings);
@@ -28,6 +33,7 @@ export class ProjectFooterComponent {
   }
 
   toggleDeadline() {
+    if (!this.settings) return;
     this.isSortByDeadline = !this.isSortByDeadline;
     this.settings.isSortByDeadline = this.isSortByDeadline;
     this.userService.changedFilter(this.settings);

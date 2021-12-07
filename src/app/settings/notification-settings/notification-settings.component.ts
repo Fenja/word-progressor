@@ -12,7 +12,7 @@ import { TranslationService } from "../../translation/translation.service";
 })
 export class NotificationSettingsComponent {
 
-  settings!: Settings;
+  settings: Settings | undefined;
   notificationsEnabled = true;
 
   constructor(
@@ -21,7 +21,6 @@ export class NotificationSettingsComponent {
     private snackBarService: SnackbarService,
     private translationService: TranslationService,
   ) {
-    this.settings = this.userService.settings;
     this.userService.getUser()
       .pipe(
         take(1)
@@ -34,6 +33,7 @@ export class NotificationSettingsComponent {
   }
 
   save() {
+    if (!this.settings) return;
     this.userService.saveSettings(this.settings);
     this.snackBarService.showSnackBar(this.translationService.translate('msg_saved_settings'));
   }

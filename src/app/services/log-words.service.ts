@@ -16,6 +16,7 @@ export class LogWordsService {
 
   logWords(id: string, project: Project, date: string, words: number) {
     project.wordLogs = this.addWordsToLog(project.wordLogs, date, words);
+    project.currentCount += words;
     this.projectService.editProject(id, project);
 
     // do not log characters or pages to user stats
