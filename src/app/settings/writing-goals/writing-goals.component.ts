@@ -5,6 +5,7 @@ import { UserService } from "../../services/user.service";
 import { Settings } from "../../auth/user.model";
 import { DataStorageService } from "../../services/data-storage.service";
 import { MatTabChangeEvent } from "@angular/material/tabs";
+import Utils from "../../helpers/utils";
 
 @Component({
   selector: 'app-writing-goals',
@@ -12,7 +13,7 @@ import { MatTabChangeEvent } from "@angular/material/tabs";
 })
 export class WritingGoalsComponent {
 
-  settings!: Settings;
+  settings: Settings = Utils.getDefaultSettings();
   isSelected: boolean[] = [false,false,false,false,false,false,false];
 
   constructor(
@@ -21,7 +22,6 @@ export class WritingGoalsComponent {
     private snackBarService: SnackbarService,
     private translationService: TranslationService,
   ) {
-    this.settings = this.userService.settings;
     this.userService.getUser()
       .subscribe(u => {
       if (u.settings) {

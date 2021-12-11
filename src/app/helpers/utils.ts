@@ -1,4 +1,5 @@
 import {ProjectEvent, ProjectState, WordLog} from "../project/project.model";
+import {Settings} from "../auth/user.model";
 
 export default class Utils {
 
@@ -60,5 +61,20 @@ export default class Utils {
     if (value === null || value === undefined) return false;
     const testDummy: TValue = value;
     return true;
+  }
+
+  static getDefaultSettings(): Settings {
+    return {
+      dailyWordGoal: 0,
+      isWeekDayGoal: true,
+      selectedDays: [],
+      daysPerWeek: 0,
+      showOnlyWip: false,
+      isSortByDeadline: false,
+      notifyDailyWriting: false,
+      timeDailyWriting: {hours: 7, minutes: 0},
+      notifyDeadline: false,
+      daysBeforeDeadlineReminder: [],
+    };
   }
 }
