@@ -201,6 +201,8 @@ export class TranslationService {
         error_google_auth_failed: 'Authentifizierung über Google fehlgeschlagen.',
 
         msg_words_added: ' Wörter hinzugefügt',
+        msg_characters_added: ' Zeichen hinzugefügt',
+        msg_pages_added: ' Seiten hinzugefügt',
         msg_created: ' erstellt',
         msg_saved: ' gespeichert',
         msg_deleted: ' gelöscht',
@@ -429,6 +431,8 @@ export class TranslationService {
         error_google_auth_failed: 'Authentication via google failed',
 
         msg_words_added: ' words added',
+        msg_characters_added: ' characters added',
+        msg_pages_added: ' pages added',
         msg_created: ' created',
         msg_saved: ' saved',
         msg_deleted: ' deleted',
@@ -477,7 +481,7 @@ export class TranslationService {
 
   translate(key: string): string {
     if (this.dictionary[this.language] !== null) {
-      return this.dictionary[this.language].values[key] ?? '!!missing_translation!!';
+      return this.dictionary[this.language].values[key] ?? '!!'+ key+'!!';
     }
     return '!!invalid_language!!';
   }

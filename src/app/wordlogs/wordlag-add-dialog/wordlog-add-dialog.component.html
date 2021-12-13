@@ -25,40 +25,6 @@
   </ng-template>
 
   <mat-tab-group mat-align-tabs="center" *ngIf="validProject">
-    <mat-tab label="{{ 'headline_total' | translate }}">
-      <div class="content">
-        <form>
-          <div>
-            <ng-container *ngTemplateOutlet="dateInput"></ng-container>
-          </div>
-
-          <div>
-            <mat-form-field
-              class="example-full-width"
-              color="primary"
-            >
-              <input
-                type="number"
-                name="currentWordcount"
-                data-testid="current-wordcount-input"
-                matInput
-                class="form-control"
-                value="{{ data.project.currentCount }}"
-                #totalWordsInput
-              >
-            </mat-form-field>
-          </div>
-        </form>
-        <div mat-dialog-actions>
-          <button mat-stroked-button color="accent" (click)="close()">{{ 'button_cancel' | translate }}</button>
-          <button mat-raised-button color="primary" (click)="updateCurrentWords(+totalWordsInput.value)">
-            {{ 'button_update' | translate }}
-          </button>
-        </div>
-      </div>
-    </mat-tab>
-
-
     <mat-tab label="{{'headline_new' | translate}}">
 
       <div class="content">
@@ -67,11 +33,43 @@
             <ng-container *ngTemplateOutlet="dateInput"></ng-container>
           </div>
 
+          <div [ngClass]="(entity !== eCountEntity.characters) ? 'hidden' : ''">
+            <mat-form-field
+              class="example-full-width"
+              color="primary"
+            >
+              <mat-label>{{ 'characters' | translate }}</mat-label>
+              <input
+                matInput
+                value="0"
+                type="number"
+                class="form-control"
+                #newCharactersInput
+              />
+            </mat-form-field>
+          </div>
+          <div [ngClass]="(entity !== eCountEntity.pages) ? 'hidden' : ''">
+            <mat-form-field
+              class="example-full-width"
+              color="primary"
+            >
+              <mat-label>{{ 'pages' | translate }}</mat-label>
+              <input
+                matInput
+                value="0"
+                type="number"
+                class="form-control"
+                #newPagesInput
+              />
+            </mat-form-field>
+          </div>
+
           <div>
             <mat-form-field
               class="example-full-width"
               color="primary"
             >
+              <mat-label>{{ 'words' | translate }}</mat-label>
               <input
                 matInput
                 value="0"
@@ -85,8 +83,77 @@
 
         <div mat-dialog-actions>
           <button mat-stroked-button color="accent" (click)="close()">{{'button_cancel' | translate}}</button>
-          <button mat-raised-button color="primary" (click)="addWords(+newWordsInput.value)">
+          <button mat-raised-button color="primary" (click)="addWords(+newWordsInput.value, +newCharactersInput.value, +newPagesInput.value)">
             {{ 'button_add' | translate}}
+          </button>
+        </div>
+      </div>
+    </mat-tab>
+
+
+    <mat-tab label="{{ 'headline_total' | translate }}">
+      <div class="content">
+        <form>
+          <div>
+            <ng-container *ngTemplateOutlet="dateInput"></ng-container>
+          </div>
+
+          <div [ngClass]="(entity !== eCountEntity.pages) ? 'hidden' : ''">
+            <mat-form-field
+              class="example-full-width"
+              color="primary"
+            >
+              <mat-label>{{ 'pages' | translate }}</mat-label>
+              <input
+                type="number"
+                name="currentPagecount"
+                data-testid="current-wordcount-input"
+                matInput
+                class="form-control"
+                value="{{ entity === eCountEntity.pages ? data.project.currentCount : 0 }}"
+                #totalPagesInput
+              >
+            </mat-form-field>
+          </div>
+
+          <div [ngClass]="(entity !== eCountEntity.characters) ? 'hidden' : ''">
+            <mat-form-field
+              class="example-full-width"
+              color="primary"
+            >
+              <mat-label>{{ 'characters' | translate }}</mat-label>
+              <input
+                type="number"
+                name="currentCharactercount"
+                matInput
+                class="form-control"
+                value="{{ entity === eCountEntity.characters ? data.project.currentCount : 0 }}"
+                #totalCharactersInput
+              >
+            </mat-form-field>
+          </div>
+
+          <div [ngClass]="(entity !== eCountEntity.words) ? 'hidden' : ''">
+            <mat-form-field
+              class="example-full-width"
+              color="primary"
+            >
+              <mat-label>{{ 'words' | translate }}</mat-label>
+              <input
+                type="number"
+                name="currentWordscount"
+                matInput
+                class="form-control"
+                value="{{ entity === eCountEntity.words ? data.project.currentCount : 0 }}"
+                #totalWordsInput
+              >
+            </mat-form-field>
+          </div>
+        </form>
+        <div mat-dialog-actions>
+          <button mat-stroked-button color="accent" (click)="close()">{{ 'button_cancel' | translate }}</button>
+          <button mat-raised-button color="primary" (click)="updateCurrentWords(+totalWordsInput.value, +totalCharactersInput.value, +totalPagesInput.value)">
+            {{ 'button_update' | translate }}
           </button>
         </div>
       </div>

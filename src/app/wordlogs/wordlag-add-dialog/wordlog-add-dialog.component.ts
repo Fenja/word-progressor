@@ -7,9 +7,9 @@ import { TranslationService } from "../../translation/translation.service";
 import { LogWordsService } from "../../services/log-words.service";
 
 import {
+  MAT_MOMENT_DATE_ADAPTER_OPTIONS,
   MAT_MOMENT_DATE_FORMATS,
   MomentDateAdapter,
-  MAT_MOMENT_DATE_ADAPTER_OPTIONS,
 } from '@angular/material-moment-adapter';
 import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
 import 'moment/locale/de';
@@ -40,8 +40,9 @@ export interface WordlogAddDialogData {
 })
 export class WordlogAddDialogComponent implements OnInit {
 
-  @ViewChild('newWordsInput', {static: true}) newWordsInput!: ElementRef;
-  @ViewChild('totalWordsInput', {static: true}) totalWordsInput!: ElementRef;
+  @ViewChild('asWordsInputNew', {static: false}) asWordsInputNew: ElementRef | undefined;
+  @ViewChild('asWordsInputTotal', {static: false}) asWordsInputTotal: ElementRef | undefined;
+
   validProject: boolean = true;
   date: Date = new Date();
   entity!: CountEntity;
@@ -67,21 +68,31 @@ export class WordlogAddDialogComponent implements OnInit {
     this._adapter.setLocale(this.translationService.getLocale());
   }
 
-  addWords(words: number) {
-    this.updateWords(words);
+  addWords(words?: number, characters?: number, pages?: number) {
+    this.updateWords(words, characters, pages);
   }
 
-  updateCurrentWords(totalWords: number) {
-    this.updateWords(totalWords - this.data.project.currentCount );
+  updateCurrentWords(totalWords?: number, totalCharacters?: number, totalPages?: number) {
+    const words = totalWords ?? totalWords! - this.data.project.currentCount;
+    const characters = totalCharacters ?? totalCharacters! - this.data.project.currentCount;
+    const pages = totalPages ?? totalPages! - this.data.project.currentCount;
+    this.updateWords(words, characters, pages);
   }
 
-  updateWords(words: number) {
+  updateWords(words?: number, characters?: number, pages?: number) {
     this.close();
-    if (words === 0) return;
+    if ((!words || words === 0) && (!characters || characters === 0) && (!pages || pages === 0)) return;
     if (!!this.date) {
-      this.logWordsService.logWords(this.data.id, this.data.project, Utils.normalizeDate(this.date).toString(), words);
+      this.logWordsService.logWords(this.data.id, this.data.project, Utils.normalizeDate(this.date).toString(), words, characters, pages);
     }
-    this.snackBarService.showSnackBar(words + this.translationService.translate('msg_words_added'))
+
+    let addedMsg: string;
+    switch (this.entity) {
+      case CountEntity.words: addedMsg = 'msg_words_added'; break;
+      case CountEntity.characters: addedMsg = 'msg_characters_added'; break;
+      case CountEntity.pages: addedMsg = 'msg_pages_added'; break;
+    }
+    this.snackBarService.showSnackBar(words + this.translationService.translate(addedMsg))
   }
 
   close(): void {

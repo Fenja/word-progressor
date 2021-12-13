@@ -14,13 +14,20 @@ export class LogWordsService {
     private dataStorageService: DataStorageService,
   ) { }
 
-  logWords(id: string, project: Project, date: string, words: number) {
-    project.wordLogs = this.addWordsToLog(project.wordLogs, date, words);
-    project.currentCount += words;
+  logWords(id: string, project: Project, date: string, words?: number, characters?: number, pages?: number) {
+    if (!words && !characters && !pages) return;
+    let count: number;
+    switch (project.countEntity) {
+      case CountEntity.words: count = words ?? 0; break;
+      case CountEntity.characters: count = characters ?? 0; break;
+      case CountEntity.pages: count = pages ?? 0; break;
+    }
+    project.wordLogs = this.addWordsToLog(project.wordLogs, date, count);
+    project.currentCount += count;
     this.projectService.editProject(id, project);
 
     // do not log characters or pages to user stats
-    if (project.countEntity === CountEntity.words) {
+    if (!!words) {
       let user = this.dataStorageService.user;
       user.wordLogs = this.addWordsToLog(user.wordLogs, date, words);
       this.dataStorageService.editUser(user.id!, user);
