@@ -50,7 +50,12 @@
   <!-- Notifications -->
   <!-- App-Info -->
   <mat-card class="dashboard-item">
-    <mat-card-header></mat-card-header>
+    <mat-card-header class="project-item__header">
+      <mat-card-title>{{ 'headline_about' | translate }}</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      {{ 'label_version' | translate }} {{ version }}
+    </mat-card-content>
     <mat-card-actions>
       <button mat-stroked-button><a [routerLink]="['/privacy_policy']">{{ 'label_privacy_policy' | translate }}</a></button>
     </mat-card-actions>

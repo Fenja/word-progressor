@@ -18,9 +18,12 @@ Run `ng build` to build the project. The build artifacts will be stored in the `
 
 ## Deploy to firebase
 
-Bump version in package.json and package-lock.json.
+Bump version in package.json, package-lock.json and the environment VERSION.
+
 Run `ng build --prod` to build the project for production. The build artifacts will be stored in the `dist/` directory.
+
 Run `firebase deploy` to upload the freshly build version to the [webapp hosted by firebase](https://wordprogressor.web.app).
+
 Make sure that firebase tools are installed and you run `firebase login` beforehand.
 
 ## Running unit tests

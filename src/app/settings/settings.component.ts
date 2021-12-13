@@ -4,12 +4,14 @@ import { TranslationService } from "../translation/translation.service";
 import { Router } from "@angular/router";
 import { SnackbarService } from "../services/snackbar.service";
 import { DataStorageService } from "../services/data-storage.service";
+import { environment } from "../../environments/environment";
 
 @Component({
   selector: 'app-settings',
   templateUrl: './settings.component.html'
 })
 export class SettingsComponent {
+  version: string = environment.VERSION;
 
   constructor(
     public authService: AuthService,
