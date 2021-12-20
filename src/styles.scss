@@ -1,10 +1,13 @@
-@use '@angular/material' as mat;
-@import '@angular/material/theming';
+@use '~@angular/material' as mat;
+
 @include mat.core();
 
 $angular-primary: mat.define-palette(mat.$deep-purple-palette);
 $angular-accent: mat.define-palette(mat.$amber-palette);
 $angular-warn: mat.define-palette(mat.$red-palette);
+
+$primary: mat.get-color-from-palette($angular-primary);
+$accent: mat.get-color-from-palette($angular-accent);
 
 $angular-default-theme: mat.define-light-theme((
       color: (
@@ -81,11 +84,11 @@ button.mat-button-base{
 }
 
 .primary-color {
-  color: #673ab7; // TODO
+  color: $primary;
 }
 
 .accent-color {
-  color: #FFC107; // TODO
+  color: $accent;
 }
 
 .column-block {
@@ -141,7 +144,7 @@ ul {
 
 .show-more-link {
   padding: .5em;
-  color: #673ab7; // TODO
+  color: $primary;
 }
 
 .alert {
@@ -170,7 +173,7 @@ ul {
     .project-type {
       position: absolute;
       right: 1em;
-      // TODO accent color
+      color: $accent;
     }
   }
 }
@@ -210,7 +213,7 @@ ul {
     flex-direction: column;
 
     &:hover {
-      background-color: #FFC107; //TODO
+      background-color: $accent;
     }
   }
 
@@ -272,10 +275,10 @@ ul {
 
 svg g {
   .wp_background {
-    fill: rebeccapurple !important;
+    fill: $primary !important;
   }
   .wp_p {
-    fill: #FFC107 !important;
+    fill: $accent !important;
   }
   .wp_w {
     fill: white;
