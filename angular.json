@@ -4,7 +4,7 @@
     "analytics": false
   },
   "version": 1,
-  "newProjectRoot": "projects",
+  "newProjectRoot": "dashboard",
   "projects": {
     "wordProgressor": {
       "projectType": "application",
@@ -31,7 +31,8 @@
             "inlineStyleLanguage": "scss",
             "assets": [
               "src/assets",
-              "src/manifest.webmanifest"
+              "src/manifest.webmanifest",
+              "src/firebase-messaging-sw.js"
             ],
             "styles": [
               "src/styles.scss"
@@ -44,7 +45,6 @@
             "production": {
               "buildOptimizer": true,
               "optimization": true,
-              "extractCss": true,
               "sourceMap": false,
               "aot": true,
               "budgets": [
@@ -106,7 +106,8 @@
             "inlineStyleLanguage": "scss",
             "assets": [
               "src/assets",
-              "src/manifest.webmanifest"
+              "src/manifest.webmanifest",
+              "src/firebase-messaging-sw.js"
             ],
             "styles": [
               "src/styles.scss"
@@ -117,5 +118,5 @@
       }
     }
   },
-  "defaultProject": "wordProgressor"
+  "defaultProject": "WordProgressor"
 }

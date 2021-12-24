@@ -76,6 +76,11 @@ import { WordlogEditDialog } from './wordlogs/wordlog-edit-dialog/wordlog-edit-d
 import { NoteListComponent } from './notes/note-list/note-list.component';
 import { NoteItemComponent } from './notes/note-item/note-item.component';
 import { NoteEditDialogComponent } from './notes/note-edit-dialog/note-edit-dialog.component';
+import {AngularFireMessagingModule} from "@angular/fire/compat/messaging";
+import {MessagingService} from "./services/messaging.service";
+import firebase from "firebase/compat/app";
+
+firebase.initializeApp(environment.FIREBASE_CONFIG);
 
 @NgModule({
   declarations: [
@@ -122,6 +127,7 @@ import { NoteEditDialogComponent } from './notes/note-edit-dialog/note-edit-dial
       AngularFireModule.initializeApp(environment.FIREBASE_CONFIG),
       AngularFirestoreModule,
       AngularFireAuthModule,
+      AngularFireMessagingModule,
 
       AppRoutingModule,
       BrowserModule,
@@ -160,6 +166,7 @@ import { NoteEditDialogComponent } from './notes/note-edit-dialog/note-edit-dial
   ],
   providers: [
     MatDatepickerModule,
+    MessagingService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptorService,
