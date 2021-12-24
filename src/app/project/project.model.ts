@@ -25,6 +25,7 @@ export interface Project {
   reward?: string;
   eventLink?: string; // event or submission ids
   publication?: Publication;
+  language?: string;
 }
 
 export interface WordLog {

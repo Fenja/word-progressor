@@ -48,6 +48,7 @@ export class TranslationService {
         wait: 'Abwarten...',
         published: 'Veröffentlicht!',
         abandon: 'Schublade',
+        finished: 'Fertig',
 
         start: 'anfangen',
         finish_first_draft: 'ersten Entwurf beenden',
@@ -115,7 +116,7 @@ export class TranslationService {
         label_submission_deadline: 'Einsendeschluss',
         label_login: 'Login',
         label_logout: 'Logout',
-        label_email: 'e-Mail',
+        label_email: 'Email',
         label_password: 'Passwort',
         label_password_repeat: 'Passwort wiederholen',
         label_dashboard: 'Dashboard',
@@ -158,6 +159,8 @@ export class TranslationService {
         label_install_pwa: "Auf dem Startbildschirm installieren",
         label_submission_reminder: 'Erinnerungen für Ausschreibungen',
         label_remind_days_ahead: 'x Tage vorher erinnern (mit Komma getrennt)',
+        label_project_state_overview: 'Übersicht Projekt-Status',
+        label_language: 'Sprache',
 
         placeholder_working_title: 'Arbeitstitel',
         placeholder_blurb: 'Inhaltsangabe',
@@ -187,9 +190,14 @@ export class TranslationService {
         headline_days_a_week: 'Tage pro Woche',
         headline_notifications: 'Benachrichtigungen',
         headline_submission_reminder: 'Erinnerungen an Ausschreibungen',
+        headline_projects_states: 'Projekte nach Status',
+        headline_projects_types: 'Projekte nach Typ',
+        headline_total_words: 'Wörter gesamt',
+        headline_total_projects: 'Projekte gesamt',
 
         error_unknown: 'Ein unerwarteter Fehler ist aufgetreten.',
-        error_email_exists: 'Die E-Mail-Adresse ist bereits von einem anderen Konto in Benutzung.',
+        error_required: 'Pflichtfeld',
+        error_email_exists: 'Die Email-Adresse ist bereits von einem anderen Konto in Benutzung.',
         error_too_many_attempts_try_later: 'Alle Anfragen dieses Geräts wurden vorübergehend blockiert, aufgrund ungewöhnlicher Aktivitäten. Versuche es später erneut.',
         error_email_not_found: 'Ungültige Anmeldedatenn.',
         error_invalid_password: 'Ungültige Anmeldedaten.',
@@ -276,6 +284,7 @@ export class TranslationService {
         wait: 'wait...',
         published: 'published!',
         abandon: 'abandoned',
+        finished: 'finished',
 
         start: 'start',
         finish_first_draft: 'finish first draft',
@@ -386,6 +395,8 @@ export class TranslationService {
         label_install_pwa: 'Install at home screen',
         label_submission_reminder: 'Submission reminders',
         label_remind_days_ahead: 'Remind me x days ahead (comma separated)',
+        label_project_state_overview: 'Overview project states',
+        label_language: 'Language',
 
         placeholder_working_title: 'Working Title',
         placeholder_blurb: 'Blurb',
@@ -415,8 +426,13 @@ export class TranslationService {
         headline_days_a_week: 'Days a week',
         headline_notifications: 'Notifications',
         headline_submission_reminder: 'Reminder for submissions',
+        headline_projects_states: 'Projects by state',
+        headline_projects_types: 'Projects by type',
+        headline_total_words: 'Total Words',
+        headline_total_projects: 'Total Projects',
 
         error_unknown: 'An unexpected error occured.',
+        error_required: 'required',
         error_email_exists: 'The email address is already in use by another account.',
         error_too_many_attempts_try_later: 'All requests from this device have been blocked due to unusual activity. Try again later.',
         error_email_not_found: 'Invalid credentials.',
@@ -477,7 +493,7 @@ export class TranslationService {
 
   translate(key: string): string {
     if (this.dictionary[this.language] !== null) {
-      return this.dictionary[this.language].values[key] ?? '!!missing_translation!!';
+      return this.dictionary[this.language].values[key] ?? '!!' + key + '!!';
     }
     return '!!invalid_language!!';
   }

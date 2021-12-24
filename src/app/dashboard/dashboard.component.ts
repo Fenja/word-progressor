@@ -1,8 +1,8 @@
-import { Component, HostListener, OnDestroy } from '@angular/core';
-import { Project, WordLog } from "../project/project.model";
-import { ProjectService } from "../project/project.service";
-import { UserService } from "../services/user.service";
-import { Subscription } from "rxjs";
+import {Component, HostListener, OnDestroy} from '@angular/core';
+import {CountEntity, Project, ProjectState, ProjectType, WordLog} from "../project/project.model";
+import {ProjectService} from "../project/project.service";
+import {UserService} from "../services/user.service";
+import {Subscription} from "rxjs";
 import Utils from "../helpers/utils";
 
 @Component({
@@ -24,6 +24,11 @@ export class DashboardComponent implements OnDestroy {
   lastWeeksLogs: WordLog[] = [];
   lastMonthLogs: WordLog[] = [];
 
+  projectsInState: Map<ProjectState,number> = new Map<ProjectState, number>();
+  projectsInType: Map<ProjectType,number> = new Map<ProjectType, number>();
+  totalProjects: number = 0;
+  totalWords: number = 0;
+
   @HostListener('window:beforeinstallprompt', ['$event'])
   onbeforeinstallprompt(e: any) {
     console.log(e);
@@ -39,6 +44,7 @@ export class DashboardComponent implements OnDestroy {
     this.wips = this.projectService.getProjects().filter(p => p.isWorkInProgress);
     this.subscriptions.push( this.projectService.projectList.subscribe(projects => {
       this.wips = projects.filter(p => p.isWorkInProgress);
+      this._initProjectStats(projects);
       }
     ));
 
@@ -101,5 +107,20 @@ export class DashboardComponent implements OnDestroy {
       this.lastMonthLogs!.push(wordLog ?? {date: day, words: 0})
     });
     this.lastMonthLogs.reverse();
+  }
+
+  private _initProjectStats(projects: Project[]) {
+    this.projectsInState = new Map<ProjectState, number>();
+    this.projectsInType = new Map<ProjectType, number>();
+    projects.forEach(project => {
+      let existingCount: number = this.projectsInState.get(project.state) ?? 0;
+      this.projectsInState.set(project.state, existingCount + 1);
+
+      existingCount = this.projectsInType.get(project.type) ?? 0;
+      this.projectsInType.set(project.type, existingCount + 1);
+
+      this.totalProjects += 1;
+      if (project.countEntity === CountEntity.words && project.currentCount) this.totalWords += project.currentCount;
+    });
   }
 }
