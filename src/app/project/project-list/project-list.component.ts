@@ -48,9 +48,10 @@ export class ProjectListComponent implements OnDestroy {
       }
     );
     if (this.settings.isSortByDeadline) {
+      const today = Utils.normalizedToday();
       this.projects.sort((a: Project, b: Project) => {
-        if (!a.deadline) return 1;
-        else if (!b.deadline) return -1;
+        if (!a.deadline || Utils.normalizeDate(a.deadline) < today) return 1;
+        else if (!b.deadline || Utils.normalizeDate(b.deadline) < today) return -1;
         else return new Date(a.deadline).valueOf() - new Date(b.deadline).valueOf();
       });
     } else {

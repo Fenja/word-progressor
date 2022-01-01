@@ -169,7 +169,7 @@ export class TranslationService {
         tooltip_sort: 'sortieren',
         tooltip_filter: 'filtern',
         tooltip_search: 'suchen',
-        tooltip_wip: 'in arbeit',
+        tooltip_wip: 'in Arbeit',
         tooltip_sort_deadline: 'nach Einsendeschluss sortieren',
         tooltip_take_action: 'mach was',
         tooltip_edit_log: 'Log bearbeiten',

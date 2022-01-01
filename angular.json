@@ -44,7 +44,6 @@
             "production": {
               "buildOptimizer": true,
               "optimization": true,
-              "extractCss": true,
               "sourceMap": false,
               "aot": true,
               "budgets": [

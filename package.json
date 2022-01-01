@@ -1,6 +1,6 @@
 {
   "name": "word-progressor",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "scripts": {
     "ng": "ng",
     "config": "ts-node ./src/assets/scripts/setEnv.ts",
