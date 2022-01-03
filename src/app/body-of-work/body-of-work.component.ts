@@ -1,8 +1,7 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
-import {Project, ProjectState} from "../project/project.model";
-import {Subscription} from "rxjs";
-import {ProjectService} from "../project/project.service";
-import {UserService} from "../services/user.service";
+import { Component, OnDestroy } from '@angular/core';
+import { Project, ProjectState } from "../project/project.model";
+import { Subscription } from "rxjs";
+import { ProjectService } from "../project/project.service";
 
 @Component({
   selector: 'app-body-of-work',
@@ -37,5 +36,11 @@ export class BodyOfWorkComponent implements OnDestroy {
           project.state === ProjectState.submitted ||
           project.state === ProjectState.published)
     )
+    this.bow.sort((a: Project, b: Project) => {
+      if (a.state === b.state) return 0;
+      else if (a.state === ProjectState.published) return 1;
+      else if (b.state === ProjectState.finished) return -1;
+      else return 0;
+    })
   }
 }

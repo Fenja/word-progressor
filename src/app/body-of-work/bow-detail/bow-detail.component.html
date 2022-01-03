@@ -1,6 +1,6 @@
 <mat-card class="project-item">
   <mat-card-header class="project-item__header">
-    <mat-card-title [routerLink]="[project.id]">{{ project.workingTitle }}</mat-card-title>
+    <mat-card-title [routerLink]="[project.id]" [ngClass]="project.state.toString() === 'published' ? 'primary-color' : ''">{{ project.workingTitle }}</mat-card-title>
     <mat-card-subtitle>{{ project.state | translate }}</mat-card-subtitle>
     <span class="project-type">{{ project.type | translate }}</span>
   </mat-card-header>
