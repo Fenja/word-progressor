@@ -32,6 +32,15 @@
     </a></li>
 
     <li><a
+      *ngIf="authService.isAnonymous || authService.isLoggedIn"
+      mat-button routerLink="/body-of-work"
+      routerLinkActive="mat-accent"
+      data-testid="bow-label"
+    >
+      {{ 'label_body_of_work' | translate }}
+    </a></li>
+
+    <li><a
       *ngIf="authService.isAnonymous"
       mat-button
       data-testid="user-label"

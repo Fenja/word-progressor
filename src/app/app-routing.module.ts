@@ -9,6 +9,7 @@ import { SettingsComponent } from "./settings/settings.component";
 import { PrivacyPolicyComponent } from "./settings/privacy-policy/privacy-policy.component";
 import { VerifyEmailComponent } from "./auth/verify-email/verify-email.component";
 import { DashboardComponent } from "./dashboard/dashboard.component";
+import { BodyOfWorkComponent } from "./body-of-work/body-of-work.component";
 
 const appRoutes: Routes = [
   { path: '', redirectTo: '/auth', pathMatch: 'full' },
@@ -17,6 +18,7 @@ const appRoutes: Routes = [
   { path: 'settings', component: SettingsComponent },
   { path: 'privacy_policy', component: PrivacyPolicyComponent },
   { path: 'dashboard', component: DashboardComponent },
+  { path: 'body-of-work', component: BodyOfWorkComponent },
   { path: 'projects', component: ProjectsComponent, children: [
       { path: '', component: ProjectListComponent },
       { path: 'new', component: ProjectEditComponent },

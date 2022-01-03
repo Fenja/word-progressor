@@ -1,0 +1,10 @@
+<mat-card class="dashboard-item">{{ 'info_bow' | translate }}</mat-card>
+
+<div *ngIf="bow.length > 0" class="project-list">
+  <app-bow-detail *ngFor="let project of bow"
+                  [project]="project"
+                  class="list-card-item">
+  </app-bow-detail>
+</div>
+
+<p *ngIf="bow.length <= 0" class="empty-info">{{ 'info_no_bow' | translate }}</p>

@@ -76,6 +76,8 @@ import { WordlogEditDialog } from './wordlogs/wordlog-edit-dialog/wordlog-edit-d
 import { NoteListComponent } from './notes/note-list/note-list.component';
 import { NoteItemComponent } from './notes/note-item/note-item.component';
 import { NoteEditDialogComponent } from './notes/note-edit-dialog/note-edit-dialog.component';
+import { BodyOfWorkComponent } from './body-of-work/body-of-work.component';
+import { BowDetailComponent } from './body-of-work/bow-detail/bow-detail.component';
 
 @NgModule({
   declarations: [
@@ -117,6 +119,8 @@ import { NoteEditDialogComponent } from './notes/note-edit-dialog/note-edit-dial
     NoteListComponent,
     NoteItemComponent,
     NoteEditDialogComponent,
+    BodyOfWorkComponent,
+    BowDetailComponent,
   ],
   imports: [
       AngularFireModule.initializeApp(environment.FIREBASE_CONFIG),

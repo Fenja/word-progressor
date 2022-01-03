@@ -21,6 +21,17 @@
   </a>
 
   <a
+    *ngIf="authService.isAnonymous || authService.isLoggedIn"
+    routerLink="/body-of-work"
+    routerLinkActive="mat-accent"
+    data-testid="bow-label"
+    class="mat-link"
+    (click)="onSidenavClose()"
+  >
+    {{ 'label_body_of_work' | translate }}
+  </a>
+
+  <a
      *ngIf="authService.isAnonymous"
      data-testid="user-label">
     {{ 'label_anonymous_user' | translate }}

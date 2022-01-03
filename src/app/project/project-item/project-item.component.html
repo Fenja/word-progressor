@@ -3,7 +3,7 @@
     <mat-card-title [routerLink]="[project.id]">{{ project.workingTitle }}</mat-card-title>
     <mat-card-subtitle [ngClass]="project.isWorkInProgress ? 'project-wip' : ''">{{ project.state | translate }}</mat-card-subtitle>
     <span class="project-type">{{ project.type | translate }}</span>
-    </mat-card-header>
+  </mat-card-header>
 
   <mat-card-content>
     <div class="mat-card-content">
@@ -13,6 +13,7 @@
     [goalCount]="project.goalCount"
     [currentCount]="project.currentCount"
     [maxGoalCount]="project.maxGoalCount"
+    [entityKey]="project.countEntity"
   ></app-project-progress-bar>
   <img alt="{{ project.workingTitle}}" mat-card-image *ngIf="project.imagePath" [src]="project.imagePath">
 

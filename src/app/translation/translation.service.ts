@@ -74,7 +74,10 @@ export class TranslationService {
         saturday: 'Samstag',
         sunday: 'Sonntag',
 
+        info_wp: 'Willkommen zum WordProgressor',
+        info_bow: 'Hier sind alle deine beendeten Projekte.',
         info_no_projects: 'Keine Projekte gefunden',
+        info_no_bow: 'Dein Gesamtwerk hat noch keine Einträge. Zeit ein Projekt abzuschließen!',
 
         button_new_project: 'Neues Projekt',
         button_add: 'Hinzufügen',
@@ -162,6 +165,7 @@ export class TranslationService {
         label_version: 'version',
         label_project_state_overview: 'Übersicht Projekt-Status',
         label_language: 'Sprache',
+        label_body_of_work: 'Gesamtwerk',
 
         placeholder_working_title: 'Arbeitstitel',
         placeholder_blurb: 'Inhaltsangabe',
@@ -314,7 +318,10 @@ export class TranslationService {
         saturday: 'Saturday',
         sunday: 'Sunday',
 
+        info_wp: 'Welcome to the WordProgressor',
+        info_bow: 'These are your finished projects.',
         info_no_projects: 'No Projects found',
+        info_no_bow: 'Your body of work is still empty. Go and finish something!',
 
         button_new_project: 'New Project',
         button_add: 'Add',
@@ -402,6 +409,7 @@ export class TranslationService {
         label_version: 'Version',
         label_project_state_overview: 'Overview project states',
         label_language: 'Language',
+        label_body_of_work: 'Body of work',
 
         placeholder_working_title: 'Working Title',
         placeholder_blurb: 'Blurb',
