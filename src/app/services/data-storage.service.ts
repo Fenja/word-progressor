@@ -7,6 +7,7 @@ import { Project } from "../project/project.model";
 import { catchError, map, take } from "rxjs/operators";
 import { Subject, throwError } from "rxjs";
 import * as uuid from 'uuid';
+import Utils from "../helpers/utils";
 
 /*
   this service should differ between a logged in user and an anonymous one
@@ -22,18 +23,7 @@ export class DataStorageService {
   projects: Project[] = [];
   public projectList = new Subject<Project[]>();
   user: userData = {
-    settings: {
-      dailyWordGoal: 0,
-      isWeekDayGoal: true,
-      selectedDays: [],
-      daysPerWeek: 0,
-      showOnlyWip: false,
-      isSortByDeadline: false,
-      notifyDailyWriting: false,
-      timeDailyWriting: {hours: 7, minutes: 0},
-      notifyDeadline: false,
-      daysBeforeDeadlineReminder: [],
-    }
+    settings: Utils.getDefaultSettings()
   };
   public user$ = new Subject<userData>();
 

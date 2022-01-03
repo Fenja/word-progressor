@@ -45,6 +45,28 @@
     </mat-card-content>
   </mat-card> -->
 
+  <mat-card id="states" class="dashboard-item">
+    <!--<mat-card-header>
+      {{ 'label_project_state_overview' | translate }}
+    </mat-card-header>-->
+    <mat-card-content>
+      <h4>{{ 'headline_projects_states' | translate }}</h4>
+      <div *ngFor="let project of projectsInState | keyvalue">
+        <span>{{ project.key | translate}} {{ project.value }}</span>
+      </div>
+      <hr>
+
+      <h4>{{ 'headline_projects_types' | translate }}</h4>
+      <div *ngFor="let project of projectsInType | keyvalue">
+        <span>{{ project.key | translate}} {{ project.value }}</span>
+      </div>
+      <hr>
+
+      <h4>{{ 'headline_total_words' | translate }}: {{ totalWords }}</h4>
+      <h4>{{ 'headline_total_projects' | translate }}: {{ totalProjects }}</h4>
+    </mat-card-content>
+  </mat-card>
+
   <mat-card id="wordLogs" class="dashboard-item" *ngIf="userWordLogs">
     <mat-card-header>
       {{ 'label_logs' | translate }}

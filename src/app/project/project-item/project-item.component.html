@@ -7,16 +7,16 @@
 
   <mat-card-content>
     <div class="mat-card-content">
-      {{ project.description }}
+      {{ (project.description.length>150)? (project.description | slice:0:150)+'...':(project.description) }}
     </div>
   <app-project-progress-bar
     [goalCount]="project.goalCount"
     [currentCount]="project.currentCount"
     [maxGoalCount]="project.maxGoalCount"
   ></app-project-progress-bar>
-  <img alt="{{ project.workingTitle}}" mat-card-image *ngIf="project.imagePath" [src]="project.imagePath"/>
+  <img alt="{{ project.workingTitle}}" mat-card-image *ngIf="project.imagePath" [src]="project.imagePath">
 
-  <div *ngIf="project.deadline" class="deadline">
+  <div *ngIf="project.deadline" class="deadline" [ngClass]="isPassed ? 'obsolete' : ''">
     <i class="mat-icon material-icons">event</i>
     <span>{{ project.deadline | date }}</span>
   </div>

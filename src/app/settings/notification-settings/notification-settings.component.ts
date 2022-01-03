@@ -5,6 +5,7 @@ import { DataStorageService } from "../../services/data-storage.service";
 import { SnackbarService } from "../../services/snackbar.service";
 import { take } from "rxjs/operators";
 import { TranslationService } from "../../translation/translation.service";
+import Utils from "../../helpers/utils";
 
 @Component({
   selector: 'app-notification-settings',
@@ -12,7 +13,7 @@ import { TranslationService } from "../../translation/translation.service";
 })
 export class NotificationSettingsComponent {
 
-  settings: Settings | undefined;
+  settings: Settings = Utils.getDefaultSettings();
   notificationsEnabled = true;
 
   constructor(
@@ -33,7 +34,6 @@ export class NotificationSettingsComponent {
   }
 
   save() {
-    if (!this.settings) return;
     this.userService.saveSettings(this.settings);
     this.snackBarService.showSnackBar(this.translationService.translate('msg_saved_settings'));
   }

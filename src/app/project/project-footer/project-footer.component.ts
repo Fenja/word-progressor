@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { UserService } from "../../services/user.service";
 import { Settings } from "../../auth/user.model";
+import Utils from "../../helpers/utils";
 
 @Component({
   selector: 'app-project-footer',
@@ -10,22 +11,21 @@ export class ProjectFooterComponent {
 
   showOnlyWip!: boolean;
   isSortByDeadline!: boolean;
-  private settings: Settings | undefined;
+  private settings: Settings = Utils.getDefaultSettings();
 
   constructor(
     public userService: UserService
   ) {
-    this.userService.getUser().subscribe(user => {
-      this.settings = user.settings;
-      if (this.settings) {
+    this.userService.getUser().subscribe(u => {
+      if (u && u.settings) {
+        this.settings = u.settings;
         this.showOnlyWip = this.settings.showOnlyWip;
         this.isSortByDeadline = this.settings.isSortByDeadline;
       }
-    });
+    })
   }
 
   toggleWip() {
-    if (!this.settings) return;
     this.showOnlyWip = !this.showOnlyWip;
     this.settings.showOnlyWip = this.showOnlyWip;
     this.userService.changedFilter(this.settings);
@@ -33,7 +33,6 @@ export class ProjectFooterComponent {
   }
 
   toggleDeadline() {
-    if (!this.settings) return;
     this.isSortByDeadline = !this.isSortByDeadline;
     this.settings.isSortByDeadline = this.isSortByDeadline;
     this.userService.changedFilter(this.settings);

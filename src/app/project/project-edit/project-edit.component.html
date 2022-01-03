@@ -194,6 +194,18 @@
         [(ngModel)]="project.eventLink"
       >
     </mat-form-field>
+
+    <mat-form-field color="primary">
+      <mat-label>{{ 'label_language' | translate }}</mat-label>
+      <input
+        matInput
+        type="text"
+        name="language"
+        class="form-control"
+        data-testid="event-input"
+        [(ngModel)]="project.language"
+      >
+    </mat-form-field>
   </div>
 
   <div *ngIf="showMore && this.project.publication">

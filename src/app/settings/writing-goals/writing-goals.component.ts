@@ -5,6 +5,7 @@ import { UserService } from "../../services/user.service";
 import { Settings } from "../../auth/user.model";
 import { DataStorageService } from "../../services/data-storage.service";
 import { MatTabChangeEvent } from "@angular/material/tabs";
+import Utils from "../../helpers/utils";
 
 @Component({
   selector: 'app-writing-goals',
@@ -12,7 +13,7 @@ import { MatTabChangeEvent } from "@angular/material/tabs";
 })
 export class WritingGoalsComponent {
 
-  settings!: Settings | undefined;
+  settings: Settings = Utils.getDefaultSettings();
   isSelected: boolean[] = [false,false,false,false,false,false,false];
 
   constructor(
@@ -32,19 +33,16 @@ export class WritingGoalsComponent {
   }
 
   save() {
-    if (!this.settings) return;
     console.log('writing-goals save settings', this.settings);
     this.userService.saveSettings(this.settings);
     this.snackBarService.showSnackBar(this.translationService.translate('msg_saved_settings'));
   }
 
   tabChanged(tabChangeEvent: MatTabChangeEvent) {
-    if (!this.settings) return;
     this.settings.isWeekDayGoal = tabChangeEvent.index === 0;
   }
 
   changeSelection(day: number) {
-    if (!this.settings) return;
     this.isSelected[day] = !this.isSelected[day];
     if (this.isSelected[day]) {
       this.settings.selectedDays.push(day);

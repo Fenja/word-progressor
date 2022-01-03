@@ -20,10 +20,9 @@ export class UserService {
   }
 
   saveSettings(settings: Settings) {
-    this.getUser().subscribe(user => {
-      user.settings = settings;
-      this.dataStorageService.editUser(user.id!, user);
-    });
+    const user = this.dataStorageService.user;
+    user.settings = settings;
+    this.dataStorageService.editUser(user.id!, user);
   }
 
   getUser(): Subject<userData> {

@@ -3,7 +3,8 @@ import { Project } from "../project.model";
 import { ProjectService } from "../project.service";
 import { Subscription } from "rxjs";
 import { UserService } from "../../services/user.service";
-import { Settings } from "../../auth/user.model";
+import {Settings} from "../../auth/user.model";
+import Utils from "../../helpers/utils";
 
 @Component({
   selector: 'app-project-list',
@@ -14,7 +15,7 @@ export class ProjectListComponent implements OnDestroy {
   projects: Project[] = [];
   private allProjects: Project[];
   private subscriptions: Subscription[] = [];
-  settings: Settings | undefined;
+  private settings: Settings = Utils.getDefaultSettings();
 
   constructor(
     private projectService: ProjectService,
@@ -31,7 +32,9 @@ export class ProjectListComponent implements OnDestroy {
       }
     ));
 
-    this.subscriptions.push(this.userService.getUser().subscribe(user => this.settings = user.settings));
+    this.subscriptions.push( this.userService.getUser().subscribe(user => {
+      if (user && user.settings) this.settings = user.settings;
+    }))
   }
 
   ngOnDestroy(): void {
@@ -40,14 +43,15 @@ export class ProjectListComponent implements OnDestroy {
 
   private _filterProjects() {
     this.projects = this.allProjects.filter(project => {
-        if (this.settings?.showOnlyWip) return project.isWorkInProgress;
+        if (this.settings.showOnlyWip) return project.isWorkInProgress;
         return true;
       }
     );
-    if (this.settings?.isSortByDeadline) {
+    if (this.settings.isSortByDeadline) {
+      const today = Utils.normalizedToday();
       this.projects.sort((a: Project, b: Project) => {
-        if (!a.deadline) return 1;
-        else if (!b.deadline) return -1;
+        if (!a.deadline || Utils.normalizeDate(a.deadline) < today) return 1;
+        else if (!b.deadline || Utils.normalizeDate(b.deadline) < today) return -1;
         else return new Date(a.deadline).valueOf() - new Date(b.deadline).valueOf();
       });
     } else {
