@@ -73,9 +73,9 @@ export class WordlogAddDialogComponent implements OnInit {
   }
 
   updateCurrentWords(totalWords?: number, totalCharacters?: number, totalPages?: number) {
-    const words = totalWords ?? totalWords! - this.data.project.currentCount;
-    const characters = totalCharacters ?? totalCharacters! - this.data.project.currentCount;
-    const pages = totalPages ?? totalPages! - this.data.project.currentCount;
+    const words = totalWords ? totalWords! - this.data.project.currentCount : 0;
+    const characters = totalCharacters ? totalCharacters! - this.data.project.currentCount : 0;
+    const pages = totalPages ? totalPages! - this.data.project.currentCount : 0;
     this.updateWords(words, characters, pages);
   }
 
