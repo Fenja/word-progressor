@@ -22,6 +22,12 @@
     <span>{{ project.deadline | date }}</span>
   </div>
 
+  <div *ngIf="project.subprojects && project.subprojects.length > 0">
+    <ng-container *ngFor="let subproject of project.subprojects">
+      <app-subproject-overview [subproject]="subproject"></app-subproject-overview>
+    </ng-container>
+  </div>
+
   </mat-card-content>
 
   <mat-card-actions class="button-row">

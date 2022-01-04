@@ -1,31 +1,34 @@
 import { Publication } from "../publication/publication.model";
+import { Subproject } from "./subproject/subproject.model";
 
-export interface Project {
+export interface AbstractProject {
+  id?: string;
   workingTitle: string;
   description: string;
-  imagePath: string;
-
-  type: ProjectType;
-  state: ProjectState;
-  deadline: Date | undefined;
   countEntity: CountEntity;
   currentCount: number;
+  state: ProjectState;
   goalCount: number;
   maxGoalCount?: number;
   isWorkInProgress: boolean;
+}
 
+export interface Project extends AbstractProject {
+  imagePath: string;
+  type: ProjectType;
+  deadline: Date | undefined;
   creationDate: Date;
   lastUpdate: Date;
-
-  id?: string;
-
-  wordLogs?: WordLog[];
-  notes?: Note[];
   genre?: string;
   reward?: string;
   eventLink?: string; // event or submission ids
   publication?: Publication;
   language?: string;
+
+  wordLogs?: WordLog[];
+  notes?: Note[];
+  drafts?: Draft[];
+  subprojects?: Subproject[];
 }
 
 export interface WordLog {
@@ -37,6 +40,12 @@ export interface Note {
   id?: string;
   index: number;
   content: string;
+}
+
+export interface Draft {
+  name: string;
+  countEntity: CountEntity;
+  count: number;
 }
 
 export enum ProjectType {

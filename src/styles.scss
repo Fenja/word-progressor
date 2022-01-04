@@ -45,6 +45,18 @@ $angular-dark-theme: mat.define-dark-theme((
   .larger-xs {
     display: none;
   }
+
+  .subproject-overview {
+
+    &__name {
+      width: 100%;
+      margin-bottom: .2em;
+    }
+
+    &__progress {
+      width: 100%;
+    }
+  }
 }
 
 @media screen and (min-width: 601px) {
@@ -54,6 +66,20 @@ $angular-dark-theme: mat.define-dark-theme((
 
   .larger-xs {
     display: flex;
+  }
+
+  .subproject-overview {
+    height: 3em;
+
+    &__name {
+      width: 20%;
+      float: left;
+    }
+
+    &__progress {
+      float: right;
+      width: 78%;
+    }
   }
 }
 
@@ -259,6 +285,16 @@ ul {
     vertical-align: middle;
     padding-left: 0.3em;
   }
+}
+
+.subproject-overview {
+  &__name {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+
+  &__progress {}
 }
 
 .mat-dialog-content {

@@ -6,5 +6,11 @@
      [maxGoalCount]="project.maxGoalCount"
      [barOnly]="true"
    ></app-project-progress-bar>
+
+   <div *ngIf="project.subprojects && project.subprojects.length > 0">
+     <ng-container *ngFor="let subproject of project.subprojects">
+       <app-subproject-overview *ngIf="subproject.isWorkInProgress" [subproject]="subproject"></app-subproject-overview>
+     </ng-container>
+   </div>
 </div>
 

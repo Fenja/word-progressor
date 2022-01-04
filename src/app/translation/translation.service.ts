@@ -106,6 +106,7 @@ export class TranslationService {
         button_later: 'Später',
         button_reward_now: 'Jetzt belohnen',
         button_delete_publication: 'Veröffentlichung löschen',
+        button_add_subproject: 'Unterprojekt hinzufügen',
 
         label_current_word_count: 'Aktuelle Wortzahl',
         label_goal_word_count: 'Angestrebte Wortzahl',
@@ -126,7 +127,7 @@ export class TranslationService {
         label_projects: 'Projekte',
         label_settings: 'Einstellungen',
         label_anonymous_user: 'Anonymer Nutzer',
-        label_wip: 'In arbeit',
+        label_wip: 'In Arbeit',
         label_date: 'Datum',
         label_create_account: 'Konto erstellen',
         label_delete_account: 'Konto löschen',
@@ -166,6 +167,8 @@ export class TranslationService {
         label_project_state_overview: 'Übersicht Projekt-Status',
         label_language: 'Sprache',
         label_body_of_work: 'Gesamtwerk',
+        label_subprojects: 'Unterprojekte',
+        label_subproject: 'Unterprojekt',
 
         placeholder_working_title: 'Arbeitstitel',
         placeholder_blurb: 'Inhaltsangabe',
@@ -350,6 +353,7 @@ export class TranslationService {
         button_later: 'Later',
         button_reward_now: 'Reward now',
         button_delete_publication: 'Delete publication',
+        button_add_subproject: 'Add subproject',
 
         label_current_word_count: 'Current Word Count',
         label_goal_word_count: 'Goal Word Count',
@@ -410,6 +414,8 @@ export class TranslationService {
         label_project_state_overview: 'Overview project states',
         label_language: 'Language',
         label_body_of_work: 'Body of work',
+        label_subprojects: 'Subprojects',
+        label_subproject: 'Subproject',
 
         placeholder_working_title: 'Working Title',
         placeholder_blurb: 'Blurb',

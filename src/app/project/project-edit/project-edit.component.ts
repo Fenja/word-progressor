@@ -50,7 +50,6 @@ export class ProjectEditComponent implements OnInit {
     creationDate: new Date(),
     lastUpdate: new Date(),
   }
-  showMore: boolean = false;
 
   eProjectType = ProjectType;
   eProjectState = ProjectState;
@@ -63,7 +62,7 @@ export class ProjectEditComponent implements OnInit {
     private projectService: ProjectService,
     private router: Router,
     private translationService: TranslationService,
-    private _adapter: DateAdapter<any>
+    private _adapter: DateAdapter<any>,
   ) { }
 
   ngOnInit(): void {
@@ -108,5 +107,18 @@ export class ProjectEditComponent implements OnInit {
 
   deletePublication() {
     this.project.publication = undefined;
+  }
+
+  addSubproject() {
+    if (!this.project.subprojects) this.project.subprojects = [];
+    this.project.subprojects?.push({
+      countEntity: this.project.countEntity,
+      currentCount: 0,
+      description: "",
+      goalCount: 0,
+      isWorkInProgress: false,
+      state: this.project.state,
+      workingTitle: ""
+    });
   }
 }

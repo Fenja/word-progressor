@@ -78,6 +78,10 @@ import { NoteItemComponent } from './notes/note-item/note-item.component';
 import { NoteEditDialogComponent } from './notes/note-edit-dialog/note-edit-dialog.component';
 import { BodyOfWorkComponent } from './body-of-work/body-of-work.component';
 import { BowDetailComponent } from './body-of-work/bow-detail/bow-detail.component';
+import { SubprojectEditComponent } from './project/subproject/subproject-edit/subproject-edit.component';
+import { SubprojectItemComponent } from './project/subproject/subproject-item/subproject-item.component';
+import { SubprojectOverviewComponent } from './project/subproject/subproject-overview/subproject-overview.component';
+import { SubprojectDetailComponent } from './project/subproject/subproject-detail/subproject-detail.component';
 
 @NgModule({
   declarations: [
@@ -121,6 +125,10 @@ import { BowDetailComponent } from './body-of-work/bow-detail/bow-detail.compone
     NoteEditDialogComponent,
     BodyOfWorkComponent,
     BowDetailComponent,
+    SubprojectEditComponent,
+    SubprojectItemComponent,
+    SubprojectOverviewComponent,
+    SubprojectDetailComponent,
   ],
   imports: [
       AngularFireModule.initializeApp(environment.FIREBASE_CONFIG),

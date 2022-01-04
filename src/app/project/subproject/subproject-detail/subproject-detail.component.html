@@ -1,0 +1,24 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>{{ subproject.workingTitle }}</mat-card-title>
+    <mat-card-subtitle>{{ subproject.state | translate }}</mat-card-subtitle>
+  </mat-card-header>
+
+  <mat-card-content>
+    <div *ngIf="subproject.description" class="project-description" data-testid="project-description">
+      {{ subproject.description }}
+    </div>
+
+    <div
+      *ngIf="subproject.goalCount > 0 || subproject.currentCount > 0"
+      data-testid="word-progress-container"
+    >
+      <app-project-progress-bar
+        [goalCount]="subproject.goalCount"
+        [currentCount]="subproject.currentCount"
+        [maxGoalCount]="subproject.maxGoalCount"
+        [entityKey]="subproject.countEntity"
+      ></app-project-progress-bar>
+    </div>
+  </mat-card-content>
+</mat-card>

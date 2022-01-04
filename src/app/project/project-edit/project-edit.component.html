@@ -155,19 +155,12 @@
           class="form-control"
           data-testid="max-goal-wordcount-input"
           [(ngModel)]="project.maxGoalCount"
-        />
+        >
       <mat-error *ngIf="!maxGoalCountId.valid">{{ 'error_invalid_value' | translate }}</mat-error>
     </mat-form-field>
-
   </div>
 
   <div>
-    <a class="show-more-link" (click)="showMore = !showMore">
-      <span *ngIf="showMore">{{ 'label_show_less' | translate }}</span>
-      <span *ngIf="!showMore">{{ 'label_show_more' | translate }}</span>
-    </a>
-  </div>
-  <div *ngIf="showMore">
     <mat-form-field color="primary">
       <mat-label>{{ 'label_reward' | translate }}</mat-label>
       <textarea
@@ -208,18 +201,6 @@
     </mat-form-field>
   </div>
 
-  <div *ngIf="showMore && this.project.publication">
-    <h3>{{ 'label_publication' | translate }}</h3>
-    <app-publication-edit [publication]="project.publication"></app-publication-edit>
-
-    <button
-      mat-stroked-button
-      color="warn"
-      (click)="deletePublication()">
-      {{ 'button_delete_publication' | translate }}
-    </button>
-  </div>
-
   <div class="button-row">
     <button
       mat-raised-button
@@ -237,3 +218,31 @@
     >{{'button_cancel' | translate}}</button>
   </div>
 </form>
+
+<div class="content" *ngIf="this.project.publication">
+  <h2>{{ 'label_publication' | translate }}</h2>
+  <app-publication-edit [publication]="project.publication"></app-publication-edit>
+
+  <button
+    mat-stroked-button
+    color="warn"
+    (click)="deletePublication()">
+    {{ 'button_delete_publication' | translate }}
+  </button>
+</div>
+
+<div class="content">
+  <h2 *ngIf="project.subprojects && project.subprojects.length > 0">{{ 'label_subprojects' | translate }}</h2>
+
+  <div *ngFor="let subproject of project.subprojects">
+    <app-subproject-edit [project]="project" [subproject]="subproject" [editMode]="true"></app-subproject-edit>
+  </div>
+
+  <button
+    mat-stroked-button
+    color="primary"
+    type="button"
+    (click)="addSubproject()"
+  >{{ 'button_add_subproject' | translate }}</button>
+</div>
+

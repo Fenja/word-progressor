@@ -55,6 +55,13 @@
   <app-barchart [wordLogs]="project.wordLogs"></app-barchart>
 </div>
 
+<div class="content" *ngIf="project.subprojects && project.subprojects.length > 0">
+  <h3>{{ 'label_subprojects' | translate }}</h3>
+  <div *ngFor="let subproject of project.subprojects" style="margin-bottom: .4em">
+    <app-subproject-detail [subproject]="subproject" [project]="project"></app-subproject-detail>
+  </div>
+</div>
+
 <div class="content" *ngIf="project.wordLogs">
   <h3>{{ 'label_logs' | translate }}</h3>
   <app-wordlog-list [project]="project" [wordLogs]="project.wordLogs" [countEntity]="project.countEntity"></app-wordlog-list>

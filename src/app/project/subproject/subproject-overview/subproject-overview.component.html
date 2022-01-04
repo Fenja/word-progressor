@@ -1,0 +1,17 @@
+<div class="subproject-overview">
+  <div class="subproject-overview__name">
+  {{ subproject.workingTitle }}
+  </div>
+  <div
+    *ngIf="subproject.goalCount > 0 || subproject.currentCount > 0"
+    class="subproject-overview__progress"
+  >
+    <app-project-progress-bar
+      [goalCount]="subproject.goalCount"
+      [currentCount]="subproject.currentCount"
+      [maxGoalCount]="subproject.maxGoalCount"
+      [entityKey]="subproject.countEntity"
+      [barOnly]="true"
+    ></app-project-progress-bar>
+  </div>
+</div>

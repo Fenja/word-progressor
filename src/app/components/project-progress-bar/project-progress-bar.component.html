@@ -24,6 +24,6 @@
   >{{ currentCount }} / {{ goalCount }}<span *ngIf="maxGoalCount">-{{ maxGoalCount }}</span> {{ entityKey | translate }}</span>
 </div>
 
-<div *ngIf="(goalCount === 0 && currentCount > 0)">
+<div *ngIf="(goalCount === 0 && currentCount > 0 && !barOnly)">
   <span data-testid="project-current-count">{{ currentCount }}</span>
 </div>
