@@ -7,15 +7,62 @@
       {{'button_new_project' | translate}}</button>
 
     <div class="bottom-toolbar__actions">
-      <a mat-button matTooltip="{{ 'tooltip_wip' | translate }}" (click)="toggleWip()">
-        <i class="mat-icon material-icons">{{ showOnlyWip ? 'work' : 'work_outline' }}</i></a>
-      <a mat-button matTooltip="{{ 'tooltip_sort_deadline' | translate }}" (click)="toggleDeadline()">
-        <i class="mat-icon material-icons">{{ isSortByDeadline ? 'event' : 'calendar_today' }}</i></a>
+      <a mat-button matTooltip="{{ 'tooltip_filter' | translate }}" [matMenuTriggerFor]="filterMenu">
+        <i class="mat-icon material-icons">{{ isFilterActive ? 'filter_alt' : 'filter_alt_off' }}</i></a>
+      <mat-menu #filterMenu="matMenu">
+        <button mat-menu-item (click)="applyFilter('all')">
+          <i class="mat-icon material-icons obsolete">done_all</i>
+          {{ 'filter_all' | translate }}</button>
+        <hr>
+        <!--<button mat-menu-item (click)="applyFilter('prep')">
+          <i [ngClass]="settings.filterPrep ? '' : 'hidden'" class="mat-icon material-icons">check</i>
+          {{ 'filter_prep' | translate }}</button>
+        <button mat-menu-item (click)="applyFilter('draft')">
+          <i [ngClass]="settings.filterDraft ? '' : 'hidden'" class="mat-icon material-icons">check</i>
+          {{ 'filter_draft' | translate }}</button>
+        <button mat-menu-item (click)="applyFilter('wait')">
+          <i [ngClass]="settings.filterWait ? '' : 'hidden'" class="mat-icon material-icons">check</i>
+          {{ 'filter_wait' | translate }}</button>
+        <button mat-menu-item (click)="applyFilter('finished')">
+          <i [ngClass]="settings.filterFinished ? '' : 'hidden'" class="mat-icon material-icons">check</i>
+          {{ 'filter_finished' | translate }}</button>
+        <button mat-menu-item (click)="applyFilter('inactive')">
+          <i [ngClass]="settings.filterInactive ? '' : 'hidden'" class="mat-icon material-icons">check</i>
+          {{ 'filter_inactive' | translate }}</button>
+        <hr>-->
+        <button mat-menu-item (click)="applyFilter('wip')">
+          <i [ngClass]="settings.filterWip ? '' : 'hidden'" class="mat-icon material-icons">check</i>
+          {{ 'filter_wip' | translate }}</button>
+        <button mat-menu-item (click)="applyFilter('subprojects')">
+          <i [ngClass]="settings.filterSubprojects ? '' : 'hidden'" class="mat-icon material-icons">check</i>
+          {{ 'filter_subprojects' | translate }}</button>
+        <button mat-menu-item (click)="applyFilter('deadline')">
+          <i [ngClass]="settings.filterDeadline ? '' : 'hidden'" class="mat-icon material-icons">check</i>
+          {{ 'filter_deadline' | translate }}</button>
+        <!--<hr>
+        <button mat-menu-item (click)="applyFilter('short')">
+          <i [ngClass]="settings.filterShort ? '' : 'hidden'" class="mat-icon material-icons">check</i>
+          {{ 'filter_short' | translate }}</button>
+        <button mat-menu-item (click)="applyFilter('long')">
+          <i [ngClass]="settings.filterLong ? '' : 'hidden'" class="mat-icon material-icons">check</i>
+          {{ 'filter_long' | translate }}</button>-->
+      </mat-menu>
 
-      <!--<a mat-button matTooltip="{{ 'tooltip_sort' | translate }}">
-        <i class="mat-icon material-icons">sort</i></a>
-      <a mat-button matTooltip="{{ 'tooltip_filter' | translate }}">
-        <i class="mat-icon material-icons">filter_alt</i></a>
+      <a mat-button matTooltip="{{ 'tooltip_sort' | translate }}" [matMenuTriggerFor]="sortMenu">
+        <i class="mat-icon material-icons">{{ isSortActive ? 'filter_list' : 'filter_list_off' }}</i></a>
+      <mat-menu #sortMenu="matMenu">
+        <button mat-menu-item (click)="applySort('alphabet')">
+          <i [ngClass]="settings.isSortAlphabetical ? '' : 'hidden'" class="mat-icon material-icons">check</i>
+          {{ 'sort_alphabetical' | translate }}</button>
+        <button mat-menu-item (click)="applySort('deadline')">
+          <i [ngClass]="settings.isSortByDeadline ? '' : 'hidden'" class="mat-icon material-icons">check</i>
+          {{ 'sort_deadline' | translate }}</button>
+        <button mat-menu-item (click)="applySort('update')">
+          <i [ngClass]="settings.isSortByUpdate ? '' : 'hidden'" class="mat-icon material-icons">check</i>
+          {{ 'sort_update' | translate }}</button>
+      </mat-menu>
+
+      <!--
       <a mat-button matTooltip="{{ 'tooltip_search' | translate }}">
         <i class="mat-icon material-icons">search</i></a>-->
     </div>

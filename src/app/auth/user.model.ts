@@ -30,8 +30,20 @@ export interface Settings {
   daysPerWeek: number;
 
   // filter
-  showOnlyWip: boolean;
+  filterPrep: boolean;
+  filterWait: boolean;
+  filterDraft: boolean;
+  filterFinished: boolean;
+  filterInactive: boolean;
+  filterShort: boolean;
+  filterLong: boolean;
+  filterWip: boolean;
+  filterSubprojects: boolean;
+  filterDeadline: boolean;
+
   isSortByDeadline: boolean;
+  isSortAlphabetical: boolean;
+  isSortByUpdate: boolean;
 
   // notifications
   notifyDailyWriting: boolean;

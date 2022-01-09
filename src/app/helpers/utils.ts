@@ -69,12 +69,26 @@ export default class Utils {
       isWeekDayGoal: true,
       selectedDays: [],
       daysPerWeek: 0,
-      showOnlyWip: false,
+
+      filterWip: true,
+      filterDraft: true,
+      filterWait: true,
+      filterFinished: true,
+      filterInactive: true,
+      filterLong: true,
+      filterPrep: true,
+      filterShort: true,
+      filterSubprojects: true,
+      filterDeadline: true,
+
+      isSortAlphabetical: false,
+      isSortByUpdate: false,
       isSortByDeadline: false,
+
       notifyDailyWriting: false,
       timeDailyWriting: {hours: 7, minutes: 0},
       notifyDeadline: false,
-      daysBeforeDeadlineReminder: [],
+      daysBeforeDeadlineReminder: []
     };
   }
 }
