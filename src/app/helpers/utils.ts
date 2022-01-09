@@ -70,7 +70,6 @@ export default class Utils {
       selectedDays: [],
       daysPerWeek: 0,
 
-      filterWip: true,
       filterDraft: true,
       filterWait: true,
       filterFinished: true,
@@ -78,8 +77,10 @@ export default class Utils {
       filterLong: true,
       filterPrep: true,
       filterShort: true,
-      filterSubprojects: true,
-      filterDeadline: true,
+
+      filterWip: false,
+      filterSubprojects: false,
+      filterDeadline: false,
 
       isSortAlphabetical: false,
       isSortByUpdate: false,
