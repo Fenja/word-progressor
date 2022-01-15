@@ -2,8 +2,8 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Params, Router } from "@angular/router";
 import { ProjectService } from "../project.service";
 import { CountEntity, Project, ProjectState, ProjectType } from "../project.model";
-import { NgForm } from "@angular/forms";
-import { take } from "rxjs/operators";
+import {FormControl, NgForm} from "@angular/forms";
+import {map, startWith, take} from "rxjs/operators";
 
 import {
   MAT_MOMENT_DATE_ADAPTER_OPTIONS,
@@ -14,6 +14,7 @@ import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/materia
 import 'moment/locale/de';
 import 'moment/locale/en-gb';
 import { TranslationService } from "../../translation/translation.service";
+import {Observable} from "rxjs";
 
 @Component({
   selector: 'app-project-edit',
@@ -56,6 +57,8 @@ export class ProjectEditComponent implements OnInit {
   eCountEntity = CountEntity;
 
   @ViewChild('projectForm', {static: false}) projectForm!: NgForm;
+  filteredGenres!: Observable<string[]>;
+  genreControl = new FormControl();
 
   constructor(
     private route: ActivatedRoute,
@@ -86,6 +89,16 @@ export class ProjectEditComponent implements OnInit {
     );
 
     this._adapter.setLocale(this.translationService.getLocale());
+
+    this.filteredGenres = this.genreControl.valueChanges.pipe(
+      startWith(''),
+      map(value => this._filter(value)),
+    );
+  }
+
+  private _filter(value: string): string[] {
+    const filterValue = value.toLowerCase();
+    return this.genres.filter((system: string) => system.toLowerCase().includes(filterValue));
   }
 
   onSubmit(): void {
@@ -121,4 +134,15 @@ export class ProjectEditComponent implements OnInit {
       workingTitle: ""
     });
   }
+
+  genres = [
+    "Fantasy",
+    "Sci-Fi",
+    "Mystery",
+    "Thriller",
+    "Romance",
+    "Western",
+    "Dystopian",
+    "Contemporary"
+  ];
 }

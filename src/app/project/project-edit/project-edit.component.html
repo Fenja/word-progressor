@@ -22,12 +22,19 @@
 
     <mat-form-field color="primary">
       <mat-label>{{ 'label_genre' | translate }}</mat-label>
+      <mat-autocomplete #auto="matAutocomplete">
+        <mat-option *ngFor="let system of filteredGenres | async" [value]="system">
+          {{ system }}
+        </mat-option>
+      </mat-autocomplete>
       <input
         matInput
         type="text"
         name="genre"
         class="form-control"
         data-testid="genre-input"
+        [formControl]="genreControl"
+        [matAutocomplete]="auto"
         [(ngModel)]="project.genre"
       >
     </mat-form-field>
