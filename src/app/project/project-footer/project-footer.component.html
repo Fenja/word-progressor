@@ -6,6 +6,10 @@
     ><i class="mat-icon material-icons">add</i>
       {{'button_new_project' | translate}}</button>
 
+    <div>
+      <span class="bottom-toolbar__text" *ngIf="totalProjectsLength > 3"><span *ngIf="totalProjectsLength !== displayProjectsLength">{{ displayProjectsLength }} / </span>{{ totalProjectsLength}} {{ 'label_projects' | translate }}</span>
+    </div>
+
     <div class="bottom-toolbar__actions">
       <a mat-button matTooltip="{{ 'tooltip_filter' | translate }}" [matMenuTriggerFor]="filterMenu">
         <i class="mat-icon material-icons">{{ isFilterActive ? 'filter_alt' : 'filter_alt_off' }}</i></a>

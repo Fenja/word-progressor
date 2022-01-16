@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { UserService } from "../../services/user.service";
 import { Settings } from "../../auth/user.model";
 import Utils from "../../helpers/utils";
@@ -8,6 +8,9 @@ import Utils from "../../helpers/utils";
   templateUrl: './project-footer.component.html'
 })
 export class ProjectFooterComponent {
+
+  @Input() totalProjectsLength = 0;
+  @Input() displayProjectsLength = 0;
 
   settings: Settings = Utils.getDefaultSettings();
   isFilterActive!: boolean;

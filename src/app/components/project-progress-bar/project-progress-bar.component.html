@@ -25,5 +25,5 @@
 </div>
 
 <div *ngIf="(goalCount === 0 && currentCount > 0 && !barOnly)">
-  <span data-testid="project-current-count">{{ currentCount }}</span>
+  <span data-testid="project-current-count">{{ currentCount }} {{ entityKey | translate }}</span>
 </div>

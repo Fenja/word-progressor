@@ -7,4 +7,4 @@
 </div>
 <p *ngIf="projects.length <= 0" class="empty-info">{{ 'info_no_projects' | translate }}</p>
 
-<app-project-footer></app-project-footer>
+<app-project-footer [totalProjectsLength]="totalProjectsLength" [displayProjectsLength]="displayProjectsLength"></app-project-footer>

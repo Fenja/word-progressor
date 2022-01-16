@@ -17,6 +17,13 @@ export class ProjectListComponent implements OnDestroy {
   private subscriptions: Subscription[] = [];
   private settings: Settings = Utils.getDefaultSettings();
 
+  get totalProjectsLength() {
+    return this.allProjects.length;
+  }
+  get displayProjectsLength() {
+    return this.projects.length;
+  }
+
   constructor(
     private projectService: ProjectService,
     private userService: UserService,

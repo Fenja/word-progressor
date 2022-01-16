@@ -256,6 +256,11 @@ ul {
       flex-direction: column;
     }
   }
+
+  &__text {
+    font-size: small;
+    font-weight: normal;
+  }
 }
 
 .progress-bars {
