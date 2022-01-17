@@ -1,4 +1,4 @@
-import {ProjectEvent, ProjectState, WordLog} from "../project/project.model";
+import {Note, ProjectEvent, ProjectState, WordLog} from "../project/project.model";
 import {Settings} from "../auth/user.model";
 
 export default class Utils {
@@ -53,8 +53,15 @@ export default class Utils {
 
   static repairWordLogs(logs: WordLog[]): WordLog[] {
     logs = logs.filter(Utils.notEmpty);
+    logs = logs.filter((log: WordLog) => (log.words !== 0));
     logs = logs.sort((a, b) => (+(a.date) < +(b.date) ? -1 : 1))
     return logs;
+  }
+
+  static repairNotes(notes: Note[]): Note[] {
+    notes = notes.filter(Utils.notEmpty);
+    notes = notes.filter((notes: Note) => (notes.content?.length > 0));
+    return notes;
   }
 
   static notEmpty<TValue>(value: TValue | null | undefined): value is TValue {

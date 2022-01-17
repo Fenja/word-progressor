@@ -67,7 +67,7 @@
   <app-wordlog-list [project]="project" [wordLogs]="project.wordLogs" [countEntity]="project.countEntity"></app-wordlog-list>
 </div>
 
-<div class="content" *ngIf="project.notes">
+<div class="content" *ngIf="project.notes && project.notes.length > 0">
   <h3>{{ 'label_notes' | translate }}</h3>
   <app-note-list [project]="project"></app-note-list>
 </div>

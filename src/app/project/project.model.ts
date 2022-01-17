@@ -33,7 +33,7 @@ export interface Project extends AbstractProject {
 
 export interface WordLog {
   date: string;
-  words: number,
+  words: number;
 }
 
 export interface Note {

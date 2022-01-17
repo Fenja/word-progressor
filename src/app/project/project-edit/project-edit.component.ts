@@ -143,6 +143,7 @@ export class ProjectEditComponent implements OnInit {
     "Romance",
     "Western",
     "Dystopian",
-    "Contemporary"
+    "Contemporary",
+    "Non-Fiction"
   ];
 }

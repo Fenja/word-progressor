@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Note, Project } from "../project/project.model";
 import { ProjectService } from "../project/project.service";
+import Utils from "../helpers/utils";
 
 @Injectable({
   providedIn: 'root'
@@ -23,6 +24,7 @@ export class NoteService {
     if (!existingNote || !project.notes) return;
     const index = project.notes?.indexOf(existingNote);
     delete project.notes[index!];
+    project.notes = Utils.repairNotes(project.notes);
     this.projectService.editProject(project.id!, project);
   }
 }

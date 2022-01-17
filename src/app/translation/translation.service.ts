@@ -74,6 +74,8 @@ export class TranslationService {
         saturday: 'Samstag',
         sunday: 'Sonntag',
 
+        project_main: 'Hauptproject',
+
         info_wp: 'Willkommen zum WordProgressor',
         info_bow: 'Hier sind alle deine beendeten Projekte.',
         info_no_projects: 'Keine Projekte gefunden',
@@ -336,6 +338,8 @@ export class TranslationService {
         friday: 'Friday',
         saturday: 'Saturday',
         sunday: 'Sunday',
+
+        project_main: 'Main project',
 
         info_wp: 'Welcome to the WordProgressor',
         info_bow: 'These are your finished projects.',

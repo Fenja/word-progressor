@@ -33,6 +33,7 @@ export class ProjectDetailComponent implements OnInit {
         if (!!result) {
           this.project = result;
           if (this.project.wordLogs) this.project.wordLogs = Utils.repairWordLogs(this.project.wordLogs);
+          if (this.project.notes) this.project.notes = Utils.repairNotes(this.project.notes);
         } else {
           // TODO show error
           console.log('project with id ' + this.id + ' not found');

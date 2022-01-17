@@ -11,10 +11,12 @@ import {
   MAT_MOMENT_DATE_FORMATS,
   MomentDateAdapter,
 } from '@angular/material-moment-adapter';
-import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
+import {DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE, MatOption} from '@angular/material/core';
 import 'moment/locale/de';
 import 'moment/locale/en-gb';
 import Utils from "../../helpers/utils";
+import {MatSelect} from "@angular/material/select";
+import {Subproject} from "../../project/subproject/subproject.model";
 
 export interface WordlogAddDialogData {
   id: string;
@@ -40,13 +42,12 @@ export interface WordlogAddDialogData {
 })
 export class WordlogAddDialogComponent implements OnInit {
 
-  @ViewChild('asWordsInputNew', {static: false}) asWordsInputNew: ElementRef | undefined;
-  @ViewChild('asWordsInputTotal', {static: false}) asWordsInputTotal: ElementRef | undefined;
-
   validProject: boolean = true;
   date: Date = new Date();
   entity!: CountEntity;
   eCountEntity = CountEntity;
+  subprojects: Array<string> = [];
+  selectedSubproject: String | undefined;
 
   constructor(
     public dialogRef: MatDialogRef<WordlogAddDialogComponent>,
@@ -62,6 +63,11 @@ export class WordlogAddDialogComponent implements OnInit {
       this.validProject = false;
     }
     this.entity = data.project.countEntity;
+    if (!! this.data.project.subprojects) {
+      this.subprojects.push(this.translationService.translate('project_main'));
+      this.data.project.subprojects.forEach(sub => this.subprojects.push(sub.workingTitle));
+    }
+
   }
 
   ngOnInit(): void {
@@ -83,19 +89,35 @@ export class WordlogAddDialogComponent implements OnInit {
     this.close();
     if ((!words || words === 0) && (!characters || characters === 0) && (!pages || pages === 0)) return;
     if (!!this.date) {
-      this.logWordsService.logWords(this.data.id, this.data.project, Utils.normalizeDate(this.date).toString(), words, characters, pages);
-    }
+      let subproject: Subproject | undefined;
+      if (!!this.selectedSubproject && this.selectedSubproject !== this.subprojects[0]) {
+        subproject = this.data.project.subprojects?.find(sub => sub.workingTitle === this.selectedSubproject);
+        if (!subproject) return;
+      }
+    this.logWordsService.logWords(this.data.id, this.data.project, Utils.normalizeDate(this.date).toString(), words, characters, pages, subproject);
+
 
     let addedMsg: string;
-    switch (this.entity) {
-      case CountEntity.words: addedMsg = 'msg_words_added'; break;
-      case CountEntity.characters: addedMsg = 'msg_characters_added'; break;
-      case CountEntity.pages: addedMsg = 'msg_pages_added'; break;
+      switch (this.entity) {
+        case CountEntity.words:
+          addedMsg = 'msg_words_added';
+          break;
+        case CountEntity.characters:
+          addedMsg = 'msg_characters_added';
+          break;
+        case CountEntity.pages:
+          addedMsg = 'msg_pages_added';
+          break;
+      }
+      this.snackBarService.showSnackBar(words + this.translationService.translate(addedMsg));
     }
-    this.snackBarService.showSnackBar(words + this.translationService.translate(addedMsg))
   }
 
   close(): void {
     this.dialogRef.close();
+  }
+
+  changeSubproject(value: String) {
+    this.selectedSubproject = value;
   }
 }

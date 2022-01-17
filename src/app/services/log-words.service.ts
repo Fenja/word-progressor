@@ -3,6 +3,7 @@ import { CountEntity, Project, WordLog } from "../project/project.model";
 import { ProjectService } from "../project/project.service";
 import { DataStorageService } from "./data-storage.service";
 import Utils from "../helpers/utils";
+import { Subproject } from "../project/subproject/subproject.model";
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +15,7 @@ export class LogWordsService {
     private dataStorageService: DataStorageService,
   ) { }
 
-  logWords(id: string, project: Project, date: string, words?: number, characters?: number, pages?: number) {
+  logWords(id: string, project: Project, date: string, words?: number, characters?: number, pages?: number, subproject?: Subproject) {
     if (!words && !characters && !pages) return;
     let count: number;
     switch (project.countEntity) {
@@ -23,6 +24,7 @@ export class LogWordsService {
       case CountEntity.pages: count = pages ?? 0; break;
     }
     project.wordLogs = this.addWordsToLog(project.wordLogs, date, count);
+    if (!!subproject) subproject.currentCount += count;
     project.currentCount += count;
     this.projectService.editProject(id, project);
 
