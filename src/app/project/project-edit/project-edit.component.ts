@@ -136,14 +136,14 @@ export class ProjectEditComponent implements OnInit {
   }
 
   genres = [
-    "Fantasy",
-    "Sci-Fi",
-    "Mystery",
-    "Thriller",
-    "Romance",
-    "Western",
-    "Dystopian",
-    "Contemporary",
-    "Non-Fiction"
+    this.translationService.translate('genre_fantasy'),
+    this.translationService.translate('genre_scifi'),
+    this.translationService.translate('genre_mystery'),
+    this.translationService.translate('genre_thriller'),
+    this.translationService.translate('genre_romance'),
+    this.translationService.translate('genre_western'),
+    this.translationService.translate('genre_dystopian'),
+    this.translationService.translate('genre_contemporary'),
+    this.translationService.translate('genre_non_fiction')
   ];
 }

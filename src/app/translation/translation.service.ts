@@ -74,7 +74,16 @@ export class TranslationService {
         saturday: 'Samstag',
         sunday: 'Sonntag',
 
-        project_main: 'Hauptproject',
+        project_main: 'Hauptprojekt',
+        genre_fantasy: 'Fantasy',
+        genre_scifi: 'Science Fiction',
+        genre_mystery: 'Krimi',
+        genre_thriller: 'Thriller',
+        genre_romance: 'Romantik',
+        genre_western: 'Western',
+        genre_dystopian: 'Dystopie',
+        genre_contemporary: 'Belletristik',
+        genre_non_fiction: 'Sachbuch',
 
         info_wp: 'Willkommen zum WordProgressor',
         info_bow: 'Hier sind alle deine beendeten Projekte.',
@@ -340,6 +349,15 @@ export class TranslationService {
         sunday: 'Sunday',
 
         project_main: 'Main project',
+        genre_fantasy: 'Fantasy',
+        genre_scifi: 'Sci-Fi',
+        genre_mystery: 'Mystery',
+        genre_thriller: 'Thriller',
+        genre_romance: 'Romance',
+        genre_western: 'Western',
+        genre_dystopian: 'Dystopian',
+        genre_contemporary: 'Contemporary',
+        genre_non_fiction: 'Non-fiction',
 
         info_wp: 'Welcome to the WordProgressor',
         info_bow: 'These are your finished projects.',
