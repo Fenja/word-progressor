@@ -6,8 +6,8 @@
     ><i class="mat-icon material-icons">add</i>
       {{'button_new_project' | translate}}</button>
 
-    <div>
-      <span class="bottom-toolbar__text" *ngIf="totalProjectsLength > 3"><span *ngIf="totalProjectsLength !== displayProjectsLength">{{ displayProjectsLength }} / </span>{{ totalProjectsLength}} {{ 'label_projects' | translate }}</span>
+    <div *ngIf="totalProjectsLength > 3" class="larger-xs">
+      <span class="bottom-toolbar__text"><span *ngIf="totalProjectsLength !== displayProjectsLength">{{ displayProjectsLength }} / </span>{{ totalProjectsLength}} {{ 'label_projects' | translate }}</span>
     </div>
 
     <div class="bottom-toolbar__actions">
