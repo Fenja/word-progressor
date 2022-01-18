@@ -3,7 +3,7 @@ import { Injectable } from "@angular/core";
 import { DataStorageService } from "../services/data-storage.service";
 import { SnackbarService } from "../services/snackbar.service";
 import { TranslationService } from "../translation/translation.service";
-import { Observable } from "rxjs";
+import { Observable, of } from "rxjs";
 
 @Injectable({
   providedIn: 'root'
@@ -26,6 +26,10 @@ export class ProjectService {
 
   getProject(id: string): Project | undefined {
     return this.dataStorageService.projects.find(p => p.id === id);
+  }
+
+  getProjectSubscription(id: string) {
+    return of(this.getProject(id));
   }
 
   addProject(project: Project) {

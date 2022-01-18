@@ -62,7 +62,7 @@
   </div>
 </div>
 
-<div class="content" *ngIf="project.wordLogs">
+<div class="content" *ngIf="project.wordLogs && project.wordLogs.length > 0">
   <h3>{{ 'label_logs' | translate }}</h3>
   <app-wordlog-list [project]="project" [wordLogs]="project.wordLogs" [countEntity]="project.countEntity"></app-wordlog-list>
 </div>

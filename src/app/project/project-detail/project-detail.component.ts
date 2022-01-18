@@ -1,22 +1,24 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import { CountEntity, Project } from "../project.model";
 import { ProjectService } from "../project.service";
 import { ActivatedRoute, Params, Router } from "@angular/router";
 import { WordlogAddDialogComponent } from "../../wordlogs/wordlag-add-dialog/wordlog-add-dialog.component";
 import { MatDialog } from "@angular/material/dialog";
 import { NoteAddDialogComponent } from "../../notes/note-add-dialog/note-add-dialog.component";
+import { Subscription } from "rxjs";
 import Utils from "../../helpers/utils";
 
 @Component({
   selector: 'app-project-detail',
   templateUrl: './project-detail.component.html'
 })
-export class ProjectDetailComponent implements OnInit {
+export class ProjectDetailComponent implements OnInit, OnDestroy {
 
   project!: Project;
   id!: string;
 
   eCountEntity = CountEntity;
+  private subscriptions: Subscription[] = [];
 
   constructor(
     private projectService: ProjectService,
@@ -29,18 +31,23 @@ export class ProjectDetailComponent implements OnInit {
     this.route.params.subscribe(
       (params: Params) => {
         this.id = params['id'];
-        let result: Project | undefined = this.projectService.getProject(this.id);
-        if (!!result) {
-          this.project = result;
-          if (this.project.wordLogs) this.project.wordLogs = Utils.repairWordLogs(this.project.wordLogs);
-          if (this.project.notes) this.project.notes = Utils.repairNotes(this.project.notes);
-        } else {
-          // TODO show error
-          console.log('project with id ' + this.id + ' not found');
-          this.router.navigate(['/projects']).then();
-        }
+        this.subscriptions.push( this.projectService.getProjectSubscription(this.id).subscribe((result) => {
+          if (!!result) {
+            this.project = result;
+            if (this.project.wordLogs) this.project.wordLogs = Utils.repairWordLogs(this.project.wordLogs);
+            if (this.project.notes) this.project.notes = Utils.repairNotes(this.project.notes);
+          } else {
+            // TODO show error
+            console.log('project with id ' + this.id + ' not found');
+            this.router.navigate(['/projects']).then();
+          }
+        }) );
       }
     )
+  }
+
+  ngOnDestroy(): void {
+    this.subscriptions.forEach((sub) => sub.unsubscribe());
   }
 
   addToProject() {
