@@ -83,6 +83,7 @@ import { SubprojectItemComponent } from './project/subproject/subproject-item/su
 import { SubprojectOverviewComponent } from './project/subproject/subproject-overview/subproject-overview.component';
 import { SubprojectDetailComponent } from './project/subproject/subproject-detail/subproject-detail.component';
 import {MatAutocompleteModule} from "@angular/material/autocomplete";
+import {AuthGuard} from "./auth/auth.guard";
 
 @NgModule({
   declarations: [
@@ -173,6 +174,7 @@ import {MatAutocompleteModule} from "@angular/material/autocomplete";
         MatAutocompleteModule,
     ],
   providers: [
+    AuthGuard,
     MatDatepickerModule,
     {
       provide: HTTP_INTERCEPTORS,

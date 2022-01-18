@@ -10,20 +10,21 @@ import { PrivacyPolicyComponent } from "./settings/privacy-policy/privacy-policy
 import { VerifyEmailComponent } from "./auth/verify-email/verify-email.component";
 import { DashboardComponent } from "./dashboard/dashboard.component";
 import { BodyOfWorkComponent } from "./body-of-work/body-of-work.component";
+import { AuthGuard } from "./auth/auth.guard";
 
 const appRoutes: Routes = [
   { path: '', redirectTo: '/auth', pathMatch: 'full' },
   { path: 'auth', component: AuthComponent },
-  { path: 'verify-email-address', component: VerifyEmailComponent },
-  { path: 'settings', component: SettingsComponent },
-  { path: 'privacy_policy', component: PrivacyPolicyComponent },
-  { path: 'dashboard', component: DashboardComponent },
-  { path: 'body-of-work', component: BodyOfWorkComponent },
+  { path: 'verify-email-address', component: VerifyEmailComponent, canActivate: [AuthGuard]},
+  { path: 'settings', component: SettingsComponent, canActivate: [AuthGuard] },
+  { path: 'privacy_policy', component: PrivacyPolicyComponent, canActivate: [AuthGuard] },
+  { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
+  { path: 'body-of-work', component: BodyOfWorkComponent, canActivate: [AuthGuard] },
   { path: 'projects', component: ProjectsComponent, children: [
-      { path: '', component: ProjectListComponent },
-      { path: 'new', component: ProjectEditComponent },
-      { path: ':id', component: ProjectDetailComponent },
-      { path: ':id/edit', component: ProjectEditComponent },
+      { path: '', component: ProjectListComponent, canActivate: [AuthGuard] },
+      { path: 'new', component: ProjectEditComponent, canActivate: [AuthGuard] },
+      { path: ':id', component: ProjectDetailComponent, canActivate: [AuthGuard] },
+      { path: ':id/edit', component: ProjectEditComponent, canActivate: [AuthGuard] },
     ] },
 ]
 
