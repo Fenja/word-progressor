@@ -5,9 +5,11 @@
 
   </div>
 
-  <div *ngIf="project.description" class="project-description" data-testid="project-description">
-    {{ project.description }}
-  </div>
+  <div *ngIf="project.description"
+       class="project-description"
+       data-testid="project-description"
+       [innerHTML]="project.description"
+  ></div>
 
   <img
     alt="{{ project.workingTitle }}"
