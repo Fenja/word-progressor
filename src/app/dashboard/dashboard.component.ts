@@ -44,6 +44,11 @@ export class DashboardComponent implements OnDestroy {
     this.wips = this.projectService.getProjects().filter(p => p.isWorkInProgress);
     this.subscriptions.push( this.projectService.projectList.subscribe(projects => {
       this.wips = projects.filter(p => p.isWorkInProgress);
+      projects.forEach(project => {
+        project.subprojects?.filter(s => {
+          if (s.isWorkInProgress && !this.wips.find(p => p.id == project.id)) this.wips.push(project);
+        })
+      })
       this._initProjectStats(projects);
       }
     ));
