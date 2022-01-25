@@ -39,7 +39,7 @@ export class UserService {
   toggleFavoriteSubmission(id: string, isFavorite: boolean) {
     const user = this.dataStorageService.user;
     var favorites = user.favorites;
-    if (!favorites) return;
+    if (!favorites) favorites = [];
     if (isFavorite) {
       favorites.push(id);
     } else {

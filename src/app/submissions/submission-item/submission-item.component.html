@@ -1,11 +1,21 @@
 <mat-card class="project-item">
   <mat-card-header class="project-item__header">
     <mat-card-title>{{ submission.title }}</mat-card-title>
-    <mat-card-subtitle>{{ submission.genre }}</mat-card-subtitle>
+    <mat-card-subtitle>{{ submission.publisher }}, {{ submission.genre }}</mat-card-subtitle>
   </mat-card-header>
 
   <mat-card-content>
     <div class="mat-card-content">
+      <div *ngIf="submission.description"
+           class="project-description"
+           data-testid="project-description"
+           [innerHTML]="submission.description"
+      ></div>
+    </div>
+
+    <div *ngIf="submission.deadline" class="deadline" [ngClass]="isPassed ? 'obsolete' : ''">
+      <i class="mat-icon material-icons">event</i>
+      <span>{{ submission.deadline | date }}</span>
     </div>
   </mat-card-content>
   <mat-card-actions class="button-row">
@@ -13,6 +23,7 @@
       *ngIf="submission.link"
       mat-raised-button
       color="accent"
+      (click)="openSubmission()"
       data-testid="project-detail-button"
     >{{'button_to_submission' | translate}}</button>
 
@@ -24,7 +35,6 @@
       (click)="toggleFavorite()"
     >
       <mat-icon [ngClass]="isFavorite ? 'primary-color' : ''">favorite</mat-icon>
-      <span>{{ submission.favorites }}</span>
     </button>
     <!--<button
       mat-raised-button

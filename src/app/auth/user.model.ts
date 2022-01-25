@@ -56,4 +56,6 @@ export interface Settings {
 
   // submissions
   favorites: string[];
+  isSortSubmissionByDeadline: boolean;
+  filterFavorites: boolean;
 }

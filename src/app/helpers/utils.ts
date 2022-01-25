@@ -100,6 +100,8 @@ export default class Utils {
 
       favorites: [],
       isAdmin: undefined,
+      filterFavorites: false,
+      isSortSubmissionByDeadline: true,
     };
   }
 }

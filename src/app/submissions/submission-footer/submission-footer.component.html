@@ -1,5 +1,5 @@
 <mat-toolbar class="bottom-toolbar" color="primary">
-  <button *ngIf="isAdmin"
+  <button *ngIf="settings.isAdmin"
     mat-raised-button
     color="primary"
     [routerLink]="['new']"
@@ -10,4 +10,20 @@
     <span class="bottom-toolbar__text"><span *ngIf="totalSubmissionsLength !== displaySubmissionsLength">{{ displaySubmissionsLength }} / </span>{{ totalSubmissionsLength}} {{ 'label_submissions' | translate }}</span>
   </div>
 
+  <div class="bottom-toolbar__actions">
+    <a mat-button matTooltip="{{ 'filter_favorites' | translate }}"
+       (click)="toggleFilterFavorites()"
+    >
+      <i class="mat-icon material-icons">
+        {{ settings.filterFavorites ? 'favorite' : 'favorite_border' }}
+      </i>
+    </a>
+    <a mat-button matTooltip="{{ 'sort_deadline' | translate }}"
+       (click)="toggleSortByDeadline()"
+    >
+      <i class="mat-icon material-icons">
+        {{ settings.isSortSubmissionByDeadline ? 'filter_list' : 'filter_list_off' }}
+      </i>
+    </a>
+  </div>
 </mat-toolbar>

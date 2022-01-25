@@ -20,6 +20,18 @@
     </mat-form-field>
 
     <mat-form-field color="primary">
+      <mat-label>{{ 'label_publisher' | translate }}</mat-label>
+      <input
+        matInput
+        type="text"
+        name="publisher"
+        class="form-control"
+        data-testid="genre-input"
+        [(ngModel)]="submission.publisher"
+      >
+    </mat-form-field>
+
+ <mat-form-field color="primary">
       <mat-label>{{ 'label_genre' | translate }}</mat-label>
       <input
         matInput

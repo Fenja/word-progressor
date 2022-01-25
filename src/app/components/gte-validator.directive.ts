@@ -26,7 +26,7 @@ export class gteValidatorDirective implements Validator {
       return { 'gte': true, 'requiredValue': this.gteNum }
     }
 
-    if (v <= +this.gteNum) {
+    if (v < +this.gteNum) {
       return { 'gte': true, 'requiredValue': this.gteNum }
     }
 

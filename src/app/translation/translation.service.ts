@@ -120,7 +120,7 @@ export class TranslationService {
         button_delete_publication: 'Veröffentlichung löschen',
         button_add_subproject: 'Unterprojekt hinzufügen',
         button_new_submission: 'Neue Ausschreibung',
-        button_to_submission: 'Zur Ausschreibungs-Seite',
+        button_to_submission: 'Zur Ausschreibung',
         button_project_from_submission: 'Projekt anlegen',
 
         label_current_word_count: 'Aktuelle Wortzahl',
@@ -236,6 +236,7 @@ export class TranslationService {
         filter_deadline: 'Mit Einsendeschluss',
         filter_short: 'Kurze Geschichten',
         filter_long: 'Lange Geschichten',
+        filter_favorites: 'Nur Favoriten',
 
         sort_alphabetical: 'Alphabetisch',
         sort_deadline: 'Nach Einsendeschluss',
@@ -520,6 +521,7 @@ export class TranslationService {
         filter_deadline: 'With deadline',
         filter_short: 'Short stories',
         filter_long: 'Long stories',
+        filter_favorites: 'Only favorites',
 
         sort_alphabetical: 'Alphabetisch',
         sort_deadline: 'Nach Einsendeschluss',

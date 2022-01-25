@@ -3,6 +3,7 @@ import { CountEntity } from "../project/project.model";
 export interface Submission {
   id?: string;
   title: string;
+  publisher: string;
   deadline: Date | undefined;
   link: string;
   minCount: number;
@@ -12,5 +13,4 @@ export interface Submission {
   description: string;
   restrictions?: string;
   language: string;
-  favorites: number;
 }
