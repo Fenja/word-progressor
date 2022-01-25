@@ -12,6 +12,7 @@ import { ActivatedRoute, Params, Router } from "@angular/router";
 import { TranslationService } from "../../translation/translation.service";
 import { SubmissionService } from "../submission.service";
 import { take } from "rxjs/operators";
+import * as uuid from "uuid";
 
 @Component({
   selector: 'app-submission-edit',
@@ -85,6 +86,7 @@ export class SubmissionEditComponent implements OnInit {
       if (this.editMode) {
         this.submissionService.editSubmission(this.id!, this.submission);
       } else {
+        this.submission.id = uuid.v4();
         this.submissionService.addSubmission(this.submission);
       }
     }
