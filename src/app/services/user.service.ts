@@ -35,4 +35,18 @@ export class UserService {
     // TODO created today/this week
     return true;
   }
+
+  toggleFavoriteSubmission(id: string, isFavorite: boolean) {
+    const user = this.dataStorageService.user;
+    var favorites = user.favorites;
+    if (!favorites) return;
+    if (isFavorite) {
+      favorites.push(id);
+    } else {
+      const index = favorites?.indexOf(id);
+      delete favorites[index];
+    }
+    user.favorites = favorites;
+    this.dataStorageService.editUser(user.id!, user);
+  }
 }

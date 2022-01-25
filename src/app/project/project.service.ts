@@ -1,4 +1,4 @@
-import {Project, WordLog} from "./project.model";
+import { Project, WordLog } from "./project.model";
 import { Injectable } from "@angular/core";
 import { DataStorageService } from "../services/data-storage.service";
 import { SnackbarService } from "../services/snackbar.service";

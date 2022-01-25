@@ -89,6 +89,7 @@ export class TranslationService {
         info_bow: 'Hier sind alle deine beendeten Projekte.',
         info_no_projects: 'Keine Projekte gefunden',
         info_no_bow: 'Dein Gesamtwerk hat noch keine Einträge. Zeit ein Projekt abzuschließen!',
+        info_no_submissions: 'Keine Ausschreibungen gefunden',
 
         button_new_project: 'Neues Projekt',
         button_add: 'Hinzufügen',
@@ -118,10 +119,15 @@ export class TranslationService {
         button_reward_now: 'Jetzt belohnen',
         button_delete_publication: 'Veröffentlichung löschen',
         button_add_subproject: 'Unterprojekt hinzufügen',
+        button_new_submission: 'Neue Ausschreibung',
+        button_to_submission: 'Zur Ausschreibungs-Seite',
+        button_project_from_submission: 'Projekt anlegen',
 
         label_current_word_count: 'Aktuelle Wortzahl',
         label_goal_word_count: 'Angestrebte Wortzahl',
         label_max_goal_word_count: 'Maximale Wortzahl',
+        label_min_count: 'Mindestens',
+        label_max_count: 'Höchstens',
         label_choose_date: 'Datum auswählen',
         label_project_state: 'Projekt-Status',
         label_project_type: 'Projekt-Art',
@@ -180,6 +186,8 @@ export class TranslationService {
         label_body_of_work: 'Gesamtwerk',
         label_subprojects: 'Unterprojekte',
         label_subproject: 'Unterprojekt',
+        label_submissions: 'Ausschreibungen',
+        label_link: 'Link',
 
         placeholder_working_title: 'Arbeitstitel',
         placeholder_blurb: 'Inhaltsangabe',
@@ -195,6 +203,8 @@ export class TranslationService {
         tooltip_delete_log: 'Log löschen',
         tooltip_edit_note: 'Notiz bearbeiten',
         tooltip_delete_note: 'Notiz löschen',
+        tooltip_add_favorite: 'zu Favoriten hinzufügen',
+        tooltip_remove_favorite: 'aus Favoriten entfernen',
 
         headline_word_count: 'Wortzahl',
         headline_total: 'Gesamt',
@@ -363,6 +373,7 @@ export class TranslationService {
         info_bow: 'These are your finished projects.',
         info_no_projects: 'No Projects found',
         info_no_bow: 'Your body of work is still empty. Go and finish something!',
+        info_no_submissions: 'No submissions found',
 
         button_new_project: 'New Project',
         button_add: 'Add',
@@ -392,10 +403,15 @@ export class TranslationService {
         button_reward_now: 'Reward now',
         button_delete_publication: 'Delete publication',
         button_add_subproject: 'Add subproject',
+        button_new_submission: 'New submission',
+        button_to_submission: 'Visit submission site',
+        button_project_from_submission: 'Create project',
 
         label_current_word_count: 'Current Word Count',
         label_goal_word_count: 'Goal Word Count',
         label_max_goal_word_count: 'Max Word Count',
+        label_min_count: 'Minimum',
+        label_max_count: 'Maximum',
         label_choose_date: 'Choose Date',
         label_project_state: 'Project State',
         label_project_type: 'Project Type',
@@ -454,6 +470,8 @@ export class TranslationService {
         label_body_of_work: 'Body of work',
         label_subprojects: 'Subprojects',
         label_subproject: 'Subproject',
+        label_submissions: 'Submissions',
+        label_link: 'Link',
 
         placeholder_working_title: 'Working Title',
         placeholder_blurb: 'Blurb',
@@ -469,6 +487,8 @@ export class TranslationService {
         tooltip_delete_log: 'delete log',
         tooltip_edit_note: 'edit note',
         tooltip_delete_note: 'delete note',
+        tooltip_add_favorite: 'add to favorites',
+        tooltip_remove_favorite: 'remove from favorites',
 
         headline_word_count: 'Word Count',
         headline_total: 'Total',

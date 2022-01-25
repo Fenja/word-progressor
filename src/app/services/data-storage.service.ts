@@ -23,7 +23,7 @@ export class DataStorageService {
   projects: Project[] = [];
   public projectList = new Subject<Project[]>();
   user: userData = {
-    settings: Utils.getDefaultSettings()
+    settings: Utils.getDefaultSettings(),
   };
   public user$ = new Subject<userData>();
 

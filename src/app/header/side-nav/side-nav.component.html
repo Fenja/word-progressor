@@ -21,6 +21,16 @@
   </a>
 
   <a
+    routerLink="/submissions"
+    routerLinkActive="mat-accent"
+    class="mat-link"
+    data-testid="submissions-label"
+    (click)="onSidenavClose()"
+  >
+    {{ 'label_submissions' | translate }}
+  </a>
+
+  <a
     *ngIf="authService.isAnonymous || authService.isLoggedIn"
     routerLink="/body-of-work"
     routerLinkActive="mat-accent"

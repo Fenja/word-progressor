@@ -8,6 +8,7 @@ export interface userData {
   age?: number;
 
   settings?: Settings;
+  favorites?: string[];
 
   achievements?: string[]; // list of achievements
   wordLogs?: WordLog[]; // collected from all projects
@@ -45,9 +46,14 @@ export interface Settings {
   isSortAlphabetical: boolean;
   isSortByUpdate: boolean;
 
+  isAdmin: boolean | undefined; // added to firebase DB by hand
+
   // notifications
   notifyDailyWriting: boolean;
   timeDailyWriting: Time;
   notifyDeadline: boolean;
   daysBeforeDeadlineReminder: number[];
+
+  // submissions
+  favorites: string[];
 }

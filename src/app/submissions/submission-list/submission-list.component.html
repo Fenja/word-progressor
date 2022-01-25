@@ -1,0 +1,11 @@
+<div *ngIf="submissions.length > 0" class="project-list">
+  <app-submission-item
+    *ngFor="let submission of submissions"
+    [submission]="submission"
+    class="list-card-item"
+  ></app-submission-item>
+</div>
+<p *ngIf="submissions.length <= 0" class="empty-info">{{ 'info_no_submissions' | translate }}</p>
+
+
+<app-submission-footer [totalSubmissionsLength]="totalSubmissionsLength" [displaySubmissionsLength]="displaySubmissionsLength"></app-submission-footer>

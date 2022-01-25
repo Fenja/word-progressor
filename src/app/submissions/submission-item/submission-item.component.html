@@ -1,0 +1,45 @@
+<mat-card class="project-item">
+  <mat-card-header class="project-item__header">
+    <mat-card-title>{{ submission.title }}</mat-card-title>
+    <mat-card-subtitle>{{ submission.genre }}</mat-card-subtitle>
+  </mat-card-header>
+
+  <mat-card-content>
+    <div class="mat-card-content">
+    </div>
+  </mat-card-content>
+  <mat-card-actions class="button-row">
+    <button
+      *ngIf="submission.link"
+      mat-raised-button
+      color="accent"
+      data-testid="project-detail-button"
+    >{{'button_to_submission' | translate}}</button>
+
+    <button
+      mat-icon-button
+      name="edit"
+      matTooltip="{{(isFavorite ? 'tooltip_remove_favorite' : 'tooltip_add_favorite') | translate }}"
+      class="wordlog-item__button"
+      (click)="toggleFavorite()"
+    >
+      <mat-icon [ngClass]="isFavorite ? 'primary-color' : ''">favorite</mat-icon>
+      <span>{{ submission.favorites }}</span>
+    </button>
+    <!--<button
+      mat-raised-button
+      color="primary"
+      (click)="createProjectFromSubmission()"
+      data-testid="project-detail-button"
+    >{{'button_project_from_submission' | translate}}</button>-->
+
+    <button
+      *ngIf="isAdmin"
+      mat-stroked-button
+      color="primary"
+      matTooltip="{{ 'button_edit' | translate }}"
+      [routerLink]="[submission.id+'/edit']"
+      data-testid="project-edit-button"
+    >{{'button_edit' | translate}}</button>
+  </mat-card-actions>
+</mat-card>

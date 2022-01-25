@@ -32,6 +32,14 @@
     </a></li>
 
     <li><a
+      mat-button routerLink="/submissions"
+      routerLinkActive="mat-accent"
+      data-testid="submissions-label"
+    >
+      {{ 'label_submissions' | translate }}
+    </a></li>
+
+    <li><a
       *ngIf="authService.isAnonymous || authService.isLoggedIn"
       mat-button routerLink="/body-of-work"
       routerLinkActive="mat-accent"

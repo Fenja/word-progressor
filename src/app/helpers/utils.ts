@@ -96,7 +96,10 @@ export default class Utils {
       notifyDailyWriting: false,
       timeDailyWriting: {hours: 7, minutes: 0},
       notifyDeadline: false,
-      daysBeforeDeadlineReminder: []
+      daysBeforeDeadlineReminder: [],
+
+      favorites: [],
+      isAdmin: undefined,
     };
   }
 }

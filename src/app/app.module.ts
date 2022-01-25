@@ -82,8 +82,13 @@ import { SubprojectEditComponent } from './project/subproject/subproject-edit/su
 import { SubprojectItemComponent } from './project/subproject/subproject-item/subproject-item.component';
 import { SubprojectOverviewComponent } from './project/subproject/subproject-overview/subproject-overview.component';
 import { SubprojectDetailComponent } from './project/subproject/subproject-detail/subproject-detail.component';
-import {MatAutocompleteModule} from "@angular/material/autocomplete";
-import {AuthGuard} from "./auth/auth.guard";
+import { MatAutocompleteModule } from "@angular/material/autocomplete";
+import { AuthGuard } from "./auth/auth.guard";
+import { SubmissionComponent } from './submissions/submission.component';
+import { SubmissionFooterComponent } from './submissions/submission-footer/submission-footer.component';
+import { SubmissionListComponent } from './submissions/submission-list/submission-list.component';
+import { SubmissionEditComponent } from './submissions/submission-edit/submission-edit.component';
+import { SubmissionItemComponent } from './submissions/submission-item/submission-item.component';
 
 @NgModule({
   declarations: [
@@ -131,6 +136,11 @@ import {AuthGuard} from "./auth/auth.guard";
     SubprojectItemComponent,
     SubprojectOverviewComponent,
     SubprojectDetailComponent,
+    SubmissionComponent,
+    SubmissionFooterComponent,
+    SubmissionListComponent,
+    SubmissionEditComponent,
+    SubmissionItemComponent,
   ],
     imports: [
         AngularFireModule.initializeApp(environment.FIREBASE_CONFIG),

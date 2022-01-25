@@ -10,6 +10,9 @@ import { PrivacyPolicyComponent } from "./settings/privacy-policy/privacy-policy
 import { VerifyEmailComponent } from "./auth/verify-email/verify-email.component";
 import { DashboardComponent } from "./dashboard/dashboard.component";
 import { BodyOfWorkComponent } from "./body-of-work/body-of-work.component";
+import { SubmissionComponent } from "./submissions/submission.component";
+import { SubmissionEditComponent} from "./submissions/submission-edit/submission-edit.component";
+import { SubmissionListComponent } from "./submissions/submission-list/submission-list.component";
 import { AuthGuard } from "./auth/auth.guard";
 
 const appRoutes: Routes = [
@@ -25,6 +28,11 @@ const appRoutes: Routes = [
       { path: 'new', component: ProjectEditComponent, canActivate: [AuthGuard] },
       { path: ':id', component: ProjectDetailComponent, canActivate: [AuthGuard] },
       { path: ':id/edit', component: ProjectEditComponent, canActivate: [AuthGuard] },
+    ] },
+  { path: 'submissions', component: SubmissionComponent, children: [
+      { path: '', component: SubmissionListComponent },
+      { path: 'new', component: SubmissionEditComponent, /*canActivate: [AdminGuard]*/ },
+      { path: ':id/edit', component: SubmissionEditComponent, /*canActivate: [AdminGuard] */},
     ] },
 ]
 

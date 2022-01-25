@@ -9,9 +9,7 @@ export class HeaderComponent {
 
   @Output() public sidenavToggle = new EventEmitter();
 
-  constructor(
-    public authService: AuthService
-  ) {}
+  constructor(public authService: AuthService) {}
 
   onLogout() {
     this.authService.SignOut();

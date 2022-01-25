@@ -13,7 +13,7 @@ export class SideNavComponent {
   constructor(public authService: AuthService) { }
 
   onLogout() {
-    this.authService.SignOut();
+    this.authService.SignOut().then();
     this.onSidenavClose();
   }
 

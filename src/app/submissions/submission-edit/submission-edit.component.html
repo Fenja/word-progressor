@@ -1,0 +1,144 @@
+<form *ngIf="submission"
+      class="form-group"
+      (ngSubmit)="onSubmit()"
+      #submissionForm="ngForm"
+>
+  <div>
+    <mat-form-field color="primary">
+      <mat-label>{{ 'label_title' | translate }}</mat-label>
+      <input
+        matInput
+        type="text"
+        name="title"
+        #titleId="ngModel"
+        class="form-control"
+        data-testid="title-input"
+        required
+        [(ngModel)]="submission.title"
+      >
+      <mat-error *ngIf="!titleId.valid">{{ 'error_required' | translate }}</mat-error>
+    </mat-form-field>
+
+    <mat-form-field color="primary">
+      <mat-label>{{ 'label_genre' | translate }}</mat-label>
+      <input
+        matInput
+        type="text"
+        name="genre"
+        class="form-control"
+        data-testid="genre-input"
+        [(ngModel)]="submission.genre"
+      >
+    </mat-form-field>
+
+    <mat-form-field color="primary" class="full-width">
+      <textarea
+        matInput
+        id="description"
+        name="description"
+        rows="3"
+        placeholder="{{ 'placeholder_blurb' | translate }}"
+        class="form-control"
+        data-testid="description-input"
+        [(ngModel)]="submission.description"
+
+      ></textarea>
+    </mat-form-field>
+  </div>
+
+  <div>
+    <mat-form-field color="primary">
+      <mat-label>{{ 'label_count_entity' | translate }}</mat-label>
+      <mat-select
+        name="count-entity"
+        class="form-control"
+        data-testid="count-entity-select"
+        [(ngModel)]="submission.countEntity"
+      >
+        <mat-option *ngFor="let state of eCountEntity | keyvalue" value="{{state.key}}">{{state.value | translate}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field color="primary">
+      <mat-label>{{ 'label_min_count' | translate }}</mat-label>
+      <input
+        type="number"
+        name="goalWordcount"
+        #goalCountId="ngModel"
+        matInput
+        gteValidator
+        class="form-control"
+        data-testid="goal-wordcount-input"
+        [(ngModel)]="submission.minCount"
+      >
+      <mat-error *ngIf="!goalCountId.valid">{{ 'error_invalid_value' | translate }}</mat-error>
+    </mat-form-field>
+
+    <mat-form-field color="primary">
+      <mat-label>{{ 'label_max_count' | translate }}</mat-label>
+      <input
+        type="number"
+        name="maxGoalWordcount"
+        #maxGoalCountId="ngModel"
+        matInput
+        gteValidator [gteNum]=submission.minCount
+        class="form-control"
+        data-testid="max-goal-wordcount-input"
+        [(ngModel)]="submission.maxCount"
+      >
+      <mat-error *ngIf="!maxGoalCountId.valid">{{ 'error_invalid_value' | translate }}</mat-error>
+    </mat-form-field>
+  </div>
+
+  <div>
+    <mat-form-field color="primary">
+      <mat-label>{{ 'label_language' | translate }}</mat-label>
+      <input
+        matInput
+        type="text"
+        name="language"
+        class="form-control"
+        data-testid="event-input"
+        [(ngModel)]="submission.language"
+      >
+    </mat-form-field>
+
+    <app-deadline-picker [(deadline)]="submission.deadline"></app-deadline-picker>
+
+    <mat-form-field color="primary">
+      <mat-label>{{ 'label_link' | translate }}</mat-label>
+      <input
+        matInput
+        type="text"
+        name="language"
+        class="form-control"
+        data-testid="event-input"
+        [(ngModel)]="submission.link"
+      >
+    </mat-form-field>
+  </div>
+
+  <div class="button-row">
+    <button
+      mat-raised-button
+      color="primary"
+      type="submit"
+      data-testid="save-button"
+      [disabled]="submissionForm.invalid"
+    >{{ (editMode ? 'button_save' : 'button_create') | translate}}</button>
+    <button
+      mat-stroked-button
+      type="button"
+      color="accent"
+      data-testid="cancel-button"
+      (click)="onCancel()"
+    >{{'button_cancel' | translate}}</button>
+    <button
+      mat-stroked-button
+      type="button"
+      color="warn"
+      data-testid="delete-button"
+      (click)="onDelete()"
+    >{{'button_delete' | translate}}</button>
+  </div>
+</form>

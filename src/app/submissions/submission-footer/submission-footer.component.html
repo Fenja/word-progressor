@@ -1,0 +1,13 @@
+<mat-toolbar class="bottom-toolbar" color="primary">
+  <button *ngIf="isAdmin"
+    mat-raised-button
+    color="primary"
+    [routerLink]="['new']"
+  ><i class="mat-icon material-icons">add</i>
+    {{'button_new_submission' | translate}}</button>
+
+  <div *ngIf="totalSubmissionsLength > 3" class="larger-xs">
+    <span class="bottom-toolbar__text"><span *ngIf="totalSubmissionsLength !== displaySubmissionsLength">{{ displaySubmissionsLength }} / </span>{{ totalSubmissionsLength}} {{ 'label_submissions' | translate }}</span>
+  </div>
+
+</mat-toolbar>
