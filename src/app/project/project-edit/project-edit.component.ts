@@ -1,7 +1,7 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { ActivatedRoute, Params, Router } from "@angular/router";
-import { ProjectService } from "../project.service";
-import { CountEntity, Project, ProjectState, ProjectType } from "../project.model";
+import {Component, OnInit, ViewChild} from '@angular/core';
+import {ActivatedRoute, Params, Router} from "@angular/router";
+import {ProjectService} from "../project.service";
+import {CountEntity, Project, ProjectState, ProjectType} from "../project.model";
 import {FormControl, NgForm} from "@angular/forms";
 import {map, startWith, take} from "rxjs/operators";
 
@@ -10,11 +10,14 @@ import {
   MAT_MOMENT_DATE_FORMATS,
   MomentDateAdapter,
 } from '@angular/material-moment-adapter';
-import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
+import {DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE} from '@angular/material/core';
 import 'moment/locale/de';
 import 'moment/locale/en-gb';
-import { TranslationService } from "../../translation/translation.service";
+import {TranslationService} from "../../translation/translation.service";
 import {Observable} from "rxjs";
+import * as uuid from "uuid";
+import {Submission} from "../../submissions/submission.model";
+import {SubmissionService} from "../../submissions/submission.service";
 
 @Component({
   selector: 'app-project-edit',
@@ -66,6 +69,7 @@ export class ProjectEditComponent implements OnInit {
     private router: Router,
     private translationService: TranslationService,
     private _adapter: DateAdapter<any>,
+    private submissionService: SubmissionService,
   ) { }
 
   ngOnInit(): void {
@@ -74,6 +78,7 @@ export class ProjectEditComponent implements OnInit {
     ).subscribe(
       (params: Params) => {
         this.id = params['id'];
+        const submissionId = params['subid'];
         this.editMode = params['id'] != null;
 
         if (this.editMode) {
@@ -83,6 +88,11 @@ export class ProjectEditComponent implements OnInit {
             this.project.publication = {
               title: '',
             }
+          }
+        } else if (!!submissionId) {
+          const submission = this.submissionService.getSubmission(submissionId);
+          if (!!submission) {
+            this.createProjectFromSubmission(submission);
           }
         }
       }
@@ -133,6 +143,31 @@ export class ProjectEditComponent implements OnInit {
       state: this.project.state,
       workingTitle: ""
     });
+  }
+
+  createProjectFromSubmission(submission: Submission) {
+    this.project = {
+      id: uuid.v4(),
+      countEntity: submission.countEntity,
+      creationDate: new Date(),
+      currentCount: 0,
+      deadline: submission.deadline,
+      description: "",
+      goalCount: submission.minCount ?? 0,
+      maxGoalCount: submission.maxCount,
+      imagePath: "",
+      isWorkInProgress: false,
+      lastUpdate: new Date(),
+      state: ProjectState.idea,
+      type: this._determineProjectType(submission),
+      workingTitle: submission.title,
+      language: submission.language,
+      submission: submission
+    }
+  }
+
+  _determineProjectType(submission: Submission): ProjectType {
+    return ProjectType.short_story; // TODO change according to wordcount
   }
 
   genres = [

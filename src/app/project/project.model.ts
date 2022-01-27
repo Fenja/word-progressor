@@ -1,5 +1,6 @@
 import { Publication } from "../publication/publication.model";
 import { Subproject } from "./subproject/subproject.model";
+import { Submission } from "../submissions/submission.model";
 
 export interface AbstractProject {
   id?: string;
@@ -11,6 +12,7 @@ export interface AbstractProject {
   goalCount: number;
   maxGoalCount?: number;
   isWorkInProgress: boolean;
+  submission?: Submission;
 }
 
 export interface Project extends AbstractProject {

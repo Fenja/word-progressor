@@ -1,10 +1,13 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {Submission} from "../submission.model";
-import {CountEntity} from "../../project/project.model";
+import { Submission } from "../submission.model";
+import { CountEntity, Project, ProjectState, ProjectType } from "../../project/project.model";
 import Utils from "../../helpers/utils";
-import {UserService} from "../../services/user.service";
-import {Subscription} from "rxjs";
-import {SubmissionService} from "../submission.service";
+import { UserService } from "../../services/user.service";
+import { Subscription } from "rxjs";
+import { SubmissionService } from "../submission.service";
+import { ProjectService } from "../../project/project.service";
+import * as uuid from "uuid";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-submission-item',
@@ -24,6 +27,8 @@ export class SubmissionItemComponent implements OnInit {
   constructor(
     private userService: UserService,
     private submissionService: SubmissionService,
+    private projectService: ProjectService,
+    private router: Router,
   ) { }
 
   ngOnInit(): void {
@@ -41,18 +46,12 @@ export class SubmissionItemComponent implements OnInit {
   }
 
   createProjectFromSubmission() {
-    // TODO
+    this.router.navigate(['/projects/new/' + this.submission.id]).then();
   }
 
   toggleFavorite() {
     this.isFavorite = !this.isFavorite;
-    /*if (this.isFavorite) {
-      this.submission.favorites += 1;
-    } else {
-      this.submission.favorites -= 1;
-    }*/
     this.userService.toggleFavoriteSubmission(this.submission.id!, this.isFavorite);
-    //this.submissionService.editSubmission(this.submission.id!, this.submission);
   }
 
   openSubmission() {

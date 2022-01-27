@@ -36,12 +36,12 @@
     >
       <mat-icon [ngClass]="isFavorite ? 'primary-color' : ''">favorite</mat-icon>
     </button>
-    <!--<button
+    <button
       mat-raised-button
       color="primary"
       (click)="createProjectFromSubmission()"
       data-testid="project-detail-button"
-    >{{'button_project_from_submission' | translate}}</button>-->
+    >{{'button_project_from_submission' | translate}}</button>
 
     <button
       *ngIf="isAdmin"

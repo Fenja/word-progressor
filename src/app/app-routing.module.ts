@@ -26,6 +26,7 @@ const appRoutes: Routes = [
   { path: 'projects', component: ProjectsComponent, children: [
       { path: '', component: ProjectListComponent, canActivate: [AuthGuard] },
       { path: 'new', component: ProjectEditComponent, canActivate: [AuthGuard] },
+      { path: 'new/:subid', component: ProjectEditComponent, canActivate: [AuthGuard] },
       { path: ':id', component: ProjectDetailComponent, canActivate: [AuthGuard] },
       { path: ':id/edit', component: ProjectEditComponent, canActivate: [AuthGuard] },
     ] },
