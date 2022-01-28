@@ -46,7 +46,8 @@ export class SubmissionEditComponent implements OnInit {
     maxCount: 0,
     minCount: 0,
     title: '',
-    publisher: ''
+    publisher: '',
+    creationDate: new Date(),
   };
 
   eCountEntity = CountEntity;

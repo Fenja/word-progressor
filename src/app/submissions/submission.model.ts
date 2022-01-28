@@ -13,4 +13,5 @@ export interface Submission {
   description: string;
   restrictions?: string;
   language: string;
+  creationDate: Date;
 }

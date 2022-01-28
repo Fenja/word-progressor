@@ -47,6 +47,9 @@ export class SubmissionListComponent {
       if (user && user.settings){
         this.settings = user.settings;
         this.favorites = user.favorites;
+        if (this.settings.isAdmin) {
+          this._updateSubmissions();
+        }
       }
     }))
   }
@@ -69,5 +72,21 @@ export class SubmissionListComponent {
         else return new Date(a.deadline).valueOf() - new Date(b.deadline).valueOf();
       });
     }
+  }
+
+  private _updateSubmissions() {
+    this.submissions.forEach(submission => {
+      if (!submission.creationDate) {
+        submission.creationDate = new Date();
+        this.submissionService.editSubmission(submission.id!, submission);
+      }
+      if (submission.deadline) {
+        let aMonthAfterDeadline = submission.deadline;
+        aMonthAfterDeadline.setDate(aMonthAfterDeadline.getDate() + 30);
+        if (aMonthAfterDeadline.getTime()  > new Date().getTime()) {
+          this.submissionService.deleteSubmission(submission.id!, submission);
+        }
+      }
+    })
   }
 }

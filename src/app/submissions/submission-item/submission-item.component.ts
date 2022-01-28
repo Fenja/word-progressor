@@ -22,6 +22,7 @@ export class SubmissionItemComponent implements OnInit {
   isPassed: boolean = false;
   isAdmin: boolean | undefined;
   isFavorite: boolean = false;
+  isNew: boolean = false; // new means creation no longer than a week ago
   private subscriptions: Subscription[] = [];
 
   constructor(
@@ -38,6 +39,9 @@ export class SubmissionItemComponent implements OnInit {
     }));
     if (this.submission.deadline) {
       this.isPassed = Utils.normalizeDate(this.submission.deadline) < Utils.normalizedToday();
+      let aWeekAfterCreation = this.submission.creationDate ?? new Date();
+      aWeekAfterCreation.setDate(aWeekAfterCreation.getDate() + 7);
+      this.isNew = aWeekAfterCreation.getTime()  > new Date().getTime();
     }
   }
 
