@@ -187,6 +187,7 @@ export class TranslationService {
         label_subprojects: 'Unterprojekte',
         label_subproject: 'Unterprojekt',
         label_submissions: 'Ausschreibungen',
+        label_submission: 'Ausschreibung',
         label_link: 'Link',
 
         placeholder_working_title: 'Arbeitstitel',
@@ -472,6 +473,7 @@ export class TranslationService {
         label_subprojects: 'Subprojects',
         label_subproject: 'Subproject',
         label_submissions: 'Submissions',
+        label_submission: 'Submission',
         label_link: 'Link',
 
         placeholder_working_title: 'Working Title',

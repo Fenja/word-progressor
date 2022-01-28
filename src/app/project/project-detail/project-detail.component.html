@@ -74,6 +74,13 @@
   <app-note-list [project]="project"></app-note-list>
 </div>
 
+<div class="content" *ngIf="project.submission">
+  <h3>{{ 'label_submission' | translate }}</h3>
+  <div>
+    <h4>{{ project.submission.title }}<span *ngIf="project.submission.publisher"> ({{ project.submission.publisher }})</span></h4>
+  </div>
+</div>
+
 <div class="content" *ngIf="project.publication">
   <h3>{{ 'label_publication' | translate }}</h3>
   <app-publication
@@ -120,6 +127,14 @@
     >{{ 'button_add_note' | translate}}</button>
 
     <app-take-action [project]="project"></app-take-action>
+
+    <button
+      *ngIf="project.submission && project.submission.link"
+      mat-raised-button
+      color="accent"
+      (click)="openSubmission()"
+      data-testid="project-detail-button"
+    >{{'button_to_submission' | translate}}</button>
 
     <button
       mat-stroked-button

@@ -76,4 +76,8 @@ export class ProjectDetailComponent implements OnInit, OnDestroy {
       });
     }
   }
+
+  openSubmission() {
+    if (this.project.submission && this.project.submission.link) window.open(this.project.submission.link, "_blank");
+  }
 }
