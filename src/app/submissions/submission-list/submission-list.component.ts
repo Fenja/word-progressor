@@ -68,14 +68,12 @@ export class SubmissionListComponent {
       return true;
     });
 
-    if (this.settings.isSortSubmissionByDeadline) {
-      const today = Utils.normalizedToday();
-      this.submissions.sort((a: Submission, b: Submission) => {
-        if (!a.deadline || Utils.normalizeDate(a.deadline) < today) return 1;
-        else if (!b.deadline || Utils.normalizeDate(b.deadline) < today) return -1;
-        else return new Date(a.deadline).valueOf() - new Date(b.deadline).valueOf();
-      });
-    }
+    const today = Utils.normalizedToday();
+    this.submissions.sort((a: Submission, b: Submission) => {
+      if (!a.deadline || Utils.normalizeDate(a.deadline) < today) return 1;
+      else if (!b.deadline || Utils.normalizeDate(b.deadline) < today) return -1;
+      else return new Date(a.deadline).valueOf() - new Date(b.deadline).valueOf();
+    });
   }
 
   private _updateSubmissions() {

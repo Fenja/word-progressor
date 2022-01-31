@@ -31,11 +31,6 @@ export class SubmissionFooterComponent implements OnInit {
     this.subscriptions.forEach((sub) => sub.unsubscribe());
   }
 
-  toggleSortByDeadline() {
-    this.settings.isSortSubmissionByDeadline = !this.settings.isSortSubmissionByDeadline;
-    this.userService.changedFilter(this.settings);
-  }
-
   toggleFilterFavorites() {
     this.settings.filterFavorites = !this.settings.filterFavorites;
     this.userService.changedFilter(this.settings);
