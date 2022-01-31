@@ -36,6 +36,7 @@ export class SubmissionEditComponent implements OnInit {
   id!: string;
   editMode: boolean = false;
   submission: Submission = {
+    id: uuid.v4(),
     countEntity: CountEntity.words,
     deadline: new Date(),
     description: "",
@@ -73,6 +74,8 @@ export class SubmissionEditComponent implements OnInit {
         if (this.editMode) {
           let result: Submission | undefined = this.submissionService.getSubmission(this.id);
           if (!!result) this.submission = result;
+        } else {
+          this.id = this.submission.id!;
         }
       }
     );

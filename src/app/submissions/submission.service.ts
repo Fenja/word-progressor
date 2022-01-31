@@ -23,7 +23,7 @@ export class SubmissionService {
 
   getSubmissions() {
     this._fetchSubmissions();
-    return this.submissionList;
+    return this.submissions.slice();
   }
 
   _fetchSubmissions() {
@@ -45,7 +45,8 @@ export class SubmissionService {
     )
       .subscribe(
       (submissions) => {
-        this.submissions = submissions;
+        this.submissions = [];
+        this.submissions.push(...submissions.filter(s => !!s.title));
         this.submissionList.next(this.submissions.slice());
       }
     )

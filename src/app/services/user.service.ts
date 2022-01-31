@@ -19,6 +19,10 @@ export class UserService {
     this.saveSettings(settings);
   }
 
+  getSettings() {
+    return this.dataStorageService.user.settings;
+  }
+
   saveSettings(settings: Settings) {
     const user = this.dataStorageService.user;
     user.settings = settings;

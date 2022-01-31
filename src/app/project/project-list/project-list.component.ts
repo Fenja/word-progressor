@@ -31,6 +31,9 @@ export class ProjectListComponent implements OnDestroy {
     this.allProjects = this.projectService.getProjects();
     this._filterProjects();
 
+    if( !!this.userService.getSettings() ) {
+      this.settings = this.userService.getSettings()!;
+    }
     this.subscriptions.push( this.userService.$filterChange.subscribe(() => this._filterProjects()));
 
     this.subscriptions.push( this.projectService.projectList.subscribe(projects => {

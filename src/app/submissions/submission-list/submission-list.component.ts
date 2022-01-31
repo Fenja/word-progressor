@@ -32,13 +32,16 @@ export class SubmissionListComponent {
     private userService: UserService,
     private submissionService: SubmissionService
   ) {
-    this.allSubmissions = this.submissionService.submissions;
+    this.allSubmissions = this.submissionService.getSubmissions();
     this._filterSubmissions();
 
+    if( !!this.userService.getSettings() ) {
+      this.settings = this.userService.getSettings()!;
+    }
     this.subscriptions.push( this.userService.$filterChange.subscribe(() => this._filterSubmissions()));
 
-    this.subscriptions.push( this.submissionService.getSubmissions().subscribe(submissions => {
-        this.allSubmissions = submissions;
+    this.subscriptions.push( this.submissionService.submissionList.subscribe(submissions => {
+      this.allSubmissions = submissions;
         this._filterSubmissions();
       }
     ));
@@ -60,7 +63,8 @@ export class SubmissionListComponent {
 
   private _filterSubmissions() {
     this.submissions = this.allSubmissions.filter((submission: Submission) => {
-      if (this.settings.filterFavorites) return !!this.favorites?.find(s => s === submission.id!);
+      let isFavorite = !!this.favorites ? this.favorites?.indexOf(submission.id!) > 0 : false;//!!this.favorites?.find(s => s === submission.id!);
+      if (this.settings.filterFavorites) return isFavorite;
       return true;
     });
 
@@ -81,10 +85,11 @@ export class SubmissionListComponent {
         this.submissionService.editSubmission(submission.id!, submission);
       }
       if (submission.deadline) {
-        let aMonthAfterDeadline = submission.deadline;
+        let aMonthAfterDeadline = new Date(submission.deadline);
         aMonthAfterDeadline.setDate(aMonthAfterDeadline.getDate() + 30);
-        if (aMonthAfterDeadline.getTime()  > new Date().getTime()) {
-          this.submissionService.deleteSubmission(submission.id!, submission);
+        if (aMonthAfterDeadline.getTime()  < new Date().getTime()) {
+          console.log('should delete ',submission.title)
+          //this.submissionService.deleteSubmission(submission.id!, submission);
         }
       }
     })

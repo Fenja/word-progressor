@@ -1,13 +1,12 @@
-import {Component, Input, OnInit} from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Submission } from "../submission.model";
-import { CountEntity, Project, ProjectState, ProjectType } from "../../project/project.model";
+import { CountEntity } from "../../project/project.model";
 import Utils from "../../helpers/utils";
 import { UserService } from "../../services/user.service";
 import { Subscription } from "rxjs";
 import { SubmissionService } from "../submission.service";
 import { ProjectService } from "../../project/project.service";
-import * as uuid from "uuid";
-import {Router} from "@angular/router";
+import { Router } from "@angular/router";
 
 @Component({
   selector: 'app-submission-item',
@@ -39,9 +38,9 @@ export class SubmissionItemComponent implements OnInit {
     }));
     if (this.submission.deadline) {
       this.isPassed = Utils.normalizeDate(this.submission.deadline) < Utils.normalizedToday();
-      let aWeekAfterCreation = this.submission.creationDate ?? new Date();
-      aWeekAfterCreation.setDate(aWeekAfterCreation.getDate() + 7);
-      this.isNew = aWeekAfterCreation.getTime()  > new Date().getTime();
+      let creation = new Date(this.submission.creationDate);
+      creation.setDate(creation.getDate() + 7);
+      this.isNew = creation.getTime()  > new Date().getTime();
     }
   }
 
