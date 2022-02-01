@@ -27,7 +27,7 @@ export class AuthService implements OnDestroy {
   isAnonymous: boolean | null = null;
   private subscription: Subscription;
   $userToken = new BehaviorSubject<string>('');
-  private checkForVerifiedInterval = 1000;
+  private checkForVerifiedInterval: any;
   public errorMsgKey: string | undefined;
 
   constructor(

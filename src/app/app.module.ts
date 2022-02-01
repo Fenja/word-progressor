@@ -148,7 +148,7 @@ import { SubmissionItemComponent } from './submissions/submission-item/submissio
         AngularFireAuthModule,
 
         AppRoutingModule,
-        BrowserModule,
+        BrowserModule.withServerTransition({ appId: 'serverApp' }),
         BrowserAnimationsModule,
         MatCardModule,
         MatProgressBarModule,

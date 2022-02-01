@@ -3,13 +3,14 @@
     <button
       mat-icon-button
       name="menu"
+      aria-label="Menu Button"
       (click)="onToggleSidenav()"
       >
       <mat-icon>menu</mat-icon>
     </button>
   </div>
 
-  <button mat-button [routerLink]="['/']">WordProgressor</button>
+  <button mat-button aria-label="Home Link" [routerLink]="['/']">WordProgressor</button>
 
   <span class="spacer"></span>
 
@@ -19,6 +20,7 @@
       mat-button routerLink="/dashboard"
       routerLinkActive="mat-accent"
       data-testid="dashboard-label"
+      aria-label="Dashboard Link"
     >
       {{ 'label_dashboard' | translate }}
     </a></li>
@@ -27,6 +29,7 @@
       mat-button routerLink="/projects"
       routerLinkActive="mat-accent"
       data-testid="projects-label"
+      aria-label="Project Page Link"
     >
       {{ 'label_projects' | translate }}
     </a></li>
@@ -35,6 +38,7 @@
       mat-button routerLink="/submissions"
       routerLinkActive="mat-accent"
       data-testid="submissions-label"
+      aria-label="Submission List Link"
     >
       {{ 'label_submissions' | translate }}
     </a></li>
@@ -44,6 +48,7 @@
       mat-button routerLink="/body-of-work"
       routerLinkActive="mat-accent"
       data-testid="bow-label"
+      aria-label="Link to Body of Work"
     >
       {{ 'label_body_of_work' | translate }}
     </a></li>
@@ -52,6 +57,7 @@
       *ngIf="authService.isAnonymous"
       mat-button
       data-testid="user-label"
+      aria-label="User Label"
     >{{ 'label_anonymous_user' | translate }}</a></li>
   <!-- create account / login -->
 
@@ -77,6 +83,7 @@
          mat-button routerLink="/settings"
          routerLinkActive="mat-accent"
          data-testid="settings-button"
+         aria-label="Settings Link"
       >
         <i class="mat-icon material-icons">settings</i>
       </a>

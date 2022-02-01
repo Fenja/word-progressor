@@ -3,6 +3,9 @@
 <head>
   <meta charset="utf-8">
   <title>WordProgressor</title>
+  <meta http-equiv="Content-Language" content="en,de">
+  <meta name="description" content="Track the progress of your writing projects. Add your work in progress - novels, short stories, any texts - set goals for projects and daily writing and search for submissions to enter."></meta>
+  <meta name="keywords" content="writing, write, submission, short story, novel, tracking, progress, word count, habit"></meta>
   <base href="/">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="assets/wordprogressor.png">
@@ -15,7 +18,36 @@
   <meta name="theme-color" content="#673ab7">
 </head>
 <body class="mat-typography mat-app-background">
-  <app-root></app-root>
+  <header class="header">
+    <h1 class="header__title">WordProgressor</h1>
+    <h3 class="header__subtitle">Track the progress of your writing projects</h3>
+    </header>
+  <nav class="nav">
+    <a>Dashboard</a>
+    <a>Projects</a>
+    <a>Submissions</a>
+  </nav>
+  <main class="main">
+
+  </main>
+
+  <div class="loader">
+  </div>
+
+  <!--<app-root></app-root>-->
   <noscript>Please enable JavaScript to continue using this application.</noscript>
+
+  <script src="app.js" async></script>
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('/sw.js').then(function(registration) {
+        // Registration was successful
+        console.log('ServiceWorker registration successful with scope: ', registration.scope);
+      }).catch(function(err) {
+        // registration failed :(
+        console.log('ServiceWorker registration failed: ', err);
+      });
+    }
+  </script>
 </body>
 </html>

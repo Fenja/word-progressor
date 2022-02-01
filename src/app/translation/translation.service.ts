@@ -588,7 +588,7 @@ export class TranslationService {
   }
 
   constructor() {
-    this.language = navigator.language.split('-')[0];
+    this.language = navigator?.language.split('-')[0];
   }
 
   translate(key: string): string {
