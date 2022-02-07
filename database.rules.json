@@ -1,5 +1,9 @@
 {
   "rules": {
+    "submissions": {
+      ".read": "true",
+      ".write": "auth.uid == 'oEaaP8Hceqfr87qzufGfHdUN9Kq2'"
+    },
     "$uid": {
       ".write": "$uid === auth.uid",
       ".read": "$uid === auth.uid"
