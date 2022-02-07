@@ -6,9 +6,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AchievementComponent implements OnInit {
 
+  isLoading = true;
+
   constructor() { }
 
   ngOnInit(): void {
+    this.isLoading = false;
   }
 
 }

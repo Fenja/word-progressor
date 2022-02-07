@@ -1,3 +1,6 @@
+<div *ngIf="isLoading" class="loader"></div>
+
+<ng-container *ngIf="!isLoading">
 <div *ngIf="projects.length > 0" class="project-list">
   <app-project-item
     *ngFor="let project of projects"
@@ -6,5 +9,6 @@
   ></app-project-item>
 </div>
 <p *ngIf="projects.length <= 0" class="empty-info">{{ 'info_no_projects' | translate }}</p>
+</ng-container>
 
 <app-project-footer [totalProjectsLength]="totalProjectsLength" [displayProjectsLength]="displayProjectsLength"></app-project-footer>

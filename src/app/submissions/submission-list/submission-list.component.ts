@@ -13,6 +13,7 @@ import Utils from "../../helpers/utils";
 })
 export class SubmissionListComponent {
 
+  isLoading = true;
   private favorites: string[] | undefined = [];
 
   submissions: Submission[] = [];
@@ -43,6 +44,7 @@ export class SubmissionListComponent {
     this.subscriptions.push( this.submissionService.submissionList.subscribe(submissions => {
       this.allSubmissions = submissions;
         this._filterSubmissions();
+        this.isLoading = false;
       }
     ));
 

@@ -12,6 +12,7 @@ import Utils from "../../helpers/utils";
 })
 export class ProjectListComponent implements OnDestroy {
 
+  isLoading = true;
   projects: Project[] = [];
   private allProjects: Project[];
   private subscriptions: Subscription[] = [];
@@ -39,6 +40,7 @@ export class ProjectListComponent implements OnDestroy {
     this.subscriptions.push( this.projectService.projectList.subscribe(projects => {
         this.allProjects = projects;
         this._filterProjects();
+        this.isLoading = false;
       }
     ));
 

@@ -9,6 +9,8 @@ import { ProjectService } from "../project/project.service";
 })
 export class BodyOfWorkComponent implements OnDestroy {
 
+  isLoading = true;
+
   bow: Project[] = [];
   private allProjects: Project[];
   private subscriptions: Subscription[] = [];
@@ -22,6 +24,7 @@ export class BodyOfWorkComponent implements OnDestroy {
     this.subscriptions.push( this.projectService.projectList.subscribe(projects => {
         this.allProjects = projects;
         this._getBow();
+        this.isLoading = false;
       }
     ));
   }

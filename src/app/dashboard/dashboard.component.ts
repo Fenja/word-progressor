@@ -11,6 +11,8 @@ import Utils from "../helpers/utils";
 })
 export class DashboardComponent implements OnDestroy {
 
+  isLoading = true;
+
   wordsToday = 0;
   wordGoalDaily: number | undefined;
   metGoal = false;
@@ -50,6 +52,7 @@ export class DashboardComponent implements OnDestroy {
         })
       })
       this._initProjectStats(projects);
+      this.isLoading = false;
       }
     ));
 

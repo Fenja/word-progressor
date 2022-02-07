@@ -1,3 +1,6 @@
+<div *ngIf="isLoading" class="loader"></div>
+
+<ng-container *ngIf="!isLoading">
 <div *ngIf="submissions.length > 0" class="project-list">
   <app-submission-item
     *ngFor="let submission of submissions"
@@ -6,6 +9,6 @@
   ></app-submission-item>
 </div>
 <p *ngIf="submissions.length <= 0" class="empty-info">{{ 'info_no_submissions' | translate }}</p>
-
+</ng-container>
 
 <app-submission-footer [totalSubmissionsLength]="totalSubmissionsLength" [displaySubmissionsLength]="displaySubmissionsLength"></app-submission-footer>
