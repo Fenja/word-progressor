@@ -4,7 +4,7 @@
      routerLink="/dashboard"
      routerLinkActive="mat-accent"
      data-testid="projects-label"
-     class="mat-link"
+     class="mat-link xs-only"
      (click)="onSidenavClose()"
   >
     {{ 'label_dashboard' | translate }}
@@ -14,7 +14,7 @@
      routerLink="/projects"
      routerLinkActive="mat-accent"
      data-testid="projects-label"
-     class="mat-link"
+     class="mat-link xs-only"
      (click)="onSidenavClose()"
   >
     {{ 'label_projects' | translate }}
@@ -43,14 +43,15 @@
 
   <a
      *ngIf="authService.isAnonymous"
-     data-testid="user-label">
+     data-testid="user-label"
+      class="xs-only">
     {{ 'label_anonymous_user' | translate }}
   </a>
 
   <a
      *ngIf="authService.isLoggedIn"
      data-testid="logout-button"
-     class="mat-link"
+     class="mat-link xs-only"
      (click)="onLogout()"
   >
     {{ 'label_logout' | translate }}
@@ -61,7 +62,7 @@
      data-testid="login-button"
      routerLink="/auth"
      routerLinkActive="mat-accent"
-     class="mat-link"
+     class="mat-link xs-only"
      (click)="onSidenavClose()"
   >
     {{ 'label_login' | translate }}
@@ -72,7 +73,7 @@
      routerLink="/settings"
      routerLinkActive="mat-accent"
      data-testid="settings-button"
-     class="mat-link"
+     class="mat-link xs-only"
      (click)="onSidenavClose()"
      >
     {{ 'label_settings' | translate }}

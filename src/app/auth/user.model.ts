@@ -46,6 +46,11 @@ export interface Settings {
   isSortAlphabetical: boolean;
   isSortByUpdate: boolean;
 
+  isHidePublished: boolean
+  isHideFinished: boolean
+  isHideAbandoned: boolean;
+  isHideSubmitted: boolean;
+
   isAdmin: boolean | undefined; // added to firebase DB by hand
 
   // notifications

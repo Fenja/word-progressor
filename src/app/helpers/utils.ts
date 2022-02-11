@@ -93,6 +93,11 @@ export default class Utils {
       isSortByUpdate: false,
       isSortByDeadline: false,
 
+      isHideAbandoned: false,
+      isHideFinished: false,
+      isHidePublished: false,
+      isHideSubmitted: false,
+
       notifyDailyWriting: false,
       timeDailyWriting: {hours: 7, minutes: 0},
       notifyDeadline: false,
@@ -100,7 +105,7 @@ export default class Utils {
 
       favorites: [],
       isAdmin: undefined,
-      filterFavorites: false,
+      filterFavorites: false
     };
   }
 }

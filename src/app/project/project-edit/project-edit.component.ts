@@ -107,6 +107,7 @@ export class ProjectEditComponent implements OnInit {
   }
 
   private _filter(value: string): string[] {
+    if (!value) return this.genres;
     const filterValue = value.toLowerCase();
     return this.genres.filter((system: string) => system.toLowerCase().includes(filterValue));
   }

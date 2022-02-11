@@ -11,6 +11,23 @@
     </div>
 
     <div class="bottom-toolbar__actions">
+      <a mat-button matTooltip="{{ 'tooltip_hide_inactive' | translate }}" [matMenuTriggerFor]="hideMenu">
+        <i class="mat-icon material-icons">{{ isHideActive ? 'visibility' : 'visibility_off' }}</i></a>
+      <mat-menu #hideMenu="matMenu">
+        <button mat-menu-item (click)="hide('published')">
+          <i [ngClass]="settings.isHidePublished ? '' : 'hidden'" class="mat-icon material-icons">check</i>
+          {{ 'hide_published' | translate }}</button>
+        <button mat-menu-item (click)="hide('finished')">
+          <i [ngClass]="settings.isHideFinished ? '' : 'hidden'" class="mat-icon material-icons">check</i>
+          {{ 'hide_finished' | translate }}</button>
+        <button mat-menu-item (click)="hide('abandoned')">
+          <i [ngClass]="settings.isHideAbandoned ? '' : 'hidden'" class="mat-icon material-icons">check</i>
+          {{ 'hide_abandoned' | translate }}</button>
+        <button mat-menu-item (click)="hide('submitted')">
+          <i [ngClass]="settings.isHideSubmitted ? '' : 'hidden'" class="mat-icon material-icons">check</i>
+          {{ 'hide_submitted' | translate }}</button>
+      </mat-menu>
+
       <a mat-button matTooltip="{{ 'tooltip_filter' | translate }}" [matMenuTriggerFor]="filterMenu">
         <i class="mat-icon material-icons">{{ isFilterActive ? 'filter_alt' : 'filter_alt_off' }}</i></a>
       <mat-menu #filterMenu="matMenu">
@@ -18,22 +35,6 @@
           <i class="mat-icon material-icons obsolete">done_all</i>
           {{ 'filter_all' | translate }}</button>
         <hr>
-        <!--<button mat-menu-item (click)="applyFilter('prep')">
-          <i [ngClass]="settings.filterPrep ? '' : 'hidden'" class="mat-icon material-icons">check</i>
-          {{ 'filter_prep' | translate }}</button>
-        <button mat-menu-item (click)="applyFilter('draft')">
-          <i [ngClass]="settings.filterDraft ? '' : 'hidden'" class="mat-icon material-icons">check</i>
-          {{ 'filter_draft' | translate }}</button>
-        <button mat-menu-item (click)="applyFilter('wait')">
-          <i [ngClass]="settings.filterWait ? '' : 'hidden'" class="mat-icon material-icons">check</i>
-          {{ 'filter_wait' | translate }}</button>
-        <button mat-menu-item (click)="applyFilter('finished')">
-          <i [ngClass]="settings.filterFinished ? '' : 'hidden'" class="mat-icon material-icons">check</i>
-          {{ 'filter_finished' | translate }}</button>
-        <button mat-menu-item (click)="applyFilter('inactive')">
-          <i [ngClass]="settings.filterInactive ? '' : 'hidden'" class="mat-icon material-icons">check</i>
-          {{ 'filter_inactive' | translate }}</button>
-        <hr>-->
         <button mat-menu-item (click)="applyFilter('wip')">
           <i [ngClass]="settings.filterWip ? '' : 'hidden'" class="mat-icon material-icons">check</i>
           {{ 'filter_wip' | translate }}</button>
@@ -43,13 +44,6 @@
         <button mat-menu-item (click)="applyFilter('deadline')">
           <i [ngClass]="settings.filterDeadline ? '' : 'hidden'" class="mat-icon material-icons">check</i>
           {{ 'filter_deadline' | translate }}</button>
-        <!--<hr>
-        <button mat-menu-item (click)="applyFilter('short')">
-          <i [ngClass]="settings.filterShort ? '' : 'hidden'" class="mat-icon material-icons">check</i>
-          {{ 'filter_short' | translate }}</button>
-        <button mat-menu-item (click)="applyFilter('long')">
-          <i [ngClass]="settings.filterLong ? '' : 'hidden'" class="mat-icon material-icons">check</i>
-          {{ 'filter_long' | translate }}</button>-->
       </mat-menu>
 
       <a mat-button matTooltip="{{ 'tooltip_sort' | translate }}" [matMenuTriggerFor]="sortMenu">

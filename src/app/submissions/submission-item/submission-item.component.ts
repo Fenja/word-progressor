@@ -33,8 +33,8 @@ export class SubmissionItemComponent implements OnInit {
 
   ngOnInit(): void {
     this.subscriptions.push( this.userService.getUser().subscribe(user => {
-      if (user && user.settings) this.isAdmin = user.settings.isAdmin;
-      if (user && user.favorites) this.isFavorite = !!user.favorites.find(f => f === this.submission.id!);
+      if (!!user && !!user.settings) this.isAdmin = user.settings.isAdmin;
+      if (!!user && !!user.favorites && user.favorites.length > 0) this.isFavorite = !!user.favorites!.find(f => f === this.submission.id!);
     }));
     if (this.submission.deadline) {
       this.isPassed = Utils.normalizeDate(this.submission.deadline) < Utils.normalizedToday();

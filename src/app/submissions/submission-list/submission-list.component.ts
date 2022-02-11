@@ -64,8 +64,19 @@ export class SubmissionListComponent {
   }
 
   private _filterSubmissions() {
+    if (!!this.favorites && this.favorites.length > 0) {
+      let deleteFavIndizes: any[] = [];
+      this.favorites!.forEach(fav => {
+        if (!this.allSubmissions.find(sub => sub.id === fav)) {
+          const index = this.favorites!.indexOf(fav);
+          if (!!index) deleteFavIndizes.push(index);
+        }
+      });
+      deleteFavIndizes.forEach(index => delete this.favorites![index!]);
+    }
+
     this.submissions = this.allSubmissions.filter((submission: Submission) => {
-      let isFavorite = !!this.favorites ? this.favorites?.indexOf(submission.id!) > 0 : false;//!!this.favorites?.find(s => s === submission.id!);
+      let isFavorite = (!!this.favorites && this.favorites.length > 0) ? this.favorites!.indexOf(submission.id!) > 0 : false;//!!this.favorites?.find(s => s === submission.id!);
       if (this.settings.filterFavorites) return isFavorite;
       return true;
     });

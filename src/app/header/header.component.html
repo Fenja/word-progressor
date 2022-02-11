@@ -1,14 +1,12 @@
 <mat-toolbar color="primary">
-  <div class="xs-only">
-    <button
-      mat-icon-button
-      name="menu"
-      aria-label="Menu Button"
-      (click)="onToggleSidenav()"
-      >
-      <mat-icon>menu</mat-icon>
-    </button>
-  </div>
+  <button
+    mat-icon-button
+    name="menu"
+    aria-label="Menu Button"
+    (click)="onToggleSidenav()"
+    >
+    <mat-icon>menu</mat-icon>
+  </button>
 
   <button mat-button aria-label="Home Link" [routerLink]="['/']">WordProgressor</button>
 
@@ -32,25 +30,6 @@
       aria-label="Project Page Link"
     >
       {{ 'label_projects' | translate }}
-    </a></li>
-
-    <li><a
-      mat-button routerLink="/submissions"
-      routerLinkActive="mat-accent"
-      data-testid="submissions-label"
-      aria-label="Submission List Link"
-    >
-      {{ 'label_submissions' | translate }}
-    </a></li>
-
-    <li><a
-      *ngIf="authService.isAnonymous || authService.isLoggedIn"
-      mat-button routerLink="/body-of-work"
-      routerLinkActive="mat-accent"
-      data-testid="bow-label"
-      aria-label="Link to Body of Work"
-    >
-      {{ 'label_body_of_work' | translate }}
     </a></li>
 
     <li><a

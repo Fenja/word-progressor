@@ -15,6 +15,7 @@ export class ProjectFooterComponent {
   settings: Settings = Utils.getDefaultSettings();
   isFilterActive!: boolean;
   isSortActive!: boolean;
+  isHideActive!: boolean;
 
   constructor(
     public userService: UserService,
@@ -27,6 +28,7 @@ export class ProjectFooterComponent {
           && this.settings.filterLong && this.settings.filterShort*/
 
         this.isSortActive = this.settings.isSortAlphabetical || this.settings.isSortByDeadline || this.settings.isSortByUpdate;
+        this.isHideActive = this.settings.isHideFinished || this.settings.isHidePublished || this.settings.isHideAbandoned || this.settings.isHideSubmitted;
       }
     })
   }
@@ -98,6 +100,16 @@ export class ProjectFooterComponent {
           this.settings.filterDeadline = true;
         }
       }
+    }
+    this.userService.changedFilter(this.settings);
+  }
+
+  hide(hideName: string) {
+    switch (hideName) {
+      case 'finished': this.settings.isHideFinished = !this.settings.isHideFinished; break;
+      case 'published': this.settings.isHidePublished = !this.settings.isHidePublished; break;
+      case 'abandoned': this.settings.isHideAbandoned = !this.settings.isHideAbandoned; break;
+      case 'submitted': this.settings.isHideSubmitted = !this.settings.isHideSubmitted; break;
     }
     this.userService.changedFilter(this.settings);
   }

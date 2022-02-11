@@ -92,13 +92,13 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   border-top: 2em solid $accent;
   border-bottom: 2em solid $primary;
   border-radius: 50%;
-  width: 24em;
-  height: 24em;
+  width: 18em;
+  height: 18em;
   animation: spin 2s linear infinite;
   position: absolute;
   top: 50%;
   left: 50%;
-  margin: -13em 0 0 -13em;
+  margin: -10em 0 0 -10em;
 }
 
 @keyframes spin {

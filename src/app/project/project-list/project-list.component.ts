@@ -1,5 +1,5 @@
 import {Component, OnDestroy} from '@angular/core';
-import {Project} from "../project.model";
+import {Project, ProjectState} from "../project.model";
 import {ProjectService} from "../project.service";
 import {Subscription} from "rxjs";
 import {UserService} from "../../services/user.service";
@@ -56,6 +56,11 @@ export class ProjectListComponent implements OnDestroy {
   private _filterProjects() {
     this.projects = this.allProjects.filter(project => {
 
+      if (this.settings.isHideAbandoned && project.state === ProjectState.abandon) return false;
+      if (this.settings.isHidePublished && project.state === ProjectState.published) return false;
+      if (this.settings.isHideFinished && project.state === ProjectState.finished) return false;
+      if (this.settings.isHideSubmitted && project.state === ProjectState.submitted) return false;
+
       if (!this.settings.filterWip && !this.settings.filterSubprojects && !this.settings.filterDeadline) return true;
       let showWip = false;
       let showSubprojects = false;
@@ -63,23 +68,10 @@ export class ProjectListComponent implements OnDestroy {
         if (this.settings.filterWip) showWip = project.isWorkInProgress;
         if (this.settings.filterSubprojects) showSubprojects = !!project.subprojects;
         if (this.settings.filterDeadline) showDeadline = !!project.deadline;
-
-        /*
-        if (this.settings.filterPrep && (project.state === ProjectState.plan || project.state === ProjectState.plot)) return true;
-        if (this.settings.filterDraft && (project.state === ProjectState.draft_1 || project.state === ProjectState.draft_2 || project.state === ProjectState.draft_3)) return true;
-        if (this.settings.filterWait && (project.state === ProjectState.wait || project.state === ProjectState.submitted || project.state === ProjectState.alpha || project.state === ProjectState.beta)) return true;
-        if (this.settings.filterFinished && (project.state === ProjectState.finished || project.state === ProjectState.published)) return true;
-        if (this.settings.filterInactive && (project.state === ProjectState.bunny || project.state === ProjectState.abandon || project.state === ProjectState.idea)) return true;
-
-        if (this.settings.filterShort && (project.type === ProjectType.flash_fiction || project.type === ProjectType.short_story)) return true;
-        if (!this.settings.filterShort && !(project.type === ProjectType.flash_fiction || project.type === ProjectType.short_story)) return false;
-        if (this.settings.filterLong && (project.type === ProjectType.novel || project.type === ProjectType.epic || project.type === ProjectType.novel_series)) return true;
-        else if (!this.settings.filterLong && !(project.type === ProjectType.novel || project.type === ProjectType.epic || project.type === ProjectType.novel_series)) return false;
-        */
-
         return showWip || showSubprojects || showDeadline;
       }
     );
+
     if (this.settings.isSortByDeadline) {
       const today = Utils.normalizedToday();
       this.projects.sort((a: Project, b: Project) => {

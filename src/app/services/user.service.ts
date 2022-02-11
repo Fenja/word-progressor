@@ -45,9 +45,9 @@ export class UserService {
     var favorites = user.favorites;
     if (!favorites) favorites = [];
     if (isFavorite) {
-      favorites.push(id);
+      favorites!.push(id);
     } else {
-      const index = favorites?.indexOf(id);
+      const index = favorites!.indexOf(id);
       delete favorites[index];
     }
     user.favorites = favorites;

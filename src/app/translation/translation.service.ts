@@ -206,6 +206,7 @@ export class TranslationService {
         tooltip_delete_note: 'Notiz löschen',
         tooltip_add_favorite: 'zu Favoriten hinzufügen',
         tooltip_remove_favorite: 'aus Favoriten entfernen',
+        tooltip_hide_inactive: 'inaktive verbergen',
 
         headline_word_count: 'Wortzahl',
         headline_total: 'Gesamt',
@@ -242,6 +243,11 @@ export class TranslationService {
         sort_alphabetical: 'Alphabetisch',
         sort_deadline: 'Nach Einsendeschluss',
         sort_update: 'Zuletzt bearbeitet',
+
+        hide_published: 'veröffentlicht',
+        hide_finished: 'fertig',
+        hide_abandoned: 'in der Schublade',
+        hide_submitted: 'eingesandt',
 
         error_unknown: 'Ein unerwarteter Fehler ist aufgetreten.',
         error_required: 'Pflichtfeld',
@@ -492,6 +498,7 @@ export class TranslationService {
         tooltip_delete_note: 'delete note',
         tooltip_add_favorite: 'add to favorites',
         tooltip_remove_favorite: 'remove from favorites',
+        tooltip_hide_inactive: 'hide inactive',
 
         headline_word_count: 'Word Count',
         headline_total: 'Total',
@@ -525,9 +532,14 @@ export class TranslationService {
         filter_long: 'Long stories',
         filter_favorites: 'Only favorites',
 
-        sort_alphabetical: 'Alphabetisch',
-        sort_deadline: 'Nach Einsendeschluss',
-        sort_update: 'Zuletzt bearbeitet',
+        sort_alphabetical: 'alphabetical',
+        sort_deadline: 'after deadline',
+        sort_update: 'last update',
+
+        hide_published: 'published',
+        hide_finished: 'finished',
+        hide_abandoned: 'abandoned',
+        hide_submitted: 'submitted',
 
         error_unknown: 'An unexpected error occured.',
         error_required: 'required',

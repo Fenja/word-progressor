@@ -1,4 +1,4 @@
-import { Component, ElementRef, Inject, OnInit, ViewChild } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { CountEntity, Project } from "../../project/project.model";
 import { ProjectService } from "../../project/project.service";
 import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
@@ -11,12 +11,11 @@ import {
   MAT_MOMENT_DATE_FORMATS,
   MomentDateAdapter,
 } from '@angular/material-moment-adapter';
-import {DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE, MatOption} from '@angular/material/core';
+import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
 import 'moment/locale/de';
 import 'moment/locale/en-gb';
 import Utils from "../../helpers/utils";
-import {MatSelect} from "@angular/material/select";
-import {Subproject} from "../../project/subproject/subproject.model";
+import { Subproject } from "../../project/subproject/subproject.model";
 
 export interface WordlogAddDialogData {
   id: string;
@@ -109,6 +108,7 @@ export class WordlogAddDialogComponent implements OnInit {
           addedMsg = 'msg_pages_added';
           break;
       }
+      this.projectService.editProject(this.data.project.id!, this.data.project)
       this.snackBarService.showSnackBar(words + this.translationService.translate(addedMsg));
     }
   }
