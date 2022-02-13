@@ -58,6 +58,7 @@ export class ProjectEditComponent implements OnInit {
   eProjectType = ProjectType;
   eProjectState = ProjectState;
   eCountEntity = CountEntity;
+  sortNull() { return 0;}
 
   @ViewChild('projectForm', {static: false}) projectForm!: NgForm;
   filteredGenres!: Observable<string[]>;

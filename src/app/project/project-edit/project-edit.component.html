@@ -87,7 +87,7 @@
         [(ngModel)]="project.type"
         >
         <mat-option
-          *ngFor="let type of eProjectType | keyvalue"
+          *ngFor="let type of eProjectType | keyvalue: sortNull"
           value="{{ type.key }}"
         >
           {{ type.value | translate }}
@@ -102,7 +102,7 @@
         data-testid="state-select"
         [(ngModel)]="project.state"
       >
-        <mat-option *ngFor="let state of eProjectState | keyvalue" value="{{state.key}}">{{state.value | translate}}</mat-option>
+        <mat-option *ngFor="let state of eProjectState | keyvalue: sortNull" value="{{state.key}}">{{state.value | translate}}</mat-option>
       </mat-select>
     </mat-form-field>
     <app-deadline-picker [(deadline)]="project.deadline"></app-deadline-picker>
