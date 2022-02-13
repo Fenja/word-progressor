@@ -57,6 +57,10 @@ $angular-dark-theme: mat.define-dark-theme((
       width: 100%;
     }
   }
+
+  mat-drawer-container.drawer-container {
+    height: 21em;
+  }
 }
 
 @media screen and (min-width: 601px) {
@@ -80,6 +84,10 @@ $angular-dark-theme: mat.define-dark-theme((
       float: right;
       width: 78%;
     }
+  }
+
+  mat-drawer-container.drawer-container {
+    height: 7em;
   }
 }
 
@@ -161,7 +169,6 @@ app-side-nav {
 }
 
 mat-drawer-container.drawer-container {
-  height: 14em;
   position: absolute;
 }
 
