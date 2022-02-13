@@ -110,7 +110,9 @@
 
   <div>
     <mat-form-field color="primary">
-      <mat-label>{{ 'label_current_word_count' | translate }}</mat-label>
+      <mat-label *ngIf="project.countEntity === eCountEntity.words">{{ 'label_current_word_count' | translate }}</mat-label>
+      <mat-label *ngIf="project.countEntity === eCountEntity.pages">{{ 'label_current_pages_count' | translate }}</mat-label>
+      <mat-label *ngIf="project.countEntity === eCountEntity.characters">{{ 'label_current_characters_count' | translate }}</mat-label>
       <input
         type="number"
         name="currentWordcount"
@@ -137,7 +139,9 @@
     </mat-form-field>
 
     <mat-form-field color="primary">
-      <mat-label>{{ 'label_goal_word_count' | translate }}</mat-label>
+      <mat-label *ngIf="project.countEntity === eCountEntity.words">{{ 'label_goal_word_count' | translate }}</mat-label>
+      <mat-label *ngIf="project.countEntity === eCountEntity.pages">{{ 'label_goal_pages_count' | translate }}</mat-label>
+      <mat-label *ngIf="project.countEntity === eCountEntity.characters">{{ 'label_goal_characters_count' | translate }}</mat-label>
       <input
         type="number"
         name="goalWordcount"
@@ -152,7 +156,9 @@
     </mat-form-field>
 
     <mat-form-field color="primary">
-        <mat-label>{{ 'label_max_goal_word_count' | translate }}</mat-label>
+        <mat-label *ngIf="project.countEntity === eCountEntity.words">{{ 'label_max_goal_word_count' | translate }}</mat-label>
+        <mat-label *ngIf="project.countEntity === eCountEntity.pages">{{ 'label_max_goal_pages_count' | translate }}</mat-label>
+        <mat-label *ngIf="project.countEntity === eCountEntity.characters">{{ 'label_max_goal_characters_count' | translate }}</mat-label>
         <input
           type="number"
           name="maxGoalWordcount"
