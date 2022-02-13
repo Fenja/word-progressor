@@ -22,9 +22,9 @@
   </mat-card>
 
   <mat-card id="wordsToday" class="dashboard-item">
-    <mat-card-header class="dashboard-item__header">
+    <a [routerLink]="['/settings']" class="mat-card-title mat-link">
       {{ 'label_words_today' | translate }}
-    </mat-card-header>
+    </a>
     <mat-card-content>
       <div class="mat-card-title" [ngClass]="metGoal ? 'accent-color' : 'primary-color'">{{ wordsToday }} <span class="goal" *ngIf="wordGoalDaily">/ {{ wordGoalDaily }}</span></div>
     </mat-card-content>
