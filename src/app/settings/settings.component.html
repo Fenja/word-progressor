@@ -1,6 +1,6 @@
 <app-writing-goals></app-writing-goals>
 
-<app-notification-settings></app-notification-settings>
+<!-- <app-notification-settings></app-notification-settings>-->
 
   <mat-card class="dashboard-item">
     <mat-card-header class="project-item__header">
@@ -38,7 +38,7 @@
         (click)="createAccount()">
         {{ 'label_create_account' | translate }}</button>
       <button
-        mat-stroked-button
+        mat-raised-button
         *ngIf="authService.isLoggedIn"
         color="warn"
         data-testid="delete-button"
@@ -57,6 +57,6 @@
       {{ 'label_version' | translate }} {{ version }}
     </mat-card-content>
     <mat-card-actions>
-      <button mat-stroked-button><a [routerLink]="['/privacy_policy']">{{ 'label_privacy_policy' | translate }}</a></button>
+      <button mat-raised-button><a [routerLink]="['/privacy_policy']">{{ 'label_privacy_policy' | translate }}</a></button>
     </mat-card-actions>
   </mat-card>

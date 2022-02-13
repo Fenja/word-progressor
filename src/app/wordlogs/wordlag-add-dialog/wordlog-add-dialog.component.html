@@ -4,7 +4,7 @@
   <div *ngIf="!validProject">
     <span>{{ 'info_invalid_project' | translate }}</span>
     <div mat-dialog-actions>
-      <button mat-stroked-button color="accent" (click)="close()">{{ 'button_close' | translate }}</button>
+      <button mat-raised-button color="accent" (click)="close()">{{ 'button_close' | translate }}</button>
     </div>
   </div>
 
@@ -104,7 +104,7 @@
         </form>
 
         <div mat-dialog-actions>
-          <button mat-stroked-button color="accent" (click)="close()">{{'button_cancel' | translate}}</button>
+          <button mat-raised-button color="accent" (click)="close()">{{'button_cancel' | translate}}</button>
           <button mat-raised-button color="primary" (click)="addWords(+newWordsInput.value, +newCharactersInput.value, +newPagesInput.value)">
             {{ 'button_add' | translate}}
           </button>
@@ -177,7 +177,7 @@
           </div>
         </form>
         <div mat-dialog-actions>
-          <button mat-stroked-button color="accent" (click)="close()">{{ 'button_cancel' | translate }}</button>
+          <button mat-raised-button color="accent" (click)="close()">{{ 'button_cancel' | translate }}</button>
           <button mat-raised-button color="primary" (click)="updateCurrentWords(+totalWordsInput.value, +totalCharactersInput.value, +totalPagesInput.value)">
             {{ 'button_update' | translate }}
           </button>

@@ -32,16 +32,11 @@
 
   <mat-card-actions class="button-row">
     <button
-      mat-stroked-button
+      mat-raised-button
       color="primary"
       [routerLink]="[project.id]"
       data-testid="project-detail-button"
     >{{'button_details' | translate}}</button>
-    <!--<button
-      mat-stroked-button
-      [routerLink]="[project.id+'/edit']"
-      data-testid="project-edit-button"
-    >{{'button_edit' | translate}}</button>-->
 
     <button *ngIf="project.countEntity === eCountEntity.words"
       mat-raised-button
@@ -66,7 +61,7 @@
 
     <button
       mat-icon-button
-      color="primary"
+      color="accent"
       matTooltip="{{ 'button_edit' | translate }}"
       [routerLink]="[project.id+'/edit']"
       data-testid="project-edit-button"

@@ -139,14 +139,14 @@
       [disabled]="submissionForm.invalid"
     >{{ (editMode ? 'button_save' : 'button_create') | translate}}</button>
     <button
-      mat-stroked-button
+      mat-raised-button
       type="button"
       color="accent"
       data-testid="cancel-button"
       (click)="onCancel()"
     >{{'button_cancel' | translate}}</button>
     <button
-      mat-stroked-button
+      mat-raised-button
       type="button"
       color="warn"
       data-testid="delete-button"

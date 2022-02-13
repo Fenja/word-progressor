@@ -223,7 +223,7 @@
       [disabled]="projectForm.invalid"
     >{{ (editMode ? 'button_save' : 'button_create') | translate}}</button>
     <button
-      mat-stroked-button
+      mat-raised-button
       type="button"
       color="accent"
       data-testid="cancel-button"
@@ -237,7 +237,7 @@
   <app-publication-edit [publication]="project.publication"></app-publication-edit>
 
   <button
-    mat-stroked-button
+    mat-raised-button
     color="warn"
     (click)="deletePublication()">
     {{ 'button_delete_publication' | translate }}
@@ -252,7 +252,7 @@
   </div>
 
   <button
-    mat-stroked-button
+    mat-raised-button
     color="primary"
     type="button"
     (click)="addSubproject()"

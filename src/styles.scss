@@ -292,6 +292,10 @@ ul {
     font-size: small;
     font-weight: normal;
   }
+
+  &__actions .mat-button {
+    min-width: 3.5em;
+  }
 }
 
 .progress-bars {
