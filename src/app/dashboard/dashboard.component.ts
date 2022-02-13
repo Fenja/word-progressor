@@ -52,7 +52,6 @@ export class DashboardComponent implements OnDestroy {
         })
       })
       this._initProjectStats(projects);
-      this.isLoading = false;
       }
     ));
 
@@ -71,6 +70,7 @@ export class DashboardComponent implements OnDestroy {
       }
     }));
     this.isNewUser = this.userService.isNewUser();
+    this.isLoading = false;
   }
 
   ngOnDestroy(): void {

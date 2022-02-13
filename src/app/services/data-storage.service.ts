@@ -24,6 +24,8 @@ export class DataStorageService {
   public projectList = new Subject<Project[]>();
   user: userData = {
     settings: Utils.getDefaultSettings(),
+    favorites: [],
+    submittedProjects: [],
   };
   public user$ = new Subject<userData>();
 

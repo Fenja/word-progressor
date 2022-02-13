@@ -3,8 +3,9 @@ import { UserService } from "../../services/user.service";
 import { Submission } from "../submission.model";
 import { Subscription } from "rxjs";
 import { SubmissionService } from "../submission.service";
-import { Settings } from "../../auth/user.model";
+import {Settings, SubmissionProjects} from "../../auth/user.model";
 import Utils from "../../helpers/utils";
+import {take} from "rxjs/operators";
 
 @Component({
   selector: 'app-submission-list',
@@ -15,6 +16,7 @@ export class SubmissionListComponent {
 
   isLoading = true;
   private favorites: string[] | undefined = [];
+  submissionProjects: SubmissionProjects[] | undefined = [];
 
   submissions: Submission[] = [];
   private allSubmissions: Submission[];
@@ -39,7 +41,8 @@ export class SubmissionListComponent {
     if( !!this.userService.getSettings() ) {
       this.settings = this.userService.getSettings()!;
     }
-    this.subscriptions.push( this.userService.$filterChange.subscribe(() => this._filterSubmissions()));
+    this.subscriptions.push( this.userService.$filterChange
+      .subscribe(() => this._filterSubmissions()));
 
     this.subscriptions.push( this.submissionService.submissionList.subscribe(submissions => {
       this.allSubmissions = submissions;
@@ -48,22 +51,18 @@ export class SubmissionListComponent {
       }
     ));
 
-    this.subscriptions.push( this.userService.getUser().subscribe(user => {
+    this.subscriptions.push( this.userService.getUser()
+      .subscribe(user => {
       if (user && user.settings){
         this.settings = user.settings;
         this.favorites = user.favorites;
+        this.submissionProjects = user.submittedProjects;
         if (this.settings.isAdmin) {
           this._updateSubmissions();
         }
       }
-    }))
-  }
+    }));
 
-  ngOnDestroy(): void {
-    this.subscriptions.forEach((sub) => sub.unsubscribe());
-  }
-
-  private _filterSubmissions() {
     if (!!this.favorites && this.favorites.length > 0) {
       let deleteFavIndizes: any[] = [];
       this.favorites!.forEach(fav => {
@@ -74,9 +73,15 @@ export class SubmissionListComponent {
       });
       deleteFavIndizes.forEach(index => delete this.favorites![index!]);
     }
+  }
 
+  ngOnDestroy(): void {
+    this.subscriptions.forEach((sub) => sub.unsubscribe());
+  }
+
+  private _filterSubmissions() {
     this.submissions = this.allSubmissions.filter((submission: Submission) => {
-      let isFavorite = (!!this.favorites && this.favorites.length > 0) ? this.favorites!.indexOf(submission.id!) > 0 : false;//!!this.favorites?.find(s => s === submission.id!);
+      let isFavorite = !!this.favorites ? this.favorites.indexOf(submission.id!) > 0 : false;//!!this.favorites?.find(s => s === submission.id!);
       if (this.settings.filterFavorites) return isFavorite;
       return true;
     });

@@ -1,4 +1,4 @@
-import { WordLog } from "../project/project.model";
+import {Project, WordLog} from "../project/project.model";
 import { Time } from "@angular/common";
 
 export interface userData {
@@ -9,6 +9,7 @@ export interface userData {
 
   settings?: Settings;
   favorites?: string[];
+  submittedProjects?: SubmissionProjects[];
 
   achievements?: string[]; // list of achievements
   wordLogs?: WordLog[]; // collected from all projects
@@ -60,6 +61,10 @@ export interface Settings {
   daysBeforeDeadlineReminder: number[];
 
   // submissions
-  favorites: string[];
   filterFavorites: boolean;
+}
+
+export interface SubmissionProjects {
+  submissionId: string;
+  projects: Project[];
 }

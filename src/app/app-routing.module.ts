@@ -14,6 +14,7 @@ import { SubmissionComponent } from "./submissions/submission.component";
 import { SubmissionEditComponent} from "./submissions/submission-edit/submission-edit.component";
 import { SubmissionListComponent } from "./submissions/submission-list/submission-list.component";
 import { AuthGuard } from "./auth/auth.guard";
+import { PagenotfoundComponent } from "./pagenotfound/pagenotfound.component";
 
 const appRoutes: Routes = [
   { path: '', redirectTo: '/auth', pathMatch: 'full' },
@@ -35,6 +36,9 @@ const appRoutes: Routes = [
       { path: 'new', component: SubmissionEditComponent, /*canActivate: [AdminGuard]*/ },
       { path: ':id/edit', component: SubmissionEditComponent, /*canActivate: [AdminGuard] */},
     ] },
+
+  //Wild Card Route for 404 request
+  { path: '**', pathMatch: 'full', component: PagenotfoundComponent },
 ]
 
 @NgModule({

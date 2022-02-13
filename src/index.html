@@ -17,26 +17,42 @@
   <link rel="manifest" href="manifest.webmanifest">
   <meta name="theme-color" content="#673ab7">
 </head>
-<body class="mat-typography mat-app-background">
+<body class="mat-typography mat-app-background" style="margin: 0; font: 400 14px / 20px Roboto, 'Helvetica Neue', sans-serif;">
   <app-root>
-    <header class="header">
-      <h1 class="header__title">WordProgressor</h1>
-      <h3 class="header__subtitle">Track the progress of your writing projects</h3>
-      </header>
-    <nav class="nav">
-      <a>Dashboard</a>
-      <a>Projects</a>
-      <a>Submissions</a>
-    </nav>
-    <main class="main">
+    <header class="header" style="background: #6731b7; display: flex; color: white;">
+      <span class="material-icons" style="margin: 1em;">menu</span>
+      <span aria-label="Home Link" style="margin: 1em; font-size: larger">WordProgressor</span>
+      <span class="spacer" style="flex: 1 1 auto"></span>
 
+      <nav class="nav">
+        <ul class="larger-xs" style="list-style: none; float: left; display: flex;">
+          <li style="margin: 1em;">Dashboard</li>
+          <li style="margin: 1em;">Projects</li>
+          <li style="margin: 1em;"><span class="material-icons">settings</span></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main class="main">
+      <div class="dashboard-item" style="margin: 1em; padding: 1em;">
+        <h2 class="dashboard-item__header">
+          Welcome to the WordProgressor
+        </h2>
+        <div>
+          <p>Track the progress of your writing projects.</p>
+          <p>Find submissions and publishers.</p>
+          <p>Feed your motivation with goals and deadlines.</p>
+          <p>Set your daily writing goal and stick to it.</p>
+        </div>
+      </div>
     </main>
 
     <div class="loader"></div>
   </app-root>
   <noscript>Please enable JavaScript to continue using this application.</noscript>
+  <noscript>Bitte aktiviere JavaScript um diese Anwendung nutzen zu können.</noscript>
 
-  <script src="app.js" async></script>
+  <!--<script src="app.js" async></script>-->
   <script>
     if ('serviceWorker' in navigator) {
       navigator.serviceWorker.register('/sw.js').then(function(registration) {

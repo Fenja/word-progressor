@@ -262,6 +262,9 @@ export class TranslationService {
         error_forgot_pw_failed: 'Neues Passwort konnte nicht angefordert werden',
         error_google_auth_failed: 'Authentifizierung über Google fehlgeschlagen.',
 
+        page_not_found: 'Diese Seite existiert nicht',
+        page_not_found_info: 'Hm, eine verschwundene Seite, das klingt nach einer guten Geschichte...',
+
         msg_words_added: ' Wörter hinzugefügt',
         msg_characters_added: ' Zeichen hinzugefügt',
         msg_pages_added: ' Seiten hinzugefügt',
@@ -553,6 +556,9 @@ export class TranslationService {
         error_sign_up_failed: 'Sign Up failed',
         error_forgot_pw_failed: 'Could not request new password',
         error_google_auth_failed: 'Authentication via google failed',
+
+        page_not_found: 'Page not found',
+        page_not_found_info: 'A page gone missing, sounds like a good story...',
 
         msg_words_added: ' words added',
         msg_characters_added: ' characters added',

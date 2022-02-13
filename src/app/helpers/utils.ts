@@ -103,7 +103,6 @@ export default class Utils {
       notifyDeadline: false,
       daysBeforeDeadlineReminder: [],
 
-      favorites: [],
       isAdmin: undefined,
       filterFavorites: false
     };

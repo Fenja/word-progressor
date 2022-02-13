@@ -89,6 +89,7 @@ import { SubmissionFooterComponent } from './submissions/submission-footer/submi
 import { SubmissionListComponent } from './submissions/submission-list/submission-list.component';
 import { SubmissionEditComponent } from './submissions/submission-edit/submission-edit.component';
 import { SubmissionItemComponent } from './submissions/submission-item/submission-item.component';
+import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
 
 @NgModule({
   declarations: [
@@ -141,6 +142,7 @@ import { SubmissionItemComponent } from './submissions/submission-item/submissio
     SubmissionListComponent,
     SubmissionEditComponent,
     SubmissionItemComponent,
+    PagenotfoundComponent,
   ],
     imports: [
         AngularFireModule.initializeApp(environment.FIREBASE_CONFIG),
