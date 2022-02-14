@@ -262,6 +262,23 @@ ul {
   padding: 1em;
 }
 
+.submission-list {
+  display: flex;
+  flex-flow: column;
+
+  &__item {
+    padding: .2em;
+
+    &:hover {
+      border: 1px solid $primary;
+    }
+
+    &.selected {
+      border: 1px solid $accent;
+    }
+  }
+}
+
 .bottom-toolbar {
   position: fixed;
   bottom: 0;
@@ -325,6 +342,20 @@ ul {
     vertical-align: middle;
     padding-left: 0.3em;
   }
+}
+
+.submission-project {
+  cursor: pointer;
+
+  i {
+    vertical-align: middle;
+    padding-right: 0.3em;
+  }
+}
+
+.input--with-icon {
+  display: flex;
+  flex-flow: row;
 }
 
 .subproject-overview {

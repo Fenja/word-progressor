@@ -122,6 +122,7 @@ export class TranslationService {
         button_new_submission: 'Neue Ausschreibung',
         button_to_submission: 'Zur Ausschreibung',
         button_project_from_submission: 'Projekt anlegen',
+        button_select: 'Auswählen',
 
         label_current_word_count: 'Aktuelle Wortzahl',
         label_current_pages_count: 'Aktuelle Seitenzahl',
@@ -213,6 +214,8 @@ export class TranslationService {
         tooltip_add_favorite: 'zu Favoriten hinzufügen',
         tooltip_remove_favorite: 'aus Favoriten entfernen',
         tooltip_hide_inactive: 'inaktive verbergen',
+        tooltip_project: 'zum Project',
+        tooltip_submitted: 'eingereicht',
 
         headline_word_count: 'Wortzahl',
         headline_total: 'Gesamt',
@@ -311,7 +314,8 @@ export class TranslationService {
             Trotzdem kann der WordProgressor gerne anonym ausprobiert und - durch das Anlegen eines Kontos - die Daten später gesichert werden.\n
             Außerdem sind einige Funktionalitäten nur für Nutzer mit Konto verfügbar.`,
         text_create_account: 'Mit dem Erstellen eines Kontos werden die lokalen Daten synchronisiert und könne per Anmeldung von überall abgefragt werden.',
-        text_delete_account: 'Die Löschung des Kontos kann nicht rückgängig gemacht werden!\nMit dem Konto werden auch alle gespeicherten Daten gelöscht.'
+        text_delete_account: 'Die Löschung des Kontos kann nicht rückgängig gemacht werden!\nMit dem Konto werden auch alle gespeicherten Daten gelöscht.',
+        text_submission_select: 'Wähle die Ausschreibung aus, zu der das Projekt geschrieben wird.'
       }
     },
     en: {
@@ -423,6 +427,7 @@ export class TranslationService {
         button_new_submission: 'New submission',
         button_to_submission: 'Visit submission site',
         button_project_from_submission: 'Create project',
+        button_select: 'Select',
 
         label_current_word_count: 'Current Word Count',
         label_current_pages_count: 'Current Page Count',
@@ -514,6 +519,8 @@ export class TranslationService {
         tooltip_add_favorite: 'add to favorites',
         tooltip_remove_favorite: 'remove from favorites',
         tooltip_hide_inactive: 'hide inactive',
+        tooltip_project: 'to project',
+        tooltip_submitted: 'submitted',
 
         headline_word_count: 'Word Count',
         headline_total: 'Total',
@@ -612,7 +619,8 @@ export class TranslationService {
             Nonetheless, please feel free to try the WordProgressor anynomously, before creating an account, to save your data later.\n
             Also, some functionality is only available for users with an account.`,
         text_create_account: 'When creating an account, your local data is uploaded and can be accessed via authentication.',
-        text_delete_account: 'Deleting your account can not be undone!\nWith your account, all data will be deleted too.'
+        text_delete_account: 'Deleting your account can not be undone!\nWith your account, all data will be deleted too.',
+        text_submission_select: 'Select the submission to assign your project to.'
       }
     }
   }

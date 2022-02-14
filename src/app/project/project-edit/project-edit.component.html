@@ -174,7 +174,7 @@
   </div>
 
   <div>
-    <mat-form-field color="primary">
+    <mat-form-field color="primary" class="full-width">
       <mat-label>{{ 'label_reward' | translate }}</mat-label>
       <textarea
         matInput
@@ -187,7 +187,32 @@
         [(ngModel)]="project.reward"
       ></textarea>
     </mat-form-field>
+    </div>
 
+  <div>
+    <mat-form-field color="primary" class="input--with-icon">
+      <mat-label>{{ 'label_submission' | translate }}</mat-label>
+      <input
+        matInput
+        type="text"
+        name="submission"
+        class="form-control"
+        data-testid="submission-input"
+        value="{{ project.submission?.title }}"
+      >
+    </mat-form-field>
+    <button
+      type="button"
+      mat-icon-button
+      name="menu"
+      aria-label="Select Submission"
+      (click)="selectSubmission()"
+    >
+      <mat-icon>search</mat-icon>
+    </button>
+  </div>
+
+  <div>
 
     <mat-form-field color="primary">
       <mat-label>{{ 'label_event' | translate }}</mat-label>

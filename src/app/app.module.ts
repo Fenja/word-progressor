@@ -90,6 +90,9 @@ import { SubmissionListComponent } from './submissions/submission-list/submissio
 import { SubmissionEditComponent } from './submissions/submission-edit/submission-edit.component';
 import { SubmissionItemComponent } from './submissions/submission-item/submission-item.component';
 import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
+import {
+  SubmissionSelectDialogComponent
+} from "./submissions/submission-select-dialog/submission-select-dialog.component";
 
 @NgModule({
   declarations: [
@@ -143,6 +146,7 @@ import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
     SubmissionEditComponent,
     SubmissionItemComponent,
     PagenotfoundComponent,
+    SubmissionSelectDialogComponent,
   ],
     imports: [
         AngularFireModule.initializeApp(environment.FIREBASE_CONFIG),

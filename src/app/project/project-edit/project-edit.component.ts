@@ -18,6 +18,10 @@ import {Observable} from "rxjs";
 import * as uuid from "uuid";
 import {Submission} from "../../submissions/submission.model";
 import {SubmissionService} from "../../submissions/submission.service";
+import {MatDialog} from "@angular/material/dialog";
+import {
+  SubmissionSelectDialogComponent
+} from "../../submissions/submission-select-dialog/submission-select-dialog.component";
 
 @Component({
   selector: 'app-project-edit',
@@ -71,6 +75,7 @@ export class ProjectEditComponent implements OnInit {
     private translationService: TranslationService,
     private _adapter: DateAdapter<any>,
     private submissionService: SubmissionService,
+    private dialog: MatDialog,
   ) { }
 
   ngOnInit(): void {
@@ -170,6 +175,20 @@ export class ProjectEditComponent implements OnInit {
 
   _determineProjectType(submission: Submission): ProjectType {
     return ProjectType.short_story; // TODO change according to wordcount
+  }
+
+
+  selectSubmission() {
+    this.dialog.open(SubmissionSelectDialogComponent, {
+      data: {
+        submission: this.project.submission
+      }
+    })
+      .afterClosed().subscribe(submission => {
+        if (submission) {
+          this.project.submission = submission;
+        }
+    });
   }
 
   genres = [

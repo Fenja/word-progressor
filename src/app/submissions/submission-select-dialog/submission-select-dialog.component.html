@@ -1,0 +1,14 @@
+<div mat-dialog-content>
+
+  <div>{{ 'text_submission_select' | translate }}</div>
+  <hr>
+  <div class="submission-list">
+    <a *ngFor="let submission of submissions" class="submission-list__item" (click)="selectSubmission(submission)" [ngClass]="selectedSubmission === submission ? 'selected' : ''">{{ submission.title }}</a>
+  </div>
+
+  <div mat-dialog-actions>
+    <button mat-raised-button color="accent" (click)="close()">{{ 'button_cancel' | translate }}</button>
+    <button mat-raised-button color="primary" (click)="select()">{{ 'button_select' | translate }}</button>
+  </div>
+
+</div>

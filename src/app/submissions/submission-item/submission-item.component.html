@@ -53,4 +53,12 @@
       data-testid="project-edit-button"
     >{{'button_edit' | translate}}</button>
   </mat-card-actions>
+
+  <mat-card-content *ngIf="linkedProjects.length > 0">
+    <div *ngFor="let project of linkedProjects" class="submission-project" [routerLink]="['/projects/'+project.id]">
+      <i *ngIf="project.state.toString() === 'submitted'" class="mat-icon material-icons accent-color" matTooltip="{{ 'tooltip_submitted' | translate }}">mail</i>
+      <i *ngIf="project.state.toString() !== 'submitted'" class="mat-icon material-icons">mail_outline</i>
+      <span matTooltip="{{ 'tooltip_project' | translate }}">{{ project.workingTitle }}</span>
+    </div>
+  </mat-card-content>
 </mat-card>
