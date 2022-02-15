@@ -37,3 +37,10 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+
+
+## Capacitor
+
+Build with `g build --prod` to create dist directory.
+
+`npx cap run android` to run on emulator or device, `npx cap open android` to open android studio.

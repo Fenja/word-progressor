@@ -1,0 +1,6 @@
+{
+	"appId": "com.erdbeerbeet.wordprogressor",
+	"appName": "WordProgressor",
+	"webDir": "dist",
+	"bundledWebRuntime": false
+}

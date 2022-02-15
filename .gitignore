@@ -51,3 +51,5 @@ environment.ts
 .env
 
 .firebase
+
+.angular
