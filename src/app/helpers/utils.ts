@@ -104,7 +104,8 @@ export default class Utils {
       daysBeforeDeadlineReminder: [],
 
       isAdmin: undefined,
-      filterFavorites: false
+      filterFavorites: false,
+      isHidePassed: false,
     };
   }
 }

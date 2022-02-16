@@ -35,4 +35,9 @@ export class SubmissionFooterComponent implements OnInit {
     this.settings.filterFavorites = !this.settings.filterFavorites;
     this.userService.changedFilter(this.settings);
   }
+
+  toggleHidePassed() {
+    this.settings.isHidePassed = !this.settings.isHidePassed;
+    this.userService.changedFilter(this.settings);
+  }
 }

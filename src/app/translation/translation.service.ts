@@ -216,6 +216,7 @@ export class TranslationService {
         tooltip_hide_inactive: 'inaktive verbergen',
         tooltip_project: 'zum Project',
         tooltip_submitted: 'eingereicht',
+        tooltip_passed_submissions: 'beendete Ausschreibungen',
 
         headline_word_count: 'Wortzahl',
         headline_total: 'Gesamt',
@@ -521,6 +522,7 @@ export class TranslationService {
         tooltip_hide_inactive: 'hide inactive',
         tooltip_project: 'to project',
         tooltip_submitted: 'submitted',
+        tooltip_passed_submissions: 'passed submissions',
 
         headline_word_count: 'Word Count',
         headline_total: 'Total',
