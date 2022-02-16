@@ -5,7 +5,6 @@ import { Subscription } from "rxjs";
 import { SubmissionService } from "../submission.service";
 import {Settings, SubmissionProjects} from "../../auth/user.model";
 import Utils from "../../helpers/utils";
-import {take} from "rxjs/operators";
 
 @Component({
   selector: 'app-submission-list',
@@ -80,13 +79,15 @@ export class SubmissionListComponent {
   }
 
   private _filterSubmissions() {
+    const today = Utils.normalizedToday();
+
     this.submissions = this.allSubmissions.filter((submission: Submission) => {
+      if (this.settings.isHidePassed && submission.deadline && Utils.normalizeDate(submission.deadline) < today) return false;
       let isFavorite = !!this.favorites ? this.favorites.indexOf(submission.id!) > 0 : false;//!!this.favorites?.find(s => s === submission.id!);
       if (this.settings.filterFavorites) return isFavorite;
       return true;
     });
 
-    const today = Utils.normalizedToday();
     this.submissions.sort((a: Submission, b: Submission) => {
       if (!a.deadline || Utils.normalizeDate(a.deadline) < today) return 1;
       else if (!b.deadline || Utils.normalizeDate(b.deadline) < today) return -1;

@@ -62,6 +62,7 @@ export interface Settings {
 
   // submissions
   filterFavorites: boolean;
+  isHidePassed: boolean;
 }
 
 export interface SubmissionProjects {

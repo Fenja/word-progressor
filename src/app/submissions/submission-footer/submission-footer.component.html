@@ -11,6 +11,13 @@
   </div>
 
   <div class="bottom-toolbar__actions">
+    <a mat-button matTooltip="{{ 'tooltip_passed_submissions' | translate }}"
+       (click)="toggleHidePassed()"
+    >
+      <i class="mat-icon material-icons">
+        {{ settings.isHidePassed ? 'visibility_off' : 'visibility' }}
+      </i>
+    </a>
     <a mat-button matTooltip="{{ 'filter_favorites' | translate }}"
        (click)="toggleFilterFavorites()"
     >
