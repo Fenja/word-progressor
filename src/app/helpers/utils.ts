@@ -106,6 +106,7 @@ export default class Utils {
       isAdmin: undefined,
       filterFavorites: false,
       isHidePassed: false,
+      language: 'all',
     };
   }
 }

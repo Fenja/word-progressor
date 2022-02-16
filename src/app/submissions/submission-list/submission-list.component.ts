@@ -3,7 +3,7 @@ import { UserService } from "../../services/user.service";
 import { Submission } from "../submission.model";
 import { Subscription } from "rxjs";
 import { SubmissionService } from "../submission.service";
-import {Settings, SubmissionProjects} from "../../auth/user.model";
+import {Language, Settings, SubmissionProjects} from "../../auth/user.model";
 import Utils from "../../helpers/utils";
 
 @Component({
@@ -59,6 +59,7 @@ export class SubmissionListComponent {
         if (this.settings.isAdmin) {
           this._updateSubmissions();
         }
+        if (!this.settings.language) this.settings.language = 'all';
       }
     }));
 
@@ -83,6 +84,12 @@ export class SubmissionListComponent {
 
     this.submissions = this.allSubmissions.filter((submission: Submission) => {
       if (this.settings.isHidePassed && submission.deadline && Utils.normalizeDate(submission.deadline) < today) return false;
+
+      const language: Language = submission.language === 'deutsch' ? 'de' : submission.language === 'english' ? 'en' : 'all';
+      if (this.settings.language !== 'all') {
+         return this.settings.language === language;
+      }
+
       let isFavorite = !!this.favorites ? this.favorites.indexOf(submission.id!) > 0 : false;//!!this.favorites?.find(s => s === submission.id!);
       if (this.settings.filterFavorites) return isFavorite;
       return true;

@@ -63,9 +63,12 @@ export interface Settings {
   // submissions
   filterFavorites: boolean;
   isHidePassed: boolean;
+  language: Language;
 }
 
 export interface SubmissionProjects {
   submissionId: string;
   projects: Project[];
 }
+
+export type Language = 'de' | 'en' | 'all';

@@ -8,17 +8,6 @@ import { AngularFireAuth } from "@angular/fire/compat/auth";
 import { BehaviorSubject, Subscription } from "rxjs";
 import { SnackbarService } from "../services/snackbar.service";
 import { TranslationService } from "../translation/translation.service";
-import { userData } from "./user.model";
-
-export interface AuthResponseData {
-  kind: string;
-  idToken: string;
-  email: string;
-  refreshToken: string;
-  expiresIn: string;
-  localId: string;
-  registered?: boolean;
-}
 
 @Injectable({ providedIn: 'root' })
 export class AuthService implements OnDestroy {

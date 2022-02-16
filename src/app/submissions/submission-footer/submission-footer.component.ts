@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Subscription } from "rxjs";
 import { UserService } from "../../services/user.service";
-import { Settings } from "../../auth/user.model";
+import {Language, Settings} from "../../auth/user.model";
 import Utils from "../../helpers/utils";
 
 @Component({
@@ -38,6 +38,11 @@ export class SubmissionFooterComponent implements OnInit {
 
   toggleHidePassed() {
     this.settings.isHidePassed = !this.settings.isHidePassed;
+    this.userService.changedFilter(this.settings);
+  }
+
+  selectLang(language: Language) {
+    this.settings.language = language;
     this.userService.changedFilter(this.settings);
   }
 }

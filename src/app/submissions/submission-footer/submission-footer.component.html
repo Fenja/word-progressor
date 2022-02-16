@@ -11,6 +11,19 @@
   </div>
 
   <div class="bottom-toolbar__actions">
+    <a mat-button matTooltip="{{ 'tooltip_language' | translate }}" [matMenuTriggerFor]="hideMenu">
+      <i class="mat-icon material-icons">{{ 'language' }}</i></a>
+    <mat-menu #hideMenu="matMenu">
+      <button mat-menu-item (click)="selectLang('all')">
+        <i [ngClass]="settings.language === 'all' ? '' : 'hidden'" class="mat-icon material-icons">check</i>
+        {{ 'language_all' | translate }}</button>
+      <button mat-menu-item (click)="selectLang('de')">
+        <i [ngClass]="settings.language === 'de' ? '' : 'hidden'" class="mat-icon material-icons">check</i>
+        {{ 'language_de' | translate }}</button>
+      <button mat-menu-item (click)="selectLang('en')">
+        <i [ngClass]="settings.language === 'en' ? '' : 'hidden'" class="mat-icon material-icons">check</i>
+        {{ 'language_en' | translate }}</button>
+    </mat-menu>
     <a mat-button matTooltip="{{ 'tooltip_passed_submissions' | translate }}"
        (click)="toggleHidePassed()"
     >

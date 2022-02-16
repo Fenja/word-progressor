@@ -66,6 +66,10 @@ export class TranslationService {
         characters: 'Zeichen',
         pages: 'Seiten',
 
+        language_all: 'ohne Beschränkung',
+        language_de: 'Deutsch',
+        language_en: 'Englisch',
+
         monday: 'Montag',
         tuesday: 'Dienstag',
         wednesday: 'Mittwoch',
@@ -217,6 +221,7 @@ export class TranslationService {
         tooltip_project: 'zum Project',
         tooltip_submitted: 'eingereicht',
         tooltip_passed_submissions: 'beendete Ausschreibungen',
+        tooltip_language: 'Spache',
 
         headline_word_count: 'Wortzahl',
         headline_total: 'Gesamt',
@@ -372,6 +377,10 @@ export class TranslationService {
         characters: 'Characters',
         pages: 'Pages',
 
+        language_all: 'without constraint',
+        language_de: 'German',
+        language_en: 'English',
+
         monday: 'Monday',
         tuesday: 'Tuesday',
         wednesday: 'Wednesday',
@@ -523,6 +532,7 @@ export class TranslationService {
         tooltip_project: 'to project',
         tooltip_submitted: 'submitted',
         tooltip_passed_submissions: 'passed submissions',
+        tooltip_language: 'Language',
 
         headline_word_count: 'Word Count',
         headline_total: 'Total',
