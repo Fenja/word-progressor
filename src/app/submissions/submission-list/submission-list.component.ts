@@ -3,8 +3,11 @@ import { UserService } from "../../services/user.service";
 import { Submission } from "../submission.model";
 import { Subscription } from "rxjs";
 import { SubmissionService } from "../submission.service";
-import {Language, Settings, SubmissionProjects} from "../../auth/user.model";
+import { Language, Settings, SubmissionProjects } from "../../auth/user.model";
 import Utils from "../../helpers/utils";
+import { MatDialog } from "@angular/material/dialog";
+import { SubmissionReportDialogComponent } from "../submission-report-dialog/submission-report-dialog.component";
+import { AuthService } from "../../auth/auth.service";
 
 @Component({
   selector: 'app-submission-list',
@@ -18,9 +21,11 @@ export class SubmissionListComponent {
   submissionProjects: SubmissionProjects[] | undefined = [];
 
   submissions: Submission[] = [];
+  reports: string[] = [];
   private allSubmissions: Submission[];
   private subscriptions: Subscription[] = [];
   private settings: Settings = Utils.getDefaultSettings();
+  isAdmin: boolean | undefined;
 
 
   get totalSubmissionsLength() {
@@ -32,13 +37,24 @@ export class SubmissionListComponent {
 
   constructor(
     private userService: UserService,
-    private submissionService: SubmissionService
+    private submissionService: SubmissionService,
+    private dialog: MatDialog,
+    public authService: AuthService,
   ) {
     this.allSubmissions = this.submissionService.getSubmissions();
     this._filterSubmissions();
 
     if( !!this.userService.getSettings() ) {
       this.settings = this.userService.getSettings()!;
+
+      this.isAdmin = this.settings.isAdmin;
+      if (this.isAdmin) {
+        console.log('isAdmin');
+        this.reports = this.submissionService.getReports();
+        this.subscriptions.push( this.submissionService.reportList.subscribe(reports => {
+          this.reports = reports;
+        }));
+      }
     }
     this.subscriptions.push( this.userService.$filterChange
       .subscribe(() => this._filterSubmissions()));
@@ -110,12 +126,25 @@ export class SubmissionListComponent {
       }
       if (submission.deadline) {
         let aMonthAfterDeadline = new Date(submission.deadline);
-        aMonthAfterDeadline.setDate(aMonthAfterDeadline.getDate() + 30);
+        aMonthAfterDeadline.setDate(aMonthAfterDeadline.getDate() + 100);
         if (aMonthAfterDeadline.getTime()  < new Date().getTime()) {
           console.log('should delete ',submission.title)
           //this.submissionService.deleteSubmission(submission.id!, submission);
         }
       }
     })
+  }
+
+  reportSubmission() {
+    this.dialog.open(SubmissionReportDialogComponent);
+  }
+
+  openReportLink(report: string) {
+    let url = new URL(report);
+    if (url) window.open(url, "_blank");
+  }
+
+  deleteReport(report: string) {
+    this.submissionService.deleteReport(report)
   }
 }

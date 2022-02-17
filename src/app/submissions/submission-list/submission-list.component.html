@@ -1,14 +1,59 @@
 <div *ngIf="isLoading" class="loader"></div>
 
 <ng-container *ngIf="!isLoading">
-<div *ngIf="submissions.length > 0" class="project-list">
-  <app-submission-item
-    *ngFor="let submission of submissions"
-    [submission]="submission"
-    class="list-card-item"
-  ></app-submission-item>
-</div>
-<p *ngIf="submissions.length <= 0" class="empty-info">{{ 'info_no_submissions' | translate }}</p>
+
+  <div *ngIf="isAdmin">
+    <mat-card *ngFor="let report of reports" class="project-item">
+      <mat-card-content>
+        {{ report }}
+      </mat-card-content>
+      <mat-card-actions>
+        <button
+          mat-raised-button
+          color="primary"
+          (click)="openReportLink(report)"
+        >{{'button_open_link' | translate}}</button>
+        <button
+          mat-raised-button
+          color="warn"
+          (click)="deleteReport(report)"
+        >{{ 'button_delete' | translate}}</button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+
+  <div *ngIf="submissions.length > 0">
+    <app-submission-item
+      *ngFor="let submission of submissions"
+      [submission]="submission"
+      class="list-card-item"
+    ></app-submission-item>
+  </div>
+
+  <mat-card *ngIf="submissions.length <= 0" class="project-item">
+    <mat-card-content>
+      {{ 'info_no_submissions' | translate }}
+    </mat-card-content>
+  </mat-card>
+
+  <mat-card *ngIf="authService.isLoggedIn" class="project-item">
+    <mat-card-content>
+      <div class="mat-card-content">
+        {{ 'text_submission_report' | translate }}
+      </div>
+    </mat-card-content>
+    <mat-card-actions>
+      <button
+        mat-raised-button
+        color="primary"
+        (click)="reportSubmission()"
+        data-testid="report-submission-button"
+      >{{'button_report_submission' | translate}}</button>
+    </mat-card-actions>
+  </mat-card>
+
+  <div class="spacer" style="height: 3em"></div>
+
 </ng-container>
 
 <app-submission-footer [totalSubmissionsLength]="totalSubmissionsLength" [displaySubmissionsLength]="displaySubmissionsLength"></app-submission-footer>

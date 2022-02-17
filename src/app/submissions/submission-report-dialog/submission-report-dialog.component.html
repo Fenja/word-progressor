@@ -1,0 +1,32 @@
+<h3 mat-dialog-title>{{ 'label_submission' | translate }}</h3>
+<mat-dialog-content>
+  <div class="content">
+    <div>{{ 'text_submission_send' | translate }}</div>
+    <form>
+      <mat-form-field color="primary" class="full-width">
+        <mat-label data-testid="email-input-label">{{ 'label_link' | translate }}</mat-label>
+        <input
+          matInput
+          type="url"
+          pattern="/^(http[s]?:\/\/){0,1}(www\.){0,1}[a-zA-Z0-9\.\-]+\.[a-zA-Z]{2,5}[\.]{0,1}/"
+          name="submission-link"
+          class="form-control"
+          data-testid="url-input"
+          #linkInput
+        >
+      </mat-form-field>
+      <mat-error *ngIf="errorKey">{{ errorKey | translate }}</mat-error>
+    </form>
+  </div>
+
+  <div mat-dialog-actions>
+    <button mat-raised-button color="accent" (click)="close()">{{ 'button_cancel' | translate }}</button>
+    <button
+      mat-raised-button
+      color="primary"
+      (click)="send(linkInput)">
+      {{ 'button_report_submission' | translate}}
+    </button>
+  </div>
+
+</mat-dialog-content>

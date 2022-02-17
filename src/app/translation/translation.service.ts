@@ -127,6 +127,8 @@ export class TranslationService {
         button_to_submission: 'Zur Ausschreibung',
         button_project_from_submission: 'Projekt anlegen',
         button_select: 'Auswählen',
+        button_report_submission: 'Ausschreibung einreichen',
+        button_open_link: 'Link öffnen',
 
         label_current_word_count: 'Aktuelle Wortzahl',
         label_current_pages_count: 'Aktuelle Seitenzahl',
@@ -276,6 +278,7 @@ export class TranslationService {
         error_sign_up_failed: 'Registrierung fehlgeschlagen',
         error_forgot_pw_failed: 'Neues Passwort konnte nicht angefordert werden',
         error_google_auth_failed: 'Authentifizierung über Google fehlgeschlagen.',
+        error_invalid_url: 'Bitte gib einen gültigen Link an',
 
         page_not_found: 'Diese Seite existiert nicht',
         page_not_found_info: 'Hm, eine verschwundene Seite, das klingt nach einer guten Geschichte...',
@@ -313,6 +316,7 @@ export class TranslationService {
         msg_update_available: 'Eine neue Version des WordProgressor ist verfügbar. Willst du jetzt aktualisieren?',
         msg_delete_log: 'Diesen Eintrag wirklich löschen?',
         msg_delete_note: 'Diese Notiz wirklich löschen?',
+        msg_submission_report_send: 'Ausschreibung erfolgreich eingereicht',
 
         text_anonymous_dialog: `Wenn der WordProgressor ohne Konto genutzt wird, werden die Daten lokal gespeichert.\n
             Sie können dann weder synchronisiert, noch von einem anderen Gerät aus abgerufen werden.\n
@@ -321,6 +325,8 @@ export class TranslationService {
             Außerdem sind einige Funktionalitäten nur für Nutzer mit Konto verfügbar.`,
         text_create_account: 'Mit dem Erstellen eines Kontos werden die lokalen Daten synchronisiert und könne per Anmeldung von überall abgefragt werden.',
         text_delete_account: 'Die Löschung des Kontos kann nicht rückgängig gemacht werden!\nMit dem Konto werden auch alle gespeicherten Daten gelöscht.',
+        text_submission_report: 'Fehlt in der Liste noch eine wichtige Ausschreibung? Schicke sie ein, damit sie hinzugefügt werden kann.',
+        text_submission_send: 'Bitte füge den Link der entsprechenden Ausschreibung ein. Die Details werden dann vom Admin eingepflegt.',
         text_submission_select: 'Wähle die Ausschreibung aus, zu der das Projekt geschrieben wird.'
       }
     },
@@ -438,6 +444,8 @@ export class TranslationService {
         button_to_submission: 'Visit submission site',
         button_project_from_submission: 'Create project',
         button_select: 'Select',
+        button_report_submission: 'Report submission',
+        button_open_link: 'Open Link',
 
         label_current_word_count: 'Current Word Count',
         label_current_pages_count: 'Current Page Count',
@@ -587,6 +595,7 @@ export class TranslationService {
         error_sign_up_failed: 'Sign Up failed',
         error_forgot_pw_failed: 'Could not request new password',
         error_google_auth_failed: 'Authentication via google failed',
+        error_invalid_url: 'Please provide a valid link',
 
         page_not_found: 'Page not found',
         page_not_found_info: 'A page gone missing, sounds like a good story...',
@@ -624,6 +633,7 @@ export class TranslationService {
         msg_update_available: 'A new version of WordProgressor is available. Do you want to update now?',
         msg_delete_log: 'Do you want to delete this log?',
         msg_delete_note: 'Do you want to delete this note?',
+        msg_submission_report_send: 'Submission successfully reported',
 
         text_anonymous_dialog: `When using the WordProgressor without an account, your data is stored locally.\n
             You won't be able to sync them or access them from another access point.\n
@@ -632,6 +642,8 @@ export class TranslationService {
             Also, some functionality is only available for users with an account.`,
         text_create_account: 'When creating an account, your local data is uploaded and can be accessed via authentication.',
         text_delete_account: 'Deleting your account can not be undone!\nWith your account, all data will be deleted too.',
+        text_submission_report: 'Is this list missing a specific submission? Please send a report to let it be added.',
+        text_submission_send: 'Please provide the link to the submission. The admin will take care of the details.',
         text_submission_select: 'Select the submission to assign your project to.'
       }
     }
