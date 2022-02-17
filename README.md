@@ -6,7 +6,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
-Run `http-server-spa dist/wordProgressor index.html 4200` after an `ng build --prod` to simulate the production server (needed for notification and serviceWorker).
+Run `http-server-spa dist index.html 4200` after an `ng build --prod` to simulate the production server (needed for notification and serviceWorker).
 
 ## Code scaffolding
 
@@ -41,6 +41,6 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 ## Capacitor
 
-Build with `g build --prod` to create dist directory.
+Build with `ng build --prod` to create dist directory.
 
 `npx cap run android` to run on emulator or device, `npx cap open android` to open android studio.

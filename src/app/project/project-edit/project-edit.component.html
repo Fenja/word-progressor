@@ -61,7 +61,7 @@
 
       ></textarea>
     </mat-form-field>
-    <mat-form-field color="primary">
+    <!-- <mat-form-field color="primary">
       <mat-label>{{ 'label_image' | translate }}</mat-label>
       <input
         matInput
@@ -74,7 +74,7 @@
         [(ngModel)]="project.imagePath"
       >
       <mat-error *ngIf="!pathId.valid">{{ 'error_invalid_path' | translate }}</mat-error>
-    </mat-form-field>
+    </mat-form-field>-->
   </div>
 
   <div>
@@ -210,6 +210,7 @@
     >
       <mat-icon>search</mat-icon>
     </button>
+    <mat-icon *ngIf="project.submission">link</mat-icon>
   </div>
 
   <div>
