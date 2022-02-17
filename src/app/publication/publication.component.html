@@ -9,8 +9,15 @@
   >
 
   <div class="publication-info">
-    <h4 *ngIf="publication.publisher">{{ publication.publisher }}</h4>
-    <span *ngIf="publication.date">{{ publication.date }}</span>
-    <span *ngIf="publication.link">{{ publication.link }}</span>
+    <a *ngIf="publication.link"
+       href="{{ publication.link }}"
+       matTooltip="{{ 'label_publication_link' | translate }}"
+       class="mat-link"
+    >
+      <h4 *ngIf="publication.publisher">{{ publication.publisher }}<span *ngIf="publication.date"> - {{ publication.date }}</span></h4>
+    </a>
+    <a *ngIf="!publication.link" class="mat-link">
+      <h4 *ngIf="publication.publisher">{{ publication.publisher }}<span *ngIf="publication.date"> - {{ publication.date }}</span></h4>
+    </a>
   </div>
 </mat-card>
