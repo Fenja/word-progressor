@@ -20,7 +20,7 @@ export class WordlogItemComponent {
   constructor(
     private dialog: MatDialog,
     private logWordsService: LogWordsService,
-    private translationService: TranslationService,
+    public translationService: TranslationService,
   ) { }
 
   editLog() {

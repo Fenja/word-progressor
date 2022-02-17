@@ -19,7 +19,8 @@
 
   <div *ngIf="project.deadline" class="deadline" [ngClass]="isPassed ? 'obsolete' : ''">
     <i class="mat-icon material-icons">event</i>
-    <span>{{ project.deadline | date }}</span>
+    <span *ngIf="translationService.language === 'de'">{{ project.deadline | date : 'd.M.y' }}</span>
+    <span *ngIf="translationService.language === 'en'">{{ project.deadline | date : 'M/d/y' }}</span>
   </div>
 
   <div *ngIf="project.subprojects && project.subprojects.length > 0">

@@ -1,5 +1,8 @@
 <div class="wordlog-item">
-  <span>{{ log.date | date }} - {{ log.words }}</span>
+  <span>
+    <span *ngIf="translationService.language === 'de'">{{ log.date | date : 'd.M.y' }}</span>
+    <span *ngIf="translationService.language === 'en'">{{ log.date | date : 'M/d/yy' }}</span>
+   - {{ log.words }}</span>
   <span>
     <button
       *ngIf="project"

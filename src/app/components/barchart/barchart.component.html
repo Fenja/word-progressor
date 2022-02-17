@@ -11,6 +11,10 @@
   </div>
   <div class="line"></div>
   <div class="legends">
-    <span *ngFor="let item of data" [style.writing-mode]="(barWidth < 10) ? 'tb-rl' : ''">{{ item.legend | date }}</span>
+    <span *ngFor="let item of data" [style.writing-mode]="(barWidth < 10) ? 'tb-rl' : ''"
+    >
+      <span *ngIf="translationService.language === 'de'">{{ item.legend | date : 'd.M' }}</span>
+      <span *ngIf="translationService.language === 'en'">{{ item.legend | date : 'MMMM d' }}</span>
+    </span>
   </div>
 </div>

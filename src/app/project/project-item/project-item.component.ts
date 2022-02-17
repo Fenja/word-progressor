@@ -4,7 +4,7 @@ import { MatDialog } from "@angular/material/dialog";
 import { WordlogAddDialogComponent } from "../../wordlogs/wordlag-add-dialog/wordlog-add-dialog.component";
 import { NoteAddDialogComponent } from "../../notes/note-add-dialog/note-add-dialog.component";
 import Utils from "../../helpers/utils";
-import {ProjectService} from "../project.service";
+import { TranslationService } from "../../translation/translation.service";
 
 @Component({
   selector: 'app-project-item',
@@ -19,7 +19,7 @@ export class ProjectItemComponent implements OnInit {
 
   constructor(
     private dialog: MatDialog,
-    private projectService: ProjectService,
+    public translationService: TranslationService,
   ) { }
 
   ngOnInit() {

@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { WordLog } from "../../project/project.model";
+import {TranslationService} from "../../translation/translation.service";
 
 export class BarModel {
   value!: number;
@@ -23,6 +24,8 @@ export class BarchartComponent implements OnInit {
   data: BarModel[] = [];
   public total = 0;
   barWidth!: number;
+
+  constructor(public translationService: TranslationService) {}
 
   ngOnInit(): void {
     if (!this.wordLogs) return;
