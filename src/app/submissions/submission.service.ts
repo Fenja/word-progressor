@@ -60,26 +60,30 @@ export class SubmissionService {
   }
 
   editSubmission(id: string, submission: Submission) {
-    const index = this.submissions.indexOf(submission);
-    this.submissions[index] = submission;
-    this._editSubmissions();
+    this.http.put(
+      environment.FIREBASE_CONFIG.databaseURL+'submissions/'+id+'.json',
+      submission
+    ).subscribe(() => {
+      this._fetchSubmissions();
+    });
   }
 
   addSubmission(submission: Submission) {
-    this.submissions.push(submission);
-    this._editSubmissions();
+    this.http.post<any>(
+      environment.FIREBASE_CONFIG.databaseURL+'submissions.json',
+      submission
+    ).subscribe(() => {
+        this._fetchSubmissions();
+      },
+      error => {
+        console.log(error);
+      }
+    );
   }
 
   deleteSubmission(id: string, submission: Submission) {
-    const index = this.submissions.indexOf(submission);
-    delete this.submissions[index];
-    this._editSubmissions();
-  }
-
-  _editSubmissions() {
-    this.http.put(
-      environment.FIREBASE_CONFIG.databaseURL+'submissions.json',
-      this.submissions
+    this.http.delete(
+      environment.FIREBASE_CONFIG.databaseURL+'submissions/'+id+'.json',
     ).subscribe(() => {
       this._fetchSubmissions();
     });

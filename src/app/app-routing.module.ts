@@ -21,7 +21,7 @@ const appRoutes: Routes = [
   { path: 'auth', component: AuthComponent },
   { path: 'verify-email-address', component: VerifyEmailComponent, canActivate: [AuthGuard]},
   { path: 'settings', component: SettingsComponent, canActivate: [AuthGuard] },
-  { path: 'privacy_policy', component: PrivacyPolicyComponent, canActivate: [AuthGuard] },
+  { path: 'privacy_policy', component: PrivacyPolicyComponent },
   { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
   { path: 'body-of-work', component: BodyOfWorkComponent, canActivate: [AuthGuard] },
   { path: 'projects', component: ProjectsComponent, children: [

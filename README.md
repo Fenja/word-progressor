@@ -39,8 +39,6 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
 
 
-## Capacitor
+## Cordova
 
-Build with `ng build --prod` to create dist directory.
-
-`npx cap run android` to run on emulator or device, `npx cap open android` to open android studio.
+Build with ` ng build --prod --base-href . --output-path ../CordovaWordProgressor/www/` to create dist directory and directly write into www directory of neighbor corodva project

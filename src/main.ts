@@ -7,7 +7,12 @@ import { environment } from './environments/environment';
 if (environment.production) {
   enableProdMode();
 }
-
+/*
+let onDeviceReady = () => {
+  platformBrowserDynamic().bootstrapModule(AppModule);
+};
+document.addEventListener('deviceready', onDeviceReady, false);
+*/
 document.addEventListener('DOMContentLoaded', () => {
   platformBrowserDynamic().bootstrapModule(AppModule)
   .catch(err => console.error(err));
