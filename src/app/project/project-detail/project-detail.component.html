@@ -52,10 +52,10 @@
   <h3>{{ 'label_language' | translate }}: {{ project.language }}</h3>
 </div>
 
-<div class="content" *ngIf="project.wordLogs && project.wordLogs.length > 1">
+<!-- <div class="content" *ngIf="project.wordLogs && project.wordLogs.length > 1">
   <h3>{{ 'label_statistics' | translate }}</h3>
   <app-barchart [wordLogs]="project.wordLogs"></app-barchart>
-</div>
+</div> -->
 
 <div class="content" *ngIf="project.subprojects && project.subprojects.length > 0">
   <h3>{{ 'label_subprojects' | translate }}</h3>

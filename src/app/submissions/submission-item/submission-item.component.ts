@@ -34,8 +34,10 @@ export class SubmissionItemComponent implements OnInit {
 
   ngOnInit(): void {
     this.subscriptions.push( this.userService.getUser().subscribe(user => {
-      if (!!user && !!user.settings) this.isAdmin = user.settings.isAdmin;
-      if (!!user && !!user.favorites && user.favorites.length > 0) this.isFavorite = !!user.favorites!.find(f => f === this.submission.id!);
+      if (user.settings) this.isAdmin = user.settings.isAdmin;
+      if (user.favorites && user.favorites.values()) {
+        this.isFavorite = Array.from(user.favorites.values()).includes(this.submission.id!);
+      }
     }));
 
     this.linkedProjects = this.projectService.getProjects().slice().filter(project => project.submission?.id === this.submission.id);

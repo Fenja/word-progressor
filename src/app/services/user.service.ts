@@ -15,8 +15,8 @@ export class UserService {
   }
 
   changedFilter(settings: Settings) {
-    this.$filterChange.next();
     this.saveSettings(settings);
+    this.$filterChange.next();
   }
 
   getSettings() {

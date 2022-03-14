@@ -77,18 +77,18 @@ export class SubmissionListComponent {
         }
         if (!this.settings.language) this.settings.language = 'all';
       }
-    }));
 
-    if (!!this.favorites && this.favorites.length > 0) {
-      let deleteFavIndizes: any[] = [];
-      this.favorites!.forEach(fav => {
-        if (!this.allSubmissions.find(sub => sub.id === fav)) {
-          const index = this.favorites!.indexOf(fav);
-          if (!!index) deleteFavIndizes.push(index);
-        }
-      });
-      deleteFavIndizes.forEach(index => delete this.favorites![index!]);
-    }
+     /* if (!!this.favorites && this.favorites.length > 0) {
+        let deleteFavIndizes: any[] = [];
+        this.favorites!.forEach(fav => {
+          if (!this.allSubmissions.find(sub => sub.id === fav)) {
+            const index = this.favorites!.indexOf(fav);
+            if (!!index) deleteFavIndizes.push(index);
+          }
+        });
+        deleteFavIndizes.forEach(index => delete this.favorites![index!]);
+      }*/
+    }));
   }
 
   ngOnDestroy(): void {
@@ -101,14 +101,18 @@ export class SubmissionListComponent {
     this.submissions = this.allSubmissions.filter((submission: Submission) => {
       if (this.settings.isHidePassed && submission.deadline && Utils.normalizeDate(submission.deadline) < today) return false;
 
+      let displayLanguage = true;
       const language: Language = submission.language === 'deutsch' ? 'de' : submission.language === 'english' ? 'en' : 'all';
       if (this.settings.language !== 'all') {
-         return this.settings.language === language;
+         displayLanguage = this.settings.language === language;
       }
 
-      let isFavorite = !!this.favorites ? this.favorites.indexOf(submission.id!) > 0 : false;//!!this.favorites?.find(s => s === submission.id!);
-      if (this.settings.filterFavorites) return isFavorite;
-      return true;
+      let displayFavorite = true;
+      if (this.settings.filterFavorites && !!this.favorites){
+        displayFavorite = (!!this.favorites && this.favorites.length > 0) ? Array.from(this.favorites.values()).includes(submission.id!) : false;
+      }
+
+      return displayLanguage && displayFavorite;
     });
 
     this.submissions.sort((a: Submission, b: Submission) => {
