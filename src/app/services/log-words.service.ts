@@ -1,9 +1,9 @@
-import { Injectable } from '@angular/core';
-import { CountEntity, Project, WordLog } from "../project/project.model";
-import { ProjectService } from "../project/project.service";
-import { DataStorageService } from "./data-storage.service";
+import {Injectable} from '@angular/core';
+import {CountEntity, Project, WordLog} from "../project/project.model";
+import {ProjectService} from "../project/project.service";
+import {DataStorageService} from "./data-storage.service";
 import Utils from "../helpers/utils";
-import { Subproject } from "../project/subproject/subproject.model";
+import {Subproject} from "../project/subproject/subproject.model";
 
 @Injectable({
   providedIn: 'root'
@@ -56,9 +56,11 @@ export class LogWordsService {
     project.currentCount -= log.words;
     this.projectService.editProject(project.id!, project);
 
-    let user = this.dataStorageService.user;
-    user.wordLogs = this.addWordsToLog(user.wordLogs, log.date, -log.words);
-    user.wordLogs = Utils.repairWordLogs(user.wordLogs);
-    this.dataStorageService.editUser(user.id!, user);
+    if (project.countEntity === CountEntity.words) {
+      let user = this.dataStorageService.user;
+      user.wordLogs = this.addWordsToLog(user.wordLogs, log.date, -log.words);
+      user.wordLogs = Utils.repairWordLogs(user.wordLogs);
+      this.dataStorageService.editUser(user.id!, user);
+    }
   }
 }
