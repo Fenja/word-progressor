@@ -5,7 +5,7 @@ import firebase from "firebase/compat/app";
 import auth = firebase.auth;
 import { AngularFirestore, AngularFirestoreDocument } from "@angular/fire/compat/firestore";
 import { AngularFireAuth } from "@angular/fire/compat/auth";
-import { BehaviorSubject, Subscription } from "rxjs";
+import { BehaviorSubject, of, Subscription } from "rxjs";
 import { SnackbarService } from "../services/snackbar.service";
 import { TranslationService } from "../translation/translation.service";
 
@@ -178,4 +178,11 @@ export class AuthService implements OnDestroy {
     this.errorMsgKey = undefined;
   }
 
+  getAuthToken() {
+    return this.$userToken.value;
+  }
+
+  refreshToken() {
+    return of(firebase.auth().currentUser?.getIdToken(true));
+  }
 }

@@ -6,4 +6,16 @@
   </mat-drawer>
 </mat-drawer-container>
 
+<ng-template
+  cdkConnectedOverlay
+  [cdkConnectedOverlayOpen]="isOffline"
+  [cdkConnectedOverlayHasBackdrop]="true"
+>
+  <mat-card class="fullscreen-overlay">
+    <mat-card-content class="content">
+      {{ 'msg_offline' | translate }}
+    </mat-card-content>
+  </mat-card>
+</ng-template>
+
 <router-outlet></router-outlet>

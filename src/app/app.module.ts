@@ -96,6 +96,8 @@ import {
 import {
   SubmissionReportDialogComponent
 } from "./submissions/submission-report-dialog/submission-report-dialog.component";
+import { OnlineStatusModule } from "ngx-online-status";
+import {OverlayModule} from "@angular/cdk/overlay";
 
 @NgModule({
   declarations: [
@@ -152,47 +154,49 @@ import {
     SubmissionSelectDialogComponent,
     SubmissionReportDialogComponent,
   ],
-    imports: [
-        AngularFireModule.initializeApp(environment.FIREBASE_CONFIG),
-        AngularFirestoreModule,
-        AngularFireAuthModule,
+  imports: [
+    AngularFireModule.initializeApp(environment.FIREBASE_CONFIG),
+    AngularFirestoreModule,
+    AngularFireAuthModule,
 
-        AppRoutingModule,
-        BrowserModule.withServerTransition({ appId: 'serverApp' }),
-        BrowserAnimationsModule,
-        MatCardModule,
-        MatProgressBarModule,
-        MatMenuModule,
-        MatButtonModule,
-        MatTabsModule,
-        RouterModule,
-        MatTableModule,
-        MatFormFieldModule,
-        MatDatepickerModule,
-        MatNativeDateModule,
-        MatSelectModule,
-        MatInputModule,
-        FormsModule,
-        MatToolbarModule,
-        MatIconModule,
-        MatDialogModule,
-        HttpClientModule,
-        MatProgressSpinnerModule,
-        MatCheckboxModule,
-        MatTooltipModule,
-        ReactiveFormsModule,
-        MatSnackBarModule,
-        MatListModule,
-        MatSidenavModule,
-        MatSlideToggleModule,
-        ServiceWorkerModule.register('ngsw-worker.js', {
-            enabled: environment.production,
-            // Register the ServiceWorker as soon as the app is stable
-            // or after 30 seconds (whichever comes first).
-            registrationStrategy: 'registerWhenStable:30000'
-        }),
-        MatAutocompleteModule,
-    ],
+    AppRoutingModule,
+    BrowserModule.withServerTransition({appId: 'serverApp'}),
+    BrowserAnimationsModule,
+    MatCardModule,
+    MatProgressBarModule,
+    MatMenuModule,
+    MatButtonModule,
+    MatTabsModule,
+    RouterModule,
+    MatTableModule,
+    MatFormFieldModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatSelectModule,
+    MatInputModule,
+    FormsModule,
+    MatToolbarModule,
+    MatIconModule,
+    MatDialogModule,
+    HttpClientModule,
+    MatProgressSpinnerModule,
+    MatCheckboxModule,
+    MatTooltipModule,
+    ReactiveFormsModule,
+    MatSnackBarModule,
+    MatListModule,
+    MatSidenavModule,
+    MatSlideToggleModule,
+    ServiceWorkerModule.register('ngsw-worker.js', {
+      enabled: environment.production,
+      // Register the ServiceWorker as soon as the app is stable
+      // or after 30 seconds (whichever comes first).
+      registrationStrategy: 'registerWhenStable:30000'
+    }),
+    MatAutocompleteModule,
+    OnlineStatusModule,
+    OverlayModule,
+  ],
   providers: [
     AuthGuard,
     MatDatepickerModule,

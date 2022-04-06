@@ -317,6 +317,7 @@ export class TranslationService {
         msg_delete_log: 'Diesen Eintrag wirklich löschen?',
         msg_delete_note: 'Diese Notiz wirklich löschen?',
         msg_submission_report_send: 'Ausschreibung erfolgreich eingereicht',
+        msg_offline: 'Du bist offline.\nBitte stelle eine Internetverbindung her, um den WordProgressor nutzen zu können',
 
         text_anonymous_dialog: `Wenn der WordProgressor ohne Konto genutzt wird, werden die Daten lokal gespeichert.\n
             Sie können dann weder synchronisiert, noch von einem anderen Gerät aus abgerufen werden.\n
@@ -634,6 +635,7 @@ export class TranslationService {
         msg_delete_log: 'Do you want to delete this log?',
         msg_delete_note: 'Do you want to delete this note?',
         msg_submission_report_send: 'Submission successfully reported',
+        msg_offline: 'You are offline.\nPlease connect to the internet to use the WordProgressor.',
 
         text_anonymous_dialog: `When using the WordProgressor without an account, your data is stored locally.\n
             You won't be able to sync them or access them from another access point.\n
