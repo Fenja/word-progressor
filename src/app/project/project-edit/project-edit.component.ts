@@ -191,6 +191,10 @@ export class ProjectEditComponent implements OnInit {
     });
   }
 
+  removeSubmission() {
+    this.project.submission = undefined;
+  }
+
   genres = [
     this.translationService.translate('genre_fantasy'),
     this.translationService.translate('genre_scifi'),

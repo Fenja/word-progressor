@@ -192,6 +192,10 @@
   <div>
     <mat-form-field color="primary" class="input--with-icon">
       <mat-label>{{ 'label_submission' | translate }}</mat-label>
+      <mat-icon
+        *ngIf="project.submission"
+        matTooltip="{{ 'tooltip_submission_link' | translate }}"
+      >link</mat-icon>
       <input
         matInput
         type="text"
@@ -206,11 +210,22 @@
       mat-icon-button
       name="menu"
       aria-label="Select Submission"
+      matTooltip="{{ 'tooltip_submission_search' | translate }}"
       (click)="selectSubmission()"
     >
       <mat-icon>search</mat-icon>
     </button>
-    <mat-icon *ngIf="project.submission">link</mat-icon>
+    <button
+      *ngIf="project.submission"
+      type="button"
+      mat-icon-button
+      name="delete"
+      aria-label="Delete Submission"
+      matTooltip="{{ 'tooltip_submission_remove' | translate }}"
+      (click)="removeSubmission()"
+    >
+      <mat-icon>delete</mat-icon>
+    </button>
   </div>
 
   <div>

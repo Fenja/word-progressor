@@ -223,7 +223,10 @@ export class TranslationService {
         tooltip_project: 'zum Project',
         tooltip_submitted: 'eingereicht',
         tooltip_passed_submissions: 'beendete Ausschreibungen',
-        tooltip_language: 'Spache',
+        tooltip_language: 'Sprache',
+        tooltip_submission_link: 'Ausschreibung verlinkt',
+        tooltip_submission_search: 'Ausschreibung suchen',
+        tooltip_submission_remove: 'Link zur Ausschreibung entfernen',
 
         headline_word_count: 'Wortzahl',
         headline_total: 'Gesamt',
@@ -542,6 +545,9 @@ export class TranslationService {
         tooltip_submitted: 'submitted',
         tooltip_passed_submissions: 'passed submissions',
         tooltip_language: 'Language',
+        tooltip_submission_link: 'Submission is linked',
+        tooltip_submission_search: 'Search for submission',
+        tooltip_submission_remove: 'Remove link to submission',
 
         headline_word_count: 'Word Count',
         headline_total: 'Total',
