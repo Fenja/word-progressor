@@ -5,6 +5,7 @@ import {Subscription} from "rxjs";
 import {UserService} from "../../services/user.service";
 import {Settings} from "../../auth/user.model";
 import Utils from "../../helpers/utils";
+import {filter} from "rxjs/operators";
 
 @Component({
   selector: 'app-project-list',
@@ -37,16 +38,19 @@ export class ProjectListComponent implements OnDestroy {
     }
     this.subscriptions.push( this.userService.$filterChange.subscribe(() => this._filterProjects()));
 
-    this.subscriptions.push( this.projectService.projectList.subscribe(projects => {
+    this.subscriptions.push( this.projectService.projectList
+      .pipe(filter(projects => !!projects))
+      .subscribe(projects => {
         this.allProjects = projects;
         this._filterProjects();
-        this.isLoading = false;
       }
     ));
 
     this.subscriptions.push( this.userService.getUser().subscribe(user => {
       if (user && user.settings) this.settings = user.settings;
-    }))
+    }));
+
+    this.isLoading = false;
   }
 
   ngOnDestroy(): void {

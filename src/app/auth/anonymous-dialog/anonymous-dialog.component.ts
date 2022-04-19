@@ -22,6 +22,6 @@ export class AnonymousDialog {
   proceed() {
     this.authService.isAnonymous = true;
     this.close();
-    this.router.navigate(['/projects']).then();
+    this.router.navigate(['/dashboard']).then();
   }
 }

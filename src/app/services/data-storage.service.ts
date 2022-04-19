@@ -56,8 +56,12 @@ export class DataStorageService {
   }
 
   _fetchProjectsFromStorage() {
-    const projects: Project[] = JSON.parse(<string>localStorage.getItem('projects'));
-    if (projects) this.projects = projects;
+    let projects: Project[] = JSON.parse(<string>localStorage.getItem('projects'));
+    if (!projects) {
+      projects = [];
+      localStorage.setItem('projects','[]');
+    }
+    this.projects = projects;
     this.projectList.next(this.projects.slice());
   }
 
@@ -177,6 +181,7 @@ export class DataStorageService {
       lastLogin: new Date(),
       settings: Utils.getDefaultSettings(),
     };
+    this.editUser(this.user.id!, this.user);
   }
 
   _fetchUserFromStorage() {

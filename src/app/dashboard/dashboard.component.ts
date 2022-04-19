@@ -1,15 +1,16 @@
-import {Component, HostListener, OnDestroy} from '@angular/core';
+import {Component, HostListener, OnDestroy, OnInit} from '@angular/core';
 import {CountEntity, Project, ProjectState, ProjectType, WordLog} from "../project/project.model";
 import {ProjectService} from "../project/project.service";
 import {UserService} from "../services/user.service";
 import {Subscription} from "rxjs";
 import Utils from "../helpers/utils";
+import {filter} from "rxjs/operators";
 
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html'
 })
-export class DashboardComponent implements OnDestroy {
+export class DashboardComponent implements OnInit, OnDestroy {
 
   isLoading = true;
 
@@ -42,9 +43,15 @@ export class DashboardComponent implements OnDestroy {
   constructor(
     private projectService: ProjectService,
     private userService: UserService,
-  ) {
+  ) { }
+
+  ngOnInit() {
     this.wips = this.projectService.getProjects().filter(p => p.isWorkInProgress);
-    this.subscriptions.push( this.projectService.projectList.subscribe(projects => {
+    this.subscriptions.push( this.projectService.projectList
+      .pipe(
+        filter((projects: Project[]) => !!projects && projects.length > 0)
+      )
+      .subscribe(projects => {
       this.wips = projects.filter(p => p.isWorkInProgress);
       projects.forEach(project => {
         project.subprojects?.filter(s => {
