@@ -43,4 +43,10 @@ export class BarchartComponent implements OnInit {
     })
   }
 
+  isTextTurned(): boolean {
+    return (window.innerWidth / this.wordLogs.length) < 60;
+  }
+
+  screenWidht() {return window.innerWidth}
+
 }
