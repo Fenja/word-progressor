@@ -78,3 +78,13 @@
      >
     {{ 'label_settings' | translate }}
   </a>
+
+  <a
+     routerLink="/privacy_policy"
+     routerLinkActive="mat-accent"
+     data-testid="privacy-policy-button"
+     class="mat-link xs-only"
+     (click)="onSidenavClose()"
+     >
+    {{ 'label_privacy_policy' | translate }}
+  </a>

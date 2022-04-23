@@ -2,11 +2,16 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
+  <meta content="IE=Edge" http-equiv="X-UA-Compatible">
   <title>WordProgressor</title>
+  <link rel="manifest" href="manifest.webmanifest">
+
   <meta http-equiv="Content-Language" content="en,de">
   <meta name="description" content="Track the progress of your writing projects. Add your work in progress - novels, short stories, any texts - set goals for projects and daily writing and search for submissions to enter."></meta>
   <meta name="keywords" content="writing, write, submission, short story, novel, tracking, progress, word count, habit"></meta>
-  <base href="/">
+  <meta property="og:image" content="assets/wordprogressor.png"></meta>
+
+  <base href="./">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="assets/wordprogressor.png">
   <link rel="apple-touch-icon" href="favicon.ico">
@@ -14,8 +19,12 @@
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&amp;display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
-  <link rel="manifest" href="manifest.webmanifest">
-  <meta name="theme-color" content="#673ab7">
+  <!-- iOS meta tags & icons -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="apple-mobile-web-app-title" content="WordProgressor">
+  <link rel="apple-touch-icon" href="assets/icons/icon-192x192.png">
+
 </head>
 <body class="mat-typography mat-app-background" style="margin: 0; font: 400 14px / 20px Roboto, 'Helvetica Neue', sans-serif;">
   <app-root>
@@ -51,6 +60,8 @@
   </app-root>
   <noscript>Please enable JavaScript to continue using this application.</noscript>
   <noscript>Bitte aktiviere JavaScript um diese Anwendung nutzen zu können.</noscript>
+
+  <script type="text/javascript" src="cordova.js"></script>
 
   <!--<script src="app.js" async></script>-->
   <script>
