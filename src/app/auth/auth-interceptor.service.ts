@@ -54,7 +54,7 @@ export class AuthInterceptorService implements HttpInterceptor {
       return this.authService.refreshToken().pipe(
         tap(() => {
           this.refreshTokenInProgress = false;
-          this.tokenRefreshedSource.next();
+          //this.tokenRefreshedSource.next();
         }));
         /*catchError(e => {
           this.refreshTokenInProgress = false;

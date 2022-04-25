@@ -2,12 +2,12 @@ import {Injectable, NgZone, OnDestroy} from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { Router } from "@angular/router";
 import firebase from "firebase/compat/app";
-import auth = firebase.auth;
 import { AngularFirestore, AngularFirestoreDocument } from "@angular/fire/compat/firestore";
 import { AngularFireAuth } from "@angular/fire/compat/auth";
 import { BehaviorSubject, of, Subscription } from "rxjs";
 import { SnackbarService } from "../services/snackbar.service";
 import { TranslationService } from "../translation/translation.service";
+import { getAuth, getRedirectResult, signInWithRedirect, GoogleAuthProvider } from "@angular/fire/auth";
 
 @Injectable({ providedIn: 'root' })
 export class AuthService implements OnDestroy {
@@ -18,6 +18,8 @@ export class AuthService implements OnDestroy {
   $userToken = new BehaviorSubject<string>('');
   private checkForVerifiedInterval: any;
   public errorMsgKey: string | undefined;
+
+  provider = new GoogleAuthProvider();
 
   constructor(
     private http: HttpClient,
@@ -128,12 +130,21 @@ export class AuthService implements OnDestroy {
   // Sign in with Google
   GoogleAuth() {
     this._clearErrors();
-    return this.AuthLogin(new auth.GoogleAuthProvider());
+    return this.AuthLogin();
   }
 
   // Auth logic to run auth providers
-  AuthLogin(provider: auth.GoogleAuthProvider) {
-    return this.afAuth.signInWithPopup(provider)
+  AuthLogin() {
+    const auth = getAuth();
+    return signInWithRedirect(auth, new GoogleAuthProvider())
+      .then(() => {
+        return getRedirectResult(auth);
+      })
+      .then((result )=> {
+        const credential = GoogleAuthProvider.credentialFromResult(result!);
+        const token = credential?.accessToken;
+        const user = result?.user;
+      })
       .catch(() => {
         this.errorMsgKey = 'error_google_auth_failed';
       })

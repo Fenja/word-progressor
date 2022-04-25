@@ -12,7 +12,17 @@
   "cordova": {
     "plugins": {
       "cordova-plugin-whitelist": {},
-      "cordova-plugin-device": {}
+      "cordova-plugin-device": {},
+      "cordova-plugin-buildinfo": {},
+      "cordova-universal-links-plugin": {},
+      "cordova-plugin-browsertab": {},
+      "cordova-plugin-inappbrowser": {},
+      "cordova-plugin-customurlscheme": {
+        "URL_SCHEME": "com.firebase.cordova",
+        "ANDROID_SCHEME": " ",
+        "ANDROID_HOST": " ",
+        "ANDROID_PATHPREFIX": "/"
+      }
     },
     "platforms": [
       "ios",
@@ -48,8 +58,15 @@
     "angular-moment": "^1.3.0",
     "angular-sanitize": "^1.8.3",
     "build-tools": "^2.1.1",
+    "cordova": "^11.0.0",
     "cordova-ios": "^6.2.0",
+    "cordova-plugin-browsertab": "0.2.0",
+    "cordova-plugin-buildinfo": "4.0.0",
+    "cordova-plugin-compat": "1.2.0",
+    "cordova-plugin-customurlscheme": "5.0.2",
+    "cordova-plugin-inappbrowser": "5.0.0",
     "cordova-plugin-whitelist": "^1.3.4",
+    "cordova-universal-links-plugin-fix": "1.2.1",
     "firebase": "^9.6.11",
     "moment": "^2.29.3",
     "ngx-online-status": "^1.0.1",

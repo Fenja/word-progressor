@@ -50,5 +50,14 @@
 		<key>NSAllowsArbitraryLoads</key>
 		<true/>
 	</dict>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>com.firebase.cordova</string>
+			</array>
+		</dict>
+	</array>
 </dict>
 </plist>
