@@ -98,6 +98,7 @@ import {
 } from "./submissions/submission-report-dialog/submission-report-dialog.component";
 import { OnlineStatusModule } from "ngx-online-status";
 import {OverlayModule} from "@angular/cdk/overlay";
+import {CitationComponent} from "./dashboard/citations/citation.component";
 
 @NgModule({
   declarations: [
@@ -153,6 +154,7 @@ import {OverlayModule} from "@angular/cdk/overlay";
     PagenotfoundComponent,
     SubmissionSelectDialogComponent,
     SubmissionReportDialogComponent,
+    CitationComponent,
   ],
   imports: [
     AngularFireModule.initializeApp(environment.FIREBASE_CONFIG),
