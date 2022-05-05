@@ -42,6 +42,14 @@
         <param name="ios-package" value="CDVWKInAppBrowser" />
         <param name="onload" value="true" />
     </feature>
+    <feature name="FirebaseAnalytics">
+        <param name="ios-package" value="FirebaseAnalyticsPlugin" />
+        <param name="onload" value="true" />
+    </feature>
+    <feature name="FirebaseMessaging">
+        <param name="ios-package" value="FirebaseMessagingPlugin" />
+        <param name="onload" value="true" />
+    </feature>
     <name>WordProgressor</name>
     <description>
         A sample Apache Cordova application that responds to the deviceready event.
@@ -65,7 +73,6 @@
     </universal-links>
     <allow-intent href="itms:*" />
     <allow-intent href="itms-apps:*" />
-    <preference name="AutoHideSplashScreen" value="true" />
     <preference name="AllowInlineMediaPlayback" value="false" />
     <preference name="BackupWebStorage" value="cloud" />
     <preference name="DisallowOverscroll" value="false" />
@@ -79,4 +86,5 @@
     <preference name="PageLength" value="0" />
     <preference name="PaginationBreakingMode" value="page" />
     <preference name="PaginationMode" value="unpaginated" />
+    <preference name="AutoHideSplashScreen" value="true" />
 </widget>

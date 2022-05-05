@@ -24,6 +24,7 @@
 		6D9C9EDFD68B424AB9AFA89D /* CDVWKInAppBrowserUIDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 20D714F70FC544449F9B3BAD /* CDVWKInAppBrowserUIDelegate.m */; };
 		70610E6FB7E640CA8EE1E57C /* CULXmlTags.m in Sources */ = {isa = PBXBuildFile; fileRef = 8ABD8783B90B4EE9A6E84649 /* CULXmlTags.m */; };
 		7870767CA7084F28B65BC93D /* WordProgressor.entitlements in Resources */ = {isa = PBXBuildFile; fileRef = 8DD44B5580A848EDBA534E2A /* WordProgressor.entitlements */; };
+		81353F515EAEF1B31B731BF5 /* libPods-WordProgressor.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F82A5BA352C9D6249ECE369 /* libPods-WordProgressor.a */; };
 		91922BC9D66E43EA90D5F681 /* CDVInAppBrowserNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2EA8445638D84F45AE2DF309 /* CDVInAppBrowserNavigationController.m */; };
 		92501DE421E04E99A11B8F61 /* SafariServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 16B0FA1507DA488794206EDA /* SafariServices.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		A34E7404F03742A48C780C20 /* AppDelegate+CULPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CB229969F1349B2A335A982 /* AppDelegate+CULPlugin.m */; };
@@ -33,6 +34,9 @@
 		CF8EA46E1A7343FC8797D36A /* NSBundle+CULPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 2681C498320841288856E3FB /* NSBundle+CULPlugin.m */; };
 		D284EB772FFB4EB3BB9F79AE /* CDVInvokedUrlCommand+CULPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 461944D14839485FA761328B /* CDVInvokedUrlCommand+CULPlugin.m */; };
 		F1B453F0DEDE4ABA86FF20F9 /* CDVBuildInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 68EB936C72EB4B86A4A65DD1 /* CDVBuildInfo.m */; };
+		67DAA3C628494F6AAADED662 /* FirebaseAnalyticsPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E079D382FDB45D4B146F7EC /* FirebaseAnalyticsPlugin.m */; };
+		52CB60B10F5A44E69743B7B2 /* AppDelegate+FirebaseMessagingPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = EEA6256929A7474F9F795367 /* AppDelegate+FirebaseMessagingPlugin.m */; };
+		A8B00303013C4079AA8FAD8F /* FirebaseMessagingPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 93C1C6C807DD4EFF85B6EB61 /* FirebaseMessagingPlugin.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -97,11 +101,14 @@
 		8D1107310486CEB800E47090 /* WordProgressor-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "WordProgressor-Info.plist"; path = "WordProgressor/WordProgressor-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = SOURCE_ROOT; };
 		8DD44B5580A848EDBA534E2A /* WordProgressor.entitlements */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; path = WordProgressor.entitlements; sourceTree = "<group>"; };
 		8F6CA0E437A94CFAB3599545 /* CDVInvokedUrlCommand+CULPlugin.h */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.h; name = "CDVInvokedUrlCommand+CULPlugin.h"; path = "cordova-universal-links-plugin/JS/CDVInvokedUrlCommand+CULPlugin.h"; sourceTree = "<group>"; };
+		8F82A5BA352C9D6249ECE369 /* libPods-WordProgressor.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-WordProgressor.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		91C357FD384649ABB26764CB /* CDVWKInAppBrowser.h */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.h; name = CDVWKInAppBrowser.h; path = "cordova-plugin-inappbrowser/CDVWKInAppBrowser.h"; sourceTree = "<group>"; };
 		94133B61323545A7B8ED7D82 /* CDVDevice.m */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.objc; name = CDVDevice.m; path = "cordova-plugin-device/CDVDevice.m"; sourceTree = "<group>"; };
 		9CB229969F1349B2A335A982 /* AppDelegate+CULPlugin.m */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.objc; name = "AppDelegate+CULPlugin.m"; path = "cordova-universal-links-plugin/AppDelegate+CULPlugin.m"; sourceTree = "<group>"; };
 		AB25FBA35F0740DDB1DB4957 /* CDVWKInAppBrowserUIDelegate.h */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.h; name = CDVWKInAppBrowserUIDelegate.h; path = "cordova-plugin-inappbrowser/CDVWKInAppBrowserUIDelegate.h"; sourceTree = "<group>"; };
+		ABDF8CDA8AF129CF8DA092BE /* Pods-WordProgressor.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WordProgressor.debug.xcconfig"; path = "Target Support Files/Pods-WordProgressor/Pods-WordProgressor.debug.xcconfig"; sourceTree = "<group>"; };
 		ACB48BABF8E34F9E914A023F /* CDVPluginResult+CULPlugin.h */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.h; name = "CDVPluginResult+CULPlugin.h"; path = "cordova-universal-links-plugin/JS/CDVPluginResult+CULPlugin.h"; sourceTree = "<group>"; };
+		B94210144056953D9810ECA1 /* Pods-WordProgressor.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WordProgressor.release.xcconfig"; path = "Target Support Files/Pods-WordProgressor/Pods-WordProgressor.release.xcconfig"; sourceTree = "<group>"; };
 		C8F7843853DE4AC2A3EC8B25 /* CULPath.m */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.objc; name = CULPath.m; path = "cordova-universal-links-plugin/Model/CULPath.m"; sourceTree = "<group>"; };
 		C99158FF4FA348B6A93614F9 /* CULConfigJsonParser.h */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.h; name = CULConfigJsonParser.h; path = "cordova-universal-links-plugin/Parser/JSON/CULConfigJsonParser.h"; sourceTree = "<group>"; };
 		D90A2940583E41729C976B81 /* CDVInAppBrowserOptions.h */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.h; name = CDVInAppBrowserOptions.h; path = "cordova-plugin-inappbrowser/CDVInAppBrowserOptions.h"; sourceTree = "<group>"; };
@@ -116,6 +123,12 @@
 		F840E1F0165FE0F500CFE078 /* config.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = config.xml; path = WordProgressor/config.xml; sourceTree = "<group>"; };
 		F99E46EDC13B43DBAB35D034 /* CDVPluginResult+CULPlugin.m */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.objc; name = "CDVPluginResult+CULPlugin.m"; path = "cordova-universal-links-plugin/JS/CDVPluginResult+CULPlugin.m"; sourceTree = "<group>"; };
 		FFC9A4D64E8640D3BB5A0BCB /* CDVDevice.h */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.h; name = CDVDevice.h; path = "cordova-plugin-device/CDVDevice.h"; sourceTree = "<group>"; };
+		4E079D382FDB45D4B146F7EC /* FirebaseAnalyticsPlugin.m */ = {isa = PBXFileReference; name = "FirebaseAnalyticsPlugin.m"; path = "cordova-plugin-firebase-analytics/FirebaseAnalyticsPlugin.m"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; explicitFileType = undefined; includeInIndex = 0; };
+		BC5D5D3AC74A4A81BEA67319 /* FirebaseAnalyticsPlugin.h */ = {isa = PBXFileReference; name = "FirebaseAnalyticsPlugin.h"; path = "cordova-plugin-firebase-analytics/FirebaseAnalyticsPlugin.h"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; explicitFileType = undefined; includeInIndex = 0; };
+		EEA6256929A7474F9F795367 /* AppDelegate+FirebaseMessagingPlugin.m */ = {isa = PBXFileReference; name = "AppDelegate+FirebaseMessagingPlugin.m"; path = "cordova-plugin-firebase-messaging/AppDelegate+FirebaseMessagingPlugin.m"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; explicitFileType = undefined; includeInIndex = 0; };
+		93C1C6C807DD4EFF85B6EB61 /* FirebaseMessagingPlugin.m */ = {isa = PBXFileReference; name = "FirebaseMessagingPlugin.m"; path = "cordova-plugin-firebase-messaging/FirebaseMessagingPlugin.m"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; explicitFileType = undefined; includeInIndex = 0; };
+		D6DC322D13714C8A90461AE6 /* AppDelegate+FirebaseMessagingPlugin.h */ = {isa = PBXFileReference; name = "AppDelegate+FirebaseMessagingPlugin.h"; path = "cordova-plugin-firebase-messaging/AppDelegate+FirebaseMessagingPlugin.h"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; explicitFileType = undefined; includeInIndex = 0; };
+		6F6563FB6DA144F8B9F35636 /* FirebaseMessagingPlugin.h */ = {isa = PBXFileReference; name = "FirebaseMessagingPlugin.h"; path = "cordova-plugin-firebase-messaging/FirebaseMessagingPlugin.h"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -125,6 +138,7 @@
 			files = (
 				301BF552109A68D80062928A /* libCordova.a in Frameworks */,
 				92501DE421E04E99A11B8F61 /* SafariServices.framework in Frameworks */,
+				81353F515EAEF1B31B731BF5 /* libPods-WordProgressor.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -152,7 +166,7 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
+		29B97314FDCFA39411CA2CEA = {
 			isa = PBXGroup;
 			children = (
 				EB87FDF41871DAF40020F90C /* config.xml */,
@@ -165,6 +179,7 @@
 				29B97317FDCFA39411CA2CEA /* Resources */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
+				7803BF03199E5A0C2C69EDCE /* Pods */,
 			);
 			name = CustomTemplate;
 			sourceTree = "<group>";
@@ -197,6 +212,7 @@
 			isa = PBXGroup;
 			children = (
 				16B0FA1507DA488794206EDA /* SafariServices.framework */,
+				8F82A5BA352C9D6249ECE369 /* libPods-WordProgressor.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -257,10 +273,26 @@
 				464F26420E914958A77F35F4 /* CDVInAppBrowserNavigationController.h */,
 				91C357FD384649ABB26764CB /* CDVWKInAppBrowser.h */,
 				AB25FBA35F0740DDB1DB4957 /* CDVWKInAppBrowserUIDelegate.h */,
+				4E079D382FDB45D4B146F7EC /* FirebaseAnalyticsPlugin.m */,
+				BC5D5D3AC74A4A81BEA67319 /* FirebaseAnalyticsPlugin.h */,
+				EEA6256929A7474F9F795367 /* AppDelegate+FirebaseMessagingPlugin.m */,
+				93C1C6C807DD4EFF85B6EB61 /* FirebaseMessagingPlugin.m */,
+				D6DC322D13714C8A90461AE6 /* AppDelegate+FirebaseMessagingPlugin.h */,
+				6F6563FB6DA144F8B9F35636 /* FirebaseMessagingPlugin.h */,
 			);
 			name = Plugins;
 			path = WordProgressor/Plugins;
 			sourceTree = SOURCE_ROOT;
+		};
+		7803BF03199E5A0C2C69EDCE /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				ABDF8CDA8AF129CF8DA092BE /* Pods-WordProgressor.debug.xcconfig */,
+				B94210144056953D9810ECA1 /* Pods-WordProgressor.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
 		};
 		EB87FDF11871DA420020F90C /* Staging */ = {
 			isa = PBXGroup;
@@ -278,6 +310,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "WordProgressor" */;
 			buildPhases = (
+				33E483064AA67CE6DE78571D /* [CP] Check Pods Manifest.lock */,
 				304B58A110DAC018002A0835 /* Copy www directory */,
 				1D60588D0D05DD3D006BFB54 /* Resources */,
 				1D60588E0D05DD3D006BFB54 /* Sources */,
@@ -309,7 +342,8 @@
 				en,
 				Base,
 			);
-			mainGroup = 29B97314FDCFA39411CA2CEA /* CustomTemplate */;
+			mainGroup = 29B97314FDCFA39411CA2CEA;
+			productRefGroup = 19C28FACFE9D520D11CA2CBB /* Products */;
 			projectDirPath = "";
 			projectReferences = (
 				{
@@ -371,6 +405,28 @@
 			shellScript = "\"$SRCROOT/WordProgressor/Scripts/copy-www-build-step.sh\"";
 			showEnvVarsInLog = 0;
 		};
+		33E483064AA67CE6DE78571D /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-WordProgressor-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -398,6 +454,9 @@
 				91922BC9D66E43EA90D5F681 /* CDVInAppBrowserNavigationController.m in Sources */,
 				34E0742538EF42CF8FD6BC4E /* CDVWKInAppBrowser.m in Sources */,
 				6D9C9EDFD68B424AB9AFA89D /* CDVWKInAppBrowserUIDelegate.m in Sources */,
+				67DAA3C628494F6AAADED662 /* FirebaseAnalyticsPlugin.m in Sources */,
+				52CB60B10F5A44E69743B7B2 /* AppDelegate+FirebaseMessagingPlugin.m in Sources */,
+				A8B00303013C4079AA8FAD8F /* FirebaseMessagingPlugin.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -420,7 +479,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
-				CODE_SIGN_ENTITLEMENTS = "WordProgressor/Resources/WordProgressor.entitlements";
+				CODE_SIGN_ENTITLEMENTS = WordProgressor/Resources/WordProgressor.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
@@ -450,7 +509,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
-				CODE_SIGN_ENTITLEMENTS = "WordProgressor/Resources/WordProgressor.entitlements";
+				CODE_SIGN_ENTITLEMENTS = WordProgressor/Resources/WordProgressor.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = YES;
@@ -494,7 +553,7 @@
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_ENTITLEMENTS = "WordProgressor/Resources/WordProgressor.entitlements";
+				CODE_SIGN_ENTITLEMENTS = WordProgressor/Resources/WordProgressor.entitlements;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = c99;
@@ -539,7 +598,7 @@
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_ENTITLEMENTS = "WordProgressor/Resources/WordProgressor.entitlements";
+				CODE_SIGN_ENTITLEMENTS = WordProgressor/Resources/WordProgressor.entitlements;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_NO_COMMON_BLOCKS = YES;

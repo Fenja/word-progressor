@@ -59,5 +59,13 @@
 			</array>
 		</dict>
 	</array>
+	<key>FIREBASE_ANALYTICS_COLLECTION_ENABLED</key>
+	<string>true</string>
+	<key>FirebaseAutomaticScreenReportingEnabled</key>
+	<string>true</string>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>remote-notification</string>
+	</array>
 </dict>
 </plist>

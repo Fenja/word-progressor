@@ -31,7 +31,25 @@
       "ANDROID_HOST": " ",
       "ANDROID_PATHPREFIX": "/",
       "PACKAGE_NAME": "com.erdbeerbeet.wordprogressor"
+    },
+    "cordova-plugin-firebase-messaging": {
+      "ANDROID_FIREBASE_MESSAGING_VERSION": "22.0.+",
+      "ANDROIDX_CORE_VERSION": "1.6.+",
+      "ANALYTICS_COLLECTION_ENABLED": "true",
+      "AUTOMATIC_SCREEN_REPORTING_ENABLED": "true",
+      "ANDROID_FIREBASE_ANALYTICS_VERSION": "19.0.+",
+      "PACKAGE_NAME": "com.erdbeerbeet.wordprogressor"
     }
   },
-  "dependent_plugins": {}
+  "dependent_plugins": {
+    "cordova-support-android-plugin": {
+      "PACKAGE_NAME": "com.erdbeerbeet.wordprogressor"
+    },
+    "cordova-plugin-firebase-analytics": {
+      "ANALYTICS_COLLECTION_ENABLED": "true",
+      "AUTOMATIC_SCREEN_REPORTING_ENABLED": "true",
+      "ANDROID_FIREBASE_ANALYTICS_VERSION": "19.0.+",
+      "PACKAGE_NAME": "com.erdbeerbeet.wordprogressor"
+    }
+  }
 }

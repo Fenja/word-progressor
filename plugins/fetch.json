@@ -64,5 +64,33 @@
     "variables": {
       "URL_SCHEME": "com.firebase.cordova"
     }
+  },
+  "cordova-plugin-firebase-messaging": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-plugin-firebase-messaging"
+    },
+    "is_top_level": true,
+    "variables": {
+      "IOS_FIREBASE_POD_VERSION": "~> 8.8.0",
+      "ANDROID_FIREBASE_MESSAGING_VERSION": "22.0.+",
+      "ANDROIDX_CORE_VERSION": "1.6.+"
+    }
+  },
+  "cordova-plugin-firebase-analytics": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-plugin-firebase-analytics@~6.1.0"
+    },
+    "is_top_level": false,
+    "variables": {}
+  },
+  "cordova-support-android-plugin": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-support-android-plugin@~1.0.0"
+    },
+    "is_top_level": false,
+    "variables": {}
   }
 }

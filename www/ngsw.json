@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1650879843890,
+  "timestamp": 1651775910163,
   "index": "/index.html",
   "assetGroups": [
     {
@@ -13,7 +13,7 @@
       "urls": [
         "/assets/wordprogressor.png",
         "/index.html",
-        "/main.59cef6be50cfb123.js",
+        "/main.bdbff95d05c3a31a.js",
         "/manifest.webmanifest",
         "/polyfills.e43ffc96a7559ab6.js",
         "/runtime.7e28dbb76af9c626.js",
@@ -49,7 +49,7 @@
   ],
   "dataGroups": [],
   "hashTable": {
-    "/assets/data/citations.json": "034febc3d0c2ee394c4cc27b3c093dd4623c1fe8",
+    "/assets/data/citations.json": "3a67e98511ff2d8e1f90f20e40abaacc224b2e50",
     "/assets/icons/icon-128x128.png": "db92c57819aeab9e995f05fdea917499dc6ff1be",
     "/assets/icons/icon-144x144.png": "cc040994057e2658f538d488992e090eab4b0e07",
     "/assets/icons/icon-152x152.png": "9b9c72fd25f1d992c68b7993842fea15c83b0445",
@@ -64,8 +64,8 @@
     "/assets/scripts/setEnv.ts": "44f5accc98b7c34676269a2efade8111869b0a1e",
     "/assets/wordprogressor.png": "7c1c660e7dcd45081d427eb4d7fd80a3de81208f",
     "/assets/wp_maskable.png": "d7e499f44ade91d456b718b17289a25d12d58f8b",
-    "/index.html": "451330a28fcc6c297d663521261ee34fba25939f",
-    "/main.59cef6be50cfb123.js": "b0d5a0ce899c8cefbe6597c75452fa55729999ec",
+    "/index.html": "cc9c50912d7365857734393d0d5d4994ec86f044",
+    "/main.bdbff95d05c3a31a.js": "f8f248e488e087e9c6982d6c84dfd5d2a4c0f45b",
     "/manifest.webmanifest": "a37c5d216b1e2b12f2a437f4e0b638f1a9fb2df0",
     "/polyfills.e43ffc96a7559ab6.js": "e9cddb72bad657e2906cdefa5ecfacc7217f9e15",
     "/runtime.7e28dbb76af9c626.js": "9666ecef43cf401134bc7c9dbbe3d8e118176f10",

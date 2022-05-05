@@ -30,7 +30,7 @@ export class AuthService implements OnDestroy {
     private snackbarService: SnackbarService,
     private translationService: TranslationService,
   ) {
-    this.afAuth.setPersistence(firebase.auth.Auth.Persistence.SESSION).then();
+    this.afAuth.setPersistence(firebase.auth.Auth.Persistence.LOCAL).then();
 
     this.subscription = this.afAuth.authState.subscribe(user => {
       if (user) {

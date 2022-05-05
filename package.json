@@ -22,6 +22,11 @@
         "ANDROID_SCHEME": " ",
         "ANDROID_HOST": " ",
         "ANDROID_PATHPREFIX": "/"
+      },
+      "cordova-plugin-firebase-messaging": {
+        "IOS_FIREBASE_POD_VERSION": "~> 8.8.0",
+        "ANDROID_FIREBASE_MESSAGING_VERSION": "22.0.+",
+        "ANDROIDX_CORE_VERSION": "1.6.+"
       }
     },
     "platforms": [
@@ -85,6 +90,9 @@
     "cordova-android": "^9.1.0",
     "cordova-browser": "^6.0.0",
     "cordova-plugin-device": "^2.1.0",
+    "cordova-plugin-firebase-analytics": "~6.1.0",
+    "cordova-plugin-firebase-messaging": "^6.1.2",
+    "cordova-support-android-plugin": "~1.0.0",
     "dotenv": "^16.0.0",
     "execa": "^6.1.0",
     "jasmine-core": "~4.1.0",

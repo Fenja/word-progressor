@@ -2,9 +2,9 @@
 <widget id="com.erdbeerbeet.wordprogressor" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>WordProgressor</name>
     <description>
-        A sample Apache Cordova application that responds to the deviceready event.
+        A home for your writing projects, stories, and ideas.
     </description>
-    <author email="dev@cordova.apache.org" href="http://cordova.io">
+    <author email="develop@erdbeerbeet.com" href="https://www.erdbeerbeet.com">
         Fenja Hanisch
     </author>
     <content src="index.html" />
@@ -17,10 +17,12 @@
     <allow-intent href="geo:*" />
     <platform name="android">
         <allow-intent href="market:*" />
+        <resource-file src="google-services.json" target="app/google-services.json" />
     </platform>
     <platform name="ios">
         <allow-intent href="itms:*" />
         <allow-intent href="itms-apps:*" />
+        <resource-file src="GoogleService-Info.plist" />
     </platform>
   <preference name="AutoHideSplashScreen" value="true" />
   <universal-links>

@@ -1,5 +1,21 @@
 {
     "declarations": {},
-    "sources": {},
-    "libraries": {}
+    "sources": {
+        "https://cdn.cocoapods.org/": {
+            "source": "https://cdn.cocoapods.org/",
+            "count": 2
+        }
+    },
+    "libraries": {
+        "Firebase/Analytics": {
+            "name": "Firebase/Analytics",
+            "spec": "~> 8.8.0",
+            "count": 1
+        },
+        "Firebase/Messaging": {
+            "name": "Firebase/Messaging",
+            "spec": "~> 8.8.0",
+            "count": 1
+        }
+    }
 }

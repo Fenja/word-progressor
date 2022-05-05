@@ -28,10 +28,20 @@
     "cordova-plugin-customurlscheme": {
       "URL_SCHEME": "com.firebase.cordova",
       "PACKAGE_NAME": "com.erdbeerbeet.wordprogressor"
+    },
+    "cordova-plugin-firebase-messaging": {
+      "ANALYTICS_COLLECTION_ENABLED": "true",
+      "AUTOMATIC_SCREEN_REPORTING_ENABLED": "true",
+      "PACKAGE_NAME": "com.erdbeerbeet.wordprogressor"
     }
   },
   "dependent_plugins": {
     "cordova-plugin-compat": {
+      "PACKAGE_NAME": "com.erdbeerbeet.wordprogressor"
+    },
+    "cordova-plugin-firebase-analytics": {
+      "ANALYTICS_COLLECTION_ENABLED": "true",
+      "AUTOMATIC_SCREEN_REPORTING_ENABLED": "true",
       "PACKAGE_NAME": "com.erdbeerbeet.wordprogressor"
     }
   }

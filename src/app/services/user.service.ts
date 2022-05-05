@@ -36,8 +36,9 @@ export class UserService {
   }
 
   isNewUser() {
-    // TODO created today/this week
-    return true;
+    const user = this.dataStorageService.user;
+    // TODO
+    return false;
   }
 
   toggleFavoriteSubmission(id: string, isFavorite: boolean) {

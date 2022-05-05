@@ -47,6 +47,22 @@ cordova.define('cordova/plugin_list', function(require, exports, module) {
       "clobbers": [
         "window.plugins.launchmyapp"
       ]
+    },
+    {
+      "id": "cordova-plugin-firebase-analytics.FirebaseAnalytics",
+      "file": "plugins/cordova-plugin-firebase-analytics/www/FirebaseAnalytics.js",
+      "pluginId": "cordova-plugin-firebase-analytics",
+      "merges": [
+        "cordova.plugins.firebase.analytics"
+      ]
+    },
+    {
+      "id": "cordova-plugin-firebase-messaging.FirebaseMessaging",
+      "file": "plugins/cordova-plugin-firebase-messaging/www/FirebaseMessaging.js",
+      "pluginId": "cordova-plugin-firebase-messaging",
+      "merges": [
+        "cordova.plugins.firebase.messaging"
+      ]
     }
   ];
   module.exports.metadata = {
@@ -56,6 +72,9 @@ cordova.define('cordova/plugin_list', function(require, exports, module) {
     "cordova-universal-links-plugin": "1.2.1",
     "cordova-plugin-browsertab": "0.2.0",
     "cordova-plugin-inappbrowser": "5.0.0",
-    "cordova-plugin-customurlscheme": "5.0.2"
+    "cordova-plugin-customurlscheme": "5.0.2",
+    "cordova-support-android-plugin": "1.0.2",
+    "cordova-plugin-firebase-analytics": "6.1.0",
+    "cordova-plugin-firebase-messaging": "6.1.2"
   };
 });

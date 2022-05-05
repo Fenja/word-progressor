@@ -26,10 +26,10 @@ export class CitationComponent {
     this.todaysCitation = CitationJson.find(citation => citation.id === '00'+todaysId.toString());
 
     const locale = this.translationService.getLocale();
-    if (locale == 'de' && !!this.todaysCitation.de && this.todaysCitation.de !== '...') {
+    /*if (locale == 'de' && !!this.todaysCitation.de && this.todaysCitation.de !== '...') {
       this.citation = this.todaysCitation.de;
-    } else {
+    } else {*/
       this.citation = this.todaysCitation.en;
-    }
+    //}
   }
 }

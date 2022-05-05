@@ -11,11 +11,15 @@
     <div *ngIf="settings.notifyDailyWriting">
       <mat-form-field>
         <mat-label>{{ 'label_remind_at' | translate }}</mat-label>
-        <input matInput type="time" [(ngModel)]="settings.timeDailyWriting">
+        <input
+          matInput
+          type="time"
+          color="primary"
+          [(ngModel)]="settings.timeDailyWriting">
       </mat-form-field>
     </div>
 
-    <div>
+    <!--<div>
       <h3>{{ 'headline_submission_reminder' | translate }}</h3>
       <mat-slide-toggle [(ngModel)]="settings.notifyDeadline">{{ 'label_submission_reminder' | translate }}</mat-slide-toggle>
     </div>
@@ -24,7 +28,7 @@
         <mat-label>{{ 'label_remind_days_ahead' | translate }}</mat-label>
         <input matInput type="text" [(ngModel)]="settings.daysBeforeDeadlineReminder">
       </mat-form-field>
-    </div>
+    </div>-->
 
   </mat-card-content>
   <mat-card-actions class="button-row">
