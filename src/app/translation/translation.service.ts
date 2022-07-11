@@ -202,6 +202,7 @@ export class TranslationService {
         label_submissions: 'Ausschreibungen',
         label_submission: 'Ausschreibung',
         label_link: 'Link',
+        label_next_submission_deadlines: 'Nächste Ausschreibungen',
 
         placeholder_working_title: 'Arbeitstitel',
         placeholder_blurb: 'Inhaltsangabe',
@@ -523,6 +524,7 @@ export class TranslationService {
         label_submissions: 'Submissions',
         label_submission: 'Submission',
         label_link: 'Link',
+        label_next_submission_deadlines: 'Next submissions',
 
         placeholder_working_title: 'Working Title',
         placeholder_blurb: 'Blurb',

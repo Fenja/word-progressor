@@ -5,6 +5,9 @@ import {UserService} from "../services/user.service";
 import {Subscription} from "rxjs";
 import Utils from "../helpers/utils";
 import {filter} from "rxjs/operators";
+import {Submission} from "../submissions/submission.model";
+import {SubmissionService} from "../submissions/submission.service";
+import {userData} from "../auth/user.model";
 
 @Component({
   selector: 'app-dashboard',
@@ -28,9 +31,13 @@ export class DashboardComponent implements OnInit, OnDestroy {
   lastMonthLogs: WordLog[] = [];
 
   projectsInState: Map<ProjectState,number> = new Map<ProjectState, number>();
+  projectsInSuperState: Map<ProjectState, number> = new Map<ProjectState, number>();
   projectsInType: Map<ProjectType,number> = new Map<ProjectType, number>();
   totalProjects: number = 0;
   totalWords: number = 0;
+
+  nextSubmissions: Submission[] = [];
+  currentlySubmitted: Project[] = [];
 
   @HostListener('window:beforeinstallprompt', ['$event'])
   onbeforeinstallprompt(e: any) {
@@ -43,6 +50,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   constructor(
     private projectService: ProjectService,
     private userService: UserService,
+    private submissionService: SubmissionService,
   ) { }
 
   ngOnInit() {
@@ -75,6 +83,8 @@ export class DashboardComponent implements OnInit, OnDestroy {
       if (this.wordGoalDaily) {
         this.metGoal = this.wordsToday >= this.wordGoalDaily;
       }
+
+      this._initSubmissionStats(u);
     }));
     this.isNewUser = this.userService.isNewUser();
     this.isLoading = false;
@@ -126,6 +136,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
   private _initProjectStats(projects: Project[]) {
     this.projectsInState = new Map<ProjectState, number>();
+    this.projectsInSuperState = new Map<ProjectState, number>();
     this.projectsInType = new Map<ProjectType, number>();
     projects.forEach(project => {
       let existingCount: number = this.projectsInState.get(project.state) ?? 0;
@@ -137,5 +148,57 @@ export class DashboardComponent implements OnInit, OnDestroy {
       this.totalProjects += 1;
       if (project.countEntity === CountEntity.words && project.currentCount) this.totalWords += project.currentCount;
     });
+
+    this.projectsInSuperState.set(
+      ProjectState.finished,
+      (this.projectsInState.get(ProjectState.finished) ?? 0) +
+      (this.projectsInState.get(ProjectState.submitted) ?? 0) +
+      (this.projectsInState.get(ProjectState.published) ?? 0)
+    );
+    this.projectsInSuperState.set(
+      ProjectState.idea,
+      (this.projectsInState.get(ProjectState.idea) ?? 0) +
+      (this.projectsInState.get(ProjectState.plan) ?? 0) +
+      (this.projectsInState.get(ProjectState.plot) ?? 0) +
+      (this.projectsInState.get(ProjectState.bunny) ?? 0)
+    );
+    this.projectsInSuperState.set(
+      ProjectState.draft_1,
+      (this.projectsInState.get(ProjectState.draft_1) ?? 0)
+    );
+    this.projectsInSuperState.set(
+      ProjectState.revise,
+      (this.projectsInState.get(ProjectState.draft_2) ?? 0) +
+      (this.projectsInState.get(ProjectState.draft_3) ?? 0) +
+      (this.projectsInState.get(ProjectState.revise) ?? 0) +
+      (this.projectsInState.get(ProjectState.edit) ?? 0)
+    );
+    this.projectsInSuperState.set(
+      ProjectState.wait,
+      (this.projectsInState.get(ProjectState.wait) ?? 0) +
+      (this.projectsInState.get(ProjectState.alpha) ?? 0) +
+      (this.projectsInState.get(ProjectState.beta) ?? 0) +
+      (this.projectsInState.get(ProjectState.edit) ?? 0)
+    );
+    this.projectsInSuperState.set(
+      ProjectState.abandon,
+      (this.projectsInState.get(ProjectState.abandon) ?? 0)
+    );
+  }
+
+  private _initSubmissionStats(user: userData) {
+    if (user.favorites) {
+      let favoriteSubmissions: Submission[] = [];
+      user.favorites.forEach(fav => {
+        let submission = this.submissionService.getSubmission(fav);
+        if (submission && !Utils.isInPast(submission.deadline)) favoriteSubmissions.push(submission);
+      });
+      favoriteSubmissions = favoriteSubmissions.sort((a: Submission, b: Submission) => {
+        let deadlineA = !!a.deadline ? new Date(a.deadline).getTime() : 0;
+        let deadlineB = !!b.deadline ? new Date(b.deadline).getTime() : 0;
+        return deadlineA - deadlineB;
+      });
+      this.nextSubmissions = favoriteSubmissions.slice(0,3);
+    }
   }
 }

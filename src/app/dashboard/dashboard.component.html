@@ -19,6 +19,18 @@
     </mat-card-content>
   </mat-card>
 
+  <mat-card *ngIf="nextSubmissions.length > 0" id="submissions" class="dashboard-item">
+    <mat-card-header class="dashboard-item__header">
+      {{ 'label_next_submission_deadlines' | translate }}
+    </mat-card-header>
+    <mat-card-content>
+      <hr>
+      <div *ngFor="let submission of nextSubmissions">
+        {{ submission.title }} <span class="deadline">{{ submission.deadline | date }}</span>
+      </div>
+    </mat-card-content>
+  </mat-card>
+
   <mat-card id="wordsToday" class="dashboard-item">
     <a [routerLink]="['/settings']" class="mat-card-title mat-link">
       {{ 'label_words_today' | translate }}
@@ -52,7 +64,7 @@
     </mat-card-header>-->
     <mat-card-content>
       <h4>{{ 'headline_projects_states' | translate }}</h4>
-      <div *ngFor="let project of projectsInState | keyvalue">
+      <div *ngFor="let project of projectsInSuperState | keyvalue">
         <span>{{ project.key | translate}} {{ project.value }}</span>
       </div>
       <hr>

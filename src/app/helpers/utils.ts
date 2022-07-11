@@ -109,4 +109,10 @@ export default class Utils {
       language: 'all',
     };
   }
+
+  static isInPast(deadline: Date | undefined) {
+    if (!deadline) return false;
+    let today = new Date();
+    return new Date(deadline).getTime() < today.getTime();
+  }
 }
