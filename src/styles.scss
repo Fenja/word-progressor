@@ -2,38 +2,108 @@
 
 @include mat.core();
 
-$angular-primary: mat.define-palette(mat.$deep-purple-palette);
-$angular-accent: mat.define-palette(mat.$amber-palette);
-$angular-warn: mat.define-palette(mat.$red-palette);
+$primary-palette: (
+  50: var(--primary-color),
+  100: var(--primary-color),
+  200: var(--primary-color),
+  300: var(--primary-color),
+  400: var(--primary-color),
+  500: var(--primary-color),
+  600: var(--primary-color),
+  700: var(--primary-color),
+  800: var(--primary-color),
+  900: var(--primary-color),
+  A100: var(--primary-color),
+  A200: var(--primary-color),
+  A400: var(--primary-color),
+  A700: var(--primary-color),
+  contrast: (
+    50: var(--text-color),
+    100: var(--text-color),
+    200: var(--text-color),
+    300: var(--text-color),
+    400: var(--text-color),
+    500: var(--text-color),
+    600: var(--text-color),
+    700: var(--text-color),
+    800: var(--text-color),
+    900: var(--text-color),
+    A100: var(--text-color),
+    A200: var(--text-color),
+    A400: var(--text-color),
+    A700: var(--text-color),
+  )
+);
+$accent-palette: (
+  50: var(--accent-color),
+  100: var(--accent-color),
+  200: var(--accent-color),
+  300: var(--accent-color),
+  400: var(--accent-color),
+  500: var(--accent-color),
+  600: var(--accent-color),
+  700: var(--accent-color),
+  800: var(--accent-color),
+  900: var(--accent-color),
+  A100: var(--accent-color),
+  A200: var(--accent-color),
+  A400: var(--accent-color),
+  A700: var(--accent-color),
+  contrast: (
+    50: var(--background-color),
+    100: var(--background-color),
+    200: var(--background-color),
+    300: var(--background-color),
+    400: var(--background-color),
+    500: var(--background-color),
+    600: var(--background-color),
+    700: var(--background-color),
+    800: var(--background-color),
+    900: var(--background-color),
+    A100: var(--background-color),
+    A200: var(--background-color),
+    A400: var(--background-color),
+    A700: var(--background-color),
+  )
+);
 
-$primary: mat.get-color-from-palette($angular-primary);
-$accent: mat.get-color-from-palette($angular-accent);
+$custom-primary: mat.define-palette($primary-palette, 500);
+$custom-accent: mat.define-palette($accent-palette, 500);
+$angular-warn: mat.define-palette(mat.$red-palette);
 
 $angular-default-theme: mat.define-light-theme((
       color: (
-        primary: $angular-primary,
-        accent: $angular-accent,
+        primary: $custom-primary,
+        accent: $custom-accent,
         warn: $angular-warn,
       )));
 
 $angular-dark-theme: mat.define-dark-theme((
       color: (
-        primary: $angular-primary,
-        accent: $angular-accent,
+        primary: $custom-primary,
+        accent: $custom-accent,
         warn: $angular-warn,
       )));
 
 @media (prefers-color-scheme: light) {
   @include mat.all-component-colors($angular-default-theme);
-  .mat-link {
-    color: black;
+  :root {
+    --text-color: #000000;
+  }
+
+  .mat-card {
+    background-color: rgba(255,255,255, .4);
   }
 }
 
 @media (prefers-color-scheme: dark) {
   @include mat.all-component-colors($angular-dark-theme);
-  .mat-link {
-    color: white;
+  :root {
+    --text-color: #ffffff;
+  }
+
+  .mat-card {
+    background-color: rgba(0,0,0, .4);
   }
 }
 
@@ -60,6 +130,10 @@ $angular-dark-theme: mat.define-dark-theme((
 
   mat-drawer-container.drawer-container {
     height: 21em;
+  }
+
+  .customization-card {
+    flex-flow: column;
   }
 }
 
@@ -89,16 +163,81 @@ $angular-dark-theme: mat.define-dark-theme((
   mat-drawer-container.drawer-container {
     height: 7em;
   }
+
+  .customization-card {
+    flex-flow: row;
+  }
 }
 
 
 html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  font-size: var(--text-size);
+  line-height: var(--line-spacing);
+}
+
+.mat-app-background {
+  background-color: var(--background-color);
+}
+
+.mat-drawer {
+  background-color: var(--background-color);
+
+  .mat-link {
+    color: var(--text-color);
+    font-size: var(--text-size);
+    line-height: var(--line-spacing);
+  }
+}
+
+.mat-card, .content, .mat-toolbar {
+  color: var(--text-color);
+  font-size: var(--text-size);
+  line-height: var(--line-spacing);
+
+  .mat-card-content,
+  .mat-raised-button,
+  .mat-link,
+  .project-description
+  {
+    font-size: var(--text-size);
+    line-height: var(--line-spacing);
+  }
+
+  h2, h3,h4 {
+    color: var(--text-color);
+  }
+
+  h4 {
+    font-size: large;
+    font-weight: bold;
+  }
+  h3, .mat-card-title {
+    font-size: x-large;
+    font-weight: bolder;
+  }
+  h2 {
+    font-size: xx-large;
+    font-weight: bolder;
+  }
+
+  .mat-card-subtitle, .project-type {
+    color: var(--primary-color);
+    font-size: medium;
+  }
+}
+
+.mat-button {
+  font-size: var(--text-size);
+  line-height: var(--line-spacing);
+}
 
 .loader {
   border: 2em solid grey;
-  border-top: 2em solid $accent;
-  border-bottom: 2em solid $primary;
+  border-top: 2em solid var(--accent-color);
+  border-bottom: 2em solid var(--primary-color);
   border-radius: 50%;
   width: 18em;
   height: 18em;
@@ -112,6 +251,10 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 @keyframes spin {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
+}
+
+.mat-link {
+  color: var(--text-color);
 }
 
 button.mat-button-base{
@@ -159,11 +302,11 @@ button.mat-button-base{
 }
 
 .primary-color {
-  color: $primary;
+  color: var(--primary-color);
 }
 
 .accent-color {
-  color: $accent;
+  color: var(--accent-color);
 }
 
 .column-block {
@@ -218,7 +361,7 @@ ul {
 
 .show-more-link {
   padding: .5em;
-  color: $primary;
+  color: var(--primary-color);
 }
 
 .alert {
@@ -247,12 +390,12 @@ ul {
     .project-type {
       position: absolute;
       right: 1em;
-      color: $accent;
+      color: var(--accent-color);
     }
   }
 
   &--new {
-    border: 3px solid $primary;
+    border: 3px solid var(--primary-color);
   }
 }
 
@@ -287,11 +430,11 @@ ul {
     padding: .2em;
 
     &:hover {
-      border: 1px solid $primary;
+      border: 1px solid var(--primary-color);
     }
 
     &.selected {
-      border: 1px solid $accent;
+      border: 1px solid var(--accent-color);
     }
   }
 }
@@ -309,7 +452,7 @@ ul {
     flex-direction: column;
 
     &:hover {
-      background-color: $accent;
+      background-color: var(--accent-color);
     }
   }
 
@@ -323,7 +466,7 @@ ul {
   }
 
   &__text {
-    font-size: small;
+    font-size: var(--text-size);
     font-weight: normal;
   }
 
@@ -341,12 +484,13 @@ ul {
   }
 
   &__label {
+    font-size:var(--text-size);
     position: absolute;
     bottom: 0;
   }
 
   .mat-progress-bar {
-    height: 1em;
+    height: var(--text-size);
     position: absolute;
     border-radius: 0.5em;
   }
@@ -398,19 +542,35 @@ ul {
 }
 
 .goal {
-  font-size: smaller;
-  color: #888888;
+  font-size: var(--text-size);
+  color: var(--text-color);
 }
 
 svg g {
   .wp_background {
-    fill: $primary !important;
+    fill: var(--primary-color) !important;
   }
   .wp_p {
-    fill: $accent !important;
+    fill: var(--accent-color) !important;
   }
   .wp_w {
-    fill: white;
+    fill: var(--text-color);
   }
 }
 
+.customization-card {
+  display: flex;
+
+  .color-picker-input {
+    border: none;
+    background-color: transparent;
+  }
+
+  .decimal-input {
+    margin: 0.2rem;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    border: 1px solid grey;
+    max-width: 2.5rem;
+  }
+}

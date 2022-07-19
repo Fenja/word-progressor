@@ -107,6 +107,7 @@ export default class Utils {
       filterFavorites: false,
       isHidePassed: false,
       language: 'all',
+      cssVars: undefined,
     };
   }
 

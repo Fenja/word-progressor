@@ -2,12 +2,15 @@
 
 <ng-container *ngIf="!isLoading">
   <mat-card id="info" class="dashboard-item">
+    <mat-card-content>
+
     <app-citation [newUser]="isNewUser"></app-citation>
+  </mat-card-content>
   </mat-card>
 
   <mat-card *ngIf="wips.length > 0" id="wips" class="dashboard-item">
     <mat-card-header class="dashboard-item__header">
-      {{ 'label_works_in_project' | translate }}
+      <h3>{{ 'label_works_in_project' | translate }}</h3>
     </mat-card-header>
     <mat-card-content>
       <div *ngFor="let project of wips">
@@ -21,7 +24,7 @@
 
   <mat-card *ngIf="nextSubmissions.length > 0" id="submissions" class="dashboard-item">
     <mat-card-header class="dashboard-item__header">
-      {{ 'label_next_submission_deadlines' | translate }}
+      <h3>{{ 'label_next_submission_deadlines' | translate }}</h3>
     </mat-card-header>
     <mat-card-content>
       <hr>
@@ -32,9 +35,13 @@
   </mat-card>
 
   <mat-card id="wordsToday" class="dashboard-item">
+    <mat-card-header class="dashboard-item__header">
+      <h3>
     <a [routerLink]="['/settings']" class="mat-card-title mat-link">
       {{ 'label_words_today' | translate }}
     </a>
+      </h3>
+    </mat-card-header>
     <mat-card-content>
       <div class="mat-card-title" [ngClass]="metGoal ? 'accent-color' : 'primary-color'">{{ wordsToday }} <span class="goal" *ngIf="wordGoalDaily">/ {{ wordGoalDaily }}</span></div>
     </mat-card-content>
@@ -42,7 +49,7 @@
 
   <mat-card *ngIf="userWordLogs && userWordLogs.length > 0" id="weekWordsStatistic" class="dashboard-item">
     <mat-card-header class="dashboard-item__header">
-      {{ 'label_words_statistic' | translate }}
+      <h3>{{ 'label_words_statistic' | translate }}</h3>
     </mat-card-header>
     <mat-card-content>
       <app-barchart [wordLogs]="lastWeeksLogs" [dailyGoal]="wordGoalDaily"></app-barchart>
@@ -51,7 +58,7 @@
 
   <!-- <mat-card *ngIf="userWordLogs && userWordLogs.length > 0" id="monthWordsStatistic" class="dashboard-item">
     <mat-card-header class="dashboard-item__header">
-      {{ 'label_words_statistic' | translate }}
+      <h3>{{ 'label_words_statistic' | translate }}</h3>
     </mat-card-header>
     <mat-card-content>
       <app-barchart [wordLogs]="lastMonthLogs" [dailyGoal]="wordGoalDaily"></app-barchart>
@@ -59,9 +66,9 @@
   </mat-card> -->
 
   <mat-card id="states" class="dashboard-item">
-    <!--<mat-card-header>
-      {{ 'label_project_state_overview' | translate }}
-    </mat-card-header>-->
+    <mat-card-header class="dashboard-item__header">
+      <h3>{{ 'label_project_state_overview' | translate }}</h3>
+    </mat-card-header>
     <mat-card-content>
       <h4>{{ 'headline_projects_states' | translate }}</h4>
       <div *ngFor="let project of projectsInSuperState | keyvalue">
@@ -81,8 +88,8 @@
   </mat-card>
 
   <mat-card id="wordLogs" class="dashboard-item" *ngIf="userWordLogs">
-    <mat-card-header>
-      {{ 'label_logs' | translate }}
+    <mat-card-header class="dashboard-item__header">
+      <h3>{{ 'label_logs' | translate }}</h3>
     </mat-card-header>
     <mat-card-content class="small-center">
       <app-wordlog-list [wordLogs]="userWordLogs" [numEntries]="10"></app-wordlog-list>

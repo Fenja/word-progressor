@@ -255,4 +255,60 @@ export class DataStorageService {
     );
   }
 
+  saveCssVars(bgColor: string, textColor: string, primary: string, accent: string, textSize: number, lineSpacing: number) {
+    if (!this.user.settings) {
+      this.user.settings = Utils.getDefaultSettings();
+    }
+    if (!this.user.settings.cssVars) {
+      this.user.settings!.cssVars = {
+        fontFamiliy: undefined,
+        bgColor: bgColor,
+        textColor: textColor,
+        primaryColor: primary,
+        accentColor: accent,
+        textSize: textSize,
+        lineSpacing: lineSpacing,
+      }
+    } else {
+      this.user.settings.cssVars.bgColor = bgColor;
+      this.user.settings.cssVars.textColor = textColor;
+      this.user.settings.cssVars.primaryColor = primary;
+      this.user.settings.cssVars.accentColor = accent;
+      this.user.settings.cssVars.textSize = textSize;
+      this.user.settings.cssVars.lineSpacing = lineSpacing;
+    }
+
+    if (!this.authService.isAnonymous) {
+      this._editUserAtAPI();
+    }
+    this._saveCssVarsInStorage();
+  }
+
+  private _saveCssVarsInStorage() {
+    localStorage.setItem('bgColor', this.user.settings!.cssVars!.bgColor);
+    localStorage.setItem('textColor', this.user.settings!.cssVars!.textColor);
+    localStorage.setItem('primaryColor', this.user.settings!.cssVars!.primaryColor);
+    localStorage.setItem('accentColor', this.user.settings!.cssVars!.accentColor);
+    localStorage.setItem('textSize', this.user.settings!.cssVars!.textSize.toString());
+    localStorage.setItem('lineSpacing', this.user.settings!.cssVars!.lineSpacing.toString());
+    // localStorage.setItem('fontFamily');
+  }
+
+  resetCssVars() {
+    if (!!this.user.settings && !!this.user.settings.cssVars) this.user.settings.cssVars = undefined;
+    if (!this.authService.isAnonymous) {
+      this._editUserAtAPI();
+    }
+    this._deleteCssVarsInStorage();
+  }
+
+  private _deleteCssVarsInStorage() {
+    localStorage.removeItem('bgColor');
+    localStorage.removeItem('textColor');
+    localStorage.removeItem('primaryColor');
+    localStorage.removeItem('accentColor');
+    localStorage.removeItem('textSize');
+    localStorage.removeItem('lineSpacing');
+    localStorage.removeItem('fontFamily');
+  }
 }

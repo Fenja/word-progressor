@@ -1,0 +1,128 @@
+<mat-card class="dashboard-item">
+  <mat-card-header class="project-item__header">
+    <mat-card-title>{{ 'headline_customization' | translate }}</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <div class="customization-card">
+    <div style="min-width: 30%">
+      <div>
+        <input
+          class="color-picker-input"
+          type="color"
+          [value]="backgroundColor"
+          #backgroundColorInput
+          id="background"
+        >
+        <label for="background">{{ 'custom_background_color' | translate }}</label>
+      </div>
+      <div>
+        <input
+          class="color-picker-input"
+          type="color"
+          [value]="textColor"
+          #textColorInput
+          id="text"
+        >
+        <label for="text">{{ 'custom_text_color' | translate }}</label>
+      </div>
+      <div>
+        <input
+          class="color-picker-input"
+          type="color"
+          [value]="primaryColor"
+          #primaryColorInput
+          id="primary"
+        >
+        <label for="primary">{{ 'custom_primary_color' | translate }}</label>
+      </div>
+      <div>
+        <input
+          class="color-picker-input"
+          type="color"
+          [value]="secondaryColor"
+          #secondaryColorInput
+          id="secondary"
+        >
+        <label for="secondary">{{ 'custom_secondary_color' | translate }}</label>
+      </div>
+
+      <div>
+        <input
+          class="decimal-input"
+          type="number"
+          [value]="textSize"
+          step=".1"
+          #textSizeInput
+          id="textsize"
+        >
+        <label for="textsize">{{ 'custom_text_size' | translate }}</label>
+      </div>
+      <div>
+        <input
+          class="decimal-input"
+          type="number"
+          [value]="lineSpacing"
+          step=".1"
+          #lineSpacingInput
+          id="linespacing"
+        >
+        <label for="linespacing">{{ 'custom_text_line_spacing' | translate }}</label>
+      </div>
+    </div>
+
+      <hr class="xs-only" style="width: 100%">
+
+    <div lang="la">
+      <div
+        style="padding: 1rem"
+        [style.background-color]="backgroundColorInput.value"
+      >
+      <mat-card style="background-color: rgba(0,0,0, .4)">
+        <h2 [style.color]="primaryColorInput.value">Lorem Ipsum</h2>
+        <h4 [style.color]="secondaryColorInput.value">Dolor sit amet</h4>
+        <p
+          [style.color]="textColorInput.value"
+          [style.line-height]="lineSpacingInput.value+'rem'"
+          [style.font-size]="textSizeInput.value+'rem'"
+        >Consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo.</p>
+        <div>
+          <button
+            mat-raised-button
+            [style.color]="textColorInput.value"
+            [style.background-color]="primaryColorInput.value"
+          >Lorem</button>
+          <button
+            mat-raised-button
+            [style.color]="backgroundColorInput.value"
+            [style.background-color]="secondaryColorInput.value"
+          >Ipsum</button>
+        </div>
+
+      </mat-card>
+      </div>
+    </div>
+    </div>
+  </mat-card-content>
+
+  <mat-card-actions class="button-row">
+    <button
+      mat-raised-button
+      color="primary"
+      data-testid="save-button"
+      (click)="saveCustomization(
+      backgroundColorInput.value,
+      textColorInput.value,
+      primaryColorInput.value,
+      secondaryColorInput.value,
+      +textSizeInput.value,
+      +lineSpacingInput.value
+      )">
+      {{ 'button_save' | translate }}</button>
+    <button
+      mat-raised-button
+      color="accent"
+      data-testid="reset-button"
+      (click)="resetToDefault()">
+      {{ 'button_reset_default' | translate }}</button>
+  </mat-card-actions>
+</mat-card>

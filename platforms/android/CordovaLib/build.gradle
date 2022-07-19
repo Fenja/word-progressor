@@ -24,7 +24,7 @@ ext {
         cdvMinSdkVersion = cdvMinSdkVersion as int
         println '[Cordova] cdvMinSdkVersion is overridden, try it at your own risk.'
     } else {
-        cdvMinSdkVersion = 22; // current Cordova's default
+        cdvMinSdkVersion = 22 // current Cordova's default
     }
 }
 
@@ -35,7 +35,7 @@ buildscript {
     dependencies {
         // The gradle plugin and the maven plugin have to be updated after each version of Android
         // studio comes out
-        classpath 'com.android.tools.build:gradle:4.0.0'
+        classpath 'com.android.tools.build:gradle:7.1.1'
         classpath 'com.github.dcendents:android-maven-gradle-plugin:2.1'
         classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.7.3'
     }
@@ -78,13 +78,12 @@ android {
             assets.srcDirs = ['assets']
         }
     }
-
     packagingOptions {
-        exclude 'META-INF/LICENSE'
-        exclude 'META-INF/LICENSE.txt'
-        exclude 'META-INF/DEPENDENCIES'
-        exclude 'META-INF/NOTICE'
+        resources {
+            excludes += ['META-INF/LICENSE', 'META-INF/LICENSE.txt', 'META-INF/DEPENDENCIES', 'META-INF/NOTICE']
+        }
     }
+
 }
 
 install {

@@ -18,7 +18,7 @@ export class BarModel {
 export class BarchartComponent implements OnInit {
 
   @Input() wordLogs!: WordLog[];
-  @Input() color?: string = 'rebeccapurple';
+  @Input() color?: string = 'var(--primary-color)';
   @Input() dailyGoal?: number;
 
   data: BarModel[] = [];
@@ -33,7 +33,7 @@ export class BarchartComponent implements OnInit {
     this.total = this.wordLogs.reduce((prev, current) => (prev.words > current.words) ? prev : current).words;
     this.wordLogs.forEach(log => {
       const size = Math.round(log.words*100/this.total) + '%';
-      const color = (this.dailyGoal && this.dailyGoal <= log.words) ? '#FFC107' : 'rebeccapurple'; // TODO theme colors
+      const color = (this.dailyGoal && this.dailyGoal <= log.words) ? 'var(--acceent-color)' : 'var(--primary-color)';
       this.data.push({
         value: log.words,
         color,

@@ -37,5 +37,4 @@ export class SettingsComponent {
     }
     // todo ask for password to confirm
   }
-
 }

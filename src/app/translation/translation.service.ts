@@ -129,6 +129,7 @@ export class TranslationService {
         button_select: 'Auswählen',
         button_report_submission: 'Ausschreibung einreichen',
         button_open_link: 'Link öffnen',
+        button_reset_default: 'Auf Standard zurücksetzen',
 
         label_current_word_count: 'Aktuelle Wortzahl',
         label_current_pages_count: 'Aktuelle Seitenzahl',
@@ -208,6 +209,13 @@ export class TranslationService {
         placeholder_blurb: 'Inhaltsangabe',
         placeholder_reward: 'Für den Abschluss des Projekts belohnst du dich mit...',
 
+        custom_background_color: 'Hintergrundfarbe',
+        custom_text_color: 'Textfarbe',
+        custom_primary_color: 'Hauptfarbe',
+        custom_secondary_color: 'Akzentfarbe',
+        custom_text_size: 'Textgröße',
+        custom_text_line_spacing: 'Zeilenabstand',
+
         tooltip_sort: 'sortieren',
         tooltip_filter: 'filtern',
         tooltip_search: 'suchen',
@@ -247,6 +255,7 @@ export class TranslationService {
         headline_total_words: 'Wörter gesamt',
         headline_total_projects: 'Projekte gesamt',
         headline_about: 'Über den WordProgressor',
+        headline_customization: 'Anpassungen',
 
         filter_all: 'Alle an/abwählen',
         filter_prep: 'Planung',
@@ -322,6 +331,8 @@ export class TranslationService {
         msg_delete_note: 'Diese Notiz wirklich löschen?',
         msg_submission_report_send: 'Ausschreibung erfolgreich eingereicht',
         msg_offline: 'Du bist offline.\nBitte stelle eine Internetverbindung her, um den WordProgressor nutzen zu können',
+        msg_save_customization: 'Personalisierung gespeichert.',
+        msg_reset_customization: 'Auf Standardeinstellung zurück gesetzt.',
 
         text_anonymous_dialog: `Wenn der WordProgressor ohne Konto genutzt wird, werden die Daten lokal gespeichert.\n
             Sie können dann weder synchronisiert, noch von einem anderen Gerät aus abgerufen werden.\n
@@ -451,6 +462,7 @@ export class TranslationService {
         button_select: 'Select',
         button_report_submission: 'Report submission',
         button_open_link: 'Open Link',
+        button_reset_default: 'Reset to default',
 
         label_current_word_count: 'Current Word Count',
         label_current_pages_count: 'Current Page Count',
@@ -530,6 +542,13 @@ export class TranslationService {
         placeholder_blurb: 'Blurb',
         placeholder_reward: 'Reward yourself for completing this project by...',
 
+        custom_background_color: 'Background color',
+        custom_text_color: 'Text color',
+        custom_primary_color: 'Primary color',
+        custom_secondary_color: 'Secondary color',
+        custom_text_size: 'Text size',
+        custom_text_line_spacing: 'Line spacing',
+
         tooltip_sort: 'sort',
         tooltip_filter: 'filter',
         tooltip_search: 'search',
@@ -569,6 +588,7 @@ export class TranslationService {
         headline_total_words: 'Total Words',
         headline_total_projects: 'Total Projects',
         headline_about: 'About WordProgressor',
+        headline_customization: 'Customization',
 
         filter_all: 'De/Select all',
         filter_prep: 'Preparation',
@@ -644,6 +664,8 @@ export class TranslationService {
         msg_delete_note: 'Do you want to delete this note?',
         msg_submission_report_send: 'Submission successfully reported',
         msg_offline: 'You are offline.\nPlease connect to the internet to use the WordProgressor.',
+        msg_save_customization: 'Customization is saved.',
+        msg_reset_customization: 'Reset to default style.',
 
         text_anonymous_dialog: `When using the WordProgressor without an account, your data is stored locally.\n
             You won't be able to sync them or access them from another access point.\n

@@ -99,6 +99,9 @@ import {
 import { OnlineStatusModule } from "ngx-online-status";
 import {OverlayModule} from "@angular/cdk/overlay";
 import {CitationComponent} from "./dashboard/citations/citation.component";
+import {ThemeModule} from "./theme/theme.module";
+import {wpTheme} from "./theme/wp-theme";
+import {CustomizationComponent} from "./settings/customization/customization.component";
 
 @NgModule({
   declarations: [
@@ -155,6 +158,7 @@ import {CitationComponent} from "./dashboard/citations/citation.component";
     SubmissionSelectDialogComponent,
     SubmissionReportDialogComponent,
     CitationComponent,
+    CustomizationComponent,
   ],
   imports: [
     AngularFireModule.initializeApp(environment.FIREBASE_CONFIG),
@@ -194,6 +198,10 @@ import {CitationComponent} from "./dashboard/citations/citation.component";
       // Register the ServiceWorker as soon as the app is stable
       // or after 30 seconds (whichever comes first).
       registrationStrategy: 'registerWhenStable:30000'
+    }),
+    ThemeModule.forRoot({
+      themes: [wpTheme],
+      active: 'wp'
     }),
     MatAutocompleteModule,
     OnlineStatusModule,

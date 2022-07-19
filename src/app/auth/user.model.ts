@@ -64,6 +64,7 @@ export interface Settings {
   filterFavorites: boolean;
   isHidePassed: boolean;
   language: Language;
+  cssVars: CssVars | undefined;
 }
 
 export interface SubmissionProjects {
@@ -72,3 +73,13 @@ export interface SubmissionProjects {
 }
 
 export type Language = 'de' | 'en' | 'all';
+
+export interface CssVars {
+  bgColor: string;
+  textColor: string;
+  primaryColor: string;
+  accentColor: string;
+  textSize: number;
+  lineSpacing: number;
+  fontFamiliy: string | undefined;
+}
