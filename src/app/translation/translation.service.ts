@@ -194,7 +194,7 @@ export class TranslationService {
         label_install_pwa: "Auf dem Startbildschirm installieren",
         label_submission_reminder: 'Erinnerungen für Ausschreibungen',
         label_remind_days_ahead: 'x Tage vorher erinnern (mit Komma getrennt)',
-        label_version: 'version',
+        label_version: 'Version',
         label_project_state_overview: 'Übersicht Projekt-Status',
         label_language: 'Sprache',
         label_body_of_work: 'Gesamtwerk',

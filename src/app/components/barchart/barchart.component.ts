@@ -33,7 +33,7 @@ export class BarchartComponent implements OnInit {
     this.total = this.wordLogs.reduce((prev, current) => (prev.words > current.words) ? prev : current).words;
     this.wordLogs.forEach(log => {
       const size = Math.round(log.words*100/this.total) + '%';
-      const color = (this.dailyGoal && this.dailyGoal <= log.words) ? 'var(--acceent-color)' : 'var(--primary-color)';
+      const color = (this.dailyGoal && this.dailyGoal <= log.words) ? 'var(--accent-color)' : 'var(--primary-color)';
       this.data.push({
         value: log.words,
         color,

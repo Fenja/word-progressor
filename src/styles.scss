@@ -206,6 +206,10 @@ body {
     line-height: var(--line-spacing);
   }
 
+  .mat-raised-button {
+    padding: 0.7rem;
+  }
+
   h2, h3,h4 {
     color: var(--text-color);
   }
@@ -232,6 +236,10 @@ body {
 .mat-button {
   font-size: var(--text-size);
   line-height: var(--line-spacing);
+}
+
+.mat-progress-bar > div > div:first-of-type {
+  opacity: .5;
 }
 
 .loader {

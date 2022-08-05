@@ -28,9 +28,9 @@
     </mat-card-header>
     <mat-card-content>
       <hr>
-      <div *ngFor="let submission of nextSubmissions">
+      <p *ngFor="let submission of nextSubmissions" style="overflow: hidden;">
         {{ submission.title }} <span class="deadline">{{ submission.deadline | date }}</span>
-      </div>
+      </p>
     </mat-card-content>
   </mat-card>
 
