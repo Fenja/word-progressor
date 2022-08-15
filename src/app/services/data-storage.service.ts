@@ -8,6 +8,7 @@ import { catchError, map, take } from "rxjs/operators";
 import { Subject, throwError } from "rxjs";
 import * as uuid from 'uuid';
 import Utils from "../helpers/utils";
+import { Idea } from "../ideas/idea.model";
 
 /*
   this service should differ between a logged in user and an anonymous one
@@ -22,6 +23,8 @@ export class DataStorageService {
 
   projects: Project[] = [];
   public projectList = new Subject<Project[]>();
+  ideas: Idea[] = [];
+  public ideasList = new Subject<Idea[]>();
   user: userData = {
     settings: Utils.getDefaultSettings(),
     favorites: [],
@@ -310,5 +313,132 @@ export class DataStorageService {
     localStorage.removeItem('textSize');
     localStorage.removeItem('lineSpacing');
     localStorage.removeItem('fontFamily');
+  }
+
+
+  getIdeas() {
+    this._fetchIdeas();
+    return this.ideas.slice();
+  }
+
+  private _fetchIdeas() {
+    this.ideas = [];
+    if (this.authService.isAnonymous) {
+      this._fetchIdeasFromStorage();
+    } else {
+      this._fetchIdeasFromAPI();
+    }
+  }
+
+  _fetchIdeasFromStorage() {
+    let ideas: Idea[] = JSON.parse(<string>localStorage.getItem('ideas'));
+    if (!ideas) {
+      ideas = [];
+      localStorage.setItem('ideas','[]');
+    }
+    this.ideas = ideas;
+    this.ideasList.next(this.ideas.slice());
+  }
+
+  _fetchIdeasFromAPI() {
+    const id = this._getUserId();
+    if (!id ) return;
+    this.http.get<{ [key: string]: Idea }>(
+      environment.FIREBASE_CONFIG.databaseURL+id+'/ideas.json'
+    )
+      .pipe(
+        take(1),
+        map((responseData) => {
+          const ideaArray: Idea[] = [];
+          for (const key in responseData) {
+            if (responseData.hasOwnProperty(key)) {
+              ideaArray.push({ ...responseData[key], id:key });
+            }
+          }
+          return ideaArray;
+        }),
+        catchError(errorRes => {
+          return throwError(errorRes);
+        })
+      )
+      .subscribe(
+        (ideas) => {
+          this.ideas = ideas;
+          this.ideasList.next(ideas.slice());
+        });
+  }
+
+  addIdea(idea: Idea) {
+    idea.id = uuid.v4();
+    if (this.authService.isAnonymous) {
+      this._addIdeaToStorage(idea);
+    } else {
+      this._addIdeaToAPI(idea);
+    }
+  }
+
+  _addIdeaToStorage(idea: Idea) {
+    this.ideas.push(idea);
+    localStorage.setItem('ideas', JSON.stringify(this.ideas));
+    this._fetchProjects();
+  }
+
+  _addIdeaToAPI(idea: Idea) {
+    this.http.post<any>(
+      environment.FIREBASE_CONFIG.databaseURL+this._getUserId()+'/ideas.json',
+      idea
+    ).subscribe(() => {
+        this._fetchIdeas();
+      },
+      error => {
+        console.log(error);
+      }
+    );
+  }
+
+  editIdea(id: string, idea: Idea) {
+    if (this.authService.isAnonymous) {
+      this._editIdeaInStorage(id, idea);
+    } else {
+      this._editIdeaAtAPI(id, idea);
+    }
+  }
+
+  _editIdeaInStorage(id: string, idea: Idea) {
+    this.ideas.map(i => i.id === id || idea);
+    localStorage.setItem('ideas', JSON.stringify(this.ideas));
+    this._fetchProjects();
+  }
+
+  _editIdeaAtAPI(id: string, idea: Idea) {
+    this.http.put(
+      environment.FIREBASE_CONFIG.databaseURL+this._getUserId()+'/ideas/'+id+'.json',
+      idea
+    ).subscribe(() => {
+      this._fetchIdeas();
+    });
+  }
+
+  deleteIdea(id: string) {
+    if (this.authService.isAnonymous) {
+      this._deleteIdeaFromStorage(id);
+    } else {
+      this._deleteIdeaAtAPI(id);
+    }
+  }
+
+  _deleteIdeaFromStorage(id: string) {
+    let index: number = this.ideas.findIndex(i => i.id === id);
+    this.projects.splice(index, 1);
+    localStorage.setItem('ideas', JSON.stringify(this.ideas));
+    this._fetchIdeas();
+  }
+
+  _deleteIdeaAtAPI(id: string) {
+    this.http.delete(
+      environment.FIREBASE_CONFIG.databaseURL+this._getUserId()+'/ideas/'+id+'.json',
+    ).subscribe(() => {
+      this._fetchIdeas();
+    });
   }
 }

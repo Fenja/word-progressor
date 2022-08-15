@@ -1,0 +1,54 @@
+<mat-card class="project-item">
+  <mat-card-content>
+
+    <span *ngIf="!editMode">{{ idea.text }}</span>
+
+    <mat-form-field *ngIf="editMode" color="primary" class="full-width">
+      <textarea
+        matInput
+        type="text"
+        name="idea"
+        rows="3"
+        [(ngModel)]="idea.text"
+        class="form-control"
+      ></textarea>
+    </mat-form-field>
+
+  </mat-card-content>
+
+  <mat-card-actions class="button-row">
+
+    <button
+      *ngIf="!editMode"
+      mat-raised-button
+      color="primary"
+      (click)="editIdea()">
+      {{ 'button_edit' | translate }}
+    </button>
+
+    <button
+      *ngIf="editMode"
+      mat-raised-button
+      color="primary"
+      (click)="saveIdea()">
+      {{ 'button_save' | translate }}
+    </button>
+
+    <button
+      *ngIf="editMode"
+      mat-raised-button
+      color="accent"
+      (click)="cancelEdit()">
+      {{ 'button_cancel' | translate }}
+    </button>
+
+    <button
+      mat-raised-button
+      color="warn"
+      (click)="deleteIdea(idea)">
+      {{ 'button_delete' | translate }}
+    </button>
+
+  </mat-card-actions>
+
+</mat-card>

@@ -89,6 +89,8 @@ export class AuthInterceptorService implements HttpInterceptor {
     } else if (error.status === 403) {
       // show message
       this.logout();
+    } else if (error.status === 404) {
+      // redirect to 404 page
     } else if (error.status === 500) {
       // show message
     } else if (error.status === 503) {

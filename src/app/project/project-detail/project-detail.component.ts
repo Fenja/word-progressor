@@ -7,6 +7,7 @@ import { MatDialog } from "@angular/material/dialog";
 import { NoteAddDialogComponent } from "../../notes/note-add-dialog/note-add-dialog.component";
 import { Subscription } from "rxjs";
 import Utils from "../../helpers/utils";
+import {TranslationService} from "../../translation/translation.service";
 
 @Component({
   selector: 'app-project-detail',
@@ -25,6 +26,7 @@ export class ProjectDetailComponent implements OnInit, OnDestroy {
     private route: ActivatedRoute,
     private dialog: MatDialog,
     private router: Router,
+    private translationService: TranslationService,
   ) { }
 
   ngOnInit(): void {
@@ -60,7 +62,7 @@ export class ProjectDetailComponent implements OnInit, OnDestroy {
   }
 
   deleteProject() {
-    if (confirm("Are you sure to delete "+this.project.workingTitle)) {
+    if (confirm(this.translationService.translate('msg_delete') + this.project.workingTitle)) {
       this.projectService.deleteProject(this.id, this.project.workingTitle);
       this.router.navigate(['/projects']).then();
     }

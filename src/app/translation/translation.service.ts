@@ -94,6 +94,8 @@ export class TranslationService {
         info_no_projects: 'Keine Projekte gefunden',
         info_no_bow: 'Dein Gesamtwerk hat noch keine Einträge. Zeit ein Projekt abzuschließen!',
         info_no_submissions: 'Keine Ausschreibungen gefunden',
+        info_ideas: 'Speichere deine literarischen Ideen.',
+        info_no_ideas: 'Noch keine Ideen gespeichert.',
 
         button_new_project: 'Neues Projekt',
         button_add: 'Hinzufügen',
@@ -204,6 +206,8 @@ export class TranslationService {
         label_submission: 'Ausschreibung',
         label_link: 'Link',
         label_next_submission_deadlines: 'Nächste Ausschreibungen',
+        label_idea: 'Idee',
+        label_ideas: 'Ideen',
 
         placeholder_working_title: 'Arbeitstitel',
         placeholder_blurb: 'Inhaltsangabe',
@@ -333,6 +337,7 @@ export class TranslationService {
         msg_offline: 'Du bist offline.\nBitte stelle eine Internetverbindung her, um den WordProgressor nutzen zu können',
         msg_save_customization: 'Personalisierung gespeichert.',
         msg_reset_customization: 'Auf Standardeinstellung zurück gesetzt.',
+        msg_delete: "Möchtest du das wirklich löschen: ",
 
         text_anonymous_dialog: `Wenn der WordProgressor ohne Konto genutzt wird, werden die Daten lokal gespeichert.\n
             Sie können dann weder synchronisiert, noch von einem anderen Gerät aus abgerufen werden.\n
@@ -427,6 +432,8 @@ export class TranslationService {
         info_no_projects: 'No Projects found',
         info_no_bow: 'Your body of work is still empty. Go and finish something!',
         info_no_submissions: 'No submissions found',
+        info_ideas: 'Jot down your literary ideas.',
+        info_no_ideas: 'No ideas saved yet.',
 
         button_new_project: 'New Project',
         button_add: 'Add',
@@ -537,6 +544,8 @@ export class TranslationService {
         label_submission: 'Submission',
         label_link: 'Link',
         label_next_submission_deadlines: 'Next submissions',
+        label_idea: 'Idea',
+        label_ideas: 'Ideas',
 
         placeholder_working_title: 'Working Title',
         placeholder_blurb: 'Blurb',
@@ -666,6 +675,7 @@ export class TranslationService {
         msg_offline: 'You are offline.\nPlease connect to the internet to use the WordProgressor.',
         msg_save_customization: 'Customization is saved.',
         msg_reset_customization: 'Reset to default style.',
+        msg_delete: "Are you sure to delete ",
 
         text_anonymous_dialog: `When using the WordProgressor without an account, your data is stored locally.\n
             You won't be able to sync them or access them from another access point.\n

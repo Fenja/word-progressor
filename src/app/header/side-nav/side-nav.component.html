@@ -19,6 +19,16 @@
   >
     {{ 'label_projects' | translate }}
   </a>
+  <a
+     *ngIf="authService.isAnonymous || authService.isLoggedIn"
+     routerLink="/ideas"
+     routerLinkActive="mat-accent"
+     data-testid="projects-label"
+     class="mat-link"
+     (click)="onSidenavClose()"
+  >
+    {{ 'label_ideas' | translate }}
+  </a>
 
   <a
     routerLink="/submissions"
@@ -83,7 +93,7 @@
      routerLink="/privacy_policy"
      routerLinkActive="mat-accent"
      data-testid="privacy-policy-button"
-     class="mat-link xs-only"
+     class="mat-link"
      (click)="onSidenavClose()"
      >
     {{ 'label_privacy_policy' | translate }}

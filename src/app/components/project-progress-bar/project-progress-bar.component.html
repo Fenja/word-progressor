@@ -3,7 +3,7 @@
     <mat-progress-bar *ngIf="maxGoalCount"
       mode="determinate"
       value="{{ percentageMaxDone }}"
-      [color]="(percentageMaxDone >= 100) ? 'warn' : 'accent'"
+      [color]="(percentageMaxDone > 100) ? 'warn' : 'accent'"
       aria-label="progress"
       class="progress-bars__max-range"
     ></mat-progress-bar>

@@ -14,7 +14,7 @@ import { MatButtonModule } from "@angular/material/button";
 import { MatTabsModule } from "@angular/material/tabs";
 import { ProjectDetailComponent } from './project/project-detail/project-detail.component';
 import { RouterModule } from "@angular/router";
-import { AppRoutingModule } from "./app-routing.module";
+import {appRoutes, AppRoutingModule} from "./app-routing.module";
 import { ProjectFooterComponent } from './project/project-footer/project-footer.component';
 import { MatTableModule } from "@angular/material/table";
 import { ProjectsComponent } from "./project/projects.component";
@@ -68,7 +68,7 @@ import { AchievementComponent } from './achievement/achievement.component';
 import { WritingGoalsComponent } from './settings/writing-goals/writing-goals.component';
 import { NotificationSettingsComponent } from './settings/notification-settings/notification-settings.component';
 import { MatSlideToggleModule } from "@angular/material/slide-toggle";
-import { ServiceWorkerModule } from '@angular/service-worker';
+import {ServiceWorkerModule, SwRegistrationOptions} from '@angular/service-worker';
 import { BarchartComponent } from './components/barchart/barchart.component';
 import { WordlogListComponent } from './wordlogs/wordlog-list/wordlog-list.component';
 import { WordlogItemComponent } from './wordlogs/wordlog-item/wordlog-item.component';
@@ -102,6 +102,8 @@ import {CitationComponent} from "./dashboard/citations/citation.component";
 import {ThemeModule} from "./theme/theme.module";
 import {wpTheme} from "./theme/wp-theme";
 import {CustomizationComponent} from "./settings/customization/customization.component";
+import {IdeasComponent} from "./ideas/ideas.component";
+import {IdeaComponent} from "./ideas/idea/idea.component";
 
 @NgModule({
   declarations: [
@@ -159,6 +161,8 @@ import {CustomizationComponent} from "./settings/customization/customization.com
     SubmissionReportDialogComponent,
     CitationComponent,
     CustomizationComponent,
+    IdeasComponent,
+    IdeaComponent,
   ],
   imports: [
     AngularFireModule.initializeApp(environment.FIREBASE_CONFIG),
@@ -173,7 +177,7 @@ import {CustomizationComponent} from "./settings/customization/customization.com
     MatMenuModule,
     MatButtonModule,
     MatTabsModule,
-    RouterModule,
+    RouterModule.forRoot(appRoutes),
     MatTableModule,
     MatFormFieldModule,
     MatDatepickerModule,
@@ -193,12 +197,12 @@ import {CustomizationComponent} from "./settings/customization/customization.com
     MatListModule,
     MatSidenavModule,
     MatSlideToggleModule,
-    ServiceWorkerModule.register('ngsw-worker.js', {
+    ServiceWorkerModule.register('ngsw-worker.js', /*{
       enabled: environment.production,
       // Register the ServiceWorker as soon as the app is stable
       // or after 30 seconds (whichever comes first).
       registrationStrategy: 'registerWhenStable:30000'
-    }),
+    }*/),
     ThemeModule.forRoot({
       themes: [wpTheme],
       active: 'wp'
@@ -221,6 +225,10 @@ import {CustomizationComponent} from "./settings/customization/customization.com
       deps: [MAT_DATE_LOCALE, MAT_MOMENT_DATE_ADAPTER_OPTIONS]
     },
     {provide: MAT_DATE_FORMATS, useValue: MAT_MOMENT_DATE_FORMATS},
+    {
+      provide: SwRegistrationOptions,
+      useFactory: () => ({ enabled: environment.production }),
+    }
   ],
   bootstrap: [AppComponent]
 })

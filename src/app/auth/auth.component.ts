@@ -54,15 +54,12 @@ export class AuthComponent {
     const password = form.value.password;
 
     if (this.isLoginMode) {
-      this.authService.SignIn(email, password).then(() => {
-        this.isLoading = false;
-      });
+      this.authService.SignIn(email, password);
     } else {
       this.authService.SignUp(email, password).then(() => {
         if (this.isCreateFromLocalMode) {
           this._uploadLocalData();
         }
-        this.isLoading = false;
       });
     }
 
@@ -75,7 +72,6 @@ export class AuthComponent {
       if (this.isCreateFromLocalMode) {
         this._uploadLocalData()
       }
-      this.isLoading = false;
     });
   }
 

@@ -1,0 +1,45 @@
+<mat-card class="project-item">
+  <mat-form-field color="primary" class="full-width">
+
+    <mat-label>{{ 'label_idea' | translate }}</mat-label>
+
+    <textarea
+      matInput
+      type="text"
+      name="idea"
+      rows="3"
+      [(ngModel)]="text"
+      class="form-control"
+    ></textarea>
+  </mat-form-field>
+
+  <button
+    mat-raised-button
+    color="primary"
+    (click)="saveIdea()">
+    {{ 'button_save' | translate }}
+  </button>
+
+</mat-card>
+
+<mat-card class="project-item">
+  <mat-card-content>{{ 'info_ideas' | translate }}</mat-card-content>
+</mat-card>
+
+<div *ngIf="isLoading" class="loader"></div>
+
+<ng-container *ngIf="!isLoading">
+  <div *ngIf="ideas.length > 0">
+    <app-idea
+      *ngFor="let idea of ideas.slice().reverse()"
+      [idea]="idea"
+      class="list-card-item">
+    </app-idea>
+  </div>
+
+  <mat-card *ngIf="ideas.length <= 0" class="project-item">
+    <mat-card-content>
+      {{ 'info_no_ideas' | translate }}
+    </mat-card-content>
+  </mat-card>
+</ng-container>

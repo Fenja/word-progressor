@@ -3,6 +3,7 @@ import {CountEntity, Project, ProjectState} from "../../project.model";
 import {Subproject} from "../subproject.model";
 import {NgForm} from "@angular/forms";
 import {ProjectService} from "../../project.service";
+import {TranslationService} from "../../../translation/translation.service";
 
 @Component({
   selector: 'app-subproject-edit',
@@ -31,7 +32,8 @@ export class SubprojectEditComponent {
   @ViewChild('projectForm', {static: false}) projectForm!: NgForm;
 
   constructor(
-    private projectService: ProjectService
+    private projectService: ProjectService,
+    private translationService: TranslationService,
   ) {
     if (this.editMode && !!this.id) {
       let loadSubproject = this.project.subprojects?.find(p => p.id === this.id);
@@ -52,8 +54,7 @@ export class SubprojectEditComponent {
 
   onDelete() {
     if (!this.project.subprojects) return;
-    // TODO translate delete msg
-    if (confirm("Are you sure to delete "+this.subproject.workingTitle)) {
+    if (confirm(this.translationService.translate('msg_delete') + this.subproject.workingTitle)) {
       const index = this.project.subprojects.indexOf(this.subproject);
       delete this.project.subprojects[index];
       this.projectService.editProject(this.project.id!, this.project);

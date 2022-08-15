@@ -47,8 +47,8 @@ export class AuthService implements OnDestroy {
         );
 
       } else {
-        this.$userToken.next('');
-        localStorage.setItem('user', '');
+        //this.$userToken.next('');
+        //localStorage.setItem('user', '');
         this.ngZone.run(() => {
           this.router.navigate(['/auth']).then();
         })
