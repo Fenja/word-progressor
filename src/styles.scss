@@ -128,10 +128,6 @@ $angular-dark-theme: mat.define-dark-theme((
     }
   }
 
-  mat-drawer-container.drawer-container {
-    height: 23em;
-  }
-
   .customization-card {
     flex-flow: column;
   }
@@ -158,10 +154,6 @@ $angular-dark-theme: mat.define-dark-theme((
       float: right;
       width: 78%;
     }
-  }
-
-  mat-drawer-container.drawer-container {
-    height: 17rem;
   }
 
   .customization-card {
@@ -337,7 +329,8 @@ app-side-nav {
 }
 
 mat-drawer-container.drawer-container {
-  position: absolute;
+  position: fixed;
+  height: 100%;
 }
 
 ul {
@@ -445,6 +438,16 @@ ul {
       border: 1px solid var(--accent-color);
     }
   }
+}
+
+.mat-toolbar.header {
+  z-index: 10;
+}
+
+.sticky-header {
+  position: fixed;
+  top: 0;
+  z-index: 10;
 }
 
 .bottom-toolbar {

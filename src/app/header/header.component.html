@@ -1,4 +1,17 @@
-<mat-toolbar color="primary">
+<mat-toolbar color="primary" class="sticky-header" *ngIf="isScrolled">
+  <button
+    mat-icon-button
+    name="menu"
+    aria-label="Menu Button"
+    (click)="onToggleSidenav()"
+  >
+    <mat-icon>menu</mat-icon>
+  </button>
+
+  <button mat-button aria-label="Home Link" [routerLink]="['/']">WordProgressor</button>
+</mat-toolbar>
+
+<mat-toolbar class="header" color="primary">
   <button
     mat-icon-button
     name="menu"
