@@ -18,6 +18,7 @@ export class AuthGuard implements CanActivate {
     state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
     if(!this.authService.isLoggedIn && !this.authService.isAnonymous) {
       try {
+        console.log('try refresh token after logged out navigation')
         this.authService.refreshToken();
       } catch (e) {
         this.router.navigate(['auth']);

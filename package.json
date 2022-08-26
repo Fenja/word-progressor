@@ -1,7 +1,7 @@
 {
   "name": "com.erdbeerbeet.wordprogressor",
   "displayName": "WordProgressor",
-  "version": "0.1.7",
+  "version": "0.1.8",
   "description": "Manage your writing projects, stories, submissions and daily writing goal.",
   "main": "index.js",
   "keywords": [

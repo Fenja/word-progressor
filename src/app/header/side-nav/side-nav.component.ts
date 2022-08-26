@@ -9,11 +9,12 @@ import { AuthService } from "../../auth/auth.service";
 export class SideNavComponent {
 
   @Output() sidenavClose = new EventEmitter();
+  isSticky = true;
 
   constructor(public authService: AuthService) { }
 
   onLogout() {
-    this.authService.SignOut().then();
+    this.authService.SignOut();
     this.onSidenavClose();
   }
 

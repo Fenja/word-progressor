@@ -4,7 +4,7 @@ import { Router } from "@angular/router";
 import firebase from "firebase/compat/app";
 import { AngularFirestore, AngularFirestoreDocument } from "@angular/fire/compat/firestore";
 import { AngularFireAuth } from "@angular/fire/compat/auth";
-import { BehaviorSubject, of, Subscription } from "rxjs";
+import {BehaviorSubject, Observable, of, Subscription} from "rxjs";
 import { SnackbarService } from "../services/snackbar.service";
 import { TranslationService } from "../translation/translation.service";
 import { getAuth, getRedirectResult, signInWithRedirect, GoogleAuthProvider } from "@angular/fire/auth";
@@ -93,6 +93,7 @@ export class AuthService implements OnDestroy {
               u?.reload()
                 .then(() => {
                   if (u?.emailVerified) {
+                    console.log('signout because email was verified')
                     this.SignOut().then();
                     // TODO auto login
                     this.snackbarService.showSnackBar(this.translationService.translate('msg_email_verified'))
@@ -193,7 +194,7 @@ export class AuthService implements OnDestroy {
     return this.$userToken.value;
   }
 
-  refreshToken() {
+  refreshToken(): Observable<Promise<string> | undefined> {
     return of(firebase.auth().currentUser?.getIdToken(true));
   }
 }

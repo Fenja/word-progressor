@@ -42,7 +42,7 @@ export class AuthInterceptorService implements HttpInterceptor {
   }
 
   refreshToken(): Observable<any> {
-    if (this.refreshTokenInProgress) {
+    if (this.refreshTokenInProgress || this.authService.isLoggedIn) {
       return new Observable(observer => {
         this.tokenRefreshed$.subscribe(() => {
           observer.next();
@@ -52,14 +52,15 @@ export class AuthInterceptorService implements HttpInterceptor {
     } else {
       this.refreshTokenInProgress = true;
       return this.authService.refreshToken().pipe(
-        tap(() => {
+        tap((token) => {
           this.refreshTokenInProgress = false;
-          //this.tokenRefreshedSource.next();
-        }));
-        /*catchError(e => {
+          this.tokenRefreshedSource.next(token);
+        }),
+        /*catchError(() => {
           this.refreshTokenInProgress = false;
           this.logout();
-        }));*/
+        })*/
+      );
     }
   }
 
@@ -71,6 +72,7 @@ export class AuthInterceptorService implements HttpInterceptor {
     if (error.status === 400) {
       // Show message
     } else if (error.status === 401) {
+      console.log('refresh token due to 401 code')
       return this.refreshToken().pipe(
         switchMap(() => {
           // @ts-ignore
@@ -82,12 +84,13 @@ export class AuthInterceptorService implements HttpInterceptor {
           if (e.status !== 401) {
             return this.handleResponseError(e);
           } else {
-            this.logout();
+            //this.logout();
           }
         })
       );
     } else if (error.status === 403) {
       // show message
+      console.log('logout due to 403 return code');
       this.logout();
     } else if (error.status === 404) {
       // redirect to 404 page
