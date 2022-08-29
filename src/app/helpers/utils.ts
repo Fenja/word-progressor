@@ -108,6 +108,16 @@ export default class Utils {
       isHidePassed: false,
       language: 'all',
       cssVars: undefined,
+
+      showDashboardCitation: true,
+      showDashboardWip: true,
+      showDashboardSubmissions: true,
+      showDashboardDaily: true,
+      showDashboardWordStats: true,
+      showDashboardProjectStats: true,
+      showDashboardWordLogs: true,
+      showDashboardGoals: true,
+      showDashboardHallOfFame: true,
     };
   }
 

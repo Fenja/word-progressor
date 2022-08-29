@@ -7,7 +7,7 @@ import Utils from "../helpers/utils";
 import {filter} from "rxjs/operators";
 import {Submission} from "../submissions/submission.model";
 import {SubmissionService} from "../submissions/submission.service";
-import {userData} from "../auth/user.model";
+import {Settings, userData} from "../auth/user.model";
 
 @Component({
   selector: 'app-dashboard',
@@ -24,6 +24,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   isNewUser = true;
   wips: Project[] = [];
   private subscriptions: Subscription[] = [];
+  settings: Settings = Utils.getDefaultSettings();
 
   showInstallPWA = false;
   deferredPrompt: any;
@@ -71,6 +72,10 @@ export class DashboardComponent implements OnInit, OnDestroy {
     ));
 
     this.subscriptions.push(this.userService.getUser().subscribe(u => {
+      if (u.settings) {
+        this.settings = u.settings;
+      }
+
       this.userWordLogs = u.wordLogs;
       if (this.userWordLogs){
         this.userWordLogs = Utils.repairWordLogs(this.userWordLogs);

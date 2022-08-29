@@ -3,7 +3,7 @@
 <ng-container *ngIf="!isLoading">
 <div *ngIf="projects.length > 0" class="project-list">
   <mat-card class="project-item">
-    <mat-slide-toggle [(ngModel)]="normalView">{{ 'lable_toggle_project_view' | translate }}</mat-slide-toggle>
+    <mat-slide-toggle [(ngModel)]="normalView">{{ 'label_toggle_project_view' | translate }}</mat-slide-toggle>
   </mat-card>
 
   <ng-container *ngIf="normalView">

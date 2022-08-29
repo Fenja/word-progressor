@@ -1,0 +1,41 @@
+<mat-card class="dashboard-item">
+  <mat-card-header class="project-item__header">
+    <mat-card-title>{{ 'headline_dashboard_items_toggle' | translate }}</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+
+    <p>{{ 'info_dashboard_items_toggle' | translate }}</p>
+
+    <ul class="settings-list">
+      <li>
+        <mat-slide-toggle [(ngModel)]="settings.showDashboardCitation">{{ 'label_toggle_show_citation' | translate }}</mat-slide-toggle>
+      </li>
+      <li>
+        <mat-slide-toggle [(ngModel)]="settings.showDashboardWip">{{ 'label_toggle_show_wip' | translate }}</mat-slide-toggle>
+      </li>
+      <li>
+        <mat-slide-toggle [(ngModel)]="settings.showDashboardDaily">{{ 'label_toggle_show_daily' | translate }}</mat-slide-toggle>
+      </li>
+      <li>
+        <mat-slide-toggle [(ngModel)]="settings.showDashboardSubmissions">{{ 'label_toggle_show_submissions' | translate }}</mat-slide-toggle>
+      </li>
+      <li>
+        <mat-slide-toggle [(ngModel)]="settings.showDashboardProjectStats">{{ 'label_toggle_show_project_stats' | translate }}</mat-slide-toggle>
+      </li>
+      <li>
+        <mat-slide-toggle [(ngModel)]="settings.showDashboardWordStats">{{ 'label_toggle_show_word_stats' | translate }}</mat-slide-toggle>
+      </li>
+      <li>
+        <mat-slide-toggle [(ngModel)]="settings.showDashboardWordLogs">{{ 'label_toggle_show_word_logs' | translate }}</mat-slide-toggle>
+      </li>
+    </ul>
+
+  </mat-card-content>
+  <mat-card-actions class="button-row">
+    <button
+      mat-raised-button
+      color="primary"
+      (click)="save()">
+      {{ 'button_save' | translate }}</button>
+  </mat-card-actions>
+</mat-card>

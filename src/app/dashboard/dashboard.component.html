@@ -1,14 +1,15 @@
 <div *ngIf="isLoading" class="loader"></div>
 
 <ng-container *ngIf="!isLoading">
-  <mat-card id="info" class="dashboard-item">
+  
+  <mat-card *ngIf="settings.showDashboardCitation" id="info" class="dashboard-item">
     <mat-card-content>
 
     <app-citation [newUser]="isNewUser"></app-citation>
   </mat-card-content>
   </mat-card>
 
-  <mat-card *ngIf="wips.length > 0" id="wips" class="dashboard-item">
+  <mat-card *ngIf="wips.length > 0 && settings.showDashboardWip" id="wips" class="dashboard-item">
     <mat-card-header class="dashboard-item__header">
       <h3>{{ 'label_works_in_project' | translate }}</h3>
     </mat-card-header>
@@ -22,7 +23,7 @@
     </mat-card-content>
   </mat-card>
 
-  <mat-card *ngIf="nextSubmissions.length > 0" id="submissions" class="dashboard-item">
+  <mat-card *ngIf="nextSubmissions.length > 0 && settings.showDashboardSubmissions" id="submissions" class="dashboard-item">
     <mat-card-header class="dashboard-item__header">
       <h3>{{ 'label_next_submission_deadlines' | translate }}</h3>
     </mat-card-header>
@@ -34,7 +35,7 @@
     </mat-card-content>
   </mat-card>
 
-  <mat-card id="wordsToday" class="dashboard-item">
+  <mat-card *ngIf="settings.showDashboardDaily" id="wordsToday" class="dashboard-item">
     <mat-card-header class="dashboard-item__header">
       <h3>
     <a [routerLink]="['/settings']" class="mat-card-title mat-link">
@@ -47,7 +48,7 @@
     </mat-card-content>
   </mat-card>
 
-  <mat-card *ngIf="userWordLogs && userWordLogs.length > 0" id="weekWordsStatistic" class="dashboard-item">
+  <mat-card *ngIf="userWordLogs && userWordLogs.length > 0 && settings.showDashboardWordStats" id="weekWordsStatistic" class="dashboard-item">
     <mat-card-header class="dashboard-item__header">
       <h3>{{ 'label_words_statistic' | translate }}</h3>
     </mat-card-header>
@@ -65,7 +66,7 @@
     </mat-card-content>
   </mat-card> -->
 
-  <mat-card id="states" class="dashboard-item">
+  <mat-card *ngIf="settings.showDashboardProjectStats" id="states" class="dashboard-item">
     <mat-card-header class="dashboard-item__header">
       <h3>{{ 'label_project_state_overview' | translate }}</h3>
     </mat-card-header>
@@ -87,7 +88,7 @@
     </mat-card-content>
   </mat-card>
 
-  <mat-card id="wordLogs" class="dashboard-item" *ngIf="userWordLogs">
+  <mat-card *ngIf="userWordLogs && settings.showDashboardWordLogs" id="wordLogs" class="dashboard-item">
     <mat-card-header class="dashboard-item__header">
       <h3>{{ 'label_logs' | translate }}</h3>
     </mat-card-header>

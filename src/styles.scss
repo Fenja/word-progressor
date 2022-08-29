@@ -450,6 +450,13 @@ ul {
   z-index: 10;
 }
 
+.settings-list {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin-bottom: 2rem!important;
+}
+
 .bottom-toolbar {
   position: fixed;
   bottom: 0;

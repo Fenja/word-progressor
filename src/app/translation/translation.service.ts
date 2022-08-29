@@ -96,6 +96,7 @@ export class TranslationService {
         info_no_submissions: 'Keine Ausschreibungen gefunden',
         info_ideas: 'Speichere deine literarischen Ideen.',
         info_no_ideas: 'Noch keine Ideen gespeichert.',
+        info_dashboard_items_toggle: 'Zeige Dashboard-Einträge an oder blende sie aus. Ganz wie es dir passt.',
 
         button_new_project: 'Neues Projekt',
         button_add: 'Hinzufügen',
@@ -208,7 +209,14 @@ export class TranslationService {
         label_next_submission_deadlines: 'Nächste Ausschreibungen',
         label_idea: 'Idee',
         label_ideas: 'Ideen',
-        lable_toggle_project_view: 'viel/wenig Projektinformationen',
+        label_toggle_project_view: 'viel/wenig Projektinformationen',
+        label_toggle_show_citation: 'Zitat anzeigen',
+        label_toggle_show_wip: 'Projekte in Arbeit anzeigen',
+        label_toggle_show_daily: 'Wörter heute anzeigen',
+        label_toggle_show_submissions: 'Nächste Ausschreibungen anzeigen',
+        label_toggle_show_project_stats: 'Projekt-Statistik anzeigen',
+        label_toggle_show_word_stats: 'Wörter-Statistik anzeigen',
+        label_toggle_show_word_logs: 'Log anzeigen',
 
         placeholder_working_title: 'Arbeitstitel',
         placeholder_blurb: 'Inhaltsangabe',
@@ -261,6 +269,7 @@ export class TranslationService {
         headline_total_projects: 'Projekte gesamt',
         headline_about: 'Über den WordProgressor',
         headline_customization: 'Anpassungen',
+        headline_dashboard_items_toggle: 'Dashboard',
 
         filter_all: 'Alle an/abwählen',
         filter_prep: 'Planung',
@@ -435,6 +444,7 @@ export class TranslationService {
         info_no_submissions: 'No submissions found',
         info_ideas: 'Jot down your literary ideas.',
         info_no_ideas: 'No ideas saved yet.',
+        info_dashboard_items_toggle: 'Chose which dashboard items to display or hide, according to your likings.',
 
         button_new_project: 'New Project',
         button_add: 'Add',
@@ -547,7 +557,14 @@ export class TranslationService {
         label_next_submission_deadlines: 'Next submissions',
         label_idea: 'Idea',
         label_ideas: 'Ideas',
-        lable_toggle_project_view: 'many/few project informations',
+        label_toggle_project_view: 'many/few project informations',
+        label_toggle_show_citation: 'show citation',
+        label_toggle_show_wip: 'show works in progress',
+        label_toggle_show_daily: 'show words written today',
+        label_toggle_show_submissions: 'show upcomming submissions',
+        label_toggle_show_project_stats: 'show project stats',
+        label_toggle_show_word_stats: 'show word stats',
+        label_toggle_show_word_logs: 'show word logs',
 
         placeholder_working_title: 'Working Title',
         placeholder_blurb: 'Blurb',
@@ -600,6 +617,7 @@ export class TranslationService {
         headline_total_projects: 'Total Projects',
         headline_about: 'About WordProgressor',
         headline_customization: 'Customization',
+        headline_dashboard_items_toggle: 'Dashboard',
 
         filter_all: 'De/Select all',
         filter_prep: 'Preparation',

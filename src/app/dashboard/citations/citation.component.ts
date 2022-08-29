@@ -22,14 +22,14 @@ export class CitationComponent {
   citation: string;
 
   constructor(private translationService: TranslationService) {
-    const todaysId = Math.round(Date.parse(new Date().toString()) / 1000000) % 9; // todo differ free and paid version
-    this.todaysCitation = CitationJson.find(citation => citation.id === '00'+todaysId.toString());
+    const todaysId = Math.round(Date.parse(new Date().toString()) / 1000000) % 15; // todo differ free and paid version
+    this.todaysCitation = CitationJson.find(citation => citation.id === todaysId.toString().padStart(3, '0'));
 
     const locale = this.translationService.getLocale();
-    /*if (locale == 'de' && !!this.todaysCitation.de && this.todaysCitation.de !== '...') {
+    if (locale == 'de' && !!this.todaysCitation.de && this.todaysCitation.de !== '...') {
       this.citation = this.todaysCitation.de;
-    } else {*/
+    } else {
       this.citation = this.todaysCitation.en;
-    //}
+    }
   }
 }

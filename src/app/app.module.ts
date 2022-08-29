@@ -105,6 +105,7 @@ import {CustomizationComponent} from "./settings/customization/customization.com
 import {IdeasComponent} from "./ideas/ideas.component";
 import {IdeaComponent} from "./ideas/idea/idea.component";
 import {ProjectThumbnailComponent} from "./project/project-thumbnail/project-thumbnail.component";
+import {DashboardSettingsComponent} from "./settings/dashboard-settings/dashboard-settings.component";
 
 @NgModule({
   declarations: [
@@ -165,6 +166,7 @@ import {ProjectThumbnailComponent} from "./project/project-thumbnail/project-thu
     CustomizationComponent,
     IdeasComponent,
     IdeaComponent,
+    DashboardSettingsComponent,
   ],
   imports: [
     AngularFireModule.initializeApp(environment.FIREBASE_CONFIG),

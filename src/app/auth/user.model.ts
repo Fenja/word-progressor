@@ -65,6 +65,18 @@ export interface Settings {
   isHidePassed: boolean;
   language: Language;
   cssVars: CssVars | undefined;
+
+  // dashboardItems
+  showDashboardCitation: boolean;
+  showDashboardWip: boolean;
+  showDashboardSubmissions: boolean;
+  showDashboardDaily: boolean;
+  showDashboardWordStats: boolean;
+  showDashboardProjectStats: boolean;
+  showDashboardWordLogs: boolean;
+  showDashboardGoals: boolean;
+  showDashboardHallOfFame: boolean;
+
 }
 
 export interface SubmissionProjects {
