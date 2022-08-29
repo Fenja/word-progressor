@@ -14,6 +14,7 @@ import {filter} from "rxjs/operators";
 export class ProjectListComponent implements OnDestroy {
 
   isLoading = true;
+  normalView = true;
   projects: Project[] = [];
   private allProjects: Project[];
   private subscriptions: Subscription[] = [];

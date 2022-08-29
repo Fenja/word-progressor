@@ -2,11 +2,25 @@
 
 <ng-container *ngIf="!isLoading">
 <div *ngIf="projects.length > 0" class="project-list">
-  <app-project-item
-    *ngFor="let project of projects"
-    [project]="project"
-    class="list-card-item"
-  ></app-project-item>
+  <mat-card class="project-item">
+    <mat-slide-toggle [(ngModel)]="normalView">{{ 'lable_toggle_project_view' | translate }}</mat-slide-toggle>
+  </mat-card>
+
+  <ng-container *ngIf="normalView">
+    <app-project-item
+      *ngFor="let project of projects"
+      [project]="project"
+      class="list-card-item"
+    ></app-project-item>
+  </ng-container>
+
+  <ng-container *ngIf="!normalView">
+    <app-project-thumbnail
+      *ngFor="let project of projects"
+      [project]="project"
+      class="list-card-item"
+    ></app-project-thumbnail>
+  </ng-container>
 </div>
 <p *ngIf="projects.length <= 0" class="empty-info">{{ 'info_no_projects' | translate }}</p>
 </ng-container>

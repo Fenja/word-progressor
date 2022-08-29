@@ -208,6 +208,7 @@ export class TranslationService {
         label_next_submission_deadlines: 'Nächste Ausschreibungen',
         label_idea: 'Idee',
         label_ideas: 'Ideen',
+        lable_toggle_project_view: 'viel/wenig Projektinformationen',
 
         placeholder_working_title: 'Arbeitstitel',
         placeholder_blurb: 'Inhaltsangabe',
@@ -232,7 +233,7 @@ export class TranslationService {
         tooltip_delete_note: 'Notiz löschen',
         tooltip_add_favorite: 'zu Favoriten hinzufügen',
         tooltip_remove_favorite: 'aus Favoriten entfernen',
-        tooltip_hide_inactive: 'inaktive verbergen',
+        tooltip_hide_inactive: 'verbergen',
         tooltip_project: 'zum Project',
         tooltip_submitted: 'eingereicht',
         tooltip_passed_submissions: 'beendete Ausschreibungen',
@@ -546,6 +547,7 @@ export class TranslationService {
         label_next_submission_deadlines: 'Next submissions',
         label_idea: 'Idea',
         label_ideas: 'Ideas',
+        lable_toggle_project_view: 'many/few project informations',
 
         placeholder_working_title: 'Working Title',
         placeholder_blurb: 'Blurb',
@@ -570,7 +572,7 @@ export class TranslationService {
         tooltip_delete_note: 'delete note',
         tooltip_add_favorite: 'add to favorites',
         tooltip_remove_favorite: 'remove from favorites',
-        tooltip_hide_inactive: 'hide inactive',
+        tooltip_hide_inactive: 'hide',
         tooltip_project: 'to project',
         tooltip_submitted: 'submitted',
         tooltip_passed_submissions: 'passed submissions',

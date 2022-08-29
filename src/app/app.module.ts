@@ -104,6 +104,7 @@ import {wpTheme} from "./theme/wp-theme";
 import {CustomizationComponent} from "./settings/customization/customization.component";
 import {IdeasComponent} from "./ideas/ideas.component";
 import {IdeaComponent} from "./ideas/idea/idea.component";
+import {ProjectThumbnailComponent} from "./project/project-thumbnail/project-thumbnail.component";
 
 @NgModule({
   declarations: [
@@ -128,6 +129,7 @@ import {IdeaComponent} from "./ideas/idea/idea.component";
     DashboardComponent,
     ForgotPasswordDialog,
     ProjectOverviewComponent,
+    ProjectThumbnailComponent,
     SideNavComponent,
     NoteAddDialogComponent,
     TakeActionComponent,
