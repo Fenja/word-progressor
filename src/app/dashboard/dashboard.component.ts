@@ -8,6 +8,7 @@ import {filter} from "rxjs/operators";
 import {Submission} from "../submissions/submission.model";
 import {SubmissionService} from "../submissions/submission.service";
 import {Settings, userData} from "../auth/user.model";
+import {AuthService} from "../auth/auth.service";
 
 @Component({
   selector: 'app-dashboard',
@@ -49,50 +50,57 @@ export class DashboardComponent implements OnInit, OnDestroy {
   }
 
   constructor(
+    private authService: AuthService,
     private projectService: ProjectService,
     private userService: UserService,
     private submissionService: SubmissionService,
   ) { }
 
   ngOnInit() {
-    this.wips = this.projectService.getProjects().filter(p => p.isWorkInProgress);
-    this.subscriptions.push( this.projectService.projectList
-      .pipe(
-        filter((projects: Project[]) => !!projects && projects.length > 0)
-      )
-      .subscribe(projects => {
-      this.wips = projects.filter(p => p.isWorkInProgress);
-      projects.forEach(project => {
-        project.subprojects?.filter(s => {
-          if (s.isWorkInProgress && !this.wips.find(p => p.id == project.id)) this.wips.push(project);
+    // user id needs to be set first
+    this.authService.initAuthToken().subscribe(() => {
+
+      this.wips = this.projectService.getProjects().filter(p => p.isWorkInProgress);
+      this.subscriptions.push(
+        this.projectService.projectList
+        .pipe(
+          filter((projects: Project[]) => !!projects && projects.length > 0)
+        )
+        .subscribe(projects => {
+        this.wips = projects.filter(p => p.isWorkInProgress);
+        projects.forEach(project => {
+          project.subprojects?.filter(s => {
+            if (s.isWorkInProgress && !this.wips.find(p => p.id == project.id)) this.wips.push(project);
+          })
         })
-      })
-      this._initProjectStats(projects);
-      }
-    ));
+        this._initProjectStats(projects);
+        }
+      ));
 
-    this.subscriptions.push(this.userService.getUser().subscribe(u => {
-      if (u.settings) {
-        this.settings = u.settings;
-      }
+      this.subscriptions.push(this.userService.getUser().subscribe(u => {
+        if (u.settings) {
+          this.settings = u.settings;
+        }
 
-      this.userWordLogs = u.wordLogs;
-      if (this.userWordLogs){
-        this.userWordLogs = Utils.repairWordLogs(this.userWordLogs);
-        this._initWeekLog();
-        this._initMonthLog();
-      }
-      const logToday = u.wordLogs?.find(log => log.date === Utils.normalizedToday().toString());
-      this.wordsToday = logToday?.words ?? 0;
-      this.wordGoalDaily = u.settings?.dailyWordGoal;
-      if (this.wordGoalDaily) {
-        this.metGoal = this.wordsToday >= this.wordGoalDaily;
-      }
+        this.userWordLogs = u.wordLogs;
+        if (this.userWordLogs){
+          this.userWordLogs = Utils.repairWordLogs(this.userWordLogs);
+          this._initWeekLog();
+          this._initMonthLog();
+        }
+        const logToday = u.wordLogs?.find(log => log.date === Utils.normalizedToday().toString());
+        this.wordsToday = logToday?.words ?? 0;
+        this.wordGoalDaily = u.settings?.dailyWordGoal;
+        if (this.wordGoalDaily) {
+          this.metGoal = this.wordsToday >= this.wordGoalDaily;
+        }
 
-      this._initSubmissionStats(u);
-    }));
-    this.isNewUser = this.userService.isNewUser();
-    this.isLoading = false;
+        this._initSubmissionStats(u);
+      }));
+      this.isNewUser = this.userService.isNewUser();
+      this.isLoading = false;
+
+    });
   }
 
   ngOnDestroy(): void {
@@ -113,6 +121,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
   private _initWeekLog() {
     let lastWeek: string[] = [];
+    this.lastWeeksLogs = [];
     let day = Utils.normalizedToday();
     for (let i = 0; i < 7; i += 1) {
       lastWeek.push(day.toString());
@@ -127,6 +136,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
   private _initMonthLog() {
     let lastMonth: string[] = [];
+    this.lastMonthLogs = [];
     let day = Utils.normalizedToday();
     for (let i = 0; i < 30; i += 1) {
       lastMonth.push(day.toString());

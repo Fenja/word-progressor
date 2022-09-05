@@ -8,6 +8,7 @@ import {BehaviorSubject, Observable, of, Subscription} from "rxjs";
 import { SnackbarService } from "../services/snackbar.service";
 import { TranslationService } from "../translation/translation.service";
 import { getAuth, getRedirectResult, signInWithRedirect, GoogleAuthProvider } from "@angular/fire/auth";
+import { map } from "rxjs/operators";
 
 @Injectable({ providedIn: 'root' })
 export class AuthService implements OnDestroy {
@@ -121,8 +122,8 @@ export class AuthService implements OnDestroy {
   get isLoggedIn(): boolean {
     const userItem = localStorage.getItem('user');
     if (userItem === undefined) return false;
-    if (typeof userItem === "string" && userItem.length > 0) {
-      const user = JSON.parse(userItem);
+    if (userItem!.length > 0) {
+      const user = JSON.parse(userItem!);
       return (user !== null && user.emailVerified !== false);
     }
     return false;
@@ -196,5 +197,15 @@ export class AuthService implements OnDestroy {
 
   refreshToken(): Observable<Promise<string> | undefined> {
     return of(firebase.auth().currentUser?.getIdToken(true));
+  }
+
+  initAuthToken(): Observable<boolean> {
+    const token = this.$userToken.value;
+    if (!token) {
+      this.refreshToken();
+      return this.$userToken.pipe(map((t: string) => t != null));
+    } else {
+      return of(true);
+    }
   }
 }
