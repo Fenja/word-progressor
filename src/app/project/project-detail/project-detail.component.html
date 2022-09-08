@@ -89,6 +89,14 @@
   ></app-publication>
 </div>
 
+<div class="content" *ngIf="project.milestones">
+  <h3>{{ 'label_milestones' | translate }}</h3>
+  <app-milestones
+  [milestones]="project.milestones"
+  [contentEditable]="false">
+  </app-milestones>
+</div>
+
 <div class="content">
   <div class="button-row">
     <button *ngIf="project.countEntity === eCountEntity.words"

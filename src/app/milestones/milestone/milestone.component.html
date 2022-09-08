@@ -1,0 +1,13 @@
+<li *ngIf="!editableContent">
+  <time>{{ milestone.date | date }}</time>{{ milestone.milestoneType | translate }}
+  <span *ngIf="milestone.freeText">{{ milestone.freeText }}</span>
+</li>
+
+<li *ngIf="editableContent">
+  <time>{{ milestone.date | date }}</time>{{ milestone.milestoneType | translate }}
+  <input matInput
+         type="text"
+         [(ngModel)]="milestone.freeText">
+</li>
+
+

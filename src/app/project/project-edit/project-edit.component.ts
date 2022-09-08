@@ -1,7 +1,7 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {ActivatedRoute, Params, Router} from "@angular/router";
 import {ProjectService} from "../project.service";
-import {CountEntity, Project, ProjectState, ProjectType} from "../project.model";
+import {CountEntity, Project, ProjectEvent, ProjectState, ProjectType} from "../project.model";
 import {FormControl, NgForm} from "@angular/forms";
 import {map, startWith, take} from "rxjs/operators";
 
@@ -22,6 +22,9 @@ import {MatDialog} from "@angular/material/dialog";
 import {
   SubmissionSelectDialogComponent
 } from "../../submissions/submission-select-dialog/submission-select-dialog.component";
+import {MilestoneService} from "../../milestones/milestone.service";
+import {MilestoneType} from "../../milestones/milestone.model";
+import {RewardDialogComponent} from "../reward-dialog/reward-dialog.component";
 
 @Component({
   selector: 'app-project-edit',
@@ -58,6 +61,7 @@ export class ProjectEditComponent implements OnInit {
     creationDate: new Date(),
     lastUpdate: new Date(),
   }
+  backup: Project = this.project;
 
   eProjectType = ProjectType;
   eProjectState = ProjectState;
@@ -76,6 +80,7 @@ export class ProjectEditComponent implements OnInit {
     private _adapter: DateAdapter<any>,
     private submissionService: SubmissionService,
     private dialog: MatDialog,
+    private milestoneService: MilestoneService,
   ) { }
 
   ngOnInit(): void {
@@ -89,7 +94,10 @@ export class ProjectEditComponent implements OnInit {
 
         if (this.editMode) {
           let result: Project | undefined = this.projectService.getProject(this.id);
-          if (!!result) this.project = result;
+          if (!!result) {
+            this.project = result;
+            this.backup = result;
+          }
           if (this.project.state === ProjectState.published && !this.project.publication) {
             this.project.publication = {
               title: '',
@@ -121,10 +129,13 @@ export class ProjectEditComponent implements OnInit {
   onSubmit(): void {
     if (!this.projectForm.valid) return;
 
+    this._detectChanges();
+
     if (!!this.project) {
       if (this.editMode) {
         this.projectService.editProject(this.id!, this.project);
       } else {
+        this.project = this.milestoneService.addMilestoneByType(this.project,MilestoneType.projectCreated);
         this.projectService.addProject(this.project);
       }
     }
@@ -206,4 +217,57 @@ export class ProjectEditComponent implements OnInit {
     this.translationService.translate('genre_contemporary'),
     this.translationService.translate('genre_non_fiction')
   ];
+
+  private _detectChanges() {
+    if (this.backup.state != this.project.state) {
+
+      // milestone
+      switch (this.project.state) {
+        case ProjectState.draft_1:
+          this.project = this.milestoneService.addMilestoneByType(this.project, MilestoneType.projectStarted);
+          break;
+        case ProjectState.finished:
+          if (this.backup.state === ProjectState.submitted) {
+            this.project = this.milestoneService.addMilestoneByType(this.project, MilestoneType.submissionReject);
+          } else {
+            this.project = this.milestoneService.addMilestoneByType(this.project, MilestoneType.projectFinished);
+          }
+          break;
+        case ProjectState.submitted:
+          this.project = this.milestoneService.addMilestoneByType(this.project, MilestoneType.submissionSubmit);
+          break;
+        case ProjectState.published:
+          if (this.backup.state === ProjectState.submitted) {
+            this.project = this.milestoneService.addMilestoneByType(this.project, MilestoneType.submissionAccepted);
+          } else {
+            this.project = this.milestoneService.addMilestoneByType(this.project, MilestoneType.published);
+          }
+          break;
+        case ProjectState.abandon:
+          this.project = this.milestoneService.addMilestoneByType(this.project, MilestoneType.projectAbandoned);
+          break;
+        default: break;
+      }
+
+      // reward
+      switch (this.project.state) {
+        case ProjectState.finished:
+          this._rewardYourself(ProjectEvent.finish);
+          break;
+        case ProjectState.submitted:
+          this._rewardYourself(ProjectEvent.submit);
+          break;
+        default: break;
+      }
+    }
+  }
+
+  private _rewardYourself(projectEvent: ProjectEvent) {
+    this.dialog.open(RewardDialogComponent, {
+      data: {
+        project: this.project,
+        event: projectEvent
+      }
+    });
+  }
 }

@@ -106,6 +106,8 @@ import {IdeasComponent} from "./ideas/ideas.component";
 import {IdeaComponent} from "./ideas/idea/idea.component";
 import {ProjectThumbnailComponent} from "./project/project-thumbnail/project-thumbnail.component";
 import {DashboardSettingsComponent} from "./settings/dashboard-settings/dashboard-settings.component";
+import {MilestonesComponent} from "./milestones/milestones.component";
+import {MilestoneComponent} from "./milestones/milestone/milestone.component";
 
 @NgModule({
   declarations: [
@@ -167,6 +169,8 @@ import {DashboardSettingsComponent} from "./settings/dashboard-settings/dashboar
     IdeasComponent,
     IdeaComponent,
     DashboardSettingsComponent,
+    MilestonesComponent,
+    MilestoneComponent,
   ],
   imports: [
     AngularFireModule.initializeApp(environment.FIREBASE_CONFIG),

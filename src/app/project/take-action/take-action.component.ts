@@ -7,6 +7,8 @@ import { ProjectService } from "../project.service";
 import { MatDialog } from "@angular/material/dialog";
 import { PublicationDialogComponent } from "../../publication/publication-dialog/publication-dialog.component";
 import { RewardDialogComponent } from "../reward-dialog/reward-dialog.component";
+import {MilestoneService} from "../../milestones/milestone.service";
+import {MilestoneType} from "../../milestones/milestone.model";
 
 @Component({
   selector: 'app-take-action',
@@ -22,6 +24,7 @@ export class TakeActionComponent implements OnInit {
     private translateService: TranslationService,
     private projectService: ProjectService,
     private dialog: MatDialog,
+    private milestoneService: MilestoneService,
   ) {}
 
   ngOnInit(): void {
@@ -33,6 +36,7 @@ export class TakeActionComponent implements OnInit {
       case ProjectEvent.start:
         this.project.state = ProjectState.draft_1;
         this.project.isWorkInProgress = true;
+        this.project = this.milestoneService.addMilestoneByType(this.project, MilestoneType.projectStarted);
         break;
       case ProjectEvent.finish_first_draft:
         this.project.state = ProjectState.wait;
@@ -55,19 +59,23 @@ export class TakeActionComponent implements OnInit {
         this.project.state = ProjectState.submitted;
         this.project.isWorkInProgress = false;
         this._rewardYourself(ProjectEvent.submit);
+        this.project = this.milestoneService.addMilestoneByType(this.project, MilestoneType.submissionSubmit);
         break;
       case ProjectEvent.rejected:
         this.project.state = ProjectState.finished;
+        this.project = this.milestoneService.addMilestoneByType(this.project, MilestoneType.submissionReject);
         break;
       case ProjectEvent.publish:
         this.project.state = ProjectState.published;
         this.project.isWorkInProgress = false;
         this._rewardYourself(ProjectEvent.publish);
+        this.project = this.milestoneService.addMilestoneByType(this.project, MilestoneType.published);
         this._createPublication();
         break;
       case ProjectEvent.lay_aside:
         this.project.state = ProjectState.abandon;
         this.project.isWorkInProgress = false;
+        this.project = this.milestoneService.addMilestoneByType(this.project, MilestoneType.projectAbandoned);
         break;
     }
     this.snackBarService.showSnackBar(this.project.workingTitle + this.translateService.translate('msg_' + event));

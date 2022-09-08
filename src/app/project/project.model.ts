@@ -1,6 +1,7 @@
 import { Publication } from "../publication/publication.model";
 import { Subproject } from "./subproject/subproject.model";
 import { Submission } from "../submissions/submission.model";
+import { Milestone } from "../milestones/milestone.model";
 
 export interface AbstractProject {
   id?: string;
@@ -13,6 +14,7 @@ export interface AbstractProject {
   maxGoalCount?: number;
   isWorkInProgress: boolean;
   submission?: Submission;
+  milestones?: Milestone[];
 }
 
 export interface Project extends AbstractProject {
@@ -88,6 +90,7 @@ export enum ProjectState {
 
 export enum ProjectEvent {
   start = 'start',
+  finish = 'generic_finish',
   finish_first_draft = 'finish_first_draft',
   finish_revision = 'finish_revision',
   start_revision = 'start_revision',

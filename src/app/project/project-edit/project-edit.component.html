@@ -255,6 +255,14 @@
     </mat-form-field>
   </div>
 
+  <div class="content" *ngIf="project.milestones">
+    <h3>{{ 'label_milestones' | translate }}</h3>
+    <app-milestones
+      [milestones]="project.milestones"
+      [contentEditable]="false">
+    </app-milestones>
+  </div>
+
   <div class="button-row">
     <button
       mat-raised-button
