@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1661491008917,
+  "timestamp": 1661960616198,
   "index": "/index.html",
   "assetGroups": [
     {
@@ -13,11 +13,11 @@
       "urls": [
         "/assets/wordprogressor.png",
         "/index.html",
-        "/main.ebd709eb7ed4f615.js",
+        "/main.6952449ca5d21d3e.js",
         "/manifest.webmanifest",
         "/polyfills.e43ffc96a7559ab6.js",
         "/runtime.7e28dbb76af9c626.js",
-        "/styles.e7f24397f8213ad1.css"
+        "/styles.0eb91e430ff30899.css"
       ],
       "patterns": []
     },
@@ -49,7 +49,7 @@
   ],
   "dataGroups": [],
   "hashTable": {
-    "/assets/data/citations.json": "d06e299a0500f3a6f45a7d2d9c309c0a8db44416",
+    "/assets/data/citations.json": "2a24c26e7c133ffe139360f15a6ea5eaecfe56e6",
     "/assets/icons/icon-128x128.png": "db92c57819aeab9e995f05fdea917499dc6ff1be",
     "/assets/icons/icon-144x144.png": "cc040994057e2658f538d488992e090eab4b0e07",
     "/assets/icons/icon-152x152.png": "9b9c72fd25f1d992c68b7993842fea15c83b0445",
@@ -64,12 +64,12 @@
     "/assets/scripts/setEnv.ts": "44f5accc98b7c34676269a2efade8111869b0a1e",
     "/assets/wordprogressor.png": "7c1c660e7dcd45081d427eb4d7fd80a3de81208f",
     "/assets/wp_maskable.png": "d7e499f44ade91d456b718b17289a25d12d58f8b",
-    "/index.html": "cf08c2a2b4634cb7e0adf584aedc03c47e5aa957",
-    "/main.ebd709eb7ed4f615.js": "c44ccaca8c6dd30512ed10e679451ec954b3df37",
+    "/index.html": "0f26429b732e33ede1f6ee7382211c8a3a28b236",
+    "/main.6952449ca5d21d3e.js": "781c5be263845406ace4e635084bae76fcb8e7cb",
     "/manifest.webmanifest": "a37c5d216b1e2b12f2a437f4e0b638f1a9fb2df0",
     "/polyfills.e43ffc96a7559ab6.js": "e9cddb72bad657e2906cdefa5ecfacc7217f9e15",
     "/runtime.7e28dbb76af9c626.js": "9666ecef43cf401134bc7c9dbbe3d8e118176f10",
-    "/styles.e7f24397f8213ad1.css": "edc44eb4361b6ba7cece04324ee213c087172c21"
+    "/styles.0eb91e430ff30899.css": "611c5acf54a79d4ba8a55ff0afbacee6da8e4060"
   },
   "navigationUrls": [
     {

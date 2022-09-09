@@ -16,6 +16,7 @@ import { SubmissionListComponent } from "./submissions/submission-list/submissio
 import { AuthGuard } from "./auth/auth.guard";
 import { PagenotfoundComponent } from "./pagenotfound/pagenotfound.component";
 import {IdeasComponent} from "./ideas/ideas.component";
+import {SubmissionDetailComponent} from "./submissions/submission-detail/submission-detail.component";
 
 export const appRoutes: Routes = [
   { path: '', redirectTo: '/auth', pathMatch: 'full' },
@@ -36,6 +37,7 @@ export const appRoutes: Routes = [
   { path: 'submissions', component: SubmissionComponent, children: [
       { path: '', component: SubmissionListComponent },
       { path: 'new', component: SubmissionEditComponent, /*canActivate: [AdminGuard]*/ },
+      { path: ':id', component: SubmissionDetailComponent, /*canActivate: [AdminGuard] */},
       { path: ':id/edit', component: SubmissionEditComponent, /*canActivate: [AdminGuard] */},
     ] },
 

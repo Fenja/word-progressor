@@ -1,48 +1,42 @@
 <mat-card class="project-item" [ngClass]="isPassed ? 'obsolete' : isNew ? 'project-item--new' : ''">
   <mat-card-header class="project-item__header">
-    <mat-card-title>{{ submission.title }}</mat-card-title>
-    <mat-card-subtitle>{{ submission.publisher }}, {{ submission.genre }}</mat-card-subtitle>
+    <mat-card-title [routerLink]="[submission.id]">{{ submission.title }}</mat-card-title>
   </mat-card-header>
 
   <mat-card-content>
     <div class="mat-card-content">
-      <div *ngIf="submission.description"
-           class="project-description"
-           data-testid="project-description"
-           [innerHTML]="submission.description"
-      ></div>
+      {{ (submission.description.length>300)? (submission.description | slice:0:300)+'...':(submission.description) }}
+    </div>
+
+    <div>
+      <span>{{ submission.minCount }} - {{ submission.maxCount }} {{ submission.countEntity | translate }}</span>
     </div>
 
     <div *ngIf="submission.deadline" class="deadline">
       <i class="mat-icon material-icons">event</i>
-      <span>{{ submission.deadline | date }}</span>
+      <time>{{ submission.deadline | date }}</time>
     </div>
   </mat-card-content>
 
   <mat-card-actions class="button-row" *ngIf="!isPassed || isAdmin">
     <button
-      *ngIf="submission.link"
       mat-raised-button
-      color="accent"
-      (click)="openSubmission()"
+      color="primary"
+      [routerLink]="[submission.id]"
       data-testid="project-detail-button"
-    >{{'button_to_submission' | translate}}</button>
+    >
+      {{'button_details' | translate}}
+    </button>
 
     <button
       mat-icon-button
-      name="edit"
+      name="favorite"
       matTooltip="{{(isFavorite ? 'tooltip_remove_favorite' : 'tooltip_add_favorite') | translate }}"
       class="wordlog-item__button"
       (click)="toggleFavorite()"
     >
       <mat-icon [ngClass]="isFavorite ? 'primary-color' : ''">favorite</mat-icon>
     </button>
-    <button
-      mat-raised-button
-      color="primary"
-      (click)="createProjectFromSubmission()"
-      data-testid="project-detail-button"
-    >{{'button_project_from_submission' | translate}}</button>
 
     <button
       *ngIf="isAdmin"

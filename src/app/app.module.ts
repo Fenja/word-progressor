@@ -106,6 +106,7 @@ import {IdeasComponent} from "./ideas/ideas.component";
 import {IdeaComponent} from "./ideas/idea/idea.component";
 import {ProjectThumbnailComponent} from "./project/project-thumbnail/project-thumbnail.component";
 import {DashboardSettingsComponent} from "./settings/dashboard-settings/dashboard-settings.component";
+import {SubmissionDetailComponent} from "./submissions/submission-detail/submission-detail.component";
 
 @NgModule({
   declarations: [
@@ -162,6 +163,7 @@ import {DashboardSettingsComponent} from "./settings/dashboard-settings/dashboar
     PagenotfoundComponent,
     SubmissionSelectDialogComponent,
     SubmissionReportDialogComponent,
+    SubmissionDetailComponent,
     CitationComponent,
     CustomizationComponent,
     IdeasComponent,

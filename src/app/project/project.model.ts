@@ -80,6 +80,7 @@ export enum ProjectState {
   beta = 'beta',
   editor = 'editor',
   finished = 'finished',
+  accepted = 'accepted',
   submitted = 'submitted',
   wait = 'wait',
   published = 'published',
@@ -95,6 +96,7 @@ export enum ProjectEvent {
   send_beta = 'send_beta',
   send_editor = 'send_editor',
   submit = 'submit',
+  accept = 'accept',
   rejected = 'rejected',
   publish = 'publish',
   lay_aside = 'lay_aside'

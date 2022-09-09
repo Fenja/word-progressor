@@ -1,0 +1,60 @@
+<div class="content">
+  <h2 data-testid="submission-title">{{ submission.title }}</h2>
+  <div class="mat-card-subtitle">
+    {{ submission.publisher }}, {{ submission.genre }}
+  </div>
+
+  <div *ngIf="submission.description"
+       class="project-description"
+       data-testid="submission-description"
+       [innerHTML]="submission.description"
+  ></div>
+
+  <div>
+    <span>{{ submission.minCount }} - {{ submission.maxCount }} {{ submission.countEntity | translate }}</span>
+  </div>
+
+  <div *ngIf="submission.deadline" class="deadline">
+    <i class="mat-icon material-icons">event</i>
+    <time>{{ submission.deadline | date }}</time>
+  </div>
+
+  <mat-card-actions class="button-row">
+    <button
+      *ngIf="submission.link"
+      mat-raised-button
+      color="accent"
+      (click)="openSubmission()"
+      data-testid="project-detail-button"
+    >{{'button_to_submission' | translate}}</button>
+
+    <button
+      mat-icon-button
+      name="edit"
+      matTooltip="{{(isFavorite ? 'tooltip_remove_favorite' : 'tooltip_add_favorite') | translate }}"
+      class="wordlog-item__button"
+      (click)="toggleFavorite()"
+    >
+      <mat-icon [ngClass]="isFavorite ? 'primary-color' : ''">favorite</mat-icon>
+    </button>
+    <button
+      mat-raised-button
+      color="primary"
+      (click)="createProjectFromSubmission()"
+      data-testid="project-detail-button"
+    >{{'button_project_from_submission' | translate}}</button>
+
+  </mat-card-actions>
+
+  <div *ngIf="linkedProjects.length > 0">
+    <div *ngFor="let project of linkedProjects" class="submission-project" [routerLink]="['/projects/'+project.id]">
+      <i *ngIf="project.state.toString() === 'submitted'" class="mat-icon material-icons accent-color" matTooltip="{{ 'tooltip_submitted' | translate }}">mail</i>
+      <i *ngIf="project.state.toString() !== 'submitted'" class="mat-icon material-icons">mail_outline</i>
+      <span matTooltip="{{ 'tooltip_project' | translate }}">{{ project.workingTitle }}</span>
+      <!-- <span *ngIf="project.state.toString() === 'submitted'">
+        <time>{{ milestone submitted }}</time>
+      </span>-->
+    </div>
+  </div>
+
+</div>

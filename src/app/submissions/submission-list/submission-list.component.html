@@ -2,6 +2,83 @@
 
 <ng-container *ngIf="!isLoading">
 
+  <section *ngIf="!!participationsInState && participationsInState.size > 0">
+    <mat-card class="dashboard-item">
+      <mat-card-title>{{ 'label_participations' | translate }}</mat-card-title>
+      <mat-card-content>
+        <div *ngIf="participationsInState.get(eParticipationState.planned)">
+          <hr>
+          <h3 class="project-item__header">{{ 'plan' | translate }}</h3>
+          <div
+            *ngFor="let part of participationsInState.get(eParticipationState.planned)"
+            [ngClass]="part.isPassed ? 'obsolete' : ''"
+            style="display: flex; justify-content: space-between;"
+          >
+            <strong [routerLink]="['/projects/'+part.projectId]">{{ part.projectTitle }}</strong>
+            <span [routerLink]="'/'+part.submissionId">{{ part.submissionTitle }}</span>
+            <time>{{ part.deadline | date }}</time>
+          </div>
+        </div>
+
+        <div *ngIf="participationsInState.get(eParticipationState.submitted)">
+          <hr>
+          <h3 class="project-item__header">{{ 'submitted' | translate }}</h3>
+          <div
+            *ngFor="let part of participationsInState.get(eParticipationState.submitted)"
+            [ngClass]="part.isPassed ? 'obsolete' : ''"
+            style="display: flex; justify-content: space-between;"
+          >
+            <strong [routerLink]="['/projects/'+part.projectId]">{{ part.projectTitle }}</strong>
+            <span [routerLink]="'/'+part.submissionId">{{ part.submissionTitle }}</span>
+            <time>{{ part.deadline | date }}</time>
+          </div>
+        </div>
+
+        <div *ngIf="participationsInState.get(eParticipationState.accepted)">
+          <hr>
+          <h3 class="project-item__header">{{ 'accepted' | translate }}</h3>
+          <div
+            *ngFor="let part of participationsInState.get(eParticipationState.accepted)"
+            [ngClass]="part.isPassed ? 'obsolete' : ''"
+            style="display: flex; justify-content: space-between;"
+          >
+            <strong [routerLink]="['/projects/'+part.projectId]">{{ part.projectTitle }}</strong>
+            <span [routerLink]="'/'+part.submissionId">{{ part.submissionTitle }}</span>
+            <time>{{ part.deadline | date }}</time>
+          </div>
+        </div>
+
+        <div *ngIf="participationsInState.get(eParticipationState.rejected)">
+          <hr>
+          <h3 class="project-item__header">{{ 'rejected' | translate }}</h3>
+          <div
+            *ngFor="let part of participationsInState.get(eParticipationState.rejected)"
+            [ngClass]="part.isPassed ? 'obsolete' : ''"
+            style="display: flex; justify-content: space-between;"
+          >
+            <strong [routerLink]="['/projects/'+part.projectId]">{{ part.projectTitle }}</strong>
+            <span [routerLink]="'/'+part.submissionId">{{ part.submissionTitle }}</span>
+            <time>{{ part.deadline | date }}</time>
+          </div>
+        </div>
+
+        <div *ngIf="participationsInState.get(eParticipationState.published)">
+          <hr>
+          <h3 class="project-item__header">{{ 'published' | translate }}</h3>
+          <div
+            *ngFor="let part of participationsInState.get(eParticipationState.published)"
+            [ngClass]="part.isPassed ? 'obsolete' : ''"
+            style="display: flex; justify-content: space-between;"
+          >
+            <strong [routerLink]="['/projects/'+part.projectId]">{{ part.projectTitle }}</strong>
+            <span [routerLink]="'/'+part.submissionId">{{ part.submissionTitle }}</span>
+            <time>{{ part.deadline | date }}</time>
+          </div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </section>
+
   <div *ngIf="isAdmin">
     <mat-card *ngFor="let report of reports" class="project-item">
       <mat-card-content>

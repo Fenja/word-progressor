@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Submission } from "../submission.model";
-import {CountEntity, Project} from "../../project/project.model";
+import { CountEntity, Project } from "../../project/project.model";
 import Utils from "../../helpers/utils";
 import { UserService } from "../../services/user.service";
 import { Subscription } from "rxjs";
@@ -57,16 +57,8 @@ export class SubmissionItemComponent implements OnInit {
     this.subscriptions.forEach((sub) => sub.unsubscribe());
   }
 
-  createProjectFromSubmission() {
-    this.router.navigate(['/projects/new/' + this.submission.id]).then();
-  }
-
   toggleFavorite() {
     this.isFavorite = !this.isFavorite;
     this.userService.toggleFavoriteSubmission(this.submission.id!, this.isFavorite);
-  }
-
-  openSubmission() {
-    window.open(this.submission.link, "_blank");
   }
 }

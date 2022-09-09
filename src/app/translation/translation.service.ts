@@ -58,6 +58,7 @@ export class TranslationService {
         send_beta: 'An Beta-Leser senden',
         send_editor: 'An Editor senden',
         submit: 'Einsenden',
+        accepted: 'Angenommen',
         rejected: 'Abgelehnt',
         publish: 'Veröffentlichen',
         lay_aside: 'Beiseite legen',
@@ -217,6 +218,7 @@ export class TranslationService {
         label_toggle_show_project_stats: 'Projekt-Statistik anzeigen',
         label_toggle_show_word_stats: 'Wörter-Statistik anzeigen',
         label_toggle_show_word_logs: 'Log anzeigen',
+        label_participations: 'Teilnahmen',
 
         placeholder_working_title: 'Arbeitstitel',
         placeholder_blurb: 'Inhaltsangabe',
@@ -406,7 +408,8 @@ export class TranslationService {
         send_beta: 'send to beta readers',
         send_editor: 'send to an editor',
         submit: 'submit',
-        rejected: 'was rejected',
+        rejected: 'rejected',
+        accepted: 'accepted',
         publish: 'publish',
         lay_aside: 'lay aside',
 
@@ -565,6 +568,7 @@ export class TranslationService {
         label_toggle_show_project_stats: 'show project stats',
         label_toggle_show_word_stats: 'show word stats',
         label_toggle_show_word_logs: 'show word logs',
+        label_participations: 'Participations',
 
         placeholder_working_title: 'Working Title',
         placeholder_blurb: 'Blurb',

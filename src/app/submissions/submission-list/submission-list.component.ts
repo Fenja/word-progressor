@@ -8,6 +8,26 @@ import Utils from "../../helpers/utils";
 import { MatDialog } from "@angular/material/dialog";
 import { SubmissionReportDialogComponent } from "../submission-report-dialog/submission-report-dialog.component";
 import { AuthService } from "../../auth/auth.service";
+import { ProjectService } from "../../project/project.service";
+import { Project, ProjectState } from "../../project/project.model";
+
+class Participation {
+  projectId!: string;
+  projectTitle!: string;
+  submissionTitle!: string;
+  submissionId!: string;
+  deadline: Date | undefined;
+  isPassed: boolean | undefined;
+  //milestone: Milestone;
+}
+
+export enum ParticipationState {
+  planned = 'planned',
+  submitted = 'submitted',
+  rejected = 'rejected',
+  accepted = 'accepted',
+  published = 'published',
+}
 
 @Component({
   selector: 'app-submission-list',
@@ -19,6 +39,7 @@ export class SubmissionListComponent {
   isLoading = true;
   private favorites: string[] | undefined = [];
   submissionProjects: SubmissionProjects[] | undefined = [];
+  participationsInState: Map<ParticipationState, Participation[]> = new Map<ParticipationState, Participation[]>();
 
   submissions: Submission[] = [];
   reports: string[] = [];
@@ -26,6 +47,8 @@ export class SubmissionListComponent {
   private subscriptions: Subscription[] = [];
   private settings: Settings = Utils.getDefaultSettings();
   isAdmin: boolean | undefined;
+
+  eParticipationState = ParticipationState;
 
 
   get totalSubmissionsLength() {
@@ -40,6 +63,7 @@ export class SubmissionListComponent {
     private submissionService: SubmissionService,
     private dialog: MatDialog,
     public authService: AuthService,
+    private projectService: ProjectService,
   ) {
     this.allSubmissions = this.submissionService.getSubmissions();
     this._filterSubmissions();
@@ -88,6 +112,34 @@ export class SubmissionListComponent {
         });
         deleteFavIndizes.forEach(index => delete this.favorites![index!]);
       }*/
+    }));
+
+    this.subscriptions.push( this.projectService.projectList.subscribe(projectList => {
+      this.participationsInState = new Map<ParticipationState, Participation[]>();
+      const today = Utils.normalizedToday();
+      var participatingProjects = projectList.filter(project => !!project.submission);
+      participatingProjects.forEach(pp => {
+        var participation = {
+          projectId: pp.id!,
+          projectTitle: pp.workingTitle,
+          submissionId: pp.submission!.id!,
+          submissionTitle: pp.submission!.title,
+          deadline: pp.submission!.deadline,
+          isPassed: !!pp.submission!.deadline ? Utils.normalizeDate(pp.submission!.deadline) < today : false
+        };
+        var pState = SubmissionListComponent.getParticipationState(pp);
+        if (!this.participationsInState.has(pState)) {
+          this.participationsInState.set(pState, [participation]);
+        } else {
+          this.participationsInState.get(pState)!.push(participation);
+        }
+      });
+
+      /*this.participations.sort((a: Participation, b: Participation) => {
+        if (!a.deadline || Utils.normalizeDate(a.deadline) < today) return 1;
+        else if (!b.deadline || Utils.normalizeDate(b.deadline) < today) return -1;
+        else return new Date(a.deadline).valueOf() - new Date(b.deadline).valueOf();
+      });*/
     }));
   }
 
@@ -150,5 +202,19 @@ export class SubmissionListComponent {
 
   deleteReport(report: string) {
     this.submissionService.deleteReport(report)
+  }
+
+  private static getParticipationState(project: Project): ParticipationState {
+    if (project.state === ProjectState.submitted) {
+      return ParticipationState.submitted;
+    } else if (project.state === ProjectState.published) {
+      return ParticipationState.published;
+    } else if (project.state === ProjectState.accepted) {
+      return ParticipationState.accepted
+    } else if (project.state != ProjectState.finished) {
+      return ParticipationState.planned;
+    } else {
+      return ParticipationState.rejected;
+    }
   }
 }
