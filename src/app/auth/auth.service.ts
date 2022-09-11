@@ -121,7 +121,7 @@ export class AuthService implements OnDestroy {
   // Returns true when user is logged in and email is verified
   get isLoggedIn(): boolean {
     const userItem = localStorage.getItem('user');
-    if (userItem === undefined) return false;
+    if (userItem === undefined || userItem === null) return false;
     if (userItem!.length > 0) {
       const user = JSON.parse(userItem!);
       return (user !== null && user.emailVerified !== false);
