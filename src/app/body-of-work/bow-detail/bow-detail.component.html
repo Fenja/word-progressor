@@ -1,13 +1,7 @@
 <mat-card class="project-item">
-  <mat-card-header class="project-item__header">
-    <mat-card-title [routerLink]="['/projects/'+project.id]" [ngClass]="project.state.toString() === 'published' ? 'primary-color' : ''">{{ project.workingTitle }}</mat-card-title>
+  <mat-card-header class="project-item__header" style="margin-top: 1rem">
+    <mat-card-title [routerLink]="['/projects/'+project.id]">{{ project.workingTitle }}</mat-card-title>
     <mat-card-subtitle>{{ project.state | translate }}</mat-card-subtitle>
-    <span class="project-type">{{ project.type | translate }}</span>
+    <span class="project-type" style="top: .5rem; right: .5rem;">{{ project.type | translate }}</span>
   </mat-card-header>
-
-  <mat-card-content>
-    <div class="mat-card-content">
-      {{ project.currentCount }} {{ project.countEntity | translate }}
-    </div>
-  </mat-card-content>
 </mat-card>
