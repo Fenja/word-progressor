@@ -8,10 +8,10 @@ export interface userData {
   age?: number;
 
   settings?: Settings;
-  favorites?: string[];
+  favorites?: String[];
   submittedProjects?: SubmissionProjects[];
 
-  achievements?: string[]; // list of achievements
+  achievements?: String[]; // list of achievements
   wordLogs?: WordLog[]; // collected from all projects
   lastLogin?: Date;
 }

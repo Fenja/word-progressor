@@ -55,7 +55,7 @@ export class SubmissionService {
     )
   }
 
-  getSubmission(id: string) {
+  getSubmission(id: String) {
     return this.submissions.find(s => s.id === id);
   }
 

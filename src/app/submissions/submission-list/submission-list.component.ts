@@ -37,7 +37,7 @@ export enum ParticipationState {
 export class SubmissionListComponent {
 
   isLoading = true;
-  private favorites: string[] | undefined = [];
+  private favorites: String[] | undefined = [];
   submissionProjects: SubmissionProjects[] | undefined = [];
   participationsInState: Map<ParticipationState, Participation[]> = new Map<ParticipationState, Participation[]>();
 
