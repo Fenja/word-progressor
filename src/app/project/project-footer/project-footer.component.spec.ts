@@ -2,6 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ProjectFooterComponent } from './project-footer.component';
 import {TranslatePipe} from "../../translation/translate.pipe";
+import {HttpClientTestingModule} from "@angular/common/http/testing";
 
 describe('ProjectFooterComponent', () => {
   let component: ProjectFooterComponent;
@@ -12,7 +13,8 @@ describe('ProjectFooterComponent', () => {
       declarations: [
         ProjectFooterComponent,
         TranslatePipe,
-      ]
+      ],
+      providers: [ HttpClientTestingModule ],
     })
     .compileComponents();
   });

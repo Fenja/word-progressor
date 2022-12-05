@@ -79,7 +79,7 @@ describe('LogWordsService', () => {
   it('creates wordLogs', () => {
     expect(mockProject.wordLogs).toBeUndefined();
     expect(mockUser.wordLogs).toBeUndefined();
-    service.logWords(mockUserId1, mockProject, mockDate1, 100);
+    service.logWords(mockUserId1, mockProject, mockDate1.toString(), 100);
     expect(mockProject.wordLogs).toBeTruthy();
     expect(mockProject.wordLogs?.find(l => l.date === Utils.normalizeDate(mockDate1).toString())).toBeTruthy();
     expect(mockUser.wordLogs).toBeTruthy();
@@ -88,7 +88,7 @@ describe('LogWordsService', () => {
 
   it('logs negative words', () => {
     let testWordLog: WordLog = {date: Utils.normalizeDate(mockDate1).toString().toString(), words: -100};
-    service.logWords(mockUserId1, mockProject, mockDate1, -100);
+    service.logWords(mockUserId1, mockProject, mockDate1.toString(), -100);
     expect(mockProject.wordLogs).toContain(testWordLog);
     expect(mockUser.wordLogs).toContain(testWordLog);
   });
@@ -96,8 +96,8 @@ describe('LogWordsService', () => {
   it('adds more word logs', () => {
     let testWordLog1: WordLog = {date: Utils.normalizeDate(mockDate1).toString().toString(), words: 100};
     let testWordLog2: WordLog = {date: Utils.normalizeDate(mockDate2).toString().toString(), words: 200};
-    service.logWords(mockUserId1, mockProject, mockDate1, 100);
-    service.logWords(mockUserId1, mockProject, mockDate2, 200);
+    service.logWords(mockUserId1, mockProject, mockDate1.toString(), 100);
+    service.logWords(mockUserId1, mockProject, mockDate2.toString(), 200);
     expect(mockProject.wordLogs?.length).toBe(2);
     expect(mockUser.wordLogs?.length).toBe(2);
     expect(mockProject.wordLogs).toContain(testWordLog1);
@@ -107,8 +107,8 @@ describe('LogWordsService', () => {
   });
 
   it('adds words to existing entry', () => {
-    service.logWords(mockUserId1, mockProject, mockDate1, 100);
-    service.logWords(mockUserId1, mockProject, mockDate1, 200);
+    service.logWords(mockUserId1, mockProject, mockDate1.toString(), 100);
+    service.logWords(mockUserId1, mockProject, mockDate1.toString(), 200);
 
     expect(mockProject.wordLogs?.length).toBe(1);
     expect(mockUser.wordLogs?.length).toBe(1);
@@ -123,8 +123,8 @@ describe('LogWordsService', () => {
   it('logs words for different projects', () => {
     let testWordLog1: WordLog = {date: Utils.normalizeDate(mockDate1).toString().toString(), words: 100};
     let testWordLog2: WordLog = {date: Utils.normalizeDate(mockDate2).toString().toString(), words: 200};
-    service.logWords(mockUserId1, mockProject, mockDate1, 100);
-    service.logWords(mockUserId1, mockProject2, mockDate2, 200);
+    service.logWords(mockUserId1, mockProject, mockDate1.toString(), 100);
+    service.logWords(mockUserId1, mockProject2, mockDate2.toString(), 200);
     expect(mockProject.wordLogs?.length).toBe(1);
     expect(mockProject2.wordLogs?.length).toBe(1);
     expect(mockUser.wordLogs?.length).toBe(2);
@@ -136,8 +136,8 @@ describe('LogWordsService', () => {
   });
 
   it('combines logs for user from different projects', () => {
-    service.logWords(mockUserId1, mockProject, mockDate1, 100);
-    service.logWords(mockUserId1, mockProject2, mockDate1, 200);
+    service.logWords(mockUserId1, mockProject, mockDate1.toString(), 100);
+    service.logWords(mockUserId1, mockProject2, mockDate1.toString(), 200);
 
     expect(mockUser.wordLogs?.length).toBe(1);
     let wordLog = mockUser.wordLogs?.find(l => l.date === mockDate1.toString());

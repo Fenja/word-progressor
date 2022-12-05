@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { RewardDialogComponent, RewardDialogData } from './reward-dialog.component';
-import { MAT_DIALOG_DATA, MatDialogModule } from "@angular/material/dialog";
+import {MAT_DIALOG_DATA, MatDialogModule, MatDialogRef} from "@angular/material/dialog";
 import { CountEntity, Project, ProjectEvent, ProjectState, ProjectType } from "../project.model";
 
 describe('RewardDialogComponent', () => {
@@ -32,10 +32,13 @@ describe('RewardDialogComponent', () => {
     await TestBed.configureTestingModule({
       declarations: [ RewardDialogComponent ],
       imports: [ MatDialogModule ],
-      providers: [ {
-        provide: MAT_DIALOG_DATA,
-        useValue: dialogData
-      }]
+      providers: [
+        {
+          provide: MAT_DIALOG_DATA,
+          useValue: dialogData
+        },
+        { provide: MatDialogRef, useValue: {} }
+      ]
     })
     .compileComponents();
   });

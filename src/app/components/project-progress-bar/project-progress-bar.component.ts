@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-project-progress-bar',
@@ -24,7 +24,6 @@ export class ProjectProgressBarComponent implements OnInit {
 
     if (!!this.maxGoalCount) {
       this.percentageMaxDone = (this.currentCount / this.maxGoalCount) * 100;
-      if (this.percentageMaxDone > 100) this.percentageMaxDone = 100;
       this.firstBarWidthPercent = (this.goalCount / this.maxGoalCount) * 100;
     }
   }

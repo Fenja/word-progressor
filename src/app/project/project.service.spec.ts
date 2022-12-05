@@ -1,9 +1,9 @@
-import {ProjectService} from './project.service';
-import {CountEntity, Project, ProjectState, ProjectType} from "./project.model";
-import {TestBed} from "@angular/core/testing";
-import {DataStorageService} from "../services/data-storage.service";
-import {SnackbarService} from "../services/snackbar.service";
-import {TranslatePipe} from "../translation/translate.pipe";
+import { ProjectService } from './project.service';
+import { CountEntity, Project, ProjectState, ProjectType } from "./project.model";
+import { TestBed } from "@angular/core/testing";
+import { DataStorageService } from "../services/data-storage.service";
+import { SnackbarService } from "../services/snackbar.service";
+import { TranslatePipe } from "../translation/translate.pipe";
 
 describe('ProjectService', () => {
   let service: ProjectService;

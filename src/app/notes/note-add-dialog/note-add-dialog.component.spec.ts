@@ -1,6 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { NoteAddDialogComponent } from './note-add-dialog.component';
+import {MatDialogRef} from "@angular/material/dialog";
+import {HttpClientTestingModule} from "@angular/common/http/testing";
 
 describe('AddNoteDialogComponent', () => {
   let component: NoteAddDialogComponent;
@@ -13,7 +15,8 @@ describe('AddNoteDialogComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ NoteAddDialogComponent ]
+      declarations: [ NoteAddDialogComponent, HttpClientTestingModule ],
+      providers: [ { provide: MatDialogRef, useValue: {} } ],
     })
     .compileComponents();
   });

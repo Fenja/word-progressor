@@ -41,4 +41,4 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 ## Cordova
 
-Build with ` ng build --prod --base-href . --output-path ../CordovaWordProgressor/www/` to create dist directory and directly write into www directory of neighbor corodva project
+Build with `ng build --prod --base-href . --output-path ../CordovaWordProgressor/www/` to create dist directory and directly write into www directory of neighbor corodva project

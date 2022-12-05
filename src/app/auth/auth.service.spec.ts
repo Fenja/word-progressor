@@ -1,5 +1,5 @@
 import { AuthService } from "./auth.service";
-import { fakeAsync, flushMicrotasks, TestBed, tick } from "@angular/core/testing";
+import { fakeAsync, flushMicrotasks, TestBed } from "@angular/core/testing";
 import { HttpClientTestingModule, HttpTestingController } from "@angular/common/http/testing";
 import firebase from "firebase/compat";
 import UserCredential = firebase.auth.UserCredential;
@@ -119,7 +119,7 @@ describe('AuthService', () => {
   });
 
   it('logs in with google', () => {
-    let authSpy = spyOn(service, 'AuthLogin').and.returnValue(Promise.resolve(userCredential));
+    let authSpy = spyOn(service, 'AuthLogin');
     service.GoogleAuth();
     expect(authSpy).toHaveBeenCalled();
     expect(localStorage.getItem('user')).toBeDefined();

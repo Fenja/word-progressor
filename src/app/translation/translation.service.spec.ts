@@ -33,8 +33,8 @@ describe('TranslationService', () => {
     expect(service.translate(key)).toBe('Example');
   });
 
-  it('returns placeholder on invalid key', () => {
+  it('returns invalid key with exklamation marks on missing translation', () => {
     let key = '_invalid_';
-    expect(service.translate(key)).toBe('!!missing_translation!!');
+    expect(service.translate(key)).toBe('!!_invalid_!!');
   });
 });

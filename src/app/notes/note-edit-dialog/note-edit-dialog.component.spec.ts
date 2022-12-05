@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { NoteEditDialogComponent } from './note-edit-dialog.component';
+import {MatDialogRef} from "@angular/material/dialog";
 
 describe('NoteEditDialogComponent', () => {
   let component: NoteEditDialogComponent;
@@ -8,7 +9,8 @@ describe('NoteEditDialogComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ NoteEditDialogComponent ]
+      declarations: [ NoteEditDialogComponent ],
+      providers: [ { provide: MatDialogRef, useValue: {} } ],
     })
     .compileComponents();
   });

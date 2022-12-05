@@ -77,5 +77,33 @@ describe('ProjectProgressBarComponent', () => {
     const {debugElement} = fixture;
     const wordCountDisplay = debugElement.query(By.css('[data-testid="project-current-count"]'));
     expect(wordCountDisplay).toBeTruthy()
-  })
+  });
+
+  it('displays bar in accent color when goal is not met yet', () => {
+    component.goalCount = 100;
+    component.currentCount = 50;
+    fixture.detectChanges();
+    const {debugElement} = fixture;
+    const progressBar = debugElement.query(By.css('mat-progress-bar'));
+    expect(progressBar.attributes.color).toBe('primary');
+  });
+
+  it('displays bar in secondary color when goal is reached', () => {
+    component.goalCount = 100;
+    component.currentCount = 200;
+    fixture.detectChanges();
+    const {debugElement} = fixture;
+    const progressBar = debugElement.query(By.css('mat-progress-bar'));
+    expect(progressBar.attributes.color).toBe('accent');
+  });
+
+  it('displays bar in warn color when maximum is exceeded', () => {
+    component.goalCount = 100;
+    component.maxGoalCount = 500;
+    component.currentCount = 600;
+    fixture.detectChanges();
+    const {debugElement} = fixture;
+    const progressBar = debugElement.query(By.css('mat-progress-bar'));
+    expect(progressBar.attributes.color).toBe('warn');
+  });
 });

@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { SubprojectEditComponent } from './subproject-edit.component';
+import {HttpClientTestingModule} from "@angular/common/http/testing";
 
 describe('SubprojectEditComponent', () => {
   let component: SubprojectEditComponent;
@@ -8,7 +9,8 @@ describe('SubprojectEditComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ SubprojectEditComponent ]
+      declarations: [ SubprojectEditComponent ],
+      providers: [ HttpClientTestingModule ]
     })
     .compileComponents();
   });

@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { WordlogEditDialog } from './wordlog-edit-dialog.component';
+import { MatDialogRef } from "@angular/material/dialog";
 
 describe('EditLogDialogComponent', () => {
   let component: WordlogEditDialog;
@@ -8,7 +8,8 @@ describe('EditLogDialogComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ WordlogEditDialog ]
+      declarations: [ WordlogEditDialog ],
+      providers: [ { provide: MatDialogRef, useValue: {} } ]
     })
     .compileComponents();
   });

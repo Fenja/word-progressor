@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { WritingGoalsComponent } from './writing-goals.component';
+import {HttpClientTestingModule} from "@angular/common/http/testing";
 
 describe('WritingGoalsComponent', () => {
   let component: WritingGoalsComponent;
@@ -8,7 +9,8 @@ describe('WritingGoalsComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ WritingGoalsComponent ]
+      declarations: [ WritingGoalsComponent ],
+      providers: [ HttpClientTestingModule ],
     })
     .compileComponents();
   });

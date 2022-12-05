@@ -2,6 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ForgotPasswordDialog } from './forgot-password.component';
 import { AuthService } from "../auth.service";
+import { MatDialogRef } from "@angular/material/dialog";
 
 describe('ForgotPasswordComponent', () => {
   let component: ForgotPasswordDialog;
@@ -16,7 +17,9 @@ describe('ForgotPasswordComponent', () => {
       providers: [{
         provide: AuthService,
         useValue: afAuth,
-      }],
+      },
+        { provide: MatDialogRef, useValue: {} }
+      ],
     })
     .compileComponents();
   });
