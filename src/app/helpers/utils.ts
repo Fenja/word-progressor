@@ -106,7 +106,7 @@ export default class Utils {
       isAdmin: undefined,
       filterFavorites: false,
       isHidePassed: false,
-      language: 'all',
+      language: '*',
       cssVars: undefined,
 
       showDashboardCitation: true,

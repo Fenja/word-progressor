@@ -1,6 +1,7 @@
 import { Publication } from "../publication/publication.model";
 import { Subproject } from "./subproject/subproject.model";
 import { Submission } from "../submissions/submission.model";
+import {Language} from "../auth/user.model";
 
 export interface AbstractProject {
   id?: string;
@@ -25,7 +26,7 @@ export interface Project extends AbstractProject {
   reward?: string;
   eventLink?: string; // event or submission ids
   publication?: Publication;
-  language?: string;
+  language?: Language;
 
   wordLogs?: WordLog[];
   notes?: Note[];

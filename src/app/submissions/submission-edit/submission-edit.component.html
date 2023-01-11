@@ -105,14 +105,15 @@
   <div>
     <mat-form-field color="primary">
       <mat-label>{{ 'label_language' | translate }}</mat-label>
-      <input
-        matInput
-        type="text"
-        name="language"
+      <mat-select
         class="form-control"
         data-testid="event-input"
-        [(ngModel)]="submission.language"
+        [(value)]="submission.language"
       >
+        <mat-option [value]="'deutsch'">deutsch</mat-option>
+        <mat-option [value]="'english'">english</mat-option>
+        <mat-option [value]="'*'">*</mat-option>
+      </mat-select>
     </mat-form-field>
 
     <app-deadline-picker [(deadline)]="submission.deadline"></app-deadline-picker>

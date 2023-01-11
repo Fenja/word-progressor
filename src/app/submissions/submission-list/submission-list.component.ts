@@ -99,7 +99,7 @@ export class SubmissionListComponent {
         if (this.settings.isAdmin) {
           this._updateSubmissions();
         }
-        if (!this.settings.language) this.settings.language = 'all';
+        if (!this.settings.language) this.settings.language = '*';
       }
 
      /* if (!!this.favorites && this.favorites.length > 0) {
@@ -154,9 +154,8 @@ export class SubmissionListComponent {
       if (this.settings.isHidePassed && submission.deadline && Utils.normalizeDate(submission.deadline) < today) return false;
 
       let displayLanguage = true;
-      const language: Language = submission.language === 'deutsch' ? 'de' : submission.language === 'english' ? 'en' : 'all';
-      if (this.settings.language !== 'all') {
-         displayLanguage = this.settings.language === language;
+      if (this.settings.language !== '*') {
+         displayLanguage = this.settings.language === submission.language;
       }
 
       let displayFavorite = true;

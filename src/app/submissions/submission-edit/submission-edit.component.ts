@@ -41,7 +41,7 @@ export class SubmissionEditComponent implements OnInit {
     deadline: new Date(),
     description: "",
     genre: "",
-    language: "",
+    language: undefined,
     link: '',
     restrictions: '',
     maxCount: 0,

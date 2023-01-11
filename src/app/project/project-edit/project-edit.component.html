@@ -244,14 +244,14 @@
 
     <mat-form-field color="primary">
       <mat-label>{{ 'label_language' | translate }}</mat-label>
-      <input
-        matInput
-        type="text"
-        name="language"
+      <mat-select
         class="form-control"
         data-testid="event-input"
-        [(ngModel)]="project.language"
+        [(value)]="project.language"
       >
+        <mat-option [value]="'deutsch'">deutsch</mat-option>
+        <mat-option [value]="'english'">english</mat-option>
+      </mat-select>
     </mat-form-field>
   </div>
 

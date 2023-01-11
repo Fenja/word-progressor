@@ -11,7 +11,7 @@ export interface userData {
   favorites?: String[];
   submittedProjects?: SubmissionProjects[];
 
-  achievements?: String[]; // list of achievements
+  achievements?: Achievement[]; // list of achievements
   wordLogs?: WordLog[]; // collected from all projects
   lastLogin?: Date;
 }
@@ -84,7 +84,7 @@ export interface SubmissionProjects {
   projects: Project[];
 }
 
-export type Language = 'de' | 'en' | 'all';
+export type Language = 'deutsch' | 'english' | '*' | undefined;
 
 export interface CssVars {
   bgColor: string;
@@ -94,4 +94,14 @@ export interface CssVars {
   textSize: number;
   lineSpacing: number;
   fontFamiliy: string | undefined;
+}
+
+export interface Achievement {
+  nameKey:
+    'project_count' | 'finish_count' | 'word_count' | 'submit_count' | 'login_count' |
+    ''
+  ;
+  progress: number; // 0-100 %
+  image: string;
+  dateGained: Date;
 }
